@@ -1,0 +1,2535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Financial Statement Analysis Lab | COMandFIN</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" onerror="window.__CHART_FAILED=true;"></script>
+<style>
+:root{
+  --navy:#0b1f3a; --navy2:#132c52; --blue:#2563eb; --blue-light:#eaf1ff;
+  --mint:#0fae83; --gold:#c99a2e; --red:#c0392b; --amber:#b8860b;
+  --bg:#f4f6f9; --card:#ffffff; --border:#e2e6ec; --text:#1b2534; --muted:#5b6b82;
+  --good:#0fae83; --warn:#c99a2e; --risk:#c0392b; --neutral:#5b6b82;
+  --radius:10px;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);}
+header.topbar{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:14px 22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;position:sticky;top:0;z-index:50;box-shadow:0 2px 10px rgba(0,0,0,.15);}
+header.topbar h1{font-size:18px;margin:0;font-weight:700;letter-spacing:.2px;}
+header.topbar .sub{font-size:11.5px;color:#b9c6e0;margin-top:2px;}
+.record-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:12px;}
+.record-bar input{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:6px;padding:5px 8px;font-size:12px;width:110px;}
+.record-bar input::placeholder{color:#b9c6e0;}
+.mode-toggle{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:4px 10px;}
+.mode-toggle button{background:none;border:none;color:#cfd9ee;font-size:11.5px;font-weight:600;cursor:pointer;padding:3px 8px;border-radius:14px;}
+.mode-toggle button.active{background:var(--gold);color:#221a04;}
+nav.tabs{display:flex;flex-wrap:wrap;gap:4px;background:var(--navy2);padding:6px 14px;position:sticky;top:60px;z-index:49;box-shadow:0 2px 6px rgba(0,0,0,.08);}
+nav.tabs button{background:none;border:none;color:#c8d3e8;font-size:12.3px;font-weight:600;padding:8px 11px;border-radius:6px;cursor:pointer;white-space:nowrap;}
+nav.tabs button:hover{background:rgba(255,255,255,.08);color:#fff;}
+nav.tabs button.active{background:var(--blue);color:#fff;}
+main{max-width:1320px;margin:0 auto;padding:20px;}
+.tabpanel{display:none;}
+.tabpanel.active{display:block;animation:fadein .15s ease;}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin-bottom:16px;box-shadow:0 1px 2px rgba(20,30,60,.04);}
+.card h2{margin:0 0 4px;color:var(--navy);font-size:19px;}
+.card h3{color:var(--navy);font-size:15.5px;margin:18px 0 8px;}
+.card p.lead{color:var(--muted);margin:0 0 14px;font-size:13.3px;}
+.grid{display:grid;gap:14px;}
+.grid-2{grid-template-columns:1fr 1fr;}
+.grid-3{grid-template-columns:repeat(3,1fr);}
+.grid-4{grid-template-columns:repeat(4,1fr);}
+@media(max-width:900px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}nav.tabs{position:static;}header.topbar{position:static;}}
+.kpi{background:linear-gradient(160deg,#fff,#f7f9fc);border:1px solid var(--border);border-radius:10px;padding:13px 15px;}
+.kpi .lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.4px;font-weight:600;}
+.kpi .val{font-size:22px;font-weight:700;color:var(--navy);margin-top:3px;}
+.kpi .delta{font-size:12px;margin-top:4px;font-weight:600;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{text-align:right;padding:7px 10px;border-bottom:1px solid var(--border);}
+th{background:var(--blue-light);color:var(--navy);font-weight:700;font-size:11.5px;text-transform:uppercase;letter-spacing:.3px;}
+td:first-child,th:first-child{text-align:left;}
+tr.subtotal td{font-weight:700;border-top:2px solid var(--navy);}
+tr.grandtotal td{font-weight:800;background:#f0f4fb;}
+.pos{color:var(--good);font-weight:700;}
+.neg{color:var(--risk);font-weight:700;}
+.neu{color:var(--muted);font-weight:600;}
+.badge{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10.8px;font-weight:700;letter-spacing:.3px;}
+.badge.good{background:#e2f7f0;color:var(--good);}
+.badge.warn{background:#fbf1dd;color:var(--warn);}
+.badge.risk{background:#fbe6e2;color:var(--risk);}
+.badge.neutral{background:#eceff4;color:var(--neutral);}
+input[type=number],input[type=text],select,textarea{border:1px solid var(--border);border-radius:6px;padding:6px 8px;font-size:13px;width:100%;font-family:inherit;}
+label{font-size:11.5px;color:var(--muted);font-weight:600;display:block;margin-bottom:3px;}
+.field{margin-bottom:9px;}
+button.btn{background:var(--blue);color:#fff;border:none;border-radius:7px;padding:8px 15px;font-size:12.8px;font-weight:700;cursor:pointer;}
+button.btn:hover{background:#1d4fcc;}
+button.btn.secondary{background:#fff;color:var(--navy);border:1px solid var(--border);}
+button.btn.secondary:hover{background:var(--blue-light);}
+button.btn.gold{background:var(--gold);color:#2b2005;}
+button.btn.danger{background:#fff;color:var(--risk);border:1px solid #f0c4bd;}
+button.btn.small{padding:5px 10px;font-size:11.5px;border-radius:6px;}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.formula-block{background:#f7f9fd;border:1px solid var(--border);border-left:4px solid var(--blue);border-radius:8px;padding:12px 15px;margin:10px 0;}
+.formula-block .fname{font-weight:800;color:var(--navy);font-size:14px;margin-bottom:6px;}
+.formula-block .fformula{font-family:'Courier New',monospace;font-size:12.5px;color:var(--blue);margin-bottom:8px;}
+.formula-block .fcalc{font-family:'Courier New',monospace;font-size:12.5px;background:#fff;border:1px dashed var(--border);border-radius:6px;padding:8px 10px;margin-bottom:8px;}
+.formula-block .fresult{font-size:20px;font-weight:800;color:var(--navy);}
+.formula-block .finterpret{font-size:12.6px;color:var(--text);margin-top:8px;background:#fffef4;border:1px solid #f0e6c5;border-radius:6px;padding:8px 10px;}
+.ratio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;}
+.tag{display:inline-block;background:var(--blue-light);color:var(--blue);font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:5px;margin-right:5px;}
+.callout{border-radius:8px;padding:11px 14px;font-size:12.8px;margin:10px 0;}
+.callout.warn{background:#fdf3e3;border:1px solid #f0d9a3;color:#7a5b06;}
+.callout.good{background:#e6f8f1;border:1px solid #b7e9d6;color:#0a6b4f;}
+.callout.risk{background:#fceceb;border:1px solid #f3bdb6;color:#8a271b;}
+.callout.info{background:var(--blue-light);border:1px solid #c7dcff;color:#1a3f8f;}
+.flowchart{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:12.5px;font-weight:700;color:var(--navy);}
+.flowchart .node{background:#fff;border:2px solid var(--blue);border-radius:8px;padding:8px 12px;}
+.flowchart .arrow{color:var(--blue);font-size:16px;}
+.objectives ol{margin:0;padding-left:20px;font-size:13px;line-height:1.9;}
+.slider-row{display:flex;align-items:center;gap:8px;}
+.slider-row input[type=range]{flex:1;}
+.slider-row .sliderval{width:60px;text-align:right;font-weight:700;color:var(--blue);font-size:12.5px;}
+.section-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.section-nav button{background:#fff;border:1px solid var(--border);border-radius:16px;padding:5px 12px;font-size:11.8px;font-weight:600;color:var(--navy);cursor:pointer;}
+.section-nav button.active{background:var(--navy);color:#fff;}
+.chart-wrap{position:relative;height:280px;}
+.small-note{font-size:11.3px;color:var(--muted);margin-top:4px;}
+.q-card{border:1px solid var(--border);border-radius:9px;padding:14px 16px;margin-bottom:12px;}
+.q-card .qhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.q-card .qnum{font-weight:800;color:var(--navy);font-size:13px;}
+.q-card .qcat{font-size:10.5px;background:var(--blue-light);color:var(--blue);padding:2px 8px;border-radius:10px;font-weight:700;}
+.q-card .qscenario{font-size:13px;margin:6px 0;}
+.q-card .qfeedback{margin-top:8px;font-size:12.6px;padding:8px 10px;border-radius:6px;display:none;}
+.q-card .qfeedback.show{display:block;}
+.q-card .qfeedback.correct{background:#e6f8f1;color:#0a6b4f;}
+.q-card .qfeedback.incorrect{background:#fceceb;color:#8a271b;}
+.dupont-box{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center;padding:16px;}
+.dupont-box .dbox{background:#fff;border:2px solid var(--blue);border-radius:10px;padding:14px 18px;text-align:center;min-width:130px;}
+.dupont-box .dbox .dl{font-size:11px;color:var(--muted);font-weight:700;}
+.dupont-box .dbox .dv{font-size:20px;font-weight:800;color:var(--navy);}
+.dupont-box .op{font-size:22px;font-weight:800;color:var(--gold);}
+.matrix-table td.driver{font-weight:700;color:var(--navy);background:#f7f9fd;}
+footer.appfoot{text-align:center;color:var(--muted);font-size:11.5px;padding:24px 0 40px;}
+.pin-box{display:flex;gap:6px;align-items:center;}
+.pin-box input{width:70px;}
+.calc-practice{background:#fbf9f2;border:1px dashed var(--gold);border-radius:8px;padding:10px 12px;margin-top:8px;}
+.calc-practice .cptitle{font-weight:700;color:var(--navy);font-size:12.6px;margin-bottom:4px;}
+.calc-practice .cphint{font-size:11.5px;color:var(--muted);margin-bottom:6px;}
+.calc-row{display:flex;gap:8px;align-items:center;}
+.calc-row input[type=text]{font-family:'Courier New',monospace;font-size:13px;flex:1;}
+.calc-result{margin-top:6px;font-size:12.6px;font-weight:600;}
+@media print{
+  header.topbar,nav.tabs,.no-print{display:none !important;}
+  .tabpanel{display:block !important;}
+  body{background:#fff;}
+  main{max-width:100%;padding:0;}
+  .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;}
+}
+.hidden{display:none !important;}
+::-webkit-scrollbar{height:8px;width:8px;}
+::-webkit-scrollbar-thumb{background:#c7cfdb;border-radius:4px;}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:12px;">
+    <svg width="42" height="42" viewBox="0 0 100 100" style="flex-shrink:0;">
+      <circle cx="50" cy="50" r="48" fill="#0b1f3a" stroke="#c99a2e" stroke-width="3"/>
+      <text x="50" y="45" text-anchor="middle" font-family="Segoe UI,Arial" font-weight="800" font-size="26" fill="#ffffff">C</text>
+      <text x="50" y="68" text-anchor="middle" font-family="Segoe UI,Arial" font-weight="700" font-size="12" fill="#c99a2e">FIN</text>
+      <path d="M20 78 L35 65 L50 72 L65 55 L82 40" stroke="#0fae83" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div>
+      <h1>📊 Financial Statement Analysis &amp; Ratio Analysis Learning Lab</h1>
+      <div class="sub">COMandFIN Edutech · Learn by doing — change one number, see the whole story change</div>
+    </div>
+  </div>
+  <div class="record-bar no-print">
+    <input id="recStudent" placeholder="Student Name">
+    <input id="recId" placeholder="Student ID">
+    <input id="recCourse" placeholder="Course">
+    <input id="recInstructor" placeholder="Instructor">
+    <div class="mode-toggle">
+      <button id="btnStudentMode" class="active">STUDENT</button>
+      <button id="btnTeacherMode">TEACHER</button>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs no-print" id="tabNav"></nav>
+
+<main id="mainArea">
+  <!-- tab panels injected by JS -->
+</main>
+
+<footer class="appfoot">Financial Statement Analysis &amp; Ratio Analysis Learning Lab · COMandFIN Edutech · For classroom &amp; self-study use</footer>
+
+<div id="modalRoot"></div>
+
+<script>
+/* =====================================================================
+   FINANCIAL STATEMENT ANALYSIS & RATIO ANALYSIS LEARNING LAB
+   Single-file vanilla JS application. All figures in ₹ Lakhs unless noted.
+===================================================================== */
+
+/* ---------------------------------------------------------------------
+   1. GLOBAL STATE
+--------------------------------------------------------------------- */
+const TABS = [
+  {id:'dashboard',label:'Dashboard'},
+  {id:'statements',label:'Financial Statements'},
+  {id:'vertical',label:'Vertical Analysis'},
+  {id:'horizontal',label:'Horizontal Analysis'},
+  {id:'causeeffect',label:'Cause & Effect Simulator'},
+  {id:'liquidity',label:'Liquidity Ratios'},
+  {id:'activity',label:'Activity Ratios'},
+  {id:'capstructure',label:'Capital Structure'},
+  {id:'leverage',label:'Leverage Ratios'},
+  {id:'profitability',label:'Profitability Ratios'},
+  {id:'valuation',label:'Valuation Ratios'},
+  {id:'dupont',label:'DuPont Analysis'},
+  {id:'competitor',label:'Competitor Analysis'},
+  {id:'practice',label:'Practice Lab'},
+  {id:'casestudies',label:'Case Studies'},
+  {id:'dataimport',label:'Data Import'},
+  {id:'report',label:'Print / Report'}
+];
+
+let MODE = 'student'; // 'student' | 'teacher'
+let CURRENT_TAB = 'dashboard';
+
+// raw editable inputs for the primary company, Year 1 & Year 2
+function blankYear(){
+  return {
+    revenue:0, cogs:0, opex:0, depreciation:0, interest:0, taxRate:30,
+    cash:0, ar:0, inventory:0, otherCA:0,
+    ppe:0, otherNCA:0,
+    ap:0, std:0, otherCL:0,
+    ltd:0, otherNCL:0, equity:0,
+    shares:0, marketPrice:0, dividends:0
+  };
+}
+
+let DATA = {
+  meta:{company:'My Company', ticker:'', currency:'₹ Lakh'},
+  year1: blankYear(),
+  year2: blankYear()
+};
+
+// competitor companies (each holds only Year2-equivalent single-period data for comparison)
+let COMPETITORS = {
+  A:{name:'Company A', data: blankYear()},
+  B:{name:'Company B', data: blankYear()},
+  C:{name:'Company C', data: blankYear()}
+};
+
+// simulator holds a working copy of year2 that the student perturbs
+let SIM = null;
+
+/* ---------------------------------------------------------------------
+   2. PRELOADED EXAMPLE COMPANIES
+--------------------------------------------------------------------- */
+const EXAMPLES = {
+  stable:{
+    label:'Stable Company (Mature FMCG-style)',
+    year1:{revenue:10000,cogs:6200,opex:1800,depreciation:220,interest:250,taxRate:30,
+      cash:600,ar:900,inventory:1100,otherCA:200,
+      ppe:4200,otherNCA:400,
+      ap:850,std:300,otherCL:250,
+      ltd:1800,otherNCL:200,equity:0,
+      shares:500,marketPrice:120,dividends:400},
+    year2:{revenue:10800,cogs:6600,opex:1900,depreciation:240,interest:230,taxRate:30,
+      cash:700,ar:950,inventory:1150,otherCA:220,
+      ppe:4400,otherNCA:420,
+      ap:880,std:280,otherCL:260,
+      ltd:1700,otherNCL:210,equity:0,
+      shares:500,marketPrice:132,dividends:430}
+  },
+  growth:{
+    label:'High Growth Company (Tech/D2C-style)',
+    year1:{revenue:4000,cogs:2200,opex:1400,depreciation:110,interest:80,taxRate:25,
+      cash:900,ar:500,inventory:300,otherCA:150,
+      ppe:1200,otherNCA:300,
+      ap:400,std:100,otherCL:150,
+      ltd:600,otherNCL:100,equity:0,
+      shares:300,marketPrice:250,dividends:0},
+    year2:{revenue:7200,cogs:3960,opex:2400,depreciation:170,interest:140,taxRate:25,
+      cash:1100,ar:950,inventory:620,otherCA:200,
+      ppe:1900,otherNCA:380,
+      ap:700,std:250,otherCL:220,
+      ltd:1100,otherNCL:150,equity:0,
+      shares:320,marketPrice:410,dividends:0}
+  },
+  distressed:{
+    label:'Financially Distressed Company',
+    year1:{revenue:5000,cogs:3600,opex:1100,depreciation:230,interest:400,taxRate:30,
+      cash:150,ar:800,inventory:1200,otherCA:100,
+      ppe:2500,otherNCA:200,
+      ap:900,std:700,otherCL:300,
+      ltd:2200,otherNCL:150,equity:0,
+      shares:400,marketPrice:35,dividends:0},
+    year2:{revenue:4600,cogs:3550,opex:1150,depreciation:225,interest:480,taxRate:30,
+      cash:60,ar:1050,inventory:1450,otherCA:120,
+      ppe:2400,otherNCA:190,
+      ap:1150,std:950,otherCL:340,
+      ltd:2350,otherNCL:160,equity:0,
+      shares:400,marketPrice:14,dividends:0}
+  }
+};
+// backfill equity so that Assets = Liabilities + Equity exactly for preloaded examples
+function balanceExampleEquity(y){
+  const ca = y.cash+y.ar+y.inventory+y.otherCA;
+  const nca = y.ppe+y.otherNCA;
+  const totalAssets = ca+nca;
+  const cl = y.ap+y.std+y.otherCL;
+  const ncl = y.ltd+y.otherNCL;
+  y.equity = totalAssets - (cl+ncl);
+}
+Object.values(EXAMPLES).forEach(ex=>{balanceExampleEquity(ex.year1);balanceExampleEquity(ex.year2);});
+
+/* ---------------------------------------------------------------------
+   3. DERIVATION ENGINE — everything downstream is computed, never hard-coded
+--------------------------------------------------------------------- */
+function computeDerived(y){
+  const d = {...y};
+  // Income statement
+  d.grossProfit = d.revenue - d.cogs;
+  d.ebitda = d.grossProfit - d.opex;
+  d.depreciation = d.depreciation || 0;
+  d.ebit = d.ebitda - d.depreciation;
+  d.pbt = d.ebit - d.interest;
+  d.tax = Math.max(0, d.pbt) * (d.taxRate/100);
+  d.netIncome = d.pbt - d.tax;
+  // Balance sheet
+  d.totalCurrentAssets = d.cash + d.ar + d.inventory + d.otherCA;
+  d.totalNonCurrentAssets = d.ppe + d.otherNCA;
+  d.totalAssets = d.totalCurrentAssets + d.totalNonCurrentAssets;
+  d.totalCurrentLiabilities = d.ap + d.std + d.otherCL;
+  d.totalNonCurrentLiabilities = d.ltd + d.otherNCL;
+  d.totalLiabilities = d.totalCurrentLiabilities + d.totalNonCurrentLiabilities;
+  d.impliedEquity = d.totalAssets - d.totalLiabilities;
+  d.balanceDiff = d.totalAssets - (d.totalLiabilities + d.equity);
+  d.balanced = Math.abs(d.balanceDiff) < 0.5;
+  // Market
+  d.marketCap = d.shares * d.marketPrice;
+  d.eps = d.shares>0 ? d.netIncome/d.shares : 0;
+  d.bvps = d.shares>0 ? d.equity/d.shares : 0;
+  d.dps = d.shares>0 ? d.dividends/d.shares : 0;
+  d.workingCapital = d.totalCurrentAssets - d.totalCurrentLiabilities;
+  return d;
+}
+
+function fmt(n,dec=2){
+  if(n===undefined||n===null||isNaN(n)) return '—';
+  const sign = n<0?'-':'';
+  return sign + Math.abs(n).toLocaleString('en-IN',{minimumFractionDigits:dec,maximumFractionDigits:dec});
+}
+function fmtCur(n,dec=1){ return '₹'+fmt(n,dec); }
+function fmtPct(n,dec=1){ if(n===undefined||n===null||isNaN(n)) return '—'; return fmt(n,dec)+'%'; }
+function fmtX(n,dec=2){ if(n===undefined||n===null||isNaN(n)) return '—'; return fmt(n,dec)+'x'; }
+function safeDiv(a,b){ return b===0||b===undefined||b===null ? NaN : a/b; }
+function dirArrow(delta){ if(delta===undefined||isNaN(delta)) return ''; if(delta>0.0001) return '↑'; if(delta<-0.0001) return '↓'; return '→'; }
+function dirClass(delta){ if(delta===undefined||isNaN(delta)) return 'neu'; if(delta>0.0001) return 'pos'; if(delta<-0.0001) return 'neg'; return 'neu'; }
+
+/* ---------------------------------------------------------------------
+   4. LOCALSTORAGE PERSISTENCE
+--------------------------------------------------------------------- */
+function saveToStorage(){
+  try{
+    localStorage.setItem('fsalab_data', JSON.stringify(DATA));
+    localStorage.setItem('fsalab_competitors', JSON.stringify(COMPETITORS));
+    localStorage.setItem('fsalab_va_reasons', JSON.stringify(VA_REASONS||{}));
+    localStorage.setItem('fsalab_ha_reasons', JSON.stringify(HA_REASONS||{}));
+    localStorage.setItem('fsalab_record', JSON.stringify({
+      student: byId('recStudent').value, id: byId('recId').value,
+      course: byId('recCourse').value, instructor: byId('recInstructor').value
+    }));
+  }catch(e){}
+}
+function loadFromStorage(){
+  try{
+    const d = localStorage.getItem('fsalab_data');
+    if(d) DATA = JSON.parse(d);
+    const c = localStorage.getItem('fsalab_competitors');
+    if(c) COMPETITORS = JSON.parse(c);
+    const va = localStorage.getItem('fsalab_va_reasons');
+    if(va) VA_REASONS = JSON.parse(va);
+    const ha = localStorage.getItem('fsalab_ha_reasons');
+    if(ha) HA_REASONS = JSON.parse(ha);
+    const r = localStorage.getItem('fsalab_record');
+    if(r){
+      const rec = JSON.parse(r);
+      byId('recStudent').value = rec.student||'';
+      byId('recId').value = rec.id||'';
+      byId('recCourse').value = rec.course||'';
+      byId('recInstructor').value = rec.instructor||'';
+    }
+  }catch(e){}
+}
+function byId(id){ return document.getElementById(id); }
+
+/* ---------------------------------------------------------------------
+   5. RATIO DEFINITION ENGINE
+   Each ratio: {key, name, unit('x'|'%'|'days'|'num'), formula string,
+   calc(d)->{num,den,value}, interpret(value,d)->string, benchmark note}
+   d = a computeDerived() object. Works for any single period (Year1/Year2/competitor).
+--------------------------------------------------------------------- */
+const RATIOS = {};
+
+RATIOS.liquidity = [
+  {key:'current', name:'Current Ratio', unit:'x',
+   formula:'Current Assets / Current Liabilities',
+   calc:d=>({num:d.totalCurrentAssets, den:d.totalCurrentLiabilities, value:safeDiv(d.totalCurrentAssets,d.totalCurrentLiabilities)}),
+   interpret:v=> v<1 ? 'Current liabilities exceed current assets. The company may face short-term liquidity pressure.' :
+                 v>2 ? 'Liquidity appears strong, although excessively high liquidity may indicate inefficient use of current assets.' :
+                 'The company has a reasonable liquidity cushion for short-term obligations.'},
+  {key:'quick', name:'Quick Ratio (Acid-Test)', unit:'x',
+   formula:'(Cash + Accounts Receivable) / Current Liabilities',
+   calc:d=>({num:d.cash+d.ar, den:d.totalCurrentLiabilities, value:safeDiv(d.cash+d.ar,d.totalCurrentLiabilities)}),
+   interpret:v=> v<1 ? 'Excluding inventory, the company may struggle to meet short-term liabilities quickly.' : 'The company can cover short-term liabilities without relying on inventory liquidation.'},
+  {key:'cash', name:'Cash Ratio', unit:'x',
+   formula:'Cash / Current Liabilities',
+   calc:d=>({num:d.cash, den:d.totalCurrentLiabilities, value:safeDiv(d.cash,d.totalCurrentLiabilities)}),
+   interpret:v=> v<0.2 ? 'Cash alone covers a small fraction of current liabilities — reliance on collections/inventory sales is high.' : 'Cash reserves alone provide meaningful coverage of current liabilities.'},
+  {key:'workingcapital', name:'Working Capital', unit:'num',
+   formula:'Current Assets − Current Liabilities',
+   calc:d=>({num:d.totalCurrentAssets, den:d.totalCurrentLiabilities, value:d.totalCurrentAssets-d.totalCurrentLiabilities}),
+   interpret:v=> v<0 ? 'Negative working capital — current obligations exceed current resources.' : 'Positive working capital cushion available for operations.'},
+  {key:'defensive', name:'Defensive Interval Ratio', unit:'days',
+   formula:'(Cash + AR) / (Avg Daily Operating Expenses)',
+   calc:d=>{const dailyOpex=(d.cogs+d.opex)/365; return {num:d.cash+d.ar, den:dailyOpex, value:safeDiv(d.cash+d.ar,dailyOpex)};},
+   interpret:v=> v<30 ? 'The company could sustain operating expenses from liquid assets for less than a month without external financing.' : 'Liquid assets could sustain operations for a reasonable period without new financing.'}
+];
+
+RATIOS.activity = [
+  {key:'invturn', name:'Inventory Turnover', unit:'x',
+   formula:'COGS / Average Inventory',
+   calc:(d,p)=>{const avg=p? (p.inventory+d.inventory)/2 : d.inventory; return {num:d.cogs, den:avg, value:safeDiv(d.cogs,avg)};},
+   interpret:v=> v<3 ? 'Inventory is moving slowly, potentially indicating excess stock or weaker demand.' : 'Inventory is being converted to sales efficiently.'},
+  {key:'recturn', name:'Receivables Turnover', unit:'x',
+   formula:'Revenue / Average Accounts Receivable',
+   calc:(d,p)=>{const avg=p? (p.ar+d.ar)/2 : d.ar; return {num:d.revenue, den:avg, value:safeDiv(d.revenue,avg)};},
+   interpret:v=> v<6 ? 'Receivables turn over slowly — customers may be taking long to pay.' : 'Receivables are collected efficiently.'},
+  {key:'payturn', name:'Payables Turnover', unit:'x',
+   formula:'COGS / Average Accounts Payable',
+   calc:(d,p)=>{const avg=p? (p.ap+d.ap)/2 : d.ap; return {num:d.cogs, den:avg, value:safeDiv(d.cogs,avg)};},
+   interpret:v=> v>12 ? 'Payables are settled quickly — the company may be under-utilizing supplier credit as free financing.' : 'The company is making reasonable use of supplier credit.'},
+  {key:'totassetturn', name:'Total Asset Turnover', unit:'x',
+   formula:'Revenue / Average Total Assets',
+   calc:(d,p)=>{const avg=p? (p.totalAssets+d.totalAssets)/2 : d.totalAssets; return {num:d.revenue, den:avg, value:safeDiv(d.revenue,avg)};},
+   interpret:v=> v<0.7 ? 'Assets are generating relatively low revenue — asset utilization may be inefficient.' : 'Assets are being used efficiently to generate revenue.'},
+  {key:'fixedassetturn', name:'Fixed Asset Turnover', unit:'x',
+   formula:'Revenue / Average Net PP&E',
+   calc:(d,p)=>{const avg=p? (p.ppe+d.ppe)/2 : d.ppe; return {num:d.revenue, den:avg, value:safeDiv(d.revenue,avg)};},
+   interpret:v=> v<1.5 ? 'Fixed assets are generating comparatively low sales, which may signal excess capacity.' : 'Fixed assets are generating strong sales relative to their book value.'},
+  {key:'wcturn', name:'Working Capital Turnover', unit:'x',
+   formula:'Revenue / Average Working Capital',
+   calc:(d,p)=>{const wc = d.totalCurrentAssets-d.totalCurrentLiabilities; const pwc = p? p.totalCurrentAssets-p.totalCurrentLiabilities : wc; const avg=(wc+pwc)/2; return {num:d.revenue, den:avg, value:safeDiv(d.revenue,avg)};},
+   interpret:v=> isNaN(v)||v<0 ? 'Working capital is negative or near zero, making this ratio unstable to interpret.' : v>15 ? 'Revenue is being generated very efficiently relative to working capital deployed.' : 'A moderate amount of working capital supports each rupee of revenue.'},
+  {key:'dio', name:'Days Inventory Outstanding (DIO)', unit:'days',
+   formula:'365 / Inventory Turnover',
+   calc:(d,p)=>{const avg=p? (p.inventory+d.inventory)/2 : d.inventory; const turn=safeDiv(d.cogs,avg); return {num:365, den:turn, value:safeDiv(365,turn)};},
+   interpret:v=> v>90 ? 'Inventory sits for a long time before sale, tying up cash.' : 'Inventory converts to sales within a reasonable period.'},
+  {key:'dso', name:'Days Sales Outstanding (DSO)', unit:'days',
+   formula:'365 / Receivables Turnover',
+   calc:(d,p)=>{const avg=p? (p.ar+d.ar)/2 : d.ar; const turn=safeDiv(d.revenue,avg); return {num:365, den:turn, value:safeDiv(365,turn)};},
+   interpret:v=> v>60 ? 'Customers are taking longer to pay, potentially increasing working-capital requirements.' : 'Collections from customers happen within a reasonable window.'},
+  {key:'dpo', name:'Days Payable Outstanding (DPO)', unit:'days',
+   formula:'365 / Payables Turnover',
+   calc:(d,p)=>{const avg=p? (p.ap+d.ap)/2 : d.ap; const turn=safeDiv(d.cogs,avg); return {num:365, den:turn, value:safeDiv(365,turn)};},
+   interpret:v=> v<30 ? 'The company pays suppliers quickly, forgoing potential free financing from trade credit.' : 'The company is stretching payment terms to preserve cash.'},
+  {key:'opcycle', name:'Operating Cycle', unit:'days',
+   formula:'DIO + DSO',
+   calc:(d,p)=>{
+     const avgInv=p?(p.inventory+d.inventory)/2:d.inventory, avgAr=p?(p.ar+d.ar)/2:d.ar;
+     const dio=safeDiv(365,safeDiv(d.cogs,avgInv)), dso=safeDiv(365,safeDiv(d.revenue,avgAr));
+     return {num:dio, den:dso, value:dio+dso};},
+   interpret:v=> v>150 ? 'Cash is tied up in the operating cycle for a long period, increasing financing needs.' : 'Cash converts back from inventory and receivables in a reasonable time.'},
+  {key:'ccc', name:'Cash Conversion Cycle (CCC)', unit:'days',
+   formula:'DIO + DSO − DPO',
+   calc:(d,p)=>{
+     const avgInv=p?(p.inventory+d.inventory)/2:d.inventory, avgAr=p?(p.ar+d.ar)/2:d.ar, avgAp=p?(p.ap+d.ap)/2:d.ap;
+     const dio=safeDiv(365,safeDiv(d.cogs,avgInv)), dso=safeDiv(365,safeDiv(d.revenue,avgAr)), dpo=safeDiv(365,safeDiv(d.cogs,avgAp));
+     return {num:dio+dso, den:dpo, value:(dio+dso)-dpo};},
+   interpret:v=> v>90 ? 'A long cash conversion cycle means cash is locked up for an extended period, increasing reliance on external financing.' : v<0 ? 'A negative CCC means the company collects cash before it must pay suppliers — a favorable working-capital position.' : 'A moderate cash conversion cycle indicates reasonably efficient working-capital management.'}
+];
+
+RATIOS.capstructure = [
+  {key:'debtratio', name:'Debt Ratio', unit:'x',
+   formula:'Total Liabilities / Total Assets',
+   calc:d=>({num:d.totalLiabilities, den:d.totalAssets, value:safeDiv(d.totalLiabilities,d.totalAssets)}),
+   interpret:v=> v>0.6 ? 'A large share of assets is financed by debt, increasing financial risk.' : 'A conservative share of assets is financed by debt.'},
+  {key:'de', name:'Debt-to-Equity Ratio', unit:'x',
+   formula:'Total Liabilities / Shareholders\' Equity',
+   calc:d=>({num:d.totalLiabilities, den:d.equity, value:safeDiv(d.totalLiabilities,d.equity)}),
+   interpret:v=> v>2 ? 'Financial risk and fixed financing commitments appear elevated.' : v<0.5 ? 'The company relies conservatively on debt relative to equity.' : 'The company maintains a moderate balance of debt and equity financing.'},
+  {key:'equityratio', name:'Equity Ratio', unit:'x',
+   formula:'Shareholders\' Equity / Total Assets',
+   calc:d=>({num:d.equity, den:d.totalAssets, value:safeDiv(d.equity,d.totalAssets)}),
+   interpret:v=> v<0.3 ? 'Owners fund a relatively small portion of the asset base.' : 'Owners fund a substantial portion of the asset base, indicating lower leverage.'},
+  {key:'ltdcap', name:'Long-term Debt-to-Capital Ratio', unit:'x',
+   formula:'Long-term Debt / (Long-term Debt + Equity)',
+   calc:d=>({num:d.ltd, den:d.ltd+d.equity, value:safeDiv(d.ltd,d.ltd+d.equity)}),
+   interpret:v=> v>0.5 ? 'Long-term debt forms the majority of permanent capital, raising structural leverage.' : 'Long-term capital structure is weighted more toward equity.'},
+  {key:'totdebtcap', name:'Total Debt-to-Capital Ratio', unit:'x',
+   formula:'Total Debt / (Total Debt + Equity)',
+   calc:d=>{const totDebt=d.std+d.ltd; return {num:totDebt, den:totDebt+d.equity, value:safeDiv(totDebt,totDebt+d.equity)};},
+   interpret:v=> v>0.5 ? 'Debt makes up the majority of total capital employed.' : 'Equity makes up the majority of total capital employed.'},
+  {key:'capitalization', name:'Capitalization Ratio', unit:'x',
+   formula:'Long-term Debt / (Long-term Debt + Equity + Non-current Liabilities)',
+   calc:d=>{const cap=d.ltd+d.equity+d.otherNCL; return {num:d.ltd, den:cap, value:safeDiv(d.ltd,cap)};},
+   interpret:v=> v>0.4 ? 'Long-term debt represents a significant part of permanent capitalization.' : 'Long-term debt represents a modest part of permanent capitalization.'}
+];
+
+RATIOS.leverage = [
+  {key:'finlev', name:'Financial Leverage (Equity Multiplier)', unit:'x',
+   formula:'Total Assets / Shareholders\' Equity',
+   calc:d=>({num:d.totalAssets, den:d.equity, value:safeDiv(d.totalAssets,d.equity)}),
+   interpret:v=> v>3 ? 'The company is using a significant amount of leverage to fund assets, amplifying both returns and risk.' : 'The company uses a moderate amount of leverage to fund assets.'},
+  {key:'intcov', name:'Interest Coverage Ratio', unit:'x',
+   formula:'EBIT / Interest Expense',
+   calc:d=>({num:d.ebit, den:d.interest, value:safeDiv(d.ebit,d.interest)}),
+   interpret:v=> v<2 ? 'The company\'s ability to service interest from operating profit is weakening — financial distress risk.' : v<4 ? 'Interest coverage is adequate but leaves limited room for an earnings downturn.' : 'The company comfortably covers interest obligations from operating profit.'},
+  {key:'cashintcov', name:'Cash Interest Coverage Ratio', unit:'x',
+   formula:'(EBIT + Non-cash items) / Interest Expense',
+   calc:d=>({num:d.ebit, den:d.interest, value:safeDiv(d.ebit,d.interest)}),
+   interpret:v=> v<2 ? 'Cash-based coverage of interest is thin.' : 'Cash flow available comfortably covers interest payments.'}
+];
+
+RATIOS.profitability = [
+  {key:'ebitdamargin', name:'EBITDA Margin', unit:'%',
+   formula:'EBITDA / Revenue × 100',
+   calc:d=>({num:d.ebitda, den:d.revenue, value:safeDiv(d.ebitda,d.revenue)*100}),
+   interpret:v=> v<12 ? 'EBITDA margin is thin, leaving limited operating cash-generation cushion before depreciation, interest and tax.' : 'EBITDA margin indicates healthy core cash operating profitability before depreciation, interest and tax.'},
+  {key:'gpm', name:'Gross Profit Margin', unit:'%',
+   formula:'Gross Profit / Revenue × 100',
+   calc:d=>({num:d.grossProfit, den:d.revenue, value:safeDiv(d.grossProfit,d.revenue)*100}),
+   interpret:v=> v<20 ? 'Gross margin is thin, leaving little cushion after direct costs.' : 'Gross margin provides a healthy cushion after direct costs.'},
+  {key:'opm', name:'Operating Profit Margin', unit:'%',
+   formula:'EBIT / Revenue × 100',
+   calc:d=>({num:d.ebit, den:d.revenue, value:safeDiv(d.ebit,d.revenue)*100}),
+   interpret:v=> v<8 ? 'Core operations generate a modest profit margin before interest and tax.' : 'Core operations are generating a healthy operating margin.'},
+  {key:'npm', name:'Net Profit Margin', unit:'%',
+   formula:'Net Income / Revenue × 100',
+   calc:d=>({num:d.netIncome, den:d.revenue, value:safeDiv(d.netIncome,d.revenue)*100}),
+   interpret:v=> v<0 ? 'The company is posting a net loss on revenue.' : v<5 ? 'Net margin is thin after all costs, interest and tax.' : 'The company converts a healthy share of revenue into bottom-line profit.'},
+  {key:'roa', name:'Return on Assets (ROA)', unit:'%',
+   formula:'Net Income / Average Total Assets × 100',
+   calc:(d,p)=>{const avg=p?(p.totalAssets+d.totalAssets)/2:d.totalAssets; return {num:d.netIncome, den:avg, value:safeDiv(d.netIncome,avg)*100};},
+   interpret:v=> v<3 ? 'Assets are generating a low return, indicating inefficient use of the asset base or thin margins.' : 'Assets are generating a healthy return.'},
+  {key:'roe', name:'Return on Equity (ROE)', unit:'%',
+   formula:'Net Income / Average Equity × 100',
+   calc:(d,p)=>{const avg=p?(p.equity+d.equity)/2:d.equity; return {num:d.netIncome, den:avg, value:safeDiv(d.netIncome,avg)*100};},
+   interpret:v=> v<10 ? 'Return to shareholders is relatively modest.' : v>25 ? 'Return to shareholders is very high — verify whether this is driven by strong profitability or by high leverage.' : 'Return to shareholders is healthy.'},
+  {key:'roce', name:'Return on Capital Employed (ROCE)', unit:'%',
+   formula:'EBIT / (Total Assets − Current Liabilities) × 100',
+   calc:d=>{const ce=d.totalAssets-d.totalCurrentLiabilities; return {num:d.ebit, den:ce, value:safeDiv(d.ebit,ce)*100};},
+   interpret:v=> v<10 ? 'Capital employed is generating a modest pre-tax, pre-interest return.' : 'Capital employed is generating a strong operating return.'},
+  {key:'roc', name:'Return on Capital', unit:'%',
+   formula:'Net Income / (Debt + Equity) × 100',
+   calc:d=>{const cap=d.std+d.ltd+d.equity; return {num:d.netIncome, den:cap, value:safeDiv(d.netIncome,cap)*100};},
+   interpret:v=> v<8 ? 'Total capital deployed is generating a relatively low return.' : 'Total capital deployed is generating a solid return.'},
+  {key:'opexratio', name:'Operating Expense Ratio', unit:'%',
+   formula:'Operating Expenses / Revenue × 100',
+   calc:d=>({num:d.opex, den:d.revenue, value:safeDiv(d.opex,d.revenue)*100}),
+   interpret:v=> v>25 ? 'Operating expenses consume a large share of revenue.' : 'Operating expenses are reasonably controlled relative to revenue.'},
+  {key:'taxrate', name:'Effective Tax Rate', unit:'%',
+   formula:'Tax Expense / Profit Before Tax × 100',
+   calc:d=>({num:d.tax, den:d.pbt, value:safeDiv(d.tax,d.pbt)*100}),
+   interpret:v=> isNaN(v) ? 'Not meaningful — profit before tax is zero or negative.' : 'This reflects the effective (not statutory) tax burden on pre-tax profit.'}
+];
+
+RATIOS.valuation = [
+  {key:'eps', name:'Earnings Per Share (EPS)', unit:'num',
+   formula:'Net Income / Shares Outstanding',
+   calc:d=>({num:d.netIncome, den:d.shares, value:d.eps}),
+   interpret:v=> v<0 ? 'Negative EPS — the company posted a net loss on a per-share basis.' : 'Positive earnings are being generated per share outstanding.'},
+  {key:'pe', name:'Price-to-Earnings (P/E) Ratio', unit:'x',
+   formula:'Market Price per Share / EPS',
+   calc:d=>({num:d.marketPrice, den:d.eps, value:safeDiv(d.marketPrice,d.eps)}),
+   interpret:v=> isNaN(v)||v<0 ? 'Not meaningful — EPS is zero or negative.' : v>30 ? 'The market is pricing in significant future growth relative to current earnings.' : v<10 ? 'The stock is priced conservatively relative to current earnings — this may reflect low growth expectations or perceived risk.' : 'The stock trades at a moderate multiple of current earnings.'},
+  {key:'bvps', name:'Book Value per Share', unit:'num',
+   formula:'Shareholders\' Equity / Shares Outstanding',
+   calc:d=>({num:d.equity, den:d.shares, value:d.bvps}),
+   interpret:v=> 'This represents the accounting net worth attributable to each share.'},
+  {key:'pb', name:'Price-to-Book (P/B) Ratio', unit:'x',
+   formula:'Market Price per Share / Book Value per Share',
+   calc:d=>({num:d.marketPrice, den:d.bvps, value:safeDiv(d.marketPrice,d.bvps)}),
+   interpret:v=> v>5 ? 'The market values the company well above its accounting net worth — often linked to strong growth or intangible value.' : v<1 ? 'The stock trades below its book value, which may indicate undervaluation or market concerns about asset quality/earnings power.' : 'The stock trades at a reasonable multiple of its book value.'},
+  {key:'dps', name:'Dividend per Share (DPS)', unit:'num',
+   formula:'Total Dividends / Shares Outstanding',
+   calc:d=>({num:d.dividends, den:d.shares, value:d.dps}),
+   interpret:v=> v===0 ? 'The company is not distributing dividends, likely reinvesting profits.' : 'Shareholders receive a cash return per share held.'},
+  {key:'divyield', name:'Dividend Yield', unit:'%',
+   formula:'Dividend per Share / Market Price per Share × 100',
+   calc:d=>({num:d.dps, den:d.marketPrice, value:safeDiv(d.dps,d.marketPrice)*100}),
+   interpret:v=> v===0 ? 'No cash dividend yield is currently offered to shareholders.' : v>5 ? 'The stock offers a high dividend yield relative to price.' : 'The stock offers a modest dividend yield.'},
+  {key:'payout', name:'Dividend Payout Ratio', unit:'%',
+   formula:'Total Dividends / Net Income × 100',
+   calc:d=>({num:d.dividends, den:d.netIncome, value:safeDiv(d.dividends,d.netIncome)*100}),
+   interpret:v=> isNaN(v)||v<0 ? 'Not meaningful — net income is zero or negative.' : v>80 ? 'A very large share of profit is being distributed, leaving little for reinvestment.' : 'A balanced share of profit is being retained for growth versus distributed.'},
+  {key:'earnyield', name:'Earnings Yield', unit:'%',
+   formula:'EPS / Market Price per Share × 100 (inverse of P/E)',
+   calc:d=>({num:d.eps, den:d.marketPrice, value:safeDiv(d.eps,d.marketPrice)*100}),
+   interpret:v=> v<3 ? 'Earnings yield is low relative to price, consistent with a high P/E / growth premium.' : 'Earnings yield is relatively attractive relative to price.'},
+  {key:'mktcap', name:'Market Capitalization', unit:'num',
+   formula:'Shares Outstanding × Market Price per Share',
+   calc:d=>({num:d.shares, den:d.marketPrice, value:d.marketCap}),
+   interpret:v=> 'This is the total market value the equity market assigns to the company.'}
+];
+
+const RATIO_CATEGORY_LABEL = {
+  liquidity:'Liquidity Ratios', activity:'Activity / Efficiency Ratios', capstructure:'Capital Structure Ratios',
+  leverage:'Leverage Ratios', profitability:'Profitability Ratios', valuation:'Valuation Ratios'
+};
+
+// "lower is better" flags used by competitor scorecard logic
+const LOWER_IS_BETTER = new Set(['dio','dso','ccc','opcycle','debtratio','de','ltdcap','totdebtcap','capitalization','finlev','pe','opexratio']);
+
+/* ---------------------------------------------------------------------
+   6. GENERIC RATIO BLOCK RENDERER (used by every ratio-category tab)
+--------------------------------------------------------------------- */
+function renderRatioCategory(catKey){
+  const defs = RATIOS[catKey];
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  let html = `<div class="card"><h2>${RATIO_CATEGORY_LABEL[catKey]}</h2>
+    <p class="lead">Every figure below is calculated live from the Financial Statements tab. Edit the statements or use the Cause &amp; Effect Simulator to see these numbers move.</p>
+    <div class="btnrow no-print">
+      <button class="btn secondary" onclick="downloadRatioCategoryCSV('${catKey}')">⬇ Download ${RATIO_CATEGORY_LABEL[catKey]} (CSV)</button>
+    </div>
+    <div class="ratio-grid">`;
+  defs.forEach(r=>{
+    const c1 = r.calc(d1,null), c2 = r.calc(d2,d1);
+    const delta = c2.value - c1.value;
+    const unitFmt = v => r.unit==='%' ? fmtPct(v) : r.unit==='x' ? fmtX(v) : r.unit==='days' ? fmt(v,1)+' days' : fmtCur(v,1);
+    html += `<div class="formula-block">
+      <div class="fname">${r.name}</div>
+      <div class="fformula">Formula: ${r.formula}</div>
+      <div class="fcalc">Year 2 → ${fmt(c2.num,1)} / ${fmt(c2.den,1)}</div>
+      <div class="fresult">${unitFmt(c2.value)}</div>
+      <table style="margin-top:8px;font-size:12px;">
+        <tr><td style="text-align:left">Year 1</td><td>${unitFmt(c1.value)}</td>
+            <td style="text-align:left">Year 2</td><td>${unitFmt(c2.value)}</td>
+            <td style="text-align:left">Change</td><td class="${dirClass(delta)}">${dirArrow(delta)} ${unitFmt(Math.abs(delta))}</td></tr>
+      </table>
+      <div class="finterpret">💡 ${r.interpret(c2.value,d2)}</div>
+    </div>`;
+  });
+  html += `</div></div>`;
+  return html;
+}
+
+/* ---------------------------------------------------------------------
+   7. TAB FRAMEWORK
+--------------------------------------------------------------------- */
+function buildNav(){
+  const nav = byId('tabNav');
+  nav.innerHTML = TABS.map(t=>`<button data-tab="${t.id}" onclick="switchTab('${t.id}')">${t.label}</button>`).join('');
+}
+function switchTab(id){
+  CURRENT_TAB = id;
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.toggle('active', b.dataset.tab===id));
+  const main = byId('mainArea');
+  main.innerHTML = `<div class="tabpanel active" id="panel-${id}"></div>`;
+  const panel = byId('panel-'+id);
+  RENDERERS[id](panel);
+  window.scrollTo({top:0,behavior:'instant'});
+}
+const RENDERERS = {}; // filled in as each tab's render function is defined below
+
+/* ---------------------------------------------------------------------
+   8. DASHBOARD TAB
+--------------------------------------------------------------------- */
+RENDERERS.dashboard = function(panel){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  const roe2 = safeDiv(d2.netIncome,d2.equity)*100, roe1 = safeDiv(d1.netIncome,d1.equity)*100;
+  const cr2 = safeDiv(d2.totalCurrentAssets,d2.totalCurrentLiabilities);
+  const de2 = safeDiv(d2.totalLiabilities,d2.equity);
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Welcome, ${byId('recStudent')&&byId('recStudent').value ? byId('recStudent').value : 'Student'}</h2>
+    <p class="lead">Company: <b>${DATA.meta.company}</b> · Currency: ${DATA.meta.currency}</p>
+    <div class="objectives">
+      <h3>By the end of this lab, you should be able to:</h3>
+      <ol>
+        <li>Prepare vertical analysis of financial statements.</li>
+        <li>Perform horizontal (trend) analysis.</li>
+        <li>Calculate and interpret liquidity ratios.</li>
+        <li>Calculate and interpret activity/efficiency ratios.</li>
+        <li>Calculate and interpret capital structure ratios.</li>
+        <li>Calculate and interpret leverage ratios.</li>
+        <li>Calculate and interpret profitability ratios.</li>
+        <li>Calculate and interpret valuation ratios.</li>
+        <li>Perform a full DuPont decomposition of ROE.</li>
+        <li>Compare a company against competitors intelligently.</li>
+        <li>Explain cause-and-effect relationships between a driver and the ratios it affects.</li>
+        <li>Make evidence-based financial decisions under uncertainty.</li>
+      </ol>
+    </div>
+    <div class="learning-cycle" style="margin-top:14px;">
+      <div class="flowchart">
+        <div class="node">Input Statements</div><div class="arrow">→</div>
+        <div class="node">Vertical Analysis</div><div class="arrow">→</div>
+        <div class="node">Horizontal Analysis</div><div class="arrow">→</div>
+        <div class="node">Change a Factor</div><div class="arrow">→</div>
+        <div class="node">Observe Cause &amp; Effect</div><div class="arrow">→</div>
+        <div class="node">Ratios</div><div class="arrow">→</div>
+        <div class="node">Interpretation</div><div class="arrow">→</div>
+        <div class="node">Decision</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Key Performance Snapshot (Year 2)</h2>
+    <div class="grid grid-4">
+      <div class="kpi"><div class="lbl">Revenue</div><div class="val">${fmtCur(d2.revenue,0)}</div><div class="delta ${dirClass(d2.revenue-d1.revenue)}">${dirArrow(d2.revenue-d1.revenue)} ${fmtPct(safeDiv(d2.revenue-d1.revenue,d1.revenue)*100)} vs Y1</div></div>
+      <div class="kpi"><div class="lbl">Net Income</div><div class="val">${fmtCur(d2.netIncome,0)}</div><div class="delta ${dirClass(d2.netIncome-d1.netIncome)}">${dirArrow(d2.netIncome-d1.netIncome)} ${fmtPct(safeDiv(d2.netIncome-d1.netIncome,Math.abs(d1.netIncome)||1)*100)} vs Y1</div></div>
+      <div class="kpi"><div class="lbl">Current Ratio</div><div class="val">${fmtX(cr2)}</div><div class="delta ${cr2<1?'neg':cr2>2?'neu':'pos'}">${cr2<1?'⚠ Below 1':cr2>2?'High liquidity':'Healthy'}</div></div>
+      <div class="kpi"><div class="lbl">Debt/Equity</div><div class="val">${fmtX(de2)}</div><div class="delta ${de2>2?'neg':'pos'}">${de2>2?'⚠ Elevated leverage':'Moderate leverage'}</div></div>
+      <div class="kpi"><div class="lbl">Net Profit Margin</div><div class="val">${fmtPct(safeDiv(d2.netIncome,d2.revenue)*100)}</div></div>
+      <div class="kpi"><div class="lbl">ROE</div><div class="val">${fmtPct(roe2)}</div><div class="delta ${dirClass(roe2-roe1)}">${dirArrow(roe2-roe1)} vs Y1</div></div>
+      <div class="kpi"><div class="lbl">EPS</div><div class="val">${fmt(d2.eps,2)}</div></div>
+      <div class="kpi"><div class="lbl">Balance Check</div><div class="val" style="font-size:14px;">${d2.balanced? '<span class="badge good">BALANCED ✓</span>' : '<span class="badge risk">NOT BALANCED</span>'}</div></div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>Where to go next</h2>
+    <div class="btnrow">
+      <button class="btn" onclick="switchTab('statements')">1. Enter / edit Financial Statements</button>
+      <button class="btn secondary" onclick="switchTab('vertical')">2. Vertical Analysis</button>
+      <button class="btn secondary" onclick="switchTab('causeeffect')">3. Cause &amp; Effect Simulator</button>
+      <button class="btn secondary" onclick="switchTab('practice')">4. Practice Lab (60 Qs)</button>
+    </div>
+  </div>`;
+};
+
+/* ---------------------------------------------------------------------
+   9. FINANCIAL STATEMENTS TAB
+--------------------------------------------------------------------- */
+const IS_FIELDS = [
+  ['revenue','Revenue'],['cogs','Cost of Goods Sold'],['opex','Operating Expenses (excl. Depreciation)'],
+  ['depreciation','Depreciation & Amortization'],['interest','Interest Expense'],['taxRate','Tax Rate (%)']
+];
+const BS_CA_FIELDS = [['cash','Cash'],['ar','Accounts Receivable'],['inventory','Inventory'],['otherCA','Other Current Assets']];
+const BS_NCA_FIELDS = [['ppe','Property, Plant & Equipment'],['otherNCA','Other Non-current Assets']];
+const BS_CL_FIELDS = [['ap','Accounts Payable'],['std','Short-term Debt'],['otherCL','Other Current Liabilities']];
+const BS_NCL_FIELDS = [['ltd','Long-term Debt'],['otherNCL','Other Non-current Liabilities']];
+const OTHER_FIELDS = [['shares','Shares Outstanding'],['marketPrice','Market Price per Share'],['dividends','Total Dividends Paid']];
+
+function statementInputRow(label,key,year){
+  const val = DATA[year][key];
+  return `<div class="field"><label>${label}</label>
+    <input type="number" step="any" value="${val}" onchange="updateField('${year}','${key}',this.value)"></div>`;
+}
+
+RENDERERS.statements = function(panel){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Financial Statement Input</h2>
+    <p class="lead">Enter figures for Year 1 and Year 2 (₹ Lakh, or any consistent unit). Every downstream tab recalculates automatically.</p>
+    <div class="field" style="max-width:280px;"><label>Company Name</label><input type="text" value="${DATA.meta.company}" onchange="DATA.meta.company=this.value;saveToStorage();"></div>
+    <div class="btnrow">
+      <label style="margin:0;">Load Example Company:</label>
+      <button class="btn secondary" onclick="loadExample('stable')">Stable Company</button>
+      <button class="btn secondary" onclick="loadExample('growth')">High Growth Company</button>
+      <button class="btn secondary" onclick="loadExample('distressed')">Financially Distressed Company</button>
+    </div>
+    <div class="btnrow no-print">
+      <button class="btn secondary" onclick="downloadStatementsCSV()">⬇ Download Financial Statements (CSV)</button>
+    </div>
+    <div id="balanceCheck"></div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Income Statement — Year 1</h3>
+      ${IS_FIELDS.map(f=>statementInputRow(f[1],f[0],'year1')).join('')}
+    </div>
+    <div class="card">
+      <h3>Income Statement — Year 2</h3>
+      ${IS_FIELDS.map(f=>statementInputRow(f[1],f[0],'year2')).join('')}
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Income Statement — Computed Results</h3>
+    <table>
+      <tr><th>Item</th><th>Year 1</th><th>Year 2</th></tr>
+      <tr><td>Revenue</td><td>${fmtCur(d1.revenue,1)}</td><td>${fmtCur(d2.revenue,1)}</td></tr>
+      <tr><td>Less: Cost of Goods Sold</td><td>${fmtCur(d1.cogs,1)}</td><td>${fmtCur(d2.cogs,1)}</td></tr>
+      <tr class="subtotal"><td>Gross Profit</td><td>${fmtCur(d1.grossProfit,1)}</td><td>${fmtCur(d2.grossProfit,1)}</td></tr>
+      <tr><td>Less: Operating Expenses (excl. Depreciation)</td><td>${fmtCur(d1.opex,1)}</td><td>${fmtCur(d2.opex,1)}</td></tr>
+      <tr class="subtotal"><td>EBITDA (Earnings Before Interest, Tax, Depreciation &amp; Amortization)</td><td>${fmtCur(d1.ebitda,1)}</td><td>${fmtCur(d2.ebitda,1)}</td></tr>
+      <tr><td>Less: Depreciation &amp; Amortization</td><td>${fmtCur(d1.depreciation,1)}</td><td>${fmtCur(d2.depreciation,1)}</td></tr>
+      <tr class="subtotal"><td>EBIT / Operating Profit</td><td>${fmtCur(d1.ebit,1)}</td><td>${fmtCur(d2.ebit,1)}</td></tr>
+      <tr><td>Less: Interest Expense</td><td>${fmtCur(d1.interest,1)}</td><td>${fmtCur(d2.interest,1)}</td></tr>
+      <tr class="subtotal"><td>Profit Before Tax</td><td>${fmtCur(d1.pbt,1)}</td><td>${fmtCur(d2.pbt,1)}</td></tr>
+      <tr><td>Less: Tax Expense</td><td>${fmtCur(d1.tax,1)}</td><td>${fmtCur(d2.tax,1)}</td></tr>
+      <tr class="grandtotal"><td>Net Income (Profit After Tax)</td><td>${fmtCur(d1.netIncome,1)}</td><td>${fmtCur(d2.netIncome,1)}</td></tr>
+    </table>
+    <div class="small-note">EBITDA margin: Year 1 ${fmtPct(safeDiv(d1.ebitda,d1.revenue)*100)} · Year 2 ${fmtPct(safeDiv(d2.ebitda,d2.revenue)*100)}</div>
+  </div>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Balance Sheet — Year 1</h3>
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">CURRENT ASSETS</h4>
+      ${BS_CA_FIELDS.map(f=>statementInputRow(f[1],f[0],'year1')).join('')}
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">NON-CURRENT ASSETS</h4>
+      ${BS_NCA_FIELDS.map(f=>statementInputRow(f[1],f[0],'year1')).join('')}
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">CURRENT LIABILITIES</h4>
+      ${BS_CL_FIELDS.map(f=>statementInputRow(f[1],f[0],'year1')).join('')}
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">NON-CURRENT LIABILITIES</h4>
+      ${BS_NCL_FIELDS.map(f=>statementInputRow(f[1],f[0],'year1')).join('')}
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">EQUITY &amp; OTHER</h4>
+      ${statementInputRow('Shareholders\' Equity','equity','year1')}
+      ${OTHER_FIELDS.map(f=>statementInputRow(f[1],f[0],'year1')).join('')}
+    </div>
+    <div class="card">
+      <h3>Balance Sheet — Year 2</h3>
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">CURRENT ASSETS</h4>
+      ${BS_CA_FIELDS.map(f=>statementInputRow(f[1],f[0],'year2')).join('')}
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">NON-CURRENT ASSETS</h4>
+      ${BS_NCA_FIELDS.map(f=>statementInputRow(f[1],f[0],'year2')).join('')}
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">CURRENT LIABILITIES</h4>
+      ${BS_CL_FIELDS.map(f=>statementInputRow(f[1],f[0],'year2')).join('')}
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">NON-CURRENT LIABILITIES</h4>
+      ${BS_NCL_FIELDS.map(f=>statementInputRow(f[1],f[0],'year2')).join('')}
+      <h4 style="color:var(--muted);font-size:12px;margin:10px 0 4px;">EQUITY &amp; OTHER</h4>
+      ${statementInputRow('Shareholders\' Equity','equity','year2')}
+      ${OTHER_FIELDS.map(f=>statementInputRow(f[1],f[0],'year2')).join('')}
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Balance Sheet — Complete &amp; Properly Formatted</h3>
+    <div class="grid grid-2">
+      <div>
+        <table>
+          <tr><th colspan="3" style="text-align:left;background:var(--navy);color:#fff;">ASSETS</th></tr>
+          <tr><td style="font-weight:700;padding-top:10px;">(A) Current Assets</td><td></td><td></td></tr>
+          <tr><td style="padding-left:18px;">Cash &amp; Cash Equivalents</td><td>${fmtCur(d1.cash,1)}</td><td>${fmtCur(d2.cash,1)}</td></tr>
+          <tr><td style="padding-left:18px;">Accounts Receivable</td><td>${fmtCur(d1.ar,1)}</td><td>${fmtCur(d2.ar,1)}</td></tr>
+          <tr><td style="padding-left:18px;">Inventory</td><td>${fmtCur(d1.inventory,1)}</td><td>${fmtCur(d2.inventory,1)}</td></tr>
+          <tr><td style="padding-left:18px;">Other Current Assets</td><td>${fmtCur(d1.otherCA,1)}</td><td>${fmtCur(d2.otherCA,1)}</td></tr>
+          <tr class="subtotal"><td>Total Current Assets (A)</td><td>${fmtCur(d1.totalCurrentAssets,1)}</td><td>${fmtCur(d2.totalCurrentAssets,1)}</td></tr>
+          <tr><td style="font-weight:700;padding-top:10px;">(B) Non-Current Assets</td><td></td><td></td></tr>
+          <tr><td style="padding-left:18px;">Property, Plant &amp; Equipment (Net)</td><td>${fmtCur(d1.ppe,1)}</td><td>${fmtCur(d2.ppe,1)}</td></tr>
+          <tr><td style="padding-left:18px;">Other Non-current Assets</td><td>${fmtCur(d1.otherNCA,1)}</td><td>${fmtCur(d2.otherNCA,1)}</td></tr>
+          <tr class="subtotal"><td>Total Non-current Assets (B)</td><td>${fmtCur(d1.totalNonCurrentAssets,1)}</td><td>${fmtCur(d2.totalNonCurrentAssets,1)}</td></tr>
+          <tr class="grandtotal"><td>TOTAL ASSETS (A + B)</td><td>${fmtCur(d1.totalAssets,1)}</td><td>${fmtCur(d2.totalAssets,1)}</td></tr>
+        </table>
+      </div>
+      <div>
+        <table>
+          <tr><th colspan="3" style="text-align:left;background:var(--navy);color:#fff;">EQUITY &amp; LIABILITIES</th></tr>
+          <tr><td style="font-weight:700;padding-top:10px;">(C) Shareholders' Equity</td><td></td><td></td></tr>
+          <tr><td style="padding-left:18px;">Equity Share Capital &amp; Reserves</td><td>${fmtCur(d1.equity,1)}</td><td>${fmtCur(d2.equity,1)}</td></tr>
+          <tr class="subtotal"><td>Total Equity (C)</td><td>${fmtCur(d1.equity,1)}</td><td>${fmtCur(d2.equity,1)}</td></tr>
+          <tr><td style="font-weight:700;padding-top:10px;">(D) Non-Current Liabilities</td><td></td><td></td></tr>
+          <tr><td style="padding-left:18px;">Long-term Debt</td><td>${fmtCur(d1.ltd,1)}</td><td>${fmtCur(d2.ltd,1)}</td></tr>
+          <tr><td style="padding-left:18px;">Other Non-current Liabilities</td><td>${fmtCur(d1.otherNCL,1)}</td><td>${fmtCur(d2.otherNCL,1)}</td></tr>
+          <tr class="subtotal"><td>Total Non-current Liabilities (D)</td><td>${fmtCur(d1.totalNonCurrentLiabilities,1)}</td><td>${fmtCur(d2.totalNonCurrentLiabilities,1)}</td></tr>
+          <tr><td style="font-weight:700;padding-top:10px;">(E) Current Liabilities</td><td></td><td></td></tr>
+          <tr><td style="padding-left:18px;">Accounts Payable</td><td>${fmtCur(d1.ap,1)}</td><td>${fmtCur(d2.ap,1)}</td></tr>
+          <tr><td style="padding-left:18px;">Short-term Debt</td><td>${fmtCur(d1.std,1)}</td><td>${fmtCur(d2.std,1)}</td></tr>
+          <tr><td style="padding-left:18px;">Other Current Liabilities</td><td>${fmtCur(d1.otherCL,1)}</td><td>${fmtCur(d2.otherCL,1)}</td></tr>
+          <tr class="subtotal"><td>Total Current Liabilities (E)</td><td>${fmtCur(d1.totalCurrentLiabilities,1)}</td><td>${fmtCur(d2.totalCurrentLiabilities,1)}</td></tr>
+          <tr class="grandtotal"><td>TOTAL EQUITY &amp; LIABILITIES (C+D+E)</td><td>${fmtCur(d1.totalLiabilities+d1.equity,1)}</td><td>${fmtCur(d2.totalLiabilities+d2.equity,1)}</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="grid grid-2" style="margin-top:10px;">
+      <div class="kpi"><div class="lbl">Total Debt (Short + Long-term)</div><div class="val">${fmtCur(d2.std+d2.ltd,0)}</div></div>
+      <div class="kpi"><div class="lbl">Net Working Capital</div><div class="val">${fmtCur(d2.workingCapital,0)}</div></div>
+    </div>
+  </div>
+  <div class="card no-print">
+    <button class="btn danger" onclick="resetScope('company')">Reset Company Data</button>
+  </div>`;
+  renderBalanceCheck();
+};
+
+function renderBalanceCheck(){
+  const box = byId('balanceCheck');
+  if(!box) return;
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  let html = '';
+  [['Year 1',d1],['Year 2',d2]].forEach(([label,d])=>{
+    if(d.balanced){
+      html += `<div class="callout good">✓ <b>${label}: BALANCE SHEET BALANCED</b> — Assets ${fmtCur(d.totalAssets,1)} = Liabilities + Equity ${fmtCur(d.totalLiabilities+d.equity,1)}</div>`;
+    }else{
+      html += `<div class="callout risk">⚠ <b>${label}: BALANCE SHEET DOES NOT BALANCE</b> — Difference = Assets − (Liabilities + Equity) = ${fmtCur(d.balanceDiff,1)}. Adjust Shareholders' Equity or another line item.</div>`;
+    }
+  });
+  box.innerHTML = html;
+}
+
+function updateField(year,key,val){
+  DATA[year][key] = parseFloat(val)||0;
+  saveToStorage();
+  RENDERERS.statements(byId('panel-statements'));
+}
+function loadExample(name){
+  const ex = EXAMPLES[name];
+  DATA.year1 = {...ex.year1};
+  DATA.year2 = {...ex.year2};
+  DATA.meta.company = ex.label;
+  saveToStorage();
+  switchTab('statements');
+}
+
+/* ---------------------------------------------------------------------
+   10. VERTICAL ANALYSIS TAB (with reasons column + blank practice cells)
+--------------------------------------------------------------------- */
+const VA_BLANK_ROWS = new Set(['cogs','opex','tax']); // rows where Year-2 % is left blank for students (amounts always shown)
+let VA_REASONS = {}; // rowKey -> reason text
+let VA_ANSWERS = {}; // rowKey -> {pct} student-entered
+let VA_CHECKED = false;
+
+function vaRow(rowKey,label,k1,k2,base1,base2){
+  const v1 = safeDiv(k1,base1)*100, v2 = safeDiv(k2,base2)*100;
+  const isBlank = VA_BLANK_ROWS.has(rowKey);
+  const amtCell = fmtCur(k2,1); // amount is always shown
+  let pctCell;
+  if(isBlank){
+    const savedPct = VA_ANSWERS[rowKey]?.pct ?? '';
+    const pctOk = VA_CHECKED ? Math.abs(parseFloat(savedPct)-v2) < 0.6 : null;
+    pctCell = `<input type="number" step="any" style="width:70px;${VA_CHECKED?(pctOk?'border-color:#0fae83;background:#e6f8f1;':'border-color:#c0392b;background:#fceceb;'):''}" value="${savedPct}" oninput="VA_ANSWERS['${rowKey}']=Object.assign(VA_ANSWERS['${rowKey}']||{},{pct:this.value})">`;
+    if(VA_CHECKED) pctCell += ` <span class="small-note">(ans: ${fmtPct(v2)})</span>`;
+  } else {
+    pctCell = fmtPct(v2);
+  }
+  const reasonVal = VA_REASONS[rowKey] || '';
+  return `<tr><td style="text-align:left;"><input type="text" placeholder="Why did this change?" value="${reasonVal.replace(/"/g,'&quot;')}" style="width:100%;font-size:11.5px;" oninput="VA_REASONS['${rowKey}']=this.value"></td>
+    <td style="text-align:left">${label}</td><td>${fmtCur(k1,1)}</td><td>${fmtPct(v1)}</td><td>${amtCell}</td><td>${pctCell}</td>
+    <td class="${dirClass(v2-v1)}">${dirArrow(v2-v1)} ${fmtPct(Math.abs(v2-v1))} pts</td></tr>`;
+}
+function checkVAAnswers(){ VA_CHECKED = true; RENDERERS.vertical(byId('panel-vertical')); }
+function clearVAPractice(){ VA_ANSWERS={}; VA_CHECKED=false; RENDERERS.vertical(byId('panel-vertical')); }
+
+RENDERERS.vertical = function(panel){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Vertical (Common-Size) Analysis</h2>
+    <p class="lead">Income statement items are expressed as a % of Revenue. Balance sheet items are expressed as a % of Total Assets. Use the left "Reason for Change" column to note <b>why</b> a % moved — this is what you'll explain in class.</p>
+    <div class="callout warn">✏ <b>Practice cells:</b> COGS, Operating Expenses and Tax Expense — the ₹ amounts are shown, but the <b>Year 2 %</b> column is left blank. Calculate the % yourself, then click "Check My Answers".</div>
+    <div class="btnrow no-print">
+      <button class="btn" onclick="checkVAAnswers()">Check My Answers</button>
+      <button class="btn secondary" onclick="clearVAPractice()">Clear Practice Answers</button>
+      <button class="btn secondary" onclick="downloadVerticalCSV()">⬇ Download Vertical Analysis (CSV)</button>
+    </div>
+    <h3>Income Statement — Common Size</h3>
+    <table>
+      <tr><th style="text-align:left">Reason for Change</th><th>Item</th><th>Year 1 ₹</th><th>Y1 %</th><th>Year 2 ₹</th><th>Y2 %</th><th>Change</th></tr>
+      ${vaRow('revenue','Revenue',d1.revenue,d2.revenue,d1.revenue,d2.revenue)}
+      ${vaRow('cogs','Cost of Goods Sold',d1.cogs,d2.cogs,d1.revenue,d2.revenue)}
+      ${vaRow('grossProfit','Gross Profit',d1.grossProfit,d2.grossProfit,d1.revenue,d2.revenue)}
+      ${vaRow('opex','Operating Expenses',d1.opex,d2.opex,d1.revenue,d2.revenue)}
+      ${vaRow('ebitda','EBITDA',d1.ebitda,d2.ebitda,d1.revenue,d2.revenue)}
+      ${vaRow('ebit','EBIT',d1.ebit,d2.ebit,d1.revenue,d2.revenue)}
+      ${vaRow('interest','Interest Expense',d1.interest,d2.interest,d1.revenue,d2.revenue)}
+      ${vaRow('pbt','Profit Before Tax',d1.pbt,d2.pbt,d1.revenue,d2.revenue)}
+      ${vaRow('tax','Tax Expense',d1.tax,d2.tax,d1.revenue,d2.revenue)}
+      ${vaRow('netIncome','Net Income',d1.netIncome,d2.netIncome,d1.revenue,d2.revenue)}
+    </table>
+    <div class="chart-wrap"><canvas id="vChart1"></canvas></div>
+  </div>
+  <div class="card">
+    <h3>Balance Sheet — Common Size (% of Total Assets)</h3>
+    <table>
+      <tr><th style="text-align:left">Reason for Change</th><th>Item</th><th>Year 1 ₹</th><th>Y1 %</th><th>Year 2 ₹</th><th>Y2 %</th><th>Change</th></tr>
+      ${vaRow('cash','Cash',d1.cash,d2.cash,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('ar','Accounts Receivable',d1.ar,d2.ar,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('inventory','Inventory',d1.inventory,d2.inventory,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('otherCA','Other Current Assets',d1.otherCA,d2.otherCA,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('totalCA','Total Current Assets',d1.totalCurrentAssets,d2.totalCurrentAssets,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('ppe','PP&E',d1.ppe,d2.ppe,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('otherNCA','Other Non-current Assets',d1.otherNCA,d2.otherNCA,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('totalAssets','Total Assets',d1.totalAssets,d2.totalAssets,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('ap','Accounts Payable',d1.ap,d2.ap,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('std','Short-term Debt',d1.std,d2.std,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('totalCL','Total Current Liabilities',d1.totalCurrentLiabilities,d2.totalCurrentLiabilities,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('ltd','Long-term Debt',d1.ltd,d2.ltd,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('totalLiab','Total Liabilities',d1.totalLiabilities,d2.totalLiabilities,d1.totalAssets,d2.totalAssets)}
+      ${vaRow('equity','Shareholders\' Equity',d1.equity,d2.equity,d1.totalAssets,d2.totalAssets)}
+    </table>
+    <div class="chart-wrap"><canvas id="vChart2"></canvas></div>
+    <div class="callout info">📌 A rising % of inventory or receivables in total assets, even if the company is growing, can signal weakening working-capital discipline. A rising % of debt in total liabilities+equity signals increasing leverage.</div>
+  </div>`;
+  drawChart('vChart1','bar',{
+    labels:['COGS %','Gross Profit %','Opex %','EBIT %','Net Income %'],
+    datasets:[
+      {label:'Year 1', data:[safeDiv(d1.cogs,d1.revenue)*100,safeDiv(d1.grossProfit,d1.revenue)*100,safeDiv(d1.opex,d1.revenue)*100,safeDiv(d1.ebit,d1.revenue)*100,safeDiv(d1.netIncome,d1.revenue)*100], backgroundColor:'#95a9cc'},
+      {label:'Year 2', data:[safeDiv(d2.cogs,d2.revenue)*100,safeDiv(d2.grossProfit,d2.revenue)*100,safeDiv(d2.opex,d2.revenue)*100,safeDiv(d2.ebit,d2.revenue)*100,safeDiv(d2.netIncome,d2.revenue)*100], backgroundColor:'#2563eb'}
+    ]},{plugins:{title:{display:true,text:'Income Statement — % of Revenue'}}});
+  drawChart('vChart2','bar',{
+    labels:['Cash %','AR %','Inventory %','PP&E %','Total Liab %','Equity %'],
+    datasets:[
+      {label:'Year 1', data:[safeDiv(d1.cash,d1.totalAssets)*100,safeDiv(d1.ar,d1.totalAssets)*100,safeDiv(d1.inventory,d1.totalAssets)*100,safeDiv(d1.ppe,d1.totalAssets)*100,safeDiv(d1.totalLiabilities,d1.totalAssets)*100,safeDiv(d1.equity,d1.totalAssets)*100], backgroundColor:'#95a9cc'},
+      {label:'Year 2', data:[safeDiv(d2.cash,d2.totalAssets)*100,safeDiv(d2.ar,d2.totalAssets)*100,safeDiv(d2.inventory,d2.totalAssets)*100,safeDiv(d2.ppe,d2.totalAssets)*100,safeDiv(d2.totalLiabilities,d2.totalAssets)*100,safeDiv(d2.equity,d2.totalAssets)*100], backgroundColor:'#0fae83'}
+    ]},{plugins:{title:{display:true,text:'Balance Sheet — % of Total Assets'}}});
+};
+
+/* ---------------------------------------------------------------------
+   11. HORIZONTAL ANALYSIS TAB (with reasons column + blank practice cells)
+--------------------------------------------------------------------- */
+const HORIZ_INTERPRET = {
+  revenue:(chg)=> chg>0 ? 'Revenue growth is generally positive, but check whether it is profitable growth (margins) and cash-backed growth (receivables/CCC).' : 'A revenue decline warrants investigation into demand, pricing, or competitive pressure.',
+  cogs:(chg)=> chg>0 ? 'Rising COGS is expected with growth, but if it outpaces revenue growth, gross margin is compressing.' : 'Falling COGS may reflect efficiency gains or lower volume.',
+  netIncome:(chg)=> chg>0 ? 'Higher net income is favorable, but confirm the source: is it operational or one-off (e.g., lower tax rate)?' : 'Declining net income needs root-cause analysis — margin compression, higher interest, or higher tax.',
+  totalAssets:(chg)=> chg>0 ? 'Asset growth should be matched by proportionate revenue/profit growth, or asset turnover is deteriorating.' : 'Shrinking asset base may reflect divestment or underinvestment.',
+  inventory:(chg)=> chg>0 ? 'Rising inventory can signal expansion, but if faster than sales growth it is potentially inefficient and cash-consuming.' : 'Falling inventory may reflect improved efficiency or a slowdown in future sales.',
+  ar:(chg)=> chg>0 ? 'Rising receivables is potentially negative for cash flow if it grows faster than revenue — customers taking longer to pay.' : 'Falling receivables improves near-term cash collection.',
+  totalLiabilities:(chg)=> chg>0 ? 'Increase in liabilities/debt is potentially risky, raising fixed obligations and financial risk.' : 'Reduction in liabilities lowers financial risk.',
+  equity:(chg)=> chg>0 ? 'Equity growth (via retained earnings or fresh capital) strengthens the balance sheet.' : 'Declining equity may reflect losses or buybacks/dividends exceeding profit.'
+};
+const HA_BLANK_ROWS = new Set(['cogs','opex','tax']); // rows where % Δ is left blank for students (absolute change always shown)
+let HA_REASONS = {};
+let HA_ANSWERS = {};
+let HA_CHECKED = false;
+
+function hRow(rowKey,label,v1,v2,key){
+  const abs = v2-v1, pct = safeDiv(abs,Math.abs(v1)||1)*100;
+  const note = HORIZ_INTERPRET[key] ? HORIZ_INTERPRET[key](abs) : '';
+  const isBlank = HA_BLANK_ROWS.has(rowKey);
+  const absCell = `<span class="${dirClass(abs)}">${dirArrow(abs)} ${fmtCur(Math.abs(abs),1)}</span>`; // absolute change always shown
+  let pctCell;
+  if(isBlank){
+    const savedPct = HA_ANSWERS[rowKey]?.pct ?? '';
+    const pctOk = HA_CHECKED ? Math.abs(parseFloat(savedPct)-pct) < 0.6 : null;
+    pctCell = `<input type="number" step="any" style="width:70px;${HA_CHECKED?(pctOk?'border-color:#0fae83;background:#e6f8f1;':'border-color:#c0392b;background:#fceceb;'):''}" value="${savedPct}" oninput="HA_ANSWERS['${rowKey}']=Object.assign(HA_ANSWERS['${rowKey}']||{},{pct:this.value})">`;
+    if(HA_CHECKED) pctCell += ` <span class="small-note">(ans: ${fmtPct(pct)})</span>`;
+  } else {
+    pctCell = `<span class="${dirClass(abs)}">${dirArrow(abs)} ${fmtPct(Math.abs(pct))}</span>`;
+  }
+  const reasonVal = HA_REASONS[rowKey] || '';
+  return `<tr><td style="text-align:left;"><input type="text" placeholder="Why did this change?" value="${reasonVal.replace(/"/g,'&quot;')}" style="width:100%;font-size:11.5px;" oninput="HA_REASONS['${rowKey}']=this.value"></td>
+    <td style="text-align:left">${label}</td><td>${fmtCur(v1,1)}</td><td>${fmtCur(v2,1)}</td>
+    <td>${absCell}</td><td>${pctCell}</td>
+    <td style="text-align:left;font-size:11.5px;color:var(--muted);max-width:220px;">${note}</td></tr>`;
+}
+function checkHAAnswers(){ HA_CHECKED = true; RENDERERS.horizontal(byId('panel-horizontal')); }
+function clearHAPractice(){ HA_ANSWERS={}; HA_CHECKED=false; RENDERERS.horizontal(byId('panel-horizontal')); }
+
+RENDERERS.horizontal = function(panel){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Horizontal (Trend) Analysis</h2>
+    <p class="lead">Compares Year 1 to Year 2 in absolute and percentage terms. <b>Important: an increase is not automatically "good"</b> — read the interpretation column. Use the left "Reason for Change" column to note why, for classroom discussion.</p>
+    <div class="callout warn">✏ <b>Practice cells:</b> COGS, Operating Expenses and Tax Expense — the Absolute Δ is shown, but the <b>% Δ</b> column is left blank. Calculate it yourself, then click "Check My Answers".</div>
+    <div class="btnrow no-print">
+      <button class="btn" onclick="checkHAAnswers()">Check My Answers</button>
+      <button class="btn secondary" onclick="clearHAPractice()">Clear Practice Answers</button>
+      <button class="btn secondary" onclick="downloadHorizontalCSV()">⬇ Download Horizontal Analysis (CSV)</button>
+    </div>
+    <table>
+      <tr><th style="text-align:left">Reason for Change</th><th>Item</th><th>Year 1</th><th>Year 2</th><th>Absolute Δ</th><th>% Δ</th><th style="text-align:left">Financial Interpretation</th></tr>
+      ${hRow('revenue','Revenue',d1.revenue,d2.revenue,'revenue')}
+      ${hRow('cogs','COGS',d1.cogs,d2.cogs,'cogs')}
+      ${hRow('grossProfit','Gross Profit',d1.grossProfit,d2.grossProfit)}
+      ${hRow('opex','Operating Expenses',d1.opex,d2.opex)}
+      ${hRow('ebitda','EBITDA',d1.ebitda,d2.ebitda)}
+      ${hRow('ebit','EBIT',d1.ebit,d2.ebit)}
+      ${hRow('netIncome','Net Income',d1.netIncome,d2.netIncome,'netIncome')}
+      ${hRow('tax','Tax Expense',d1.tax,d2.tax)}
+      ${hRow('cash','Cash',d1.cash,d2.cash)}
+      ${hRow('ar','Accounts Receivable',d1.ar,d2.ar,'ar')}
+      ${hRow('inventory','Inventory',d1.inventory,d2.inventory,'inventory')}
+      ${hRow('totalAssets','Total Assets',d1.totalAssets,d2.totalAssets,'totalAssets')}
+      ${hRow('totalLiabilities','Total Liabilities',d1.totalLiabilities,d2.totalLiabilities,'totalLiabilities')}
+      ${hRow('equity','Shareholders\' Equity',d1.equity,d2.equity,'equity')}
+      ${hRow('eps','EPS',d1.eps,d2.eps)}
+    </table>
+    <div class="chart-wrap" style="margin-top:14px;"><canvas id="hChart"></canvas></div>
+  </div>
+  <div class="card">
+    <h3>Reading horizontal analysis correctly</h3>
+    <div class="grid grid-2">
+      <div class="callout good">✔ Revenue ↑ = potentially positive (check margin quality)</div>
+      <div class="callout risk">⚠ Debt ↑ = potentially risky (check interest coverage)</div>
+      <div class="callout warn">⚠ Inventory ↑ faster than sales = potentially inefficient</div>
+      <div class="callout warn">⚠ Receivables ↑ faster than sales = potentially negative for cash flow</div>
+    </div>
+  </div>`;
+  drawChart('hChart','line',{
+    labels:['Revenue','Gross Profit','EBIT','Net Income'],
+    datasets:[
+      {label:'Year 1', data:[d1.revenue,d1.grossProfit,d1.ebit,d1.netIncome], borderColor:'#95a9cc', backgroundColor:'#95a9cc', tension:.2},
+      {label:'Year 2', data:[d2.revenue,d2.grossProfit,d2.ebit,d2.netIncome], borderColor:'#2563eb', backgroundColor:'#2563eb', tension:.2}
+    ]},{plugins:{title:{display:true,text:'Trend: Year 1 vs Year 2'}}});
+};
+
+/* ---------------------------------------------------------------------
+   CHART HELPER (works with or without Chart.js CDN)
+--------------------------------------------------------------------- */
+let CHART_INSTANCES = {};
+function drawChart(canvasId,type,data,extraOpts){
+  const el = byId(canvasId);
+  if(!el) return;
+  if(window.__CHART_FAILED || typeof Chart==='undefined'){
+    el.parentElement.innerHTML = '<div class="small-note">📉 Chart.js could not be loaded from the CDN (no internet access). All calculations above are still fully functional — only the visual chart is unavailable.</div>';
+    return;
+  }
+  if(CHART_INSTANCES[canvasId]) CHART_INSTANCES[canvasId].destroy();
+  CHART_INSTANCES[canvasId] = new Chart(el.getContext('2d'), {
+    type, data,
+    options: Object.assign({responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}, extraOpts||{})
+  });
+}
+
+/* ---------------------------------------------------------------------
+   12. RATIO CATEGORY TABS (liquidity, activity, capstructure, profitability, valuation)
+--------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------
+   12b. TRANSACTION IMPACT SCENARIOS — "if the company does X, how do the
+   ratios in this category move?" At least 5 per ratio category + DuPont.
+--------------------------------------------------------------------- */
+const TRANSACTION_SCENARIOS = {
+  liquidity:[
+    {title:'1. Company borrows a long-term loan to repay outstanding creditors, overdue expenses, and to purchase fixed assets',
+     effect:'Cash rises on loan receipt, then falls as creditors/expenses are paid off; Accounts Payable (a current liability) falls; part of the loan is used to buy PP&E; Long-term Debt rises.',
+     ratios:'Current Ratio ↑ (current liabilities fall), Quick Ratio ↑, Working Capital ↑ — liquidity improves because a short-term obligation is replaced by long-term financing. (Note: Debt Ratio and D/E will rise — see Capital Structure.)',
+     practice:{cat:'liquidity', key:'current', shocks:{ap:-0.35, ltd:0.30, ppe:0.15}}},
+    {title:'2. Company converts a short-term loan into a long-term loan (refinancing)',
+     effect:'Short-term Debt (current liability) falls; Long-term Debt (non-current liability) rises by the same amount. Total liabilities unchanged.',
+     ratios:'Current Ratio ↑, Quick Ratio ↑, Working Capital ↑ — purely a maturity restructuring, not a change in total risk, but it relieves near-term liquidity pressure.',
+     practice:{cat:'liquidity', key:'current', shocks:{std:-0.50, ltd:0.40}}},
+    {title:'3. Company purchases inventory on credit from a supplier',
+     effect:'Inventory (current asset) rises; Accounts Payable (current liability) rises by the same amount.',
+     ratios:'Current Ratio moves toward 1.0x (rises if it was below 1, falls if it was above 1). Quick Ratio falls, since inventory is excluded from quick assets but the liability still counts.',
+     practice:{cat:'liquidity', key:'quick', shocks:{inventory:0.25, ap:0.25}}},
+    {title:'4. Company collects cash from a large outstanding receivable',
+     effect:'Accounts Receivable falls; Cash rises by the same amount. Total Current Assets unchanged.',
+     ratios:'Current Ratio and Quick Ratio are unchanged (cash and receivables are both quick assets), but the Cash Ratio improves, and DSO/Cash Conversion Cycle shorten (see Activity Ratios).',
+     practice:{cat:'liquidity', key:'cash', shocks:{ar:-0.30, cash:0.30}}},
+    {title:'5. Company uses surplus cash to pay off short-term debt',
+     effect:'Cash falls; Short-term Debt (current liability) falls by the same amount.',
+     ratios:'If Current Ratio was already above 1x, paying down equal amounts of CA and CL pushes it further above 1x (ratio improves). If it was below 1x, it falls further (ratio worsens) — the direction depends on the starting point.',
+     practice:{cat:'liquidity', key:'current', shocks:{cash:-0.25, std:-0.25}}},
+    {title:'6. Company declares and pays a large cash dividend',
+     effect:'Cash falls; Shareholders\' Equity falls (via retained earnings) — current liabilities are unaffected.',
+     ratios:'Current Ratio, Quick Ratio and Cash Ratio all fall since a quick asset (cash) leaves the business with no offsetting reduction in current liabilities.',
+     practice:{cat:'liquidity', key:'quick', shocks:{cash:-0.20, equity:-0.05}}}
+  ],
+  activity:[
+    {title:'1. Company negotiates longer payment terms with suppliers (extends credit period)',
+     effect:'Average Accounts Payable rises relative to COGS.',
+     ratios:'Payables Turnover ↓, DPO ↑ — the Cash Conversion Cycle shortens (favorable), since the company holds onto cash longer before paying suppliers.',
+     practice:{cat:'activity', key:'dpo', shocks:{ap:0.30}}},
+    {title:'2. Company offers an early-payment discount to customers to speed up collections',
+     effect:'Average Accounts Receivable falls relative to Revenue.',
+     ratios:'Receivables Turnover ↑, DSO ↓ — Cash Conversion Cycle shortens (favorable), improving cash flow, at the cost of a small discount expense that trims gross margin slightly.',
+     practice:{cat:'activity', key:'dso', shocks:{ar:-0.25}}},
+    {title:'3. Company overstocks inventory ahead of a festive/seasonal sales push',
+     effect:'Average Inventory rises without a matching immediate rise in COGS/sales.',
+     ratios:'Inventory Turnover ↓, DIO ↑ — Cash Conversion Cycle lengthens (unfavorable) until the inventory actually sells through.',
+     practice:{cat:'activity', key:'dio', shocks:{inventory:0.35}}},
+    {title:'4. Company sells off old, underutilized machinery',
+     effect:'Net PP&E falls; Revenue is unaffected in the short term.',
+     ratios:'Fixed Asset Turnover ↑ (same or similar revenue generated from a smaller fixed-asset base) — looks like an efficiency gain, but confirm it isn\'t constraining future capacity.',
+     practice:{cat:'activity', key:'fixedassetturn', shocks:{ppe:-0.25}}},
+    {title:'5. Company implements a Just-In-Time (JIT) inventory system',
+     effect:'Average Inventory falls structurally while COGS/Revenue stay roughly the same.',
+     ratios:'Inventory Turnover ↑, DIO ↓, Cash Conversion Cycle ↓, Working Capital Turnover ↑ — a genuine efficiency improvement, assuming stock-outs don\'t rise.',
+     practice:{cat:'activity', key:'invturn', shocks:{inventory:-0.30}}},
+    {title:'6. Company\'s revenue grows faster than its receivables collection process can keep up',
+     effect:'Average Accounts Receivable rises proportionally faster than Revenue.',
+     ratios:'Receivables Turnover ↓, DSO ↑ — a classic "growing but collecting slower" pattern worth flagging even when the P&L looks strong.',
+     practice:{cat:'activity', key:'dso', shocks:{ar:0.35, revenue:0.15}}}
+  ],
+  capstructure:[
+    {title:'1. Company issues new equity shares and uses proceeds to repay long-term debt',
+     effect:'Shareholders\' Equity rises; Long-term Debt falls by the same amount.',
+     ratios:'Debt Ratio ↓, Debt-to-Equity ↓, Equity Ratio ↑, Long-term Debt-to-Capital ↓ — the balance sheet becomes structurally less risky, though existing shareholders are diluted.',
+     practice:{cat:'capstructure', key:'de', shocks:{equity:0.30, ltd:-0.30}}},
+    {title:'2. Company takes a long-term loan to fund purchase of fixed assets (capacity expansion)',
+     effect:'Long-term Debt rises; PP&E rises by a similar amount.',
+     ratios:'Debt Ratio ↑, Debt-to-Equity ↑, Long-term Debt-to-Capital ↑, Capitalization Ratio ↑ — leverage rises; check whether the new capacity generates enough return to justify the added risk.',
+     practice:{cat:'capstructure', key:'de', shocks:{ltd:0.30, ppe:0.30}}},
+    {title:'3. Company converts short-term borrowings into long-term borrowings',
+     effect:'Short-term Debt falls; Long-term Debt rises by the same amount. Total Liabilities unchanged.',
+     ratios:'Debt Ratio and Total Debt-to-Capital are unchanged (total debt is the same), but Long-term Debt-to-Capital Ratio rises, reflecting a shift in the debt maturity profile, not overall risk.',
+     practice:{cat:'capstructure', key:'ltdcap', shocks:{std:-0.50, ltd:0.40}}},
+    {title:'4. Company buys back its own shares (treasury buyback) using cash',
+     effect:'Shareholders\' Equity falls; Cash falls. Total Liabilities unchanged.',
+     ratios:'Debt Ratio ↑, Debt-to-Equity ↑, Equity Ratio ↓ — leverage rises mechanically even though no new debt was taken on, purely because the equity base shrank.',
+     practice:{cat:'capstructure', key:'de', shocks:{equity:-0.25, cash:-0.25}}},
+    {title:'5. Company retains 100% of profits (pays no dividend) to strengthen reserves',
+     effect:'Shareholders\' Equity rises via retained earnings; Liabilities unaffected.',
+     ratios:'Debt Ratio ↓, Debt-to-Equity ↓, Equity Ratio ↑ — the capital structure becomes progressively more equity-funded over time.',
+     practice:{cat:'capstructure', key:'debtratio', shocks:{equity:0.15}}},
+    {title:'6. Company defaults on a scheduled repayment and is forced to raise fresh short-term debt to cover it',
+     effect:'Short-term Debt rises to plug the gap; existing obligations are unchanged.',
+     ratios:'Debt Ratio ↑, Debt-to-Equity ↑, Total Debt-to-Capital ↑ — a sign of financial distress rather than a planned financing decision; check Interest Coverage (Leverage Ratios) alongside this.',
+     practice:{cat:'capstructure', key:'totdebtcap', shocks:{std:0.40}}}
+  ],
+  leverage:[
+    {title:'1. Company takes on additional debt, raising annual interest expense',
+     effect:'Interest Expense rises; Profit Before Tax falls for the same EBIT.',
+     ratios:'Financial Leverage (Equity Multiplier) ↑, Interest Coverage Ratio ↓, Degree of Financial Leverage (DFL) ↑ — EPS becomes more sensitive (in both directions) to changes in EBIT.',
+     practice:{cat:'leverage', key:'finlev', shocks:{ltd:0.30, interest:0.30}}},
+    {title:'2. Company refinances high-interest debt with a lower-interest loan',
+     effect:'Interest Expense falls for the same debt principal.',
+     ratios:'Interest Coverage Ratio ↑, Cash Interest Coverage ↑, DFL ↓ — earnings become less volatile and the company gains a bigger cushion against an EBIT downturn.',
+     practice:{cat:'leverage', key:'intcov', shocks:{interest:-0.30}}},
+    {title:'3. Company automates a production line, converting variable labour cost into fixed depreciation/maintenance cost',
+     effect:'Fixed operating costs rise; variable cost per unit falls.',
+     ratios:'Degree of Operating Leverage (DOL) ↑ — EBIT becomes more sensitive to a change in sales volume, which is good in an upswing and risky in a downswing.',
+     practice:{cat:'leverage', key:'intcov', shocks:{opex:0.20}}},
+    {title:'4. Company uses surplus operating cash flow to prepay a portion of outstanding debt',
+     effect:'Debt principal falls, reducing future interest expense.',
+     ratios:'Financial Leverage ↓, Interest Coverage ↑, DFL ↓ — the company reduces both its fixed financing burden and its earnings volatility.',
+     practice:{cat:'leverage', key:'finlev', shocks:{ltd:-0.25, interest:-0.15}}},
+    {title:'5. A spike in raw material costs sharply reduces EBIT while interest obligations stay fixed',
+     effect:'EBIT falls; Interest Expense is unchanged (fixed contractual obligation).',
+     ratios:'Interest Coverage Ratio ↓ sharply, DFL rises (a small % fall in EBIT causes a larger % fall in EPS/PBT) — financial risk increases even though nothing changed on the financing side.',
+     practice:{cat:'leverage', key:'intcov', shocks:{cogs:0.20}}},
+    {title:'6. Company wins a large new contract, boosting EBIT while debt levels stay flat',
+     effect:'EBIT rises; Interest Expense unchanged.',
+     ratios:'Interest Coverage Ratio ↑, DFL falls (as PBT grows faster than the fixed interest charge shrinks its share) — a favorable use of existing financial leverage.',
+     practice:{cat:'leverage', key:'intcov', shocks:{revenue:0.20}}}
+  ],
+  profitability:[
+    {title:'1. Company negotiates better raw-material prices with suppliers',
+     effect:'COGS falls as a % of Revenue.',
+     ratios:'Gross Profit Margin ↑, Net Profit Margin ↑, ROA ↑, ROE ↑ — a genuine, sustainable improvement in operating profitability.',
+     practice:{cat:'profitability', key:'gpm', shocks:{cogs:-0.10}}},
+    {title:'2. Company undertakes cost-cutting (layoffs, reduced discretionary spend)',
+     effect:'Operating Expenses fall as a % of Revenue.',
+     ratios:'Operating Profit Margin ↑, EBITDA Margin ↑, Net Profit Margin ↑ — margins improve, but sustainability depends on whether the cuts hurt future revenue capacity.',
+     practice:{cat:'profitability', key:'opm', shocks:{opex:-0.15}}},
+    {title:'3. Company invests heavily in R&D / marketing for future growth',
+     effect:'Operating Expenses rise in the current period with no immediate revenue payoff.',
+     ratios:'Operating Margin ↓, Net Margin ↓, ROA ↓, ROE ↓ in the short term — a deliberate short-term profitability sacrifice for potential future growth; judge in context.',
+     practice:{cat:'profitability', key:'npm', shocks:{opex:0.20}}},
+    {title:'4. Company borrows to fund expansion, and the expansion earns more than the cost of debt',
+     effect:'Interest Expense rises, but EBIT rises by more due to the new capacity.',
+     ratios:'Net Profit Margin may dip slightly from higher interest, but ROE can still rise — positive financial leverage at work (see DuPont Analysis).',
+     practice:{cat:'profitability', key:'roe', shocks:{revenue:0.15, interest:0.15}}},
+    {title:'5. Company sells a loss-making division / records a one-time write-off',
+     effect:'Net Income falls sharply in that year from a non-recurring item.',
+     ratios:'Net Profit Margin ↓, ROA ↓, ROE ↓ for that year — always separate one-time items from core recurring profitability before concluding the business has weakened.',
+     practice:{cat:'profitability', key:'npm', shocks:{opex:0.40}}},
+    {title:'6. Company raises selling prices without losing significant volume (pricing power)',
+     effect:'Revenue rises faster than COGS.',
+     ratios:'Gross Margin ↑, Operating Margin ↑, ROCE ↑ — a strong, high-quality profitability improvement driven by pricing power rather than cost cutting.',
+     practice:{cat:'profitability', key:'gpm', shocks:{revenue:0.15}}}
+  ],
+  valuation:[
+    {title:'1. Company announces a stock split (e.g., 1 share becomes 2)',
+     effect:'Shares Outstanding doubles; Market Price roughly halves; Net Income and Equity unchanged.',
+     ratios:'EPS halves, Book Value per Share halves, but P/E and P/B stay roughly the same — a stock split changes the "slicing" of the company, not its underlying value.',
+     practice:{cat:'valuation', key:'pe', shocks:{shares:1.00, marketPrice:-0.50}}},
+    {title:'2. Company buys back and cancels shares using surplus cash',
+     effect:'Shares Outstanding falls; Net Income and near-term Equity roughly unchanged (aside from the cash used).',
+     ratios:'EPS ↑ (same profit divided by fewer shares), and P/E may fall if the price does not rise proportionally — often used to signal management confidence.',
+     practice:{cat:'valuation', key:'eps', shocks:{shares:-0.15}}},
+    {title:'3. Market sentiment turns negative and the share price falls despite stable earnings',
+     effect:'Market Price falls; EPS, BVPS and dividends are unchanged.',
+     ratios:'P/E ↓, P/B ↓, Dividend Yield ↑, Earnings Yield ↑ — the stock becomes statistically "cheaper" purely on price movement, not fundamentals.',
+     practice:{cat:'valuation', key:'pe', shocks:{marketPrice:-0.25}}},
+    {title:'4. Company sharply increases its dividend payout ratio',
+     effect:'Dividends paid rise; retained earnings (and future equity growth) fall.',
+     ratios:'Dividend per Share ↑, Dividend Yield ↑, Dividend Payout Ratio ↑ — attractive for income-seeking investors now, but less capital is reinvested for future growth.',
+     practice:{cat:'valuation', key:'divyield', shocks:{dividends:0.50}}},
+    {title:'5. Company issues new shares to the public to raise expansion capital',
+     effect:'Shares Outstanding rises; Cash/Equity rises by the issue proceeds.',
+     ratios:'EPS ↓ initially (dilution) even though total Net Income is unchanged; Market Capitalization ↑; Book Value per Share may rise or fall depending on the issue price versus existing BVPS.',
+     practice:{cat:'valuation', key:'eps', shocks:{shares:0.20, equity:0.20}}},
+    {title:'6. Company reports earnings well above analyst expectations',
+     effect:'Net Income (and EPS) rise while the market price adjusts upward but with a lag.',
+     ratios:'P/E may temporarily fall (earnings grew faster than price) before the market re-rates the stock — a classic post-earnings valuation gap.',
+     practice:{cat:'valuation', key:'pe', shocks:{revenue:0.15}}}
+  ],
+  dupont:[
+    {title:'1. Company takes on more debt to fund growth, without improving margin or turnover',
+     effect:'Total Assets rise (debt-funded) while Equity is unchanged.',
+     ratios:'Equity Multiplier (Financial Leverage) ↑ → ROE ↑ mechanically, purely through the leverage channel — not because the business became more profitable or efficient. This is a risk-driven ROE increase.',
+     practice:{dupont:true, shocks:{ltd:0.35, ppe:0.35}}},
+    {title:'2. Company improves operating efficiency, cutting costs without changing assets or debt',
+     effect:'Net Income rises for the same Revenue and Asset base.',
+     ratios:'Net Profit Margin ↑ → ROE ↑ through the profitability channel — a genuine quality improvement.',
+     practice:{dupont:true, shocks:{opex:-0.15}}},
+    {title:'3. Company sells idle, unproductive assets and redeploys the cash',
+     effect:'Total Assets fall (or generate more revenue per rupee) without hurting Revenue.',
+     ratios:'Asset Turnover ↑ → ROE ↑ through the efficiency channel — the company is generating more sales from a leaner asset base.',
+     practice:{dupont:true, shocks:{ppe:-0.20, otherNCA:-0.20}}},
+    {title:'4. Company buys back shares using debt (a leveraged buyback)',
+     effect:'Equity falls (shares cancelled); Debt rises to fund the buyback; Net Income roughly unchanged.',
+     ratios:'Equity Multiplier ↑ sharply → ROE ↑ mechanically with no operational improvement at all — the riskiest way to "improve" ROE.',
+     practice:{dupont:true, shocks:{equity:-0.25, ltd:0.25}}},
+    {title:'5. Company faces intensified competition and is forced to cut prices',
+     effect:'Net Income falls relative to Revenue.',
+     ratios:'Net Profit Margin ↓ → ROE ↓ through the profitability channel, even if Asset Turnover and Leverage stay constant — a warning sign, not offset by the other two factors.',
+     practice:{dupont:true, shocks:{cogs:0.15}}},
+    {title:'6. Company simultaneously improves margin AND reduces leverage (deleveraging while growing profit)',
+     effect:'Net Income rises; Debt (and hence Equity Multiplier) falls.',
+     ratios:'Net Profit Margin ↑ pushes ROE up, Equity Multiplier ↓ pushes ROE down — the net effect on ROE depends on which force is larger; DuPont lets you see both moving in opposite directions instead of just one blended number.',
+     practice:{dupont:true, shocks:{opex:-0.10, ltd:-0.20}}}
+  ]
+};
+function renderTransactionScenarios(catKey, heading){
+  const list = TRANSACTION_SCENARIOS[catKey];
+  if(!list) return '';
+  return `<div class="card">
+    <h3>💼 Transaction Impact — "If the company does this, what happens to ${heading}?"</h3>
+    <p class="lead">Real business decisions rarely move just one ratio. Work through each transaction below, then use the calculator-style box (supports + − × ÷ and brackets, just like a real calculator) to work out the new ratio yourself.</p>
+    ${list.map((s,idx)=>`<div class="formula-block">
+      <div class="fname">${s.title}</div>
+      <div class="fcalc" style="font-family:inherit;"><b>What happens to the statements:</b> ${s.effect}</div>
+      <div class="finterpret">📊 <b>Ratio impact:</b> ${s.ratios}</div>
+      ${s.practice ? renderCalcPracticeBox(catKey, s.practice, idx) : ''}
+    </div>`).join('')}
+  </div>`;
+}
+
+/* ---------------------------------------------------------------------
+   12c. CALCULATOR-STYLE PRACTICE BOX
+   Students type a formula (+ - * / and brackets) to compute the ratio
+   AFTER a transaction's shocks are applied — mirrors a real calculator.
+--------------------------------------------------------------------- */
+let CALC_BOX_SEQ = 0;
+function applyShocksToYear2(shocks){
+  const s = {...DATA.year2};
+  Object.keys(shocks).forEach(f=>{ s[f] = DATA.year2[f] * (1 + shocks[f]); });
+  return s;
+}
+const FIELD_LABELS = {
+  revenue:'Revenue', cogs:'COGS', opex:'Operating Expenses', depreciation:'Depreciation', interest:'Interest Expense',
+  cash:'Cash', ar:'Accounts Receivable', inventory:'Inventory', otherCA:'Other Current Assets',
+  ppe:'PP&E', otherNCA:'Other Non-current Assets',
+  ap:'Accounts Payable', std:'Short-term Debt', otherCL:'Other Current Liabilities',
+  ltd:'Long-term Debt', otherNCL:'Other Non-current Liabilities', equity:'Equity',
+  shares:'Shares Outstanding', marketPrice:'Market Price/Share', dividends:'Dividends'
+};
+function assumptionTable(shocks){
+  const rows = Object.keys(shocks).map(f=>{
+    const before = DATA.year2[f];
+    const after = before * (1+shocks[f]);
+    const pct = shocks[f]*100;
+    return `<tr><td>${FIELD_LABELS[f]||f}</td><td>${fmt(before,1)}</td><td class="${pct>=0?'pos':'neg'}">${pct>=0?'+':''}${fmt(pct,0)}%</td><td>${fmt(after,1)}</td></tr>`;
+  }).join('');
+  return `<table style="margin:6px 0;font-size:11.8px;"><tr><th>Line Item (Assumption)</th><th>Before (₹)</th><th>Assumed Change</th><th>After (₹)</th></tr>${rows}</table>`;
+}
+function renderCalcPracticeBox(catKey, practice, idx){
+  const before = computeDerived(DATA.year2);
+  const afterRaw = applyShocksToYear2(practice.shocks);
+  const after = computeDerived(afterRaw);
+  const boxId = 'calcbox_' + catKey + '_' + idx + '_' + (CALC_BOX_SEQ++);
+  const assumptions = assumptionTable(practice.shocks);
+
+  if(practice.dupont){
+    const npmB = safeDiv(before.netIncome,before.revenue), atrB = safeDiv(before.revenue,before.totalAssets), emB = safeDiv(before.totalAssets,before.equity);
+    const npmA = safeDiv(after.netIncome,after.revenue), atrA = safeDiv(after.revenue,after.totalAssets), emA = safeDiv(after.totalAssets,after.equity);
+    const roeA = npmA*atrA*emA;
+    return `<div class="calc-practice">
+      <div class="cptitle">🧮 Practice: assuming the line-item changes below, calculate the new ROE using DuPont (Margin × Turnover × Leverage)</div>
+      ${assumptions}
+      <div class="cphint">Using the After figures: Net Income = ${fmt(after.netIncome,1)}, Revenue = ${fmt(after.revenue,1)}, Total Assets = ${fmt(after.totalAssets,1)}, Equity = ${fmt(after.equity,1)} → New Net Profit Margin ≈ ${fmt(npmA,4)}, New Asset Turnover ≈ ${fmt(atrA,2)}x, New Equity Multiplier ≈ ${fmt(emA,2)}x. (Before ROE was ${fmtPct(npmB*atrB*emB*100)}.)</div>
+      <div class="calc-row">
+        <input type="text" id="${boxId}" placeholder="e.g. ${fmt(npmA,3)}*${fmt(atrA,2)}*${fmt(emA,2)}">
+        <button class="btn small" onclick="checkCalcPractice('${boxId}', ${roeA}, '%')">Check</button>
+      </div>
+      <div id="${boxId}_res" class="calc-result"></div>
+    </div>`;
+  }
+
+  const def = RATIOS[practice.cat].find(r=>r.key===practice.key);
+  const beforeC = def.calc(before,null), afterC = def.calc(after,before);
+  return `<div class="calc-practice">
+    <div class="cptitle">🧮 Practice: assuming the line-item changes below, calculate the new <b>${def.name}</b></div>
+    ${assumptions}
+    <div class="cphint">Formula: ${def.formula} &nbsp;→&nbsp; New Numerator = ${fmt(afterC.num,1)}, New Denominator = ${fmt(afterC.den,1)} &nbsp;|&nbsp; Before value was: ${def.unit==='%'?fmtPct(beforeC.value):def.unit==='x'?fmtX(beforeC.value):def.unit==='days'?fmt(beforeC.value,1)+' days':fmt(beforeC.value,1)}</div>
+    <div class="calc-row">
+      <input type="text" id="${boxId}" placeholder="Type a formula, e.g. ${fmt(afterC.num,0)}/${fmt(afterC.den,0)}">
+      <button class="btn small" onclick="checkCalcPractice('${boxId}', ${afterC.value}, '${def.unit}')">Check</button>
+    </div>
+    <div id="${boxId}_res" class="calc-result"></div>
+  </div>`;
+}
+function checkCalcPractice(boxId, correctValue, unit){
+  const raw = byId(boxId).value;
+  const cleaned = raw.replace(/[^0-9+\-*/().\s]/g,'');
+  let val;
+  try{ val = cleaned.trim()==='' ? NaN : Function('"use strict";return (' + cleaned + ')')(); }
+  catch(e){ val = NaN; }
+  const unitFmt = v => unit==='%' ? fmtPct(v) : unit==='x' ? fmtX(v) : unit==='days' ? fmt(v,1)+' days' : fmt(v,1);
+  const ok = typeof val==='number' && !isNaN(val) && isFinite(val) && Math.abs(val-correctValue) < Math.max(0.05, Math.abs(correctValue)*0.03);
+  const box = byId(boxId+'_res');
+  if(!box) return;
+  box.innerHTML = ok
+    ? `<span class="pos">✓ Correct — you calculated ${unitFmt(val)}</span>`
+    : `<span class="neg">✗ ${(typeof val!=='number'||isNaN(val))?'That formula could not be evaluated. Use only numbers, + − * / and brackets.':'You got '+unitFmt(val)+'.'} Correct answer: ${unitFmt(correctValue)}</span>`;
+}
+
+RENDERERS.liquidity = p=> p.innerHTML = renderRatioCategory('liquidity') + liquidityChart() + renderTransactionScenarios('liquidity','the Liquidity Ratios');
+RENDERERS.activity = p=> p.innerHTML = renderRatioCategory('activity') + cccExplainer() + renderTransactionScenarios('activity','the Activity Ratios');
+RENDERERS.capstructure = p=> p.innerHTML = renderRatioCategory('capstructure') + renderTransactionScenarios('capstructure','the Capital Structure Ratios');
+RENDERERS.profitability = p=> p.innerHTML = renderRatioCategory('profitability') + renderTransactionScenarios('profitability','the Profitability Ratios');
+RENDERERS.valuation = p=> p.innerHTML = renderRatioCategory('valuation') + renderTransactionScenarios('valuation','the Valuation Ratios');
+
+function liquidityChart(){
+  return `<div class="card"><h3>Liquidity Trend</h3><div class="chart-wrap"><canvas id="liqChart"></canvas></div></div>`;
+}
+function cccExplainer(){
+  return `<div class="card"><h3>Cash Conversion Cycle — Visual</h3>
+  <div class="flowchart">
+    <div class="node">Buy Inventory</div><div class="arrow">→</div>
+    <div class="node">DIO: Hold Inventory</div><div class="arrow">→</div>
+    <div class="node">Sell on Credit</div><div class="arrow">→</div>
+    <div class="node">DSO: Collect Cash</div>
+  </div>
+  <p class="small-note" style="margin-top:10px;">Cash Conversion Cycle = DIO + DSO − DPO. Suppliers give the company DPO days of "free" financing before payment is due; the shorter the CCC, the less external financing the operating cycle requires.</p>
+  </div>`;
+}
+
+/* ---------------------------------------------------------------------
+   13. LEVERAGE RATIOS TAB (+ interactive DOL/DFL/DTL simulator)
+--------------------------------------------------------------------- */
+RENDERERS.leverage = function(panel){
+  panel.innerHTML = renderRatioCategory('leverage') + `
+  <div class="card">
+    <h3>Operating &amp; Financial Leverage Simulator</h3>
+    <p class="lead">Degree of Operating Leverage (DOL), Degree of Financial Leverage (DFL) and Degree of Total Leverage (DTL) show how sensitive EBIT and EPS are to a change in sales/EBIT.</p>
+    <div class="grid grid-3">
+      <div class="field"><label>Fixed Operating Costs (proxy = Opex)</label><input type="number" id="levFixed" value="${DATA.year2.opex}"></div>
+      <div class="field"><label>% Change in Sales/EBIT to test</label><input type="number" id="levPct" value="10"></div>
+      <div></div>
+    </div>
+    <button class="btn" onclick="runLeverageSim()">Run Leverage Simulation</button>
+    <div id="levResult"></div>
+  </div>` + renderTransactionScenarios('leverage','the Leverage Ratios');
+  runLeverageSim();
+};
+function runLeverageSim(){
+  const d = computeDerived(DATA.year2);
+  const fixed = parseFloat(byId('levFixed')?.value) || d.opex;
+  const pctChg = parseFloat(byId('levPct')?.value) || 10;
+  const contribution = d.revenue - d.cogs; // proxy contribution margin (Revenue - variable cost COGS)
+  const dol = safeDiv(contribution, d.ebit);
+  const dfl = safeDiv(d.ebit, d.pbt);
+  const dtl = dol*dfl;
+  const newEbitPct = dol * pctChg;
+  const newEpsPct = dtl * pctChg;
+  const box = byId('levResult');
+  if(box) box.innerHTML = `
+    <div class="grid grid-3" style="margin-top:12px;">
+      <div class="formula-block"><div class="fname">Degree of Operating Leverage (DOL)</div>
+        <div class="fformula">(Revenue − COGS) / EBIT</div>
+        <div class="fresult">${fmtX(dol)}</div>
+        <div class="finterpret">A ${pctChg}% change in sales → approx. ${fmtPct(newEbitPct)} change in EBIT.</div></div>
+      <div class="formula-block"><div class="fname">Degree of Financial Leverage (DFL)</div>
+        <div class="fformula">EBIT / Profit Before Tax</div>
+        <div class="fresult">${fmtX(dfl)}</div>
+        <div class="finterpret">A ${pctChg}% change in EBIT → approx. ${fmtPct(dfl*pctChg)} change in EPS via financing structure.</div></div>
+      <div class="formula-block"><div class="fname">Degree of Total Leverage (DTL = DOL × DFL)</div>
+        <div class="fformula">DOL × DFL</div>
+        <div class="fresult">${fmtX(dtl)}</div>
+        <div class="finterpret">A ${pctChg}% change in sales → approx. ${fmtPct(newEpsPct)} change in EPS overall. Higher DTL = higher earnings volatility and risk.</div></div>
+    </div>`;
+}
+
+/* ---------------------------------------------------------------------
+   14. DUPONT ANALYSIS TAB
+--------------------------------------------------------------------- */
+RENDERERS.dupont = function(panel){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  function dupont(d,p){
+    const npm = safeDiv(d.netIncome,d.revenue);
+    const avgAssets = p?(p.totalAssets+d.totalAssets)/2:d.totalAssets;
+    const avgEquity = p?(p.equity+d.equity)/2:d.equity;
+    const atr = safeDiv(d.revenue,avgAssets);
+    const em = safeDiv(avgAssets,avgEquity);
+    const roe = npm*atr*em;
+    return {npm,atr,em,roe};
+  }
+  const du1 = dupont(d1,null), du2 = dupont(d2,d1);
+  const driver = (()=>{
+    const dNpm = du2.npm-du1.npm, dAtr=du2.atr-du1.atr, dEm=du2.em-du1.em;
+    const mags = [['profit margin',Math.abs(dNpm)*100],['asset turnover',Math.abs(dAtr)*50],['financial leverage',Math.abs(dEm)*30]];
+    mags.sort((a,b)=>b[1]-a[1]);
+    return mags[0][0];
+  })();
+  panel.innerHTML = `
+  <div class="card">
+    <h2>DuPont Analysis</h2>
+    <p class="lead">ROE = Net Profit Margin × Asset Turnover × Equity Multiplier (Financial Leverage). This decomposes <i>why</i> ROE is what it is.</p>
+    <div class="dupont-box">
+      <div class="dbox"><div class="dl">Net Profit Margin</div><div class="dv">${fmtPct(du2.npm*100)}</div></div>
+      <div class="op">×</div>
+      <div class="dbox"><div class="dl">Asset Turnover</div><div class="dv">${fmtX(du2.atr)}</div></div>
+      <div class="op">×</div>
+      <div class="dbox"><div class="dl">Equity Multiplier</div><div class="dv">${fmtX(du2.em)}</div></div>
+      <div class="op">=</div>
+      <div class="dbox" style="border-color:var(--gold);"><div class="dl">ROE</div><div class="dv">${fmtPct(du2.roe*100)}</div></div>
+    </div>
+    <table>
+      <tr><th>Component</th><th>Year 1</th><th>Year 2</th><th>Change</th></tr>
+      <tr><td>Net Profit Margin</td><td>${fmtPct(du1.npm*100)}</td><td>${fmtPct(du2.npm*100)}</td><td class="${dirClass(du2.npm-du1.npm)}">${dirArrow(du2.npm-du1.npm)} ${fmtPct(Math.abs(du2.npm-du1.npm)*100)} pts</td></tr>
+      <tr><td>Asset Turnover</td><td>${fmtX(du1.atr)}</td><td>${fmtX(du2.atr)}</td><td class="${dirClass(du2.atr-du1.atr)}">${dirArrow(du2.atr-du1.atr)} ${fmtX(Math.abs(du2.atr-du1.atr))}</td></tr>
+      <tr><td>Equity Multiplier</td><td>${fmtX(du1.em)}</td><td>${fmtX(du2.em)}</td><td class="${dirClass(du2.em-du1.em)}">${dirArrow(du2.em-du1.em)} ${fmtX(Math.abs(du2.em-du1.em))}</td></tr>
+      <tr class="grandtotal"><td>ROE</td><td>${fmtPct(du1.roe*100)}</td><td>${fmtPct(du2.roe*100)}</td><td class="${dirClass(du2.roe-du1.roe)}">${dirArrow(du2.roe-du1.roe)} ${fmtPct(Math.abs(du2.roe-du1.roe)*100)} pts</td></tr>
+    </table>
+    <div class="callout ${driver==='financial leverage'?'warn':'info'}">💡 The change in ROE from Year 1 to Year 2 is most driven by a change in <b>${driver}</b>. ${driver==='financial leverage' ? 'Since leverage is the main driver, rising ROE here reflects more debt-funded risk, not necessarily better operating performance — inspect debt ratios and interest coverage before concluding the company is "more profitable."' : 'This suggests the change in ROE reflects a genuine operating improvement rather than simply added financial risk.'}</div>
+  </div>
+  <div class="card">
+    <h3>DuPont "What-If" Simulator</h3>
+    <div class="grid grid-3">
+      <div class="field"><label>Net Profit Margin %</label><input type="number" id="duM" value="${fmt(du2.npm*100,2)}"></div>
+      <div class="field"><label>Asset Turnover (x)</label><input type="number" id="duT" value="${fmt(du2.atr,2)}"></div>
+      <div class="field"><label>Equity Multiplier (x)</label><input type="number" id="duE" value="${fmt(du2.em,2)}"></div>
+    </div>
+    <button class="btn" onclick="runDupontSim()">Recalculate ROE</button>
+    <div id="duResult" style="margin-top:10px;"></div>
+  </div>` + renderTransactionScenarios('dupont','ROE via DuPont');
+  drawChart; // no-op placeholder to keep function referenced
+};
+function runDupontSim(){
+  const m = parseFloat(byId('duM').value)/100, t = parseFloat(byId('duT').value), e = parseFloat(byId('duE').value);
+  const roe = m*t*e*100;
+  byId('duResult').innerHTML = `<div class="formula-block"><div class="fname">Simulated ROE</div>
+    <div class="fformula">${fmtPct(m*100)} × ${fmtX(t)} × ${fmtX(e)}</div>
+    <div class="fresult">${fmtPct(roe)}</div>
+    <div class="finterpret">Ask: is this ROE driven by margin (profitability), turnover (efficiency), or the multiplier (leverage/risk)? The same ROE can come from very different — and not equally safe — combinations.</div></div>`;
+}
+
+/* ---------------------------------------------------------------------
+   15. CAUSE & EFFECT SIMULATOR — the core module
+--------------------------------------------------------------------- */
+const SIM_VARS = [
+  ['revenue','Revenue',1000], ['cogs','COGS',1000], ['opex','Operating Expenses',1000],
+  ['interest','Interest Expense',1000], ['taxRate','Tax Rate (%)',10],
+  ['cash','Cash',1000], ['ar','Accounts Receivable',1000], ['inventory','Inventory',1000],
+  ['ap','Accounts Payable',1000], ['std','Short-term Debt',1000], ['ltd','Long-term Debt',1000],
+  ['equity','Equity',1000], ['shares','Shares Outstanding',10000], ['marketPrice','Market Price',100],
+  ['dividends','Dividends',1000]
+];
+
+const SCENARIOS = {
+  revenue:{title:'Revenue increases', ratios:'Gross/Net Margin, Asset Turnover, ROA, ROE, EPS, P/E',
+    note:'Revenue growth flows through to gross profit and (if costs are controlled) net income, lifting profitability and efficiency ratios. But check whether receivables/inventory grow in step — fast revenue growth funded by rising receivables can strain cash.'},
+  cogs:{title:'COGS increases', ratios:'Gross Margin, Net Margin, ROA, ROE',
+    note:'Higher COGS directly compresses Gross Profit and every margin below it. If COGS rises faster than revenue, gross margin % falls even if absolute profit is flat or up.'},
+  opex:{title:'Operating expenses increase', ratios:'Operating Margin, Net Margin, Interest Coverage (via EBIT), ROA, ROE',
+    note:'Operating expense growth reduces EBIT directly, which cascades into interest coverage, net margin, and every return ratio built on EBIT or Net Income.'},
+  ar:{title:'Accounts receivable increases', ratios:'Current Ratio, Quick Ratio, Receivables Turnover, DSO, Cash Conversion Cycle',
+    note:'Higher receivables improve current/quick ratio (more current assets) but worsen DSO and the cash conversion cycle — an increase here is potentially negative for cash flow even though "liquidity ratios" look better.'},
+  inventory:{title:'Inventory increases', ratios:'Current Ratio, Quick Ratio (falls), Inventory Turnover, DIO, Cash Conversion Cycle',
+    note:'Inventory increases current ratio but quick ratio deliberately excludes inventory, so quick ratio does not improve — highlighting why quick ratio is the stricter liquidity test. Inventory turnover falls and DIO/CCC lengthen.'},
+  cash:{title:'Cash increases', ratios:'Current Ratio, Quick Ratio, Cash Ratio, ROA (may dilute), Defensive Interval',
+    note:'Cash strengthens every liquidity ratio immediately. However, idle cash earning little return can drag down ROA/asset turnover if not deployed productively.'},
+  currentLiab:{title:'Current liabilities increase (e.g., payables)', ratios:'Current Ratio (falls), Quick Ratio (falls), Working Capital (falls)',
+    note:'All else equal, more current liabilities mechanically reduce the current and quick ratios and shrink working capital — a red flag if it is not matched by operating needs.'},
+  std:{title:'Short-term debt increases', ratios:'Current Ratio, Debt Ratio, Debt/Equity, Financial Leverage, Interest Coverage',
+    note:'Short-term borrowing raises current liabilities (hurting liquidity ratios) and total debt (hurting leverage ratios), and typically raises interest expense, weakening interest coverage.'},
+  ltd:{title:'Long-term debt increases', ratios:'Debt Ratio, Debt/Equity, Long-term Debt-to-Capital, Financial Leverage, Interest Coverage',
+    note:'Long-term debt increases structural leverage and fixed interest obligations. ROE may rise if the borrowed capital earns more than its cost (positive financial leverage) — or fall if it does not.'},
+  equity:{title:'Equity increases (fresh capital / retained earnings)', ratios:'Debt/Equity (falls), Financial Leverage (falls), ROE (may fall due to larger base), Book Value per Share',
+    note:'More equity de-risks the balance sheet (lower D/E, lower leverage) but can dilute ROE and EPS if the new capital is not yet generating a matching return.'},
+  interest:{title:'Interest expense increases', ratios:'Interest Coverage (falls), Net Margin, Net Income, EPS, ROE',
+    note:'Higher interest expense reduces Profit Before Tax and Net Income directly, weakening interest coverage and every profitability/return ratio below EBIT.'},
+  marketPrice:{title:'Market price increases', ratios:'P/E (rises), P/B (rises), Dividend Yield (falls), Market Cap',
+    note:'A rising price with unchanged fundamentals mechanically raises valuation multiples (P/E, P/B) and lowers dividend yield — the company has not become more profitable, only more expensive.'},
+  shares:{title:'Shares outstanding increase (dilution)', ratios:'EPS (falls), Book Value per Share (falls), Market Cap (unaffected by count alone)',
+    note:'Issuing more shares dilutes EPS and book value per share even if total net income and equity are unchanged — a classic dilution effect.'},
+  dividends:{title:'Dividends increase', ratios:'Dividend Payout Ratio, Dividend Yield, Dividend per Share, Retained Equity (falls)',
+    note:'Higher dividends raise the payout ratio and yield but reduce the equity retained for reinvestment/growth — a trade-off between current income and future growth.'}
+};
+
+function simVarRow(key,label){
+  const val = SIM[key];
+  return `<div class="field">
+    <label>${label}: <span id="simval_${key}" style="color:var(--blue);font-weight:700;">${fmt(val,1)}</span></label>
+    <div class="slider-row">
+      <button class="btn secondary small" onclick="simNudge('${key}',-5)">−5%</button>
+      <input type="range" min="-50" max="50" value="0" step="1" oninput="simSlide('${key}',this.value)">
+      <button class="btn secondary small" onclick="simNudge('${key}',5)">+5%</button>
+    </div>
+  </div>`;
+}
+
+RENDERERS.causeeffect = function(panel){
+  if(!SIM) SIM = {...DATA.year2};
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Cause &amp; Effect Simulator</h2>
+    <p class="lead">This is the heart of the lab. Change ONE variable below (based on Year 2 baseline) and watch every statement, vertical %, ratio, and interpretation update instantly.</p>
+    <div class="flowchart">
+      <div class="node">CAUSE</div><div class="arrow">→</div>
+      <div class="node">FINANCIAL STATEMENT IMPACT</div><div class="arrow">→</div>
+      <div class="node">RATIO IMPACT</div><div class="arrow">→</div>
+      <div class="node">BUSINESS INTERPRETATION</div>
+    </div>
+    <div class="btnrow"><button class="btn secondary" onclick="resetSim()">Reset Simulator to Year 2 Baseline</button></div>
+  </div>
+  <div class="grid grid-3">
+    <div class="card" style="grid-column:span 1;">
+      <h3>Change a Variable</h3>
+      <div id="simControls">${SIM_VARS.map(v=>simVarRow(v[0],v[1])).join('')}</div>
+    </div>
+    <div class="card" style="grid-column:span 2;">
+      <h3>Live Impact</h3>
+      <div id="simImpact"></div>
+    </div>
+  </div>
+  <div class="card">
+    <h3>Scenario Library — Pre-Built Cause &amp; Effect Explanations</h3>
+    <p class="lead">Click a scenario to auto-apply a representative shock and see the full explanation.</p>
+    <div class="section-nav" id="scenarioBtns">
+      ${Object.keys(SCENARIOS).map(k=>`<button onclick="applyScenario('${k}')">${SCENARIOS[k].title}</button>`).join('')}
+    </div>
+    <div id="scenarioResult"></div>
+  </div>
+  <div class="card">
+    <h3>Cause–Effect Dependency Matrix</h3>
+    <table class="matrix-table">
+      <tr><th>Financial Driver</th><th>Statement Impact</th><th>Vertical Analysis Impact</th><th>Horizontal Analysis Impact</th><th>Ratios Impact</th><th style="text-align:left">Business Meaning</th></tr>
+      <tr><td class="driver">Revenue ↑</td><td>Gross Profit ↑, EBIT ↑</td><td>COGS %, Opex % of revenue may fall</td><td>Revenue growth %</td><td>Asset Turnover, ROA, ROE, EPS</td><td style="text-align:left">Growth — verify margin &amp; cash quality</td></tr>
+      <tr><td class="driver">Inventory ↑</td><td>Current Assets ↑, Total Assets ↑</td><td>Inventory % of assets ↑</td><td>Inventory growth %</td><td>Inventory Turnover ↓, DIO ↑, CCC ↑</td><td style="text-align:left">Possible overstocking / slower demand</td></tr>
+      <tr><td class="driver">Debt ↑</td><td>Liabilities ↑, Interest Expense may ↑</td><td>Debt % of capital ↑</td><td>Liabilities growth %</td><td>Debt Ratio ↑, D/E ↑, Financial Leverage ↑, Interest Coverage ↓</td><td style="text-align:left">Higher financial risk; ROE may rise or fall depending on returns</td></tr>
+      <tr><td class="driver">Receivables ↑</td><td>Current Assets ↑</td><td>AR % of assets ↑</td><td>AR growth %</td><td>Current/Quick Ratio ↑ (nominally), DSO ↑, CCC ↑</td><td style="text-align:left">Customers paying slower; cash flow strain</td></tr>
+      <tr><td class="driver">Equity ↑</td><td>Equity ↑, Liabilities % of capital ↓</td><td>Equity % of capital ↑</td><td>Equity growth %</td><td>D/E ↓, Financial Leverage ↓, ROE may dilute</td><td style="text-align:left">Lower risk, possible dilution of returns</td></tr>
+    </table>
+  </div>
+  <div class="card">
+    <h3>Ratio Dependency Map</h3>
+    <div class="grid grid-3">
+      <div><div class="flowchart" style="flex-direction:column;align-items:flex-start;">
+        <div class="node">Revenue</div><div class="arrow">↓</div><div class="node">Gross Profit</div><div class="arrow">↓</div><div class="node">EBIT</div><div class="arrow">↓</div><div class="node">Net Income</div><div class="arrow">↓</div><div class="node">EPS</div><div class="arrow">↓</div><div class="node">P/E</div>
+      </div></div>
+      <div><div class="flowchart" style="flex-direction:column;align-items:flex-start;">
+        <div class="node">Inventory</div><div class="arrow">↓</div><div class="node">Inventory Turnover</div><div class="arrow">↓</div><div class="node">Days Inventory</div><div class="arrow">↓</div><div class="node">Operating Cycle</div><div class="arrow">↓</div><div class="node">Cash Conversion Cycle</div><div class="arrow">↓</div><div class="node">Liquidity</div>
+      </div></div>
+      <div><div class="flowchart" style="flex-direction:column;align-items:flex-start;">
+        <div class="node">Debt</div><div class="arrow">↓</div><div class="node">Interest</div><div class="arrow">↓</div><div class="node">Net Income</div><div class="arrow">↓</div><div class="node">ROE</div><div class="arrow">↓</div><div class="node">EPS</div><div class="arrow">↓</div><div class="node">Interest Coverage</div>
+      </div></div>
+    </div>
+  </div>`;
+  renderSimImpact();
+};
+
+function resetSim(){ SIM = {...DATA.year2}; RENDERERS.causeeffect(byId('panel-causeeffect')); }
+function simSlide(key,pctVal){
+  const base = DATA.year2[key];
+  SIM[key] = base * (1 + parseFloat(pctVal)/100);
+  byId('simval_'+key).textContent = fmt(SIM[key],1);
+  renderSimImpact();
+}
+function simNudge(key,pct){
+  SIM[key] = SIM[key] * (1+pct/100);
+  byId('simval_'+key).textContent = fmt(SIM[key],1);
+  renderSimImpact();
+}
+
+function renderSimImpact(){
+  const box = byId('simImpact');
+  if(!box) return;
+  const base = computeDerived(DATA.year2);
+  const sim = computeDerived(SIM);
+  function line(label,b,s,fmtFn){
+    const delta = s-b;
+    return `<tr><td>${label}</td><td>${fmtFn(b)}</td><td>${fmtFn(s)}</td><td class="${dirClass(delta)}">${dirArrow(delta)} ${fmtFn(Math.abs(delta))}</td></tr>`;
+  }
+  box.innerHTML = `
+  <table>
+    <tr><th>Metric</th><th>Baseline (Year 2)</th><th>Simulated</th><th>Change</th></tr>
+    ${line('Revenue',base.revenue,sim.revenue,v=>fmtCur(v,1))}
+    ${line('Gross Profit',base.grossProfit,sim.grossProfit,v=>fmtCur(v,1))}
+    ${line('EBIT',base.ebit,sim.ebit,v=>fmtCur(v,1))}
+    ${line('Net Income',base.netIncome,sim.netIncome,v=>fmtCur(v,1))}
+    ${line('Total Assets',base.totalAssets,sim.totalAssets,v=>fmtCur(v,1))}
+    ${line('Total Liabilities',base.totalLiabilities,sim.totalLiabilities,v=>fmtCur(v,1))}
+    ${line('Net Margin %',safeDiv(base.netIncome,base.revenue)*100,safeDiv(sim.netIncome,sim.revenue)*100,v=>fmtPct(v))}
+    ${line('Current Ratio',safeDiv(base.totalCurrentAssets,base.totalCurrentLiabilities),safeDiv(sim.totalCurrentAssets,sim.totalCurrentLiabilities),v=>fmtX(v))}
+    ${line('Debt/Equity',safeDiv(base.totalLiabilities,base.equity),safeDiv(sim.totalLiabilities,sim.equity),v=>fmtX(v))}
+    ${line('ROA %',safeDiv(base.netIncome,base.totalAssets)*100,safeDiv(sim.netIncome,sim.totalAssets)*100,v=>fmtPct(v))}
+    ${line('ROE %',safeDiv(base.netIncome,base.equity)*100,safeDiv(sim.netIncome,sim.equity)*100,v=>fmtPct(v))}
+    ${line('EPS',base.eps,sim.eps,v=>fmt(v,2))}
+    ${line('P/E',safeDiv(base.marketPrice,base.eps),safeDiv(sim.marketPrice,sim.eps),v=>fmtX(v))}
+  </table>
+  <div class="callout info" style="margin-top:10px;">💡 <b>What changed?</b> Compare the columns above. <b>Why?</b> Trace the chain: your input → statement line → downstream ratio (see the Dependency Map below). <b>Business impact:</b> read each ratio's interpretation in its dedicated tab for the full picture.</div>`;
+}
+
+function applyScenario(key){
+  SIM = {...DATA.year2};
+  const s = SCENARIOS[key];
+  // apply a representative +/-20% shock depending on scenario type
+  const shockMap = {revenue:1.20, cogs:1.20, opex:1.15, ar:1.30, inventory:1.30, cash:1.30,
+    currentLiab:1.25, std:1.30, ltd:1.25, equity:1.20, interest:1.30, marketPrice:1.25, shares:1.15, dividends:1.30};
+  const varMap = {revenue:'revenue',cogs:'cogs',opex:'opex',ar:'ar',inventory:'inventory',cash:'cash',
+    currentLiab:'ap',std:'std',ltd:'ltd',equity:'equity',interest:'interest',marketPrice:'marketPrice',shares:'shares',dividends:'dividends'};
+  const v = varMap[key];
+  const before = DATA.year2[v];
+  SIM[v] = before * (shockMap[key]||1.2);
+  const after = SIM[v];
+  const b = computeDerived(DATA.year2), a = computeDerived(SIM);
+  byId('scenarioResult').innerHTML = `
+    <div class="formula-block">
+      <div class="fname">${s.title}</div>
+      <table style="margin:8px 0;">
+        <tr><td>${v}</td><td>Before: ${fmtCur(before,1)}</td><td>After: ${fmtCur(after,1)}</td>
+          <td>Absolute Δ: ${fmtCur(after-before,1)}</td><td>% Δ: ${fmtPct(safeDiv(after-before,before)*100)}</td></tr>
+      </table>
+      <div class="tag">Ratios affected</div> ${s.ratios}
+      <div class="finterpret">💡 ${s.note}</div>
+      <div class="btnrow"><button class="btn secondary small" onclick="switchTab('causeeffect')">Explore in full simulator →</button></div>
+    </div>`;
+  // scroll to result
+  if(byId('scenarioResult').scrollIntoView) byId('scenarioResult').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+/* ---------------------------------------------------------------------
+   16. COMPETITOR ANALYSIS TAB
+--------------------------------------------------------------------- */
+function competitorFieldRow(compKey,fieldKey,label){
+  const val = COMPETITORS[compKey].data[fieldKey];
+  return `<div class="field"><label>${label}</label><input type="number" value="${val}" onchange="updateCompetitor('${compKey}','${fieldKey}',this.value)"></div>`;
+}
+RENDERERS.competitor = function(panel){
+  const own = computeDerived(DATA.year2);
+  const comps = {Own:{name:DATA.meta.company, d:own}};
+  Object.keys(COMPETITORS).forEach(k=>{ comps[k] = {name:COMPETITORS[k].name, d:computeDerived(COMPETITORS[k].data)}; });
+
+  let inputHtml = `<div class="grid grid-3">`;
+  Object.keys(COMPETITORS).forEach(k=>{
+    inputHtml += `<div class="card">
+      <div class="field"><label>Company Name</label><input type="text" value="${COMPETITORS[k].name}" onchange="COMPETITORS['${k}'].name=this.value;saveToStorage();"></div>
+      ${['revenue','cogs','opex','interest'].map(f=>competitorFieldRow(k,f,f)).join('')}
+      ${['cash','ar','inventory','ppe'].map(f=>competitorFieldRow(k,f,f)).join('')}
+      ${['ap','std','ltd','equity'].map(f=>competitorFieldRow(k,f,f)).join('')}
+      ${['shares','marketPrice'].map(f=>competitorFieldRow(k,f,f)).join('')}
+    </div>`;
+  });
+  inputHtml += `</div>`;
+
+  // build comparison table across a curated cross-category ratio set
+  const compareSet = [
+    ['liquidity','current'], ['liquidity','quick'], ['activity','invturn'], ['activity','dso'],
+    ['capstructure','de'], ['leverage','intcov'], ['profitability','npm'], ['profitability','roe'],
+    ['valuation','pe']
+  ];
+  let compareRows = '';
+  compareSet.forEach(([cat,key])=>{
+    const def = RATIOS[cat].find(r=>r.key===key);
+    const vals = {};
+    Object.keys(comps).forEach(k=> vals[k] = def.calc(comps[k].d,null).value );
+    const entries = Object.entries(vals).filter(([k,v])=>!isNaN(v));
+    const lower = LOWER_IS_BETTER.has(key);
+    const best = entries.length ? entries.reduce((a,b)=> (lower ? (b[1]<a[1]?b:a) : (b[1]>a[1]?b:a)) )[0] : '—';
+    const worst = entries.length ? entries.reduce((a,b)=> (lower ? (b[1]>a[1]?b:a) : (b[1]<a[1]?b:a)) )[0] : '—';
+    const unitFmt = v => def.unit==='%' ? fmtPct(v) : def.unit==='x' ? fmtX(v) : def.unit==='days' ? fmt(v,1) : fmtCur(v,1);
+    compareRows += `<tr><td>${def.name}${lower?' <span class="tag">lower is better</span>':''}</td>
+      ${Object.keys(comps).map(k=>`<td>${unitFmt(vals[k])}</td>`).join('')}
+      <td><span class="badge good">${comps[best]?comps[best].name:'—'}</span></td>
+      <td><span class="badge risk">${comps[worst]?comps[worst].name:'—'}</span></td></tr>`;
+  });
+
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Competitor Analysis</h2>
+    <p class="lead">Enter data for up to three competitors. Your company's Year 2 figures are pulled in automatically as "Own".</p>
+    ${inputHtml}
+  </div>
+  <div class="card">
+    <h3>Comparison Scorecard</h3>
+    <div class="btnrow no-print">
+      <button class="btn secondary" onclick="downloadCompetitorCSV()">⬇ Download Competitor Analysis (CSV)</button>
+    </div>
+    <table>
+      <tr><th>Ratio</th>${Object.keys(comps).map(k=>`<th>${comps[k].name}</th>`).join('')}<th>Best</th><th>Worst</th></tr>
+      ${compareRows}
+    </table>
+    <div class="callout warn">⚠ "Best" is not always the highest number. For Days Sales Outstanding, Cash Conversion Cycle, Debt Ratio, Debt/Equity, and P/E, a <b>lower</b> value is generally preferable (marked "lower is better" above) — the scorecard logic already accounts for this.</div>
+    <div class="chart-wrap" style="margin-top:14px;"><canvas id="compChart"></canvas></div>
+  </div>`;
+  drawChart('compChart','bar',{
+    labels:['ROE %','Net Margin %','Current Ratio (×10)'],
+    datasets: Object.keys(comps).map((k,i)=>({
+      label:comps[k].name,
+      data:[safeDiv(comps[k].d.netIncome,comps[k].d.equity)*100, safeDiv(comps[k].d.netIncome,comps[k].d.revenue)*100, safeDiv(comps[k].d.totalCurrentAssets,comps[k].d.totalCurrentLiabilities)*10],
+      backgroundColor:['#2563eb','#0fae83','#c99a2e','#c0392b'][i]
+    }))
+  },{plugins:{title:{display:true,text:'Cross-Company Snapshot'}}});
+};
+function updateCompetitor(compKey,fieldKey,val){
+  COMPETITORS[compKey].data[fieldKey] = parseFloat(val)||0;
+  saveToStorage();
+  RENDERERS.competitor(byId('panel-competitor'));
+}
+
+/* ---------------------------------------------------------------------
+   17. PRACTICE LAB — 60 application-based questions, auto-generated
+   with formula-computed (not hard-coded) correct answers.
+--------------------------------------------------------------------- */
+function round2(n){ return Math.round(n*100)/100; }
+
+function buildPracticeQuestions(){
+  const qs = [];
+  let id=1;
+
+  // 10 Vertical Analysis questions
+  for(let i=0;i<10;i++){
+    const rev = 800 + i*120, cogs = Math.round(rev*(0.55+ (i%5)*0.02));
+    const gp = rev-cogs, gpm = round2(gp/rev*100);
+    qs.push({id:id++, category:'Vertical Analysis',
+      scenario:`A company reports Revenue of ₹${rev} lakh and COGS of ₹${cogs} lakh.`,
+      question:'Calculate the Gross Profit Margin (%) using vertical analysis (Item / Revenue × 100).',
+      answer:gpm, tolerance:0.6, unit:'%',
+      explanation:`Gross Profit = ${rev} − ${cogs} = ₹${gp} lakh. Gross Profit Margin = ${gp}/${rev} × 100 = ${gpm}%.`});
+  }
+  // 10 Horizontal Analysis questions
+  for(let i=0;i<10;i++){
+    const y1 = 1000 + i*90, y2 = Math.round(y1*(1 + ((i%2===0)? 0.08+i*0.01 : -0.05-i*0.005)));
+    const pct = round2((y2-y1)/y1*100);
+    qs.push({id:id++, category:'Horizontal Analysis',
+      scenario:`Revenue was ₹${y1} lakh in Year 1 and ₹${y2} lakh in Year 2.`,
+      question:'Calculate the percentage change in Revenue from Year 1 to Year 2.',
+      answer:pct, tolerance:0.6, unit:'%',
+      explanation:`% Change = (${y2} − ${y1}) / ${y1} × 100 = ${pct}%. ${pct>=0?'A revenue increase is potentially positive, but check whether margins and cash collection kept pace.':'A revenue decline warrants investigating demand or competitive pressure.'}`});
+  }
+  // 10 Liquidity questions
+  for(let i=0;i<10;i++){
+    const ca = 400+i*45, cl = 200+i*22, cash=80+i*8, ar=120+i*10;
+    const cr = round2(ca/cl), qr = round2((cash+ar)/cl);
+    const askQuick = i%2===1;
+    qs.push({id:id++, category:'Liquidity Ratios',
+      scenario:`Current Assets ₹${ca} lakh, Current Liabilities ₹${cl} lakh, Cash ₹${cash} lakh, Accounts Receivable ₹${ar} lakh.`,
+      question: askQuick ? 'Calculate the Quick Ratio.' : 'Calculate the Current Ratio.',
+      answer: askQuick?qr:cr, tolerance:0.05, unit:'x',
+      explanation: askQuick ? `Quick Ratio = (Cash + AR) / CL = (${cash}+${ar})/${cl} = ${qr}x.` : `Current Ratio = CA / CL = ${ca}/${cl} = ${cr}x.`});
+  }
+  // 10 Activity questions
+  for(let i=0;i<10;i++){
+    const cogs = 1500+i*100, avgInv = 200+i*15, rev=2000+i*130, avgAr=250+i*12;
+    const invTurn = round2(cogs/avgInv), dio=round2(365/invTurn);
+    const dso = round2(365/(rev/avgAr));
+    const askDSO = i%2===1;
+    qs.push({id:id++, category:'Activity Ratios',
+      scenario: askDSO ? `Revenue ₹${rev} lakh, Average Accounts Receivable ₹${avgAr} lakh.` : `COGS ₹${cogs} lakh, Average Inventory ₹${avgInv} lakh.`,
+      question: askDSO ? 'Calculate Days Sales Outstanding (DSO).' : 'Calculate Inventory Turnover, then Days Inventory Outstanding (DIO). Enter DIO.',
+      answer: askDSO?dso:dio, tolerance:1.5, unit:'days',
+      explanation: askDSO ? `Receivables Turnover = ${rev}/${avgAr} = ${round2(rev/avgAr)}x → DSO = 365/${round2(rev/avgAr)} = ${dso} days.` : `Inventory Turnover = ${cogs}/${avgInv} = ${invTurn}x → DIO = 365/${invTurn} = ${dio} days.`});
+  }
+  // 10 Capital Structure / Leverage
+  for(let i=0;i<10;i++){
+    const debt = 600+i*60, equity = 500+i*40, ebit=300+i*25, interest=50+i*6;
+    const de = round2(debt/equity), ic = round2(ebit/interest);
+    const askIC = i%2===1;
+    qs.push({id:id++, category:'Capital Structure / Leverage',
+      scenario: askIC ? `EBIT ₹${ebit} lakh, Interest Expense ₹${interest} lakh.` : `Total Debt ₹${debt} lakh, Shareholders' Equity ₹${equity} lakh.`,
+      question: askIC ? 'Calculate the Interest Coverage Ratio.' : 'Calculate the Debt-to-Equity Ratio.',
+      answer: askIC?ic:de, tolerance:0.05, unit:'x',
+      explanation: askIC ? `Interest Coverage = EBIT/Interest = ${ebit}/${interest} = ${ic}x. ${ic<2?'Below 2x is a red flag for debt servicing capacity.':'Comfortable coverage of interest obligations.'}` : `D/E = Debt/Equity = ${debt}/${equity} = ${de}x. ${de>2?'This is a highly leveraged capital structure.':'This is a moderately leveraged capital structure.'}`});
+  }
+  // 10 Profitability / Valuation
+  for(let i=0;i<10;i++){
+    const rev=3000+i*150, ni=Math.round(rev*(0.06+(i%4)*0.015)), shares=200+i*15, price=80+i*9;
+    const npm = round2(ni/rev*100), eps=round2(ni/shares), pe=round2(price/eps);
+    const askPE = i%2===1;
+    qs.push({id:id++, category:'Profitability / Valuation',
+      scenario: askPE ? `Net Income ₹${ni} lakh, Shares Outstanding ${shares} lakh, Market Price ₹${price}.` : `Revenue ₹${rev} lakh, Net Income ₹${ni} lakh.`,
+      question: askPE ? 'Calculate EPS, then the P/E Ratio. Enter the P/E Ratio.' : 'Calculate the Net Profit Margin (%).',
+      answer: askPE?pe:npm, tolerance: askPE?0.3:0.6, unit: askPE?'x':'%',
+      explanation: askPE ? `EPS = ${ni}/${shares} = ${eps}. P/E = ${price}/${eps} = ${pe}x.` : `Net Profit Margin = ${ni}/${rev} × 100 = ${npm}%.`});
+  }
+  return qs;
+}
+const PRACTICE_QUESTIONS = buildPracticeQuestions();
+let QUIZ_STATE = {}; // {questionId: {userAnswer, correct}}
+
+RENDERERS.practice = function(panel){
+  const savedScore = QUIZ_STATE.__scored;
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Practice Lab — ${PRACTICE_QUESTIONS.length} Application-Based Questions</h2>
+    <p class="lead">These questions require calculation, not definitions. Enter your numeric answer for each, then submit the quiz to see your score and full explanations.</p>
+    <div class="btnrow">
+      <button class="btn" onclick="submitQuiz()">Submit Quiz</button>
+      <button class="btn secondary" onclick="retryQuiz()">Retry Quiz</button>
+      <button class="btn secondary" onclick="resetScope('practice')">Reset Practice</button>
+      <button class="btn secondary" onclick="window.print()">Print Result</button>
+    </div>
+    <div id="quizScoreBox"></div>
+  </div>
+  <div id="quizQuestions">
+    ${PRACTICE_QUESTIONS.map(q=>`
+      <div class="q-card" id="qcard-${q.id}">
+        <div class="qhead"><span class="qnum">Q${q.id}</span><span class="qcat">${q.category}</span></div>
+        <div class="qscenario"><b>Scenario:</b> ${q.scenario}</div>
+        <div class="qscenario"><b>Question:</b> ${q.question}</div>
+        <div class="field" style="max-width:200px;"><label>Your Answer (${q.unit})</label>
+          <input type="number" step="any" id="qans-${q.id}" value="${QUIZ_STATE[q.id]?QUIZ_STATE[q.id].userAnswer:''}"></div>
+        <div class="qfeedback" id="qfeedback-${q.id}"></div>
+      </div>`).join('')}
+  </div>`;
+  if(savedScore) renderQuizScore();
+};
+
+function submitQuiz(){
+  let correctCount=0;
+  PRACTICE_QUESTIONS.forEach(q=>{
+    const inputEl = byId('qans-'+q.id);
+    const userVal = parseFloat(inputEl.value);
+    const isCorrect = !isNaN(userVal) && Math.abs(userVal-q.answer) <= q.tolerance;
+    QUIZ_STATE[q.id] = {userAnswer:inputEl.value, correct:isCorrect};
+    if(isCorrect) correctCount++;
+    const fb = byId('qfeedback-'+q.id);
+    fb.className = 'qfeedback show ' + (isCorrect?'correct':'incorrect');
+    fb.innerHTML = `${isCorrect?'✓ Correct.':'✗ Not quite. Correct answer: '+q.answer+' '+q.unit+'.'} <br><b>Explanation:</b> ${q.explanation}`;
+  });
+  QUIZ_STATE.__scored = {correct:correctCount, total:PRACTICE_QUESTIONS.length};
+  renderQuizScore();
+  if(byId('quizScoreBox').scrollIntoView) byId('quizScoreBox').scrollIntoView({behavior:'smooth'});
+}
+function renderQuizScore(){
+  const s = QUIZ_STATE.__scored;
+  if(!s) return;
+  const pct = round2(s.correct/s.total*100);
+  byId('quizScoreBox').innerHTML = `<div class="callout ${pct>=70?'good':pct>=40?'warn':'risk'}" style="font-size:14px;">
+    <b>Score: ${s.correct} / ${s.total} (${pct}%)</b> — ${pct>=70?'Strong grasp of applied ratio analysis.':pct>=40?'Reasonable, but review the incorrect items below.':'Revisit the ratio formulas and try again.'}
+  </div>`;
+}
+function retryQuiz(){
+  QUIZ_STATE = {};
+  RENDERERS.practice(byId('panel-practice'));
+}
+
+/* ---------------------------------------------------------------------
+   18. CASE STUDIES (5) + "WOULD YOU INVEST?" DECISION MODE
+--------------------------------------------------------------------- */
+const CASE_STUDIES = [
+  {id:'c1', title:'Case 1: Rapid Growth Company',
+   brief:'Revenue grew 80% in two years, but receivables grew 140% and cash fell 30%. Net margin held steady at 9%.',
+   questions:['Calculate revenue growth %, receivables growth %, and DSO for both years.','What does the receivables-to-revenue growth gap suggest?','Is this growth self-funding or cash-consuming?'],
+   teacherNotes:'Expected conclusion: growth is outpacing cash collection. DSO is lengthening, meaning working capital needs are rising faster than the P&L suggests. Students should flag rising financing needs despite healthy reported margins.'},
+  {id:'c2', title:'Case 2: Highly Leveraged Company',
+   brief:'Debt-to-Equity is 3.5x. Interest coverage has fallen from 4.2x to 1.8x over two years as EBIT declined and debt rose.',
+   questions:['Calculate the change in Debt/Equity and Interest Coverage.','At what point does declining interest coverage become a going-concern risk?','What operational or financing actions could improve coverage?'],
+   teacherNotes:'Expected conclusion: interest coverage below 2x combined with rising leverage signals elevated default risk. Students should correctly identify the increase in financial leverage as the primary risk driver, not just the debt level in isolation.'},
+  {id:'c3', title:'Case 3: Liquidity Crisis',
+   brief:'Current ratio fell from 1.8x to 0.7x in one year, driven by a large increase in short-term debt used to fund a factory expansion.',
+   questions:['Calculate the current ratio and quick ratio for both years.','Was the financing decision (short-term debt for a long-term asset) appropriate?','What is the risk of a maturity mismatch here?'],
+   teacherNotes:'Expected conclusion: using short-term debt to fund a long-term asset creates a maturity mismatch — a classic driver of liquidity crises. Students should recommend refinancing with long-term debt or equity.'},
+  {id:'c4', title:'Case 4: Working Capital Problem',
+   brief:'Inventory turnover fell from 6x to 3x and DSO rose from 40 to 75 days, while DPO stayed flat at 30 days. Cash Conversion Cycle expanded significantly.',
+   questions:['Calculate DIO, DSO, DPO and CCC for both years.','Which single factor contributed most to the CCC expansion?','What working-capital policy changes would you recommend?'],
+   teacherNotes:'Expected conclusion: both slower inventory turns and slower collections widened the CCC; students often correctly identify the liquidity strain but should also connect it to potential overstocking (demand mismatch) rather than treating it purely as a collections issue.'},
+  {id:'c5', title:'Case 5: Profitable but Overvalued Company',
+   brief:'Net margin is a healthy 15% and ROE is 22%, but the stock trades at a P/E of 65x and P/B of 12x versus an industry average P/E of 18x.',
+   questions:['Calculate P/E and P/B and compare to the industry benchmark.','Is the premium valuation justified by growth, or is it a bubble risk?','Would you buy, hold, or avoid the stock at this price?'],
+   teacherNotes:'Expected conclusion: strong operating metrics do not automatically justify any price. Students should separate "is this a good company" from "is this a good investment at this price" — a core valuation lesson.'}
+];
+RENDERERS.casestudies = function(panel){
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Integrated Case Studies</h2>
+    <p class="lead">Work through each case using the ratio tabs and simulator, then reveal the expected analysis to check your reasoning.</p>
+  </div>
+  ${CASE_STUDIES.map(c=>`
+    <div class="card">
+      <h3>${c.title}</h3>
+      <p>${c.brief}</p>
+      <ol>${c.questions.map(q=>`<li>${q}</li>`).join('')}</ol>
+      <div class="field"><label>Your analysis notes</label><textarea rows="3" id="case-${c.id}-notes" onchange="saveToStorage()"></textarea></div>
+      <button class="btn secondary small" onclick="toggleReveal('${c.id}')">Reveal Expected Analysis (Teacher Notes)</button>
+      <div class="callout info hidden" id="reveal-${c.id}">${MODE==='teacher' ? c.teacherNotes : '🔒 Switch to Teacher Mode (with PIN) to view expected analysis.'}</div>
+    </div>`).join('')}
+  <div class="card">
+    <h2>Decision-Making Mode: "Would You Invest?"</h2>
+    <p class="lead">Below are two simplified profiles. There is no single correct answer — valuation and risk both matter.</p>
+    <div class="grid grid-2">
+      <div class="card" style="margin:0;"><h3>Company Alpha</h3><table>
+        <tr><td>Revenue Growth</td><td>28%</td></tr><tr><td>Net Margin</td><td>6%</td></tr>
+        <tr><td>Debt/Equity</td><td>2.1x</td></tr><tr><td>Current Ratio</td><td>1.1x</td></tr>
+        <tr><td>P/E</td><td>42x</td></tr></table></div>
+      <div class="card" style="margin:0;"><h3>Company Beta</h3><table>
+        <tr><td>Revenue Growth</td><td>6%</td></tr><tr><td>Net Margin</td><td>14%</td></tr>
+        <tr><td>Debt/Equity</td><td>0.4x</td></tr><tr><td>Current Ratio</td><td>2.3x</td></tr>
+        <tr><td>P/E</td><td>14x</td></tr></table></div>
+    </div>
+    <div class="field"><label>Your choice</label>
+      <select id="investChoice"><option>Company Alpha</option><option>Company Beta</option><option>Neither</option></select></div>
+    <div class="field"><label>Factors driving your decision (select all that apply)</label>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;font-size:12.5px;">
+        ${['Profitability','Liquidity','Leverage','Efficiency','Valuation','Growth'].map(f=>`<label style="display:inline-flex;align-items:center;gap:4px;font-weight:500;"><input type="checkbox" value="${f}" style="width:auto;">${f}</label>`).join('')}
+      </div>
+    </div>
+    <button class="btn" onclick="revealInvestAnswer()">Submit Decision</button>
+    <div id="investAnswer"></div>
+  </div>`;
+};
+function toggleReveal(id){
+  const el = byId('reveal-'+id);
+  el.classList.toggle('hidden');
+  if(!el.classList.contains('hidden')) el.innerHTML = MODE==='teacher' ? CASE_STUDIES.find(c=>c.id===id).teacherNotes : '🔒 Switch to Teacher Mode (with PIN) to view expected analysis.';
+}
+function revealInvestAnswer(){
+  const choice = byId('investChoice').value;
+  byId('investAnswer').innerHTML = `<div class="callout info">
+  <b>Analytical perspective (not a single "correct" answer):</b><br>
+  Company Alpha shows faster growth and much cheaper-looking headline multiples are not present here — its P/E of 42x prices in continued high growth, and its thinner margin plus higher leverage and tighter current ratio (1.1x) add real risk if growth slows.<br>
+  Company Beta is slower-growing but safer: strong margin, low leverage, comfortable liquidity, and a much cheaper P/E (14x) — a classic "quality at a reasonable price" profile.<br>
+  Neither is objectively "correct" — an investor prioritizing growth and comfortable with volatility might reasonably choose Alpha; a risk-averse or value-oriented investor would lean Beta. Your justification (the factors you selected) matters as much as the ticked box.<br>
+  You selected: <b>${choice}</b>.
+  </div>`;
+}
+
+/* ---------------------------------------------------------------------
+   19. DATA IMPORT TAB (CSV + API scaffold, no hard-coded keys)
+--------------------------------------------------------------------- */
+RENDERERS.dataimport = function(panel){
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Data Import</h2>
+    <p class="lead">Manual Mode is always available. Live API import is optional and requires the student/instructor to supply their own API key — no key is stored in this application's source code.</p>
+    <h3>CSV Import</h3>
+    <p class="small-note">Upload a CSV with a header row and columns matching: revenue, cogs, opex, interest, taxRate, cash, ar, inventory, otherCA, ppe, otherNCA, ap, std, otherCL, ltd, otherNCL, equity, shares, marketPrice, dividends — for Year 1 and Year 2 (two data rows).</p>
+    <input type="file" id="csvFile" accept=".csv" onchange="handleCSVUpload(event)">
+    <div id="csvStatus" class="small-note"></div>
+  </div>
+  <div class="card">
+    <h3>Live API Import (Manual Mode by default)</h3>
+    <div class="grid grid-2">
+      <div class="field"><label>API Provider</label>
+        <select id="apiProvider"><option>Manual Mode (no API)</option><option>Financial Modeling Prep</option><option>Alpha Vantage</option><option>Finnhub</option><option>Twelve Data</option></select></div>
+      <div class="field"><label>Company / Ticker</label><input type="text" id="apiTicker" placeholder="e.g. INFY.NS"></div>
+      <div class="field"><label>API Key (kept only in your browser session, never hard-coded)</label><input type="text" id="apiKey" placeholder="paste your own key"></div>
+      <div class="field"><label>Fiscal Year</label><input type="text" id="apiYear" placeholder="e.g. 2025"></div>
+    </div>
+    <button class="btn secondary" onclick="attemptApiImport()">Fetch (requires your own API key + provider access)</button>
+    <div id="apiStatus" class="callout warn" style="margin-top:10px;">📌 This build ships in <b>Manual Mode</b>: no API key is embedded in the source. To wire up a live provider, supply your own key above and connect it to that provider's REST endpoint from your own backend or a CORS-enabled proxy — this front-end alone cannot safely call most providers directly due to CORS/key-exposure restrictions.</div>
+  </div>`;
+};
+function handleCSVUpload(evt){
+  const file = evt.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e){
+    try{
+      const lines = e.target.result.split(/\r?\n/).filter(l=>l.trim().length);
+      const headers = lines[0].split(',').map(h=>h.trim());
+      const row1 = lines[1] ? lines[1].split(',').map(v=>parseFloat(v)||0) : null;
+      const row2 = lines[2] ? lines[2].split(',').map(v=>parseFloat(v)||0) : null;
+      if(!row1){ byId('csvStatus').textContent='CSV needs at least one data row.'; return; }
+      function applyRow(target,row){ headers.forEach((h,i)=>{ if(h in target) target[h]=row[i]||0; }); }
+      applyRow(DATA.year1,row1);
+      if(row2) applyRow(DATA.year2,row2); else applyRow(DATA.year2,row1);
+      saveToStorage();
+      byId('csvStatus').innerHTML = '<span class="pos">✓ CSV imported successfully. Go to Financial Statements to review.</span>';
+    }catch(err){
+      byId('csvStatus').innerHTML = '<span class="neg">Could not parse this CSV. Check the column headers.</span>';
+    }
+  };
+  reader.readAsText(file);
+}
+function attemptApiImport(){
+  byId('apiStatus').innerHTML = '📌 No API key is hard-coded into this application. Live fetch is a manual, opt-in action requiring your own provider key and (for browser-based calls) a CORS-enabled endpoint. Use CSV import or Manual Mode above for this exercise.';
+}
+
+/* ---------------------------------------------------------------------
+   20. PRINT / REPORT TAB
+--------------------------------------------------------------------- */
+RENDERERS.report = function(panel){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  const rec = {
+    student: byId('recStudent')?byId('recStudent').value:'', id: byId('recId')?byId('recId').value:'',
+    course: byId('recCourse')?byId('recCourse').value:'', instructor: byId('recInstructor')?byId('recInstructor').value:''
+  };
+  const score = QUIZ_STATE.__scored;
+  panel.innerHTML = `
+  <div class="card">
+    <h2>Print / Export Report</h2>
+    <div class="btnrow no-print">
+      <button class="btn gold" onclick="downloadFullReport()">📥 Download COMPLETE Colorful Report (All Sections, One File)</button>
+      <button class="btn" onclick="window.print()">🖨 Print Report</button>
+      <button class="btn secondary" onclick="downloadCSV()">⬇ Download CSV</button>
+      <button class="btn secondary" onclick="downloadTXTReport()">⬇ Download Analysis Report (TXT)</button>
+    </div>
+    <div class="small-note">The complete report opens as a standalone, branded HTML file with every statement, vertical/horizontal analysis (including your written reasons), all ratio categories, DuPont, competitor analysis, and your practice score — open it in any browser and use Ctrl/Cmd+P → Save as PDF if you need a PDF copy.</div>
+  </div>
+  <div class="card" id="printableReport">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:10px;">${comandfinLogoSVG(50)}<h2 style="margin:0;">Financial Statement Analysis Report</h2></div>
+    <table style="margin-bottom:14px;">
+      <tr><td>Student Name</td><td>${rec.student||'—'}</td><td>Student ID</td><td>${rec.id||'—'}</td></tr>
+      <tr><td>Course</td><td>${rec.course||'—'}</td><td>Instructor</td><td>${rec.instructor||'—'}</td></tr>
+      <tr><td>Company</td><td>${DATA.meta.company}</td><td>Date</td><td>${new Date().toLocaleDateString()}</td></tr>
+    </table>
+    <h3>Key Ratios Summary (Year 2)</h3>
+    <table>
+      <tr><th>Ratio</th><th>Value</th></tr>
+      <tr><td>Current Ratio</td><td>${fmtX(safeDiv(d2.totalCurrentAssets,d2.totalCurrentLiabilities))}</td></tr>
+      <tr><td>Debt/Equity</td><td>${fmtX(safeDiv(d2.totalLiabilities,d2.equity))}</td></tr>
+      <tr><td>Net Profit Margin</td><td>${fmtPct(safeDiv(d2.netIncome,d2.revenue)*100)}</td></tr>
+      <tr><td>ROE</td><td>${fmtPct(safeDiv(d2.netIncome,d2.equity)*100)}</td></tr>
+      <tr><td>EPS</td><td>${fmt(d2.eps,2)}</td></tr>
+      <tr><td>P/E</td><td>${fmtX(safeDiv(d2.marketPrice,d2.eps))}</td></tr>
+      <tr><td>Balance Sheet Check</td><td>${d2.balanced?'Balanced ✓':'NOT balanced — diff '+fmtCur(d2.balanceDiff,1)}</td></tr>
+    </table>
+    ${score ? `<h3>Practice Lab Score</h3><p>${score.correct} / ${score.total} (${round2(score.correct/score.total*100)}%)</p>` : ''}
+    <p class="small-note">For the complete vertical, horizontal, and category-wise ratio breakdowns, print each relevant tab individually, or use browser Print on this page after navigating through the tabs (non-printing navigation elements are hidden automatically).</p>
+  </div>`;
+};
+/* Generic CSV download helper — used by per-tab download buttons */
+function downloadCSVGeneric(filenameSuffix, rows){
+  const csv = rows.map(r=>r.map(c=>{
+    c = (c===undefined||c===null) ? '' : String(c);
+    if(c.includes(',')||c.includes('"')||c.includes('\n')) c = '"'+c.replace(/"/g,'""')+'"';
+    return c;
+  }).join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (DATA.meta.company||'company').replace(/\s+/g,'_')+'_'+filenameSuffix+'.csv';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+function downloadStatementsCSV(){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  const rows = [
+    ['FINANCIAL STATEMENTS —', DATA.meta.company],
+    [],
+    ['INCOME STATEMENT','Year 1','Year 2'],
+    ['Revenue',d1.revenue,d2.revenue],
+    ['Cost of Goods Sold',d1.cogs,d2.cogs],
+    ['Gross Profit',d1.grossProfit,d2.grossProfit],
+    ['Operating Expenses',d1.opex,d2.opex],
+    ['EBIT / Operating Profit',d1.ebit,d2.ebit],
+    ['Interest Expense',d1.interest,d2.interest],
+    ['Profit Before Tax',d1.pbt,d2.pbt],
+    ['Tax Expense',d1.tax,d2.tax],
+    ['Net Income',d1.netIncome,d2.netIncome],
+    [],
+    ['BALANCE SHEET','Year 1','Year 2'],
+    ['Cash',d1.cash,d2.cash],
+    ['Accounts Receivable',d1.ar,d2.ar],
+    ['Inventory',d1.inventory,d2.inventory],
+    ['Other Current Assets',d1.otherCA,d2.otherCA],
+    ['Total Current Assets',d1.totalCurrentAssets,d2.totalCurrentAssets],
+    ['Property, Plant & Equipment',d1.ppe,d2.ppe],
+    ['Other Non-current Assets',d1.otherNCA,d2.otherNCA],
+    ['Total Non-current Assets',d1.totalNonCurrentAssets,d2.totalNonCurrentAssets],
+    ['Total Assets',d1.totalAssets,d2.totalAssets],
+    ['Accounts Payable',d1.ap,d2.ap],
+    ['Short-term Debt',d1.std,d2.std],
+    ['Other Current Liabilities',d1.otherCL,d2.otherCL],
+    ['Total Current Liabilities',d1.totalCurrentLiabilities,d2.totalCurrentLiabilities],
+    ['Long-term Debt',d1.ltd,d2.ltd],
+    ['Other Non-current Liabilities',d1.otherNCL,d2.otherNCL],
+    ['Total Liabilities',d1.totalLiabilities,d2.totalLiabilities],
+    ["Shareholders' Equity",d1.equity,d2.equity],
+    ['Total Liabilities + Equity',d1.totalLiabilities+d1.equity,d2.totalLiabilities+d2.equity],
+    ['Balance Check',d1.balanced?'BALANCED':'NOT BALANCED ('+fmt(d1.balanceDiff,1)+')',d2.balanced?'BALANCED':'NOT BALANCED ('+fmt(d2.balanceDiff,1)+')'],
+    [],
+    ['OTHER','Year 1','Year 2'],
+    ['Shares Outstanding',d1.shares,d2.shares],
+    ['Market Price per Share',d1.marketPrice,d2.marketPrice],
+    ['Dividends',d1.dividends,d2.dividends],
+    ['EPS',fmt(d1.eps,2),fmt(d2.eps,2)],
+    ['Book Value per Share',fmt(d1.bvps,2),fmt(d2.bvps,2)]
+  ];
+  downloadCSVGeneric('financial_statements', rows);
+}
+
+function downloadVerticalCSV(){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  function row(label,k1,k2,base1,base2){
+    return [label, fmt(k1,1), fmtPct(safeDiv(k1,base1)*100), fmt(k2,1), fmtPct(safeDiv(k2,base2)*100)];
+  }
+  const rows = [
+    ['VERTICAL (COMMON-SIZE) ANALYSIS —', DATA.meta.company],
+    [],
+    ['INCOME STATEMENT (% of Revenue)','Y1 ₹','Y1 %','Y2 ₹','Y2 %'],
+    row('Revenue',d1.revenue,d2.revenue,d1.revenue,d2.revenue),
+    row('Cost of Goods Sold',d1.cogs,d2.cogs,d1.revenue,d2.revenue),
+    row('Gross Profit',d1.grossProfit,d2.grossProfit,d1.revenue,d2.revenue),
+    row('Operating Expenses',d1.opex,d2.opex,d1.revenue,d2.revenue),
+    row('EBIT',d1.ebit,d2.ebit,d1.revenue,d2.revenue),
+    row('Interest Expense',d1.interest,d2.interest,d1.revenue,d2.revenue),
+    row('Profit Before Tax',d1.pbt,d2.pbt,d1.revenue,d2.revenue),
+    row('Tax Expense',d1.tax,d2.tax,d1.revenue,d2.revenue),
+    row('Net Income',d1.netIncome,d2.netIncome,d1.revenue,d2.revenue),
+    [],
+    ['BALANCE SHEET (% of Total Assets)','Y1 ₹','Y1 %','Y2 ₹','Y2 %'],
+    row('Cash',d1.cash,d2.cash,d1.totalAssets,d2.totalAssets),
+    row('Accounts Receivable',d1.ar,d2.ar,d1.totalAssets,d2.totalAssets),
+    row('Inventory',d1.inventory,d2.inventory,d1.totalAssets,d2.totalAssets),
+    row('Other Current Assets',d1.otherCA,d2.otherCA,d1.totalAssets,d2.totalAssets),
+    row('Total Current Assets',d1.totalCurrentAssets,d2.totalCurrentAssets,d1.totalAssets,d2.totalAssets),
+    row('PP&E',d1.ppe,d2.ppe,d1.totalAssets,d2.totalAssets),
+    row('Other Non-current Assets',d1.otherNCA,d2.otherNCA,d1.totalAssets,d2.totalAssets),
+    row('Total Assets',d1.totalAssets,d2.totalAssets,d1.totalAssets,d2.totalAssets),
+    row('Accounts Payable',d1.ap,d2.ap,d1.totalAssets,d2.totalAssets),
+    row('Short-term Debt',d1.std,d2.std,d1.totalAssets,d2.totalAssets),
+    row('Total Current Liabilities',d1.totalCurrentLiabilities,d2.totalCurrentLiabilities,d1.totalAssets,d2.totalAssets),
+    row('Long-term Debt',d1.ltd,d2.ltd,d1.totalAssets,d2.totalAssets),
+    row('Total Liabilities',d1.totalLiabilities,d2.totalLiabilities,d1.totalAssets,d2.totalAssets),
+    row("Shareholders' Equity",d1.equity,d2.equity,d1.totalAssets,d2.totalAssets)
+  ];
+  downloadCSVGeneric('vertical_analysis', rows);
+}
+
+function downloadHorizontalCSV(){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  function row(label,v1,v2,key){
+    const abs=v2-v1, pct=safeDiv(abs,Math.abs(v1)||1)*100;
+    const note = (key && HORIZ_INTERPRET[key]) ? HORIZ_INTERPRET[key](abs) : '';
+    return [label, fmt(v1,1), fmt(v2,1), fmt(abs,1), fmtPct(pct), note];
+  }
+  const rows = [
+    ['HORIZONTAL (TREND) ANALYSIS —', DATA.meta.company],
+    [],
+    ['Item','Year 1','Year 2','Absolute Change','% Change','Interpretation'],
+    row('Revenue',d1.revenue,d2.revenue,'revenue'),
+    row('COGS',d1.cogs,d2.cogs,'cogs'),
+    row('Gross Profit',d1.grossProfit,d2.grossProfit),
+    row('EBIT',d1.ebit,d2.ebit),
+    row('Net Income',d1.netIncome,d2.netIncome,'netIncome'),
+    row('Cash',d1.cash,d2.cash),
+    row('Accounts Receivable',d1.ar,d2.ar,'ar'),
+    row('Inventory',d1.inventory,d2.inventory,'inventory'),
+    row('Total Assets',d1.totalAssets,d2.totalAssets,'totalAssets'),
+    row('Total Liabilities',d1.totalLiabilities,d2.totalLiabilities,'totalLiabilities'),
+    row("Shareholders' Equity",d1.equity,d2.equity,'equity'),
+    row('EPS',d1.eps,d2.eps)
+  ];
+  downloadCSVGeneric('horizontal_analysis', rows);
+}
+
+function downloadRatioCategoryCSV(catKey){
+  const defs = RATIOS[catKey];
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  const rows = [
+    [RATIO_CATEGORY_LABEL[catKey].toUpperCase()+' —', DATA.meta.company],
+    [],
+    ['Ratio','Formula','Year 1','Year 2','Change','Interpretation (Year 2)']
+  ];
+  defs.forEach(r=>{
+    const c1 = r.calc(d1,null), c2 = r.calc(d2,d1);
+    const unitFmt = v => r.unit==='%' ? fmtPct(v) : r.unit==='x' ? fmtX(v) : r.unit==='days' ? fmt(v,1)+' days' : fmt(v,1);
+    rows.push([r.name, r.formula, unitFmt(c1.value), unitFmt(c2.value), unitFmt(c2.value-c1.value), r.interpret(c2.value,d2)]);
+  });
+  downloadCSVGeneric(catKey+'_ratios', rows);
+}
+
+function downloadCompetitorCSV(){
+  const own = computeDerived(DATA.year2);
+  const comps = {Own:{name:DATA.meta.company, d:own}};
+  Object.keys(COMPETITORS).forEach(k=>{ comps[k] = {name:COMPETITORS[k].name, d:computeDerived(COMPETITORS[k].data)}; });
+  const compareSet = [
+    ['liquidity','current'], ['liquidity','quick'], ['activity','invturn'], ['activity','dso'],
+    ['capstructure','de'], ['leverage','intcov'], ['profitability','npm'], ['profitability','roe'],
+    ['valuation','pe']
+  ];
+  const rows = [
+    ['COMPETITOR ANALYSIS —', DATA.meta.company],
+    [],
+    ['Ratio', ...Object.keys(comps).map(k=>comps[k].name), 'Best Performer', 'Worst Performer']
+  ];
+  compareSet.forEach(([cat,key])=>{
+    const def = RATIOS[cat].find(r=>r.key===key);
+    const vals = {};
+    Object.keys(comps).forEach(k=> vals[k] = def.calc(comps[k].d,null).value );
+    const entries = Object.entries(vals).filter(([k,v])=>!isNaN(v));
+    const lower = LOWER_IS_BETTER.has(key);
+    const best = entries.length ? entries.reduce((a,b)=> (lower ? (b[1]<a[1]?b:a) : (b[1]>a[1]?b:a)) )[0] : '—';
+    const worst = entries.length ? entries.reduce((a,b)=> (lower ? (b[1]>a[1]?b:a) : (b[1]<a[1]?b:a)) )[0] : '—';
+    const unitFmt = v => def.unit==='%' ? fmtPct(v) : def.unit==='x' ? fmtX(v) : def.unit==='days' ? fmt(v,1) : fmt(v,1);
+    rows.push([def.name+(lower?' (lower is better)':''), ...Object.keys(comps).map(k=>unitFmt(vals[k])), comps[best]?comps[best].name:'—', comps[worst]?comps[worst].name:'—']);
+  });
+  downloadCSVGeneric('competitor_analysis', rows);
+}
+
+/* ---------------------------------------------------------------------
+   20b. FULL COLORFUL REPORT GENERATOR — one-click complete download
+--------------------------------------------------------------------- */
+function comandfinLogoSVG(size){
+  size = size||60;
+  return `<svg width="${size}" height="${size}" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="48" fill="#0b1f3a" stroke="#c99a2e" stroke-width="3"/>
+    <text x="50" y="45" text-anchor="middle" font-family="Segoe UI,Arial" font-weight="800" font-size="26" fill="#ffffff">C</text>
+    <text x="50" y="68" text-anchor="middle" font-family="Segoe UI,Arial" font-weight="700" font-size="12" fill="#c99a2e">FIN</text>
+    <path d="M20 78 L35 65 L50 72 L65 55 L82 40" stroke="#0fae83" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+}
+
+function generateFullReportHTML(){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  const rec = {
+    student: byId('recStudent')?byId('recStudent').value:'', id: byId('recId')?byId('recId').value:'',
+    course: byId('recCourse')?byId('recCourse').value:'', instructor: byId('recInstructor')?byId('recInstructor').value:''
+  };
+  const score = QUIZ_STATE.__scored;
+
+  function statBlock(){
+    return `<h2>1. Financial Statements</h2>
+    <table><tr><th>Income Statement</th><th>Year 1</th><th>Year 2</th></tr>
+      <tr><td>Revenue</td><td>${fmtCur(d1.revenue,1)}</td><td>${fmtCur(d2.revenue,1)}</td></tr>
+      <tr><td>Cost of Goods Sold</td><td>${fmtCur(d1.cogs,1)}</td><td>${fmtCur(d2.cogs,1)}</td></tr>
+      <tr class="sub"><td>Gross Profit</td><td>${fmtCur(d1.grossProfit,1)}</td><td>${fmtCur(d2.grossProfit,1)}</td></tr>
+      <tr><td>Operating Expenses (excl. Dep.)</td><td>${fmtCur(d1.opex,1)}</td><td>${fmtCur(d2.opex,1)}</td></tr>
+      <tr class="sub"><td>EBITDA</td><td>${fmtCur(d1.ebitda,1)}</td><td>${fmtCur(d2.ebitda,1)}</td></tr>
+      <tr><td>Depreciation &amp; Amortization</td><td>${fmtCur(d1.depreciation,1)}</td><td>${fmtCur(d2.depreciation,1)}</td></tr>
+      <tr class="sub"><td>EBIT</td><td>${fmtCur(d1.ebit,1)}</td><td>${fmtCur(d2.ebit,1)}</td></tr>
+      <tr><td>Interest Expense</td><td>${fmtCur(d1.interest,1)}</td><td>${fmtCur(d2.interest,1)}</td></tr>
+      <tr class="sub"><td>Profit Before Tax</td><td>${fmtCur(d1.pbt,1)}</td><td>${fmtCur(d2.pbt,1)}</td></tr>
+      <tr><td>Tax Expense</td><td>${fmtCur(d1.tax,1)}</td><td>${fmtCur(d2.tax,1)}</td></tr>
+      <tr class="grand"><td>Net Income</td><td>${fmtCur(d1.netIncome,1)}</td><td>${fmtCur(d2.netIncome,1)}</td></tr>
+    </table>
+    <div class="grid2">
+    <table><tr><th colspan="3">ASSETS</th></tr>
+      <tr><td>Cash</td><td>${fmtCur(d1.cash,1)}</td><td>${fmtCur(d2.cash,1)}</td></tr>
+      <tr><td>Accounts Receivable</td><td>${fmtCur(d1.ar,1)}</td><td>${fmtCur(d2.ar,1)}</td></tr>
+      <tr><td>Inventory</td><td>${fmtCur(d1.inventory,1)}</td><td>${fmtCur(d2.inventory,1)}</td></tr>
+      <tr><td>Other Current Assets</td><td>${fmtCur(d1.otherCA,1)}</td><td>${fmtCur(d2.otherCA,1)}</td></tr>
+      <tr class="sub"><td>Total Current Assets</td><td>${fmtCur(d1.totalCurrentAssets,1)}</td><td>${fmtCur(d2.totalCurrentAssets,1)}</td></tr>
+      <tr><td>PP&amp;E</td><td>${fmtCur(d1.ppe,1)}</td><td>${fmtCur(d2.ppe,1)}</td></tr>
+      <tr><td>Other Non-current Assets</td><td>${fmtCur(d1.otherNCA,1)}</td><td>${fmtCur(d2.otherNCA,1)}</td></tr>
+      <tr class="sub"><td>Total Non-current Assets</td><td>${fmtCur(d1.totalNonCurrentAssets,1)}</td><td>${fmtCur(d2.totalNonCurrentAssets,1)}</td></tr>
+      <tr class="grand"><td>TOTAL ASSETS</td><td>${fmtCur(d1.totalAssets,1)}</td><td>${fmtCur(d2.totalAssets,1)}</td></tr>
+    </table>
+    <table><tr><th colspan="3">EQUITY &amp; LIABILITIES</th></tr>
+      <tr class="sub"><td>Shareholders' Equity</td><td>${fmtCur(d1.equity,1)}</td><td>${fmtCur(d2.equity,1)}</td></tr>
+      <tr><td>Long-term Debt</td><td>${fmtCur(d1.ltd,1)}</td><td>${fmtCur(d2.ltd,1)}</td></tr>
+      <tr><td>Other Non-current Liabilities</td><td>${fmtCur(d1.otherNCL,1)}</td><td>${fmtCur(d2.otherNCL,1)}</td></tr>
+      <tr class="sub"><td>Total Non-current Liabilities</td><td>${fmtCur(d1.totalNonCurrentLiabilities,1)}</td><td>${fmtCur(d2.totalNonCurrentLiabilities,1)}</td></tr>
+      <tr><td>Accounts Payable</td><td>${fmtCur(d1.ap,1)}</td><td>${fmtCur(d2.ap,1)}</td></tr>
+      <tr><td>Short-term Debt</td><td>${fmtCur(d1.std,1)}</td><td>${fmtCur(d2.std,1)}</td></tr>
+      <tr><td>Other Current Liabilities</td><td>${fmtCur(d1.otherCL,1)}</td><td>${fmtCur(d2.otherCL,1)}</td></tr>
+      <tr class="sub"><td>Total Current Liabilities</td><td>${fmtCur(d1.totalCurrentLiabilities,1)}</td><td>${fmtCur(d2.totalCurrentLiabilities,1)}</td></tr>
+      <tr class="grand"><td>TOTAL EQUITY &amp; LIABILITIES</td><td>${fmtCur(d1.totalLiabilities+d1.equity,1)}</td><td>${fmtCur(d2.totalLiabilities+d2.equity,1)}</td></tr>
+    </table>
+    </div>
+    <p class="note">Balance Check — Year 1: ${d1.balanced?'<span class="good">BALANCED ✓</span>':'<span class="risk">NOT BALANCED</span>'} &nbsp;|&nbsp; Year 2: ${d2.balanced?'<span class="good">BALANCED ✓</span>':'<span class="risk">NOT BALANCED</span>'}</p>`;
+  }
+
+  function vertBlock(){
+    function row(label,k1,k2,base1,base2,rowKey){
+      const v1=safeDiv(k1,base1)*100, v2=safeDiv(k2,base2)*100;
+      const reason = VA_REASONS[rowKey]||'';
+      return `<tr><td>${reason}</td><td>${label}</td><td>${fmtCur(k1,1)}</td><td>${fmtPct(v1)}</td><td>${fmtCur(k2,1)}</td><td>${fmtPct(v2)}</td></tr>`;
+    }
+    return `<h2>2. Vertical (Common-Size) Analysis</h2>
+    <table><tr><th>Reason for Change</th><th>Item</th><th>Y1 ₹</th><th>Y1 %</th><th>Y2 ₹</th><th>Y2 %</th></tr>
+      ${row('Revenue',d1.revenue,d2.revenue,d1.revenue,d2.revenue,'revenue')}
+      ${row('COGS',d1.cogs,d2.cogs,d1.revenue,d2.revenue,'cogs')}
+      ${row('Gross Profit',d1.grossProfit,d2.grossProfit,d1.revenue,d2.revenue,'grossProfit')}
+      ${row('Operating Expenses',d1.opex,d2.opex,d1.revenue,d2.revenue,'opex')}
+      ${row('EBITDA',d1.ebitda,d2.ebitda,d1.revenue,d2.revenue,'ebitda')}
+      ${row('EBIT',d1.ebit,d2.ebit,d1.revenue,d2.revenue,'ebit')}
+      ${row('Net Income',d1.netIncome,d2.netIncome,d1.revenue,d2.revenue,'netIncome')}
+      ${row('Cash',d1.cash,d2.cash,d1.totalAssets,d2.totalAssets,'cash')}
+      ${row('Inventory',d1.inventory,d2.inventory,d1.totalAssets,d2.totalAssets,'inventory')}
+      ${row('Total Assets',d1.totalAssets,d2.totalAssets,d1.totalAssets,d2.totalAssets,'totalAssets')}
+      ${row('Total Liabilities',d1.totalLiabilities,d2.totalLiabilities,d1.totalAssets,d2.totalAssets,'totalLiab')}
+      ${row('Equity',d1.equity,d2.equity,d1.totalAssets,d2.totalAssets,'equity')}
+    </table>`;
+  }
+
+  function horizBlock(){
+    function row(label,v1,v2,rowKey){
+      const abs=v2-v1, pct=safeDiv(abs,Math.abs(v1)||1)*100;
+      const reason = HA_REASONS[rowKey]||'';
+      return `<tr><td>${reason}</td><td>${label}</td><td>${fmtCur(v1,1)}</td><td>${fmtCur(v2,1)}</td><td>${fmt(abs,1)}</td><td>${fmtPct(pct)}</td></tr>`;
+    }
+    return `<h2>3. Horizontal (Trend) Analysis</h2>
+    <table><tr><th>Reason for Change</th><th>Item</th><th>Year 1</th><th>Year 2</th><th>Abs Δ</th><th>% Δ</th></tr>
+      ${row('Revenue',d1.revenue,d2.revenue,'revenue')}
+      ${row('COGS',d1.cogs,d2.cogs,'cogs')}
+      ${row('Net Income',d1.netIncome,d2.netIncome,'netIncome')}
+      ${row('Total Assets',d1.totalAssets,d2.totalAssets,'totalAssets')}
+      ${row('Total Liabilities',d1.totalLiabilities,d2.totalLiabilities,'totalLiabilities')}
+      ${row('Equity',d1.equity,d2.equity,'equity')}
+    </table>`;
+  }
+
+  function ratioBlock(catKey,num){
+    const defs = RATIOS[catKey];
+    let rows = defs.map(r=>{
+      const c1=r.calc(d1,null), c2=r.calc(d2,d1);
+      const unitFmt = v => r.unit==='%' ? fmtPct(v) : r.unit==='x' ? fmtX(v) : r.unit==='days' ? fmt(v,1)+' d' : fmt(v,1);
+      return `<tr><td>${r.name}</td><td class="formula">${r.formula}</td><td>${unitFmt(c1.value)}</td><td>${unitFmt(c2.value)}</td><td>${r.interpret(c2.value,d2)}</td></tr>`;
+    }).join('');
+    return `<h2>${num}. ${RATIO_CATEGORY_LABEL[catKey]}</h2>
+    <table><tr><th>Ratio</th><th>Formula</th><th>Year 1</th><th>Year 2</th><th>Interpretation</th></tr>${rows}</table>`;
+  }
+
+  function dupontBlock(){
+    function dp(d,p){
+      const npm=safeDiv(d.netIncome,d.revenue); const avgA=p?(p.totalAssets+d.totalAssets)/2:d.totalAssets; const avgE=p?(p.equity+d.equity)/2:d.equity;
+      const atr=safeDiv(d.revenue,avgA), em=safeDiv(avgA,avgE); return {npm,atr,em,roe:npm*atr*em};
+    }
+    const du1=dp(d1,null), du2=dp(d2,d1);
+    return `<h2>9. DuPont Analysis</h2>
+    <table><tr><th>Component</th><th>Year 1</th><th>Year 2</th></tr>
+      <tr><td>Net Profit Margin</td><td>${fmtPct(du1.npm*100)}</td><td>${fmtPct(du2.npm*100)}</td></tr>
+      <tr><td>Asset Turnover</td><td>${fmtX(du1.atr)}</td><td>${fmtX(du2.atr)}</td></tr>
+      <tr><td>Equity Multiplier</td><td>${fmtX(du1.em)}</td><td>${fmtX(du2.em)}</td></tr>
+      <tr class="grand"><td>ROE</td><td>${fmtPct(du1.roe*100)}</td><td>${fmtPct(du2.roe*100)}</td></tr>
+    </table>`;
+  }
+
+  function competitorBlock(){
+    const own = d2;
+    const comps = {Own:{name:DATA.meta.company,d:own}};
+    Object.keys(COMPETITORS).forEach(k=>{comps[k]={name:COMPETITORS[k].name,d:computeDerived(COMPETITORS[k].data)};});
+    const compareSet = [['liquidity','current'],['activity','dso'],['capstructure','de'],['profitability','roe'],['valuation','pe']];
+    let rows = compareSet.map(([cat,key])=>{
+      const def = RATIOS[cat].find(r=>r.key===key);
+      const unitFmt=v=>def.unit==='%'?fmtPct(v):def.unit==='x'?fmtX(v):def.unit==='days'?fmt(v,1):fmt(v,1);
+      return `<tr><td>${def.name}</td>${Object.keys(comps).map(k=>`<td>${unitFmt(def.calc(comps[k].d,null).value)}</td>`).join('')}</tr>`;
+    }).join('');
+    return `<h2>10. Competitor Analysis</h2>
+    <table><tr><th>Ratio</th>${Object.keys(comps).map(k=>`<th>${comps[k].name}</th>`).join('')}</tr>${rows}</table>`;
+  }
+
+  const practiceBlock = score ? `<h2>11. Practice Lab Result</h2><p>Score: <b>${score.correct} / ${score.total}</b> (${round2(score.correct/score.total*100)}%)</p>` : '';
+
+  return `<!DOCTYPE html><html><head><meta charset="UTF-8"><title>${DATA.meta.company} — Complete Financial Analysis Report</title>
+  <style>
+    body{font-family:'Segoe UI',Arial,sans-serif;color:#1b2534;margin:0;background:#f4f6f9;}
+    .page{max-width:1000px;margin:0 auto;padding:30px;background:#fff;}
+    .coverbar{background:linear-gradient(135deg,#0b1f3a,#132c52);color:#fff;padding:26px 30px;border-radius:12px;display:flex;align-items:center;gap:18px;margin-bottom:22px;}
+    .coverbar h1{margin:0;font-size:22px;}
+    .coverbar .sub{color:#c99a2e;font-size:13px;margin-top:4px;font-weight:700;}
+    .recbox{background:#eaf1ff;border:1px solid #c7dcff;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:13px;}
+    h2{color:#0b1f3a;border-bottom:3px solid #c99a2e;padding-bottom:6px;margin-top:34px;font-size:18px;}
+    table{width:100%;border-collapse:collapse;margin:10px 0 6px;font-size:12.5px;}
+    th{background:#eaf1ff;color:#0b1f3a;padding:7px 9px;text-align:left;font-size:11px;text-transform:uppercase;letter-spacing:.3px;}
+    td{padding:6px 9px;border-bottom:1px solid #e2e6ec;}
+    tr.sub td{font-weight:700;background:#f7f9fd;}
+    tr.grand td{font-weight:800;background:#eaf1ff;border-top:2px solid #0b1f3a;}
+    td.formula{font-family:'Courier New',monospace;color:#2563eb;font-size:11px;}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    .good{color:#0fae83;font-weight:700;} .risk{color:#c0392b;font-weight:700;}
+    .note{font-size:12px;color:#5b6b82;}
+    .footer{text-align:center;color:#5b6b82;font-size:11px;margin-top:40px;padding-top:16px;border-top:1px solid #e2e6ec;}
+    @media print{ body{background:#fff;} .page{padding:0;} }
+  </style></head>
+  <body><div class="page">
+    <div class="coverbar">
+      ${comandfinLogoSVG(56)}
+      <div>
+        <h1>Financial Statement Analysis &amp; Ratio Analysis — Complete Report</h1>
+        <div class="sub">COMandFIN EDUTECH</div>
+      </div>
+    </div>
+    <div class="recbox">
+      <b>Company:</b> ${DATA.meta.company} &nbsp; | &nbsp; <b>Student:</b> ${rec.student||'—'} &nbsp; | &nbsp; <b>Student ID:</b> ${rec.id||'—'}<br>
+      <b>Course:</b> ${rec.course||'—'} &nbsp; | &nbsp; <b>Instructor:</b> ${rec.instructor||'—'} &nbsp; | &nbsp; <b>Date:</b> ${new Date().toLocaleDateString()}
+    </div>
+    ${statBlock()}
+    ${vertBlock()}
+    ${horizBlock()}
+    ${ratioBlock('liquidity',4)}
+    ${ratioBlock('activity',5)}
+    ${ratioBlock('capstructure',6)}
+    ${ratioBlock('leverage',7)}
+    ${ratioBlock('profitability',8)}
+    ${dupontBlock()}
+    ${ratioBlock('valuation',10)}
+    ${competitorBlock()}
+    ${practiceBlock}
+    <div class="footer">Generated by the COMandFIN Financial Statement Analysis &amp; Ratio Analysis Learning Lab · ${new Date().toLocaleString()}</div>
+  </div></body></html>`;
+}
+
+function downloadFullReport(){
+  const html = generateFullReportHTML();
+  const blob = new Blob([html],{type:'text/html'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (DATA.meta.company||'company').replace(/\s+/g,'_')+'_Complete_Report.html';
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+function downloadCSV(){
+  const d1 = computeDerived(DATA.year1), d2 = computeDerived(DATA.year2);
+  const rows = [['Item','Year1','Year2']];
+  ['revenue','cogs','grossProfit','opex','ebit','interest','pbt','tax','netIncome','totalCurrentAssets','totalAssets','totalCurrentLiabilities','totalLiabilities','equity','eps'].forEach(k=>{
+    rows.push([k, d1[k], d2[k]]);
+  });
+  const csv = rows.map(r=>r.join(',')).join('\n');
+  const blob = new Blob([csv],{type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (DATA.meta.company||'company').replace(/\s+/g,'_')+'_financials.csv';
+  a.click();
+}
+function downloadTXTReport(){
+  const d2 = computeDerived(DATA.year2);
+  const rec = {student: byId('recStudent').value, course: byId('recCourse').value};
+  const txt = `FINANCIAL STATEMENT ANALYSIS REPORT
+Company: ${DATA.meta.company}
+Student: ${rec.student||'—'}   Course: ${rec.course||'—'}
+Date: ${new Date().toLocaleDateString()}
+
+KEY RATIOS (Year 2)
+Current Ratio: ${fmtX(safeDiv(d2.totalCurrentAssets,d2.totalCurrentLiabilities))}
+Debt/Equity: ${fmtX(safeDiv(d2.totalLiabilities,d2.equity))}
+Net Profit Margin: ${fmtPct(safeDiv(d2.netIncome,d2.revenue)*100)}
+ROE: ${fmtPct(safeDiv(d2.netIncome,d2.equity)*100)}
+EPS: ${fmt(d2.eps,2)}
+Balance Sheet: ${d2.balanced?'Balanced':'NOT balanced'}
+`;
+  const blob = new Blob([txt],{type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = (DATA.meta.company||'company').replace(/\s+/g,'_')+'_analysis_report.txt';
+  a.click();
+}
+
+/* ---------------------------------------------------------------------
+   21. TEACHER / STUDENT MODE
+--------------------------------------------------------------------- */
+function setMode(m){
+  if(m==='teacher' && MODE!=='teacher'){
+    const pin = prompt('Enter classroom PIN to enable Teacher Mode (this is a classroom convenience, not secure authentication):');
+    if(pin !== '1234'){ alert('Incorrect PIN.'); return; }
+  }
+  MODE = m;
+  byId('btnStudentMode').classList.toggle('active', m==='student');
+  byId('btnTeacherMode').classList.toggle('active', m==='teacher');
+  switchTab(CURRENT_TAB);
+}
+
+/* ---------------------------------------------------------------------
+   22. RESET FUNCTIONS
+--------------------------------------------------------------------- */
+function resetScope(scope){
+  if(!confirm('This will permanently reset '+scope+' data. Continue?')) return;
+  if(scope==='company'){ DATA.year1=blankYear(); DATA.year2=blankYear(); DATA.meta.company='My Company'; VA_REASONS={}; VA_ANSWERS={}; VA_CHECKED=false; HA_REASONS={}; HA_ANSWERS={}; HA_CHECKED=false; }
+  if(scope==='simulation'){ SIM = {...DATA.year2}; }
+  if(scope==='practice'){ QUIZ_STATE = {}; }
+  if(scope==='all'){ DATA={meta:{company:'My Company',currency:'₹ Lakh'},year1:blankYear(),year2:blankYear()}; COMPETITORS={A:{name:'Company A',data:blankYear()},B:{name:'Company B',data:blankYear()},C:{name:'Company C',data:blankYear()}}; SIM=null; QUIZ_STATE={}; VA_REASONS={}; VA_ANSWERS={}; VA_CHECKED=false; HA_REASONS={}; HA_ANSWERS={}; HA_CHECKED=false; localStorage.clear(); }
+  saveToStorage();
+  switchTab(CURRENT_TAB);
+}
+
+/* ---------------------------------------------------------------------
+   23. INIT
+--------------------------------------------------------------------- */
+function init(){
+  loadFromStorage();
+  if(!SIM) SIM = {...DATA.year2};
+  buildNav();
+  byId('btnStudentMode').onclick = ()=>setMode('student');
+  byId('btnTeacherMode').onclick = ()=>setMode('teacher');
+  ['recStudent','recId','recCourse','recInstructor'].forEach(id=> byId(id).addEventListener('change', saveToStorage));
+  // if truly empty, preload the Stable example so the app is not blank on first run
+  if(DATA.year1.revenue===0 && DATA.year2.revenue===0){
+    loadExample('stable');
+  } else {
+    switchTab('dashboard');
+  }
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
+
+</body>
+</html>

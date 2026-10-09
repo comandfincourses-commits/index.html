@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 56" role="img" aria-label="COMandFIN">
+  <rect x="2" y="6" width="44" height="44" rx="11" fill="#0b1f3a"/>
+  <path d="M13 38V28M21 38V22M29 38V26M37 38V16" stroke="#c99a2e" stroke-width="4.2" stroke-linecap="round"/>
+  <text x="58" y="36" font-family="Plus Jakarta Sans, Segoe UI, Arial, sans-serif" font-size="25" font-weight="800" fill="#0b1f3a">COM<tspan fill="#c99a2e" font-weight="600">and</tspan>FIN</text>
+  <text x="59" y="50" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="8.6" font-weight="600" letter-spacing="2.2" fill="#5b6b82">FINANCE EDUCATION</text>
+</svg>
