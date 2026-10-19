@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face { font-family: 'Mali'; font-weight: 700; src: url('__FONTS__/Mali.woff2') format('woff2'); }
+  @font-face { font-family: 'Mali'; font-weight: 400; src: url('__FONTS__/Mali.woff2') format('woff2'); }
+  @font-face { font-family: 'Luckiest Guy'; src: url('__FONTS__/LuckiestGuy.woff2') format('woff2'); }
+  @font-face { font-family: 'Chewy'; src: url('__FONTS__/Chewy.woff2') format('woff2'); }
+  html, body { margin: 0; padding: 0; background: #FDCF3F; overflow: hidden; }
+  #stage { position: relative; overflow: hidden; background: #FDCF3F; }
+  .scene, .cam, .bg { position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+  .bg svg { display: block; }
+  .divider { position: absolute; left: calc(50% - 5px); top: 0; width: 10px; height: 100%; background: #111; }
+  .el { position: absolute; transform-origin: 50% 50%; will-change: transform, opacity; }
+  .el svg { display: block; overflow: visible; }
+  .text { font-family: 'Mali', 'Chewy', sans-serif; font-weight: 700; text-transform: uppercase; line-height: 1.22; letter-spacing: 0.5px; }
+  .title { font-family: 'Luckiest Guy', 'Chewy', sans-serif; font-weight: 400; text-transform: uppercase; line-height: 1.05; letter-spacing: 2px; }
+  .label { font-family: 'Mali', sans-serif; font-weight: 700; text-transform: uppercase; white-space: nowrap; }
+  .counter { font-family: 'Luckiest Guy', sans-serif; white-space: nowrap; letter-spacing: 2px; }
+  .card { width: 100%; height: 100%; box-sizing: border-box; border: 6px solid #111; border-radius: 22px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 14px; font-family: 'Mali', sans-serif; font-weight: 700; text-transform: uppercase; line-height: 1.1; }
+  .cardtxt { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; text-align: center; font-family: 'Mali', sans-serif; font-weight: 700; text-transform: uppercase; line-height: 1.12; color: #111; }
+  .tbl table { border-collapse: separate; border-spacing: 0; background: #fff; border: 6px solid #111; border-radius: 18px; overflow: hidden; font-family: 'Mali', sans-serif; font-weight: 700; }
+  .tbl th { background: #111; color: #FDCF3F; padding: 12px 28px; text-transform: uppercase; }
+  .tbl td { padding: 10px 28px; border-top: 3px solid #111; text-align: center; }
+  .tbl td:first-child { text-align: left; }
+  .wm { position: fixed; font-family: 'Mali', sans-serif; font-weight: 700; font-size: 30px; color: #111; z-index: 99; }
+  .wm.bottom-right { right: 34px; bottom: 26px; } .wm.top-right { right: 34px; top: 24px; }
+  .wm.bottom-left { left: 34px; bottom: 26px; } .wm.top-left { left: 34px; top: 24px; }
+</style>
+<script src="__WEB__/library.js"></script>
+<script src="__WEB__/engine.js"></script>
+</head>
+<body><div id="stage"></div></body>
+</html>

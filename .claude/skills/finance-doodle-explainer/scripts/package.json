@@ -1,0 +1,5 @@
+{
+  "name": "finance-doodle-explainer-scripts",
+  "private": true,
+  "dependencies": { "playwright": "1.56.1" }
+}

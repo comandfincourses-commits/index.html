@@ -1,0 +1,773 @@
+{
+ "meta": {
+  "title": "The Power of Compounding",
+  "author": "COMandFIN",
+  "audio": "voice.wav",
+  "fps": 30,
+  "music": "generated",
+  "music_db": -22,
+  "sfx_db": -17,
+  "watermark": {
+   "text": "COMandFIN",
+   "position": "bottom-right",
+   "opacity": 0.8
+  },
+  "thumbnail": {
+   "bg": "yellow",
+   "elements": [
+    {
+     "type": "title",
+     "text": "₹1 Lakh → ₹3.1 Lakh",
+     "x": 700,
+     "y": 230,
+     "size": 120,
+     "highlight": [
+      "₹3.1"
+     ],
+     "in": "none"
+    },
+    {
+     "type": "text",
+     "text": "The power of compounding",
+     "x": 700,
+     "y": 400,
+     "size": 70,
+     "maxWidth": 1100,
+     "in": "none"
+    },
+    {
+     "type": "prop",
+     "name": "money_tree",
+     "x": 640,
+     "y": 760,
+     "w": 380,
+     "in": "none"
+    },
+    {
+     "type": "character",
+     "pose": "armsUp",
+     "expr": "excited",
+     "color": "#2F6FD6",
+     "x": 1480,
+     "y": 640,
+     "h": 820,
+     "in": "none"
+    }
+   ]
+  }
+ },
+ "scenes": [
+  {
+   "id": "intro_rahul",
+   "word": 0,
+   "chapter": "Meet Rahul",
+   "elements": [
+    {
+     "type": "character",
+     "pose": "hips",
+     "expr": "smile",
+     "color": "#2F6FD6",
+     "x": 960,
+     "y": 600,
+     "h": 640
+    },
+    {
+     "type": "label",
+     "text": "Rahul",
+     "x": 960,
+     "y": 210,
+     "size": 56,
+     "at_word": 1
+    }
+   ]
+  },
+  {
+   "id": "salary_phone",
+   "word": 2,
+   "bg": "navy",
+   "elements": [
+    {
+     "type": "prop",
+     "name": "phone",
+     "header": "BANK",
+     "title": "Salary credited",
+     "big": "₹50,000",
+     "bigColor": "#2E7D32",
+     "rows": [
+      [
+       "From",
+       "ABC Pvt Ltd"
+      ],
+      [
+       "Balance",
+       "₹50,412"
+      ]
+     ],
+     "x": 960,
+     "y": 560,
+     "w": 380,
+     "in": "slide-up"
+    }
+   ]
+  },
+  {
+   "id": "most_of_us",
+   "word": 12,
+   "elements": [
+    {
+     "type": "text",
+     "text": "And like most of us",
+     "x": 960,
+     "y": 520
+    }
+   ]
+  },
+  {
+   "id": "one_question",
+   "word": 17,
+   "elements": [
+    {
+     "type": "character",
+     "pose": "think",
+     "expr": "thinking",
+     "color": "#2F6FD6",
+     "x": 960,
+     "y": 620,
+     "h": 600
+    },
+    {
+     "type": "prop",
+     "name": "question",
+     "x": 1260,
+     "y": 330,
+     "w": 110,
+     "at_word": 19,
+     "emph": {
+      "type": "bounce",
+      "at": 1.2
+     }
+    }
+   ]
+  },
+  {
+   "id": "spend_or_invest",
+   "word": 21,
+   "bg": [
+    "street",
+    "office"
+   ],
+   "elements": [
+    {
+     "type": "prop",
+     "name": "cart",
+     "x": 480,
+     "y": 600,
+     "w": 380,
+     "at_word": 23
+    },
+    {
+     "type": "label",
+     "text": "Spend it?",
+     "x": 480,
+     "y": 330,
+     "size": 60,
+     "bg": "#fff",
+     "at_word": 23
+    },
+    {
+     "type": "prop",
+     "name": "chart_up",
+     "x": 1440,
+     "y": 600,
+     "w": 400,
+     "at_word": 28
+    },
+    {
+     "type": "label",
+     "text": "Invest it?",
+     "x": 1440,
+     "y": 330,
+     "size": 60,
+     "bg": "#fff",
+     "at_word": 28
+    }
+   ]
+  },
+  {
+   "id": "heres_the_deal",
+   "word": 30,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Here's the deal",
+     "x": 960,
+     "y": 520,
+     "size": 76
+    }
+   ]
+  },
+  {
+   "id": "two_ways",
+   "word": 33,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Money can grow in two ways",
+     "x": 960,
+     "y": 520,
+     "highlight": [
+      "two"
+     ],
+     "size": 72
+    }
+   ]
+  },
+  {
+   "id": "two_boxes",
+   "word": 39,
+   "elements": [
+    {
+     "type": "card",
+     "text": "Simple interest",
+     "x": 600,
+     "y": 560,
+     "w": 440,
+     "h": 260
+    },
+    {
+     "type": "card",
+     "text": "Compound interest",
+     "x": 1320,
+     "y": 560,
+     "w": 440,
+     "h": 260,
+     "at_word": 42
+    }
+   ]
+  },
+  {
+   "id": "simple_explained",
+   "word": 44,
+   "bg": "desk",
+   "chapter": "Simple vs compound interest",
+   "elements": [
+    {
+     "type": "text",
+     "text": "Simple interest",
+     "x": 960,
+     "y": 120,
+     "size": 70
+    },
+    {
+     "type": "prop",
+     "name": "cash_stack",
+     "x": 700,
+     "y": 620,
+     "w": 360,
+     "at_word": 52
+    },
+    {
+     "type": "arrow",
+     "from": [
+      900,
+      600
+     ],
+     "to": [
+      1140,
+      600
+     ],
+     "at_word": 49,
+     "color": "#111"
+    },
+    {
+     "type": "prop",
+     "name": "coin",
+     "x": 1260,
+     "y": 610,
+     "w": 120,
+     "at_word": 49
+    },
+    {
+     "type": "label",
+     "text": "Returns only on what you put in",
+     "x": 960,
+     "y": 920,
+     "size": 44,
+     "at_word": 50,
+     "color": "#fff"
+    }
+   ]
+  },
+  {
+   "id": "compound_explained",
+   "word": 56,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Compound interest",
+     "x": 960,
+     "y": 120,
+     "size": 70,
+     "highlight": [
+      "compound"
+     ]
+    },
+    {
+     "type": "prop",
+     "name": "coin",
+     "x": 560,
+     "y": 600,
+     "w": 140,
+     "at_word": 59
+    },
+    {
+     "type": "arrow",
+     "from": [
+      650,
+      600
+     ],
+     "to": [
+      800,
+      600
+     ],
+     "at_word": 60
+    },
+    {
+     "type": "prop",
+     "name": "coins",
+     "x": 900,
+     "y": 590,
+     "w": 160,
+     "count": 3,
+     "at_word": 61
+    },
+    {
+     "type": "arrow",
+     "from": [
+      1000,
+      600
+     ],
+     "to": [
+      1150,
+      600
+     ],
+     "at_word": 63
+    },
+    {
+     "type": "prop",
+     "name": "coins",
+     "x": 1290,
+     "y": 560,
+     "w": 190,
+     "count": 8,
+     "at_word": 64
+    },
+    {
+     "type": "label",
+     "text": "Returns on your returns",
+     "x": 960,
+     "y": 880,
+     "size": 54,
+     "at_word": 61
+    }
+   ]
+  },
+  {
+   "id": "invests_lakh",
+   "word": 65,
+   "chapter": "The ₹1 lakh example",
+   "elements": [
+    {
+     "type": "character",
+     "pose": "present",
+     "expr": "happy",
+     "color": "#2F6FD6",
+     "x": 560,
+     "y": 620,
+     "h": 600
+    },
+    {
+     "type": "counter",
+     "from": 0,
+     "to": 100000,
+     "prefix": "₹",
+     "x": 1320,
+     "y": 420,
+     "size": 150,
+     "at_word": 69
+    },
+    {
+     "type": "label",
+     "text": "@ 12% a year",
+     "x": 1320,
+     "y": 640,
+     "size": 70,
+     "at_word": 73,
+     "color": "#E53935"
+    }
+   ]
+  },
+  {
+   "id": "after_ten",
+   "word": 77,
+   "elements": [
+    {
+     "type": "prop",
+     "name": "calendar",
+     "label": "10 YEARS",
+     "day": "10",
+     "x": 960,
+     "y": 520,
+     "w": 340,
+     "emph": {
+      "type": "pulse",
+      "at": 0.8
+     }
+    }
+   ]
+  },
+  {
+   "id": "simple_result",
+   "word": 80,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Simple interest",
+     "x": 960,
+     "y": 160,
+     "size": 64
+    },
+    {
+     "type": "counter",
+     "from": 100000,
+     "to": 220000,
+     "prefix": "₹",
+     "x": 960,
+     "y": 520,
+     "size": 170,
+     "at_word": 84
+    },
+    {
+     "type": "label",
+     "text": "₹1,00,000 + 10 × ₹12,000",
+     "x": 960,
+     "y": 760,
+     "size": 46,
+     "at_word": 84
+    }
+   ]
+  },
+  {
+   "id": "but_compounding",
+   "word": 89,
+   "elements": [
+    {
+     "type": "title",
+     "text": "But compounding?",
+     "x": 960,
+     "y": 520,
+     "size": 130,
+     "highlight": [
+      "compounding?"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "compound_result",
+   "word": 91,
+   "elements": [
+    {
+     "type": "bars",
+     "values": [
+      220000,
+      310585
+     ],
+     "labels": [
+      "Simple",
+      "Compound"
+     ],
+     "colors": [
+      "#9AA3AE",
+      "#43A047"
+     ],
+     "prefix": "₹",
+     "x": 960,
+     "y": 560,
+     "w": 900,
+     "h": 640,
+     "valueSize": 46,
+     "labelSize": 40,
+     "stagger": 0.4
+    }
+   ]
+  },
+  {
+   "id": "same_money",
+   "word": 99,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Same money",
+     "x": 960,
+     "y": 420,
+     "size": 80
+    },
+    {
+     "type": "text",
+     "text": "Same rate",
+     "x": 960,
+     "y": 560,
+     "size": 80,
+     "at_word": 101
+    }
+   ]
+  },
+  {
+   "id": "different_result",
+   "word": 103,
+   "camera": "punch",
+   "elements": [
+    {
+     "type": "character",
+     "pose": "armsUp",
+     "expr": "shocked",
+     "color": "#2F6FD6",
+     "x": 960,
+     "y": 620,
+     "h": 640
+    },
+    {
+     "type": "text",
+     "text": "Very different result",
+     "x": 960,
+     "y": 140,
+     "highlight": [
+      "different"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "magic_time",
+   "word": 106,
+   "chapter": "Why starting early wins",
+   "elements": [
+    {
+     "type": "prop",
+     "name": "hourglass",
+     "x": 960,
+     "y": 560,
+     "w": 260,
+     "emph": {
+      "type": "spin",
+      "at": 1.0,
+      "dur": 0.8
+     }
+    },
+    {
+     "type": "text",
+     "text": "The real magic is time",
+     "x": 960,
+     "y": 150,
+     "highlight": [
+      "time"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "start_25_35",
+   "word": 112,
+   "elements": [
+    {
+     "type": "character",
+     "pose": "pointUp",
+     "expr": "happy",
+     "color": "#43A047",
+     "x": 520,
+     "y": 640,
+     "h": 560,
+     "at_word": 114
+    },
+    {
+     "type": "label",
+     "text": "Starts at 25",
+     "x": 520,
+     "y": 270,
+     "size": 56,
+     "at_word": 114,
+     "bg": "#fff"
+    },
+    {
+     "type": "character",
+     "pose": "shrug",
+     "expr": "worried",
+     "color": "#9AA3AE",
+     "x": 1400,
+     "y": 640,
+     "h": 560,
+     "at_word": 118
+    },
+    {
+     "type": "label",
+     "text": "Starts at 35",
+     "x": 1400,
+     "y": 270,
+     "size": 56,
+     "at_word": 118,
+     "bg": "#fff"
+    }
+   ]
+  },
+  {
+   "id": "snowball",
+   "word": 120,
+   "elements": [
+    {
+     "type": "linechart",
+     "values": [
+      1,
+      1.12,
+      1.25,
+      1.4,
+      1.57,
+      1.76,
+      1.97,
+      2.21,
+      2.48,
+      2.77,
+      3.1,
+      3.48,
+      3.9,
+      4.36,
+      4.89,
+      5.47,
+      6.13,
+      6.87,
+      7.69,
+      8.61,
+      9.65
+     ],
+     "labels": [
+      "0",
+      "",
+      "",
+      "",
+      "",
+      "5",
+      "",
+      "",
+      "",
+      "",
+      "10",
+      "",
+      "",
+      "",
+      "",
+      "15",
+      "",
+      "",
+      "",
+      "",
+      "20 yrs"
+     ],
+     "endLabel": "₹9.6 lakh",
+     "x": 960,
+     "y": 600,
+     "w": 1300,
+     "h": 640,
+     "drawDur": 2.6
+    },
+    {
+     "type": "text",
+     "text": "10 extra years to snowball",
+     "x": 960,
+     "y": 130,
+     "highlight": [
+      "snowball"
+     ],
+     "at_word": 124
+    }
+   ]
+  },
+  {
+   "id": "lesson",
+   "word": 129,
+   "chapter": "Key takeaway",
+   "elements": [
+    {
+     "type": "text",
+     "text": "So the lesson is simple",
+     "x": 960,
+     "y": 520
+    }
+   ]
+  },
+  {
+   "id": "start_early",
+   "word": 134,
+   "bg": "desk",
+   "elements": [
+    {
+     "type": "prop",
+     "name": "plant",
+     "x": 640,
+     "y": 690,
+     "w": 240,
+     "in": "grow"
+    },
+    {
+     "type": "character",
+     "pose": "point",
+     "expr": "smile",
+     "color": "#2F6FD6",
+     "x": 1100,
+     "y": 560,
+     "h": 560,
+     "flip": true
+    },
+    {
+     "type": "label",
+     "text": "Start early",
+     "x": 1560,
+     "y": 330,
+     "size": 64,
+     "bg": "#fff"
+    },
+    {
+     "type": "label",
+     "text": "Stay invested",
+     "x": 1560,
+     "y": 460,
+     "size": 64,
+     "bg": "#fff",
+     "at_word": 136
+    }
+   ]
+  },
+  {
+   "id": "heavy_lifting",
+   "word": 138,
+   "elements": [
+    {
+     "type": "prop",
+     "name": "money_tree",
+     "x": 960,
+     "y": 600,
+     "w": 420,
+     "in": "grow"
+    },
+    {
+     "type": "text",
+     "text": "Let compounding do the heavy lifting",
+     "x": 960,
+     "y": 130,
+     "highlight": [
+      "compounding"
+     ]
+    }
+   ]
+  }
+ ]
+}
