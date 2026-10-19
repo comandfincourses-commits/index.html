@@ -1,0 +1,111 @@
+1
+00:00:01,520 --> 00:00:04,000
+Imagine this: you wake up tomorrow morning
+
+2
+00:00:04,080 --> 00:00:06,080
+and find 10 lakh credited to your
+
+3
+00:00:06,080 --> 00:00:06,800
+bank account.
+
+4
+00:00:06,960 --> 00:00:08,560
+You would probably feel rich.
+
+5
+00:00:08,720 --> 00:00:11,760
+Now, imagine something stranger: a company earns
+
+6
+00:00:11,840 --> 00:00:14,320
+10 lakh in profit, its sales cross
+
+7
+00:00:14,480 --> 00:00:15,440
+1 crore.
+
+8
+00:00:15,520 --> 00:00:18,640
+Customers love its product, investors are impressed.
+
+9
+00:00:19,060 --> 00:00:21,060
+Yet, just a few months later, the
+
+10
+00:00:21,140 --> 00:00:23,780
+company cannot pay salaries, it cannot pay
+
+11
+00:00:23,860 --> 00:00:26,420
+suppliers, and it is on verge of
+
+12
+00:00:26,500 --> 00:00:27,220
+bankruptcy.
+
+13
+00:00:27,380 --> 00:00:30,180
+Sounds impossible, but this happens to thousands
+
+14
+00:00:30,260 --> 00:00:31,780
+of businesses every year.
+
+15
+00:00:32,020 --> 00:00:33,860
+In fact, studies around the world have
+
+16
+00:00:34,020 --> 00:00:36,500
+shown that cash flows problems are one
+
+17
+00:00:36,660 --> 00:00:39,540
+of the biggest reasons for business fail.
+
+18
+00:00:39,820 --> 00:00:41,900
+Not because they are unprofitable, but because
+
+19
+00:00:42,140 --> 00:00:43,740
+they run out of cash.
+
+20
+00:00:43,980 --> 00:00:45,980
+This is the story of Arjun and
+
+21
+00:00:46,140 --> 00:00:47,100
+his company.
+
+22
+00:00:47,440 --> 00:00:49,600
+By the end of this story, you
+
+23
+00:00:49,840 --> 00:00:51,360
+will understand one of the most important
+
+24
+00:00:51,600 --> 00:00:54,320
+concepts in finance, that is working capital
+
+25
+00:00:54,400 --> 00:00:55,200
+management.
+
+26
+00:00:55,440 --> 00:00:58,160
+Arjun started a healthy snacking business.
+
+27
+00:00:58,400 --> 00:01:01,120
+Nothing fancy, just protein bars and healthy
+
+28
+00:01:01,200 --> 00:01:01,760
+chips.
