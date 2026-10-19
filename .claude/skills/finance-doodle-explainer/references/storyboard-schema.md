@@ -64,7 +64,7 @@ phone(`header`,`headerColor`,`title`,`big`,`bigColor`,`rows`:[[label,value,color
 chart_up, chart_down, stock_screen(`trend`:"up"|"down",`label`), house, car, briefcase, calendar(`label`,`day`), clock(`hour`,`minute`), hourglass,
 plant(`size` 0.5–1.6), money_tree, fire, lightbulb, scale(`tilt` -1..1, `left`, `right`), shield, vault, lock,
 document(`title`,`rows`,`stamp`,`stampColor`), receipt(`title`,`rows`), arrow_up, arrow_down, arrow_right, check, cross, question, exclamation,
-rupee, percent, office(`label`), factory, cart, grad_cap, target, rocket, umbrella, gold_bars, magnifier, gear, hand(`sleeve`), chain_ball, thought_money
+rupee, percent, office(`label`), factory, cart, grad_cap, target, rocket, umbrella, gold_bars, magnifier, gear, hand(`sleeve`), chain_ball, thought_money, protein_bar(`label`,`color`), chips_bag(`label`,`sub`,`color`), heart
 
 **text**: kinetic caption (Mali Bold, uppercase)
 `text`, `size` (64), `maxWidth` (1500), `align`, `color`, `highlight`: ["word", ...] (shown red), `highlightColor`, `bg` (puts it in a boxed panel).

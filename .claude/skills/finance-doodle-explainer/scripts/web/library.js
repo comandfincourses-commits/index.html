@@ -261,7 +261,7 @@
   P.calendar = (o = {}) => {
     let s = `<rect x="10" y="26" width="220" height="200" rx="12" ${st('#fff')}/>` +
       `<path d="M10,38 Q10,26 22,26 L218,26 Q230,26 230,38 L230,76 L10,76 Z" ${st(C.red)}/>` +
-      txt(120, 52, o.label || 'DUE DATE', 24, '#fff') +
+      txt(120, 52, o.label || 'DUE DATE', Math.min(24, Math.floor(330 / String(o.label || 'DUE DATE').length)), '#fff') +
       `<path d="M60,12 L60,40 M180,12 L180,40" stroke="${K}" stroke-width="10"/>`;
     if (o.day) s += txt(120, 152, o.day, 80);
     else for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++) s += `<rect x="${30 + c * 48}" y="${92 + r * 42}" width="34" height="30" rx="4" fill="${r === 1 && c === 2 ? C.red : '#EEE'}" stroke="${K}" stroke-width="3"/>`;
@@ -377,8 +377,8 @@
     let s = `<rect x="30" y="20" width="200" height="330" ${st(o.color || '#90A4AE')}/>`;
     for (let r = 0; r < 7; r++) for (let c = 0; c < 4; c++) s += `<rect x="${50 + c * 45}" y="${40 + r * 40}" width="28" height="26" ${st('#BBDEFB', 4)}/>`;
     s += `<rect x="108" y="306" width="44" height="44" ${st('#5D4037', 4)}/>`;
-    if (o.label) s += `<rect x="60" y="-4" width="140" height="36" rx="6" ${st('#fff', 4)}/>` + txt(130, 14, o.label, 20);
-    return svg('0 -10 260 370', 260, 370, s);
+    if (o.label) { const lw = Math.max(140, String(o.label).length * 15 + 24); s += `<rect x="${130 - lw / 2}" y="-6" width="${lw}" height="40" rx="6" ${st('#fff', 4)}/>` + txt(130, 14, o.label, 22); }
+    return svg('-60 -10 380 370', 380, 370, s);
   };
 
   P.factory = () => svg('0 0 320 240', 320, 240,
@@ -453,6 +453,21 @@
     `<path d="M60,150 Q10,150 20,110 Q0,70 50,60 Q60,16 110,30 Q150,0 190,34 Q250,30 240,90 Q262,130 220,150 Q200,180 150,160 Q110,180 60,150 Z" ${st('#fff')}/>` +
     `<circle cx="70" cy="178" r="10" ${st('#fff', 4)}/><circle cx="50" cy="196" r="5" ${st('#fff', 3)}/>` +
     `<rect x="80" y="70" width="110" height="56" rx="6" ${st(C.lightGreen, 5)}/>` + txt(135, 99, '₹', 34, '#1B5E20'));
+
+  P.protein_bar = (o = {}) => svg('0 0 320 130', 320, 130,
+    `<path d="M14,22 L30,10 L30,120 L14,108 Z M306,22 L290,10 L290,120 L306,108 Z" ${st('#B0BEC5', 5)}/>` +
+    `<rect x="30" y="10" width="260" height="110" rx="10" ${st(o.color || '#6D4C41')}/>` +
+    `<rect x="62" y="34" width="196" height="62" rx="8" ${st('#FFE082', 4)}/>` + txt(160, 66, o.label || 'PROTEIN', 30));
+
+  P.chips_bag = (o = {}) => svg('0 0 220 290', 220, 290,
+    `<path d="M24,30 L40,14 L56,30 L72,14 L88,30 L104,14 L120,30 L136,14 L152,30 L168,14 L184,30 L196,18 ` +
+    `Q214,150 196,270 L180,278 L164,270 L148,278 L132,270 L116,278 L100,270 L84,278 L68,270 L52,278 L36,270 L24,278 Q6,150 24,30 Z" ${st(o.color || '#43A047')}/>` +
+    `<ellipse cx="110" cy="150" rx="70" ry="54" ${st('#FFF59D', 5)}/>` + txt(110, 140, o.label || 'CHIPS', 34) + txt(110, 172, o.sub || 'HEALTHY', 18, '#2E7D32') +
+    `<ellipse cx="80" cy="232" rx="20" ry="14" fill="${C.gold}" stroke="${K}" stroke-width="4"/><ellipse cx="140" cy="236" rx="18" ry="12" fill="${C.gold}" stroke="${K}" stroke-width="4"/>`);
+
+  P.heart = (o = {}) => svg('0 0 200 180', 200, 180,
+    `<path d="M100,170 Q20,110 14,62 Q10,14 56,12 Q86,12 100,44 Q114,12 144,12 Q190,14 186,62 Q180,110 100,170 Z" ${st(o.color || C.red)}/>` +
+    `<path d="M44,50 Q50,32 68,30" fill="none" stroke="#fff" stroke-width="8"/>`);
 
   /* ---------------- Backgrounds ---------------- */
   function background(bg, W = 1920, H = 1080) {

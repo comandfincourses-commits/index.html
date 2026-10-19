@@ -1,0 +1,987 @@
+{
+ "meta": {
+  "title": "Working Capital Management - Why Profitable Companies Run Out of Cash",
+  "author": "COMandFIN",
+  "audio": "voice.wav",
+  "fps": 30,
+  "music": "generated",
+  "music_db": -24,
+  "sfx_db": -18,
+  "watermark": {
+   "text": "COMandFIN",
+   "position": "bottom-right",
+   "opacity": 0.8
+  },
+  "thumbnail": {
+   "bg": "yellow",
+   "elements": [
+    {
+     "type": "title",
+     "text": "Profitable",
+     "x": 560,
+     "y": 200,
+     "size": 130,
+     "in": "none"
+    },
+    {
+     "type": "title",
+     "text": "but broke?",
+     "x": 560,
+     "y": 350,
+     "size": 130,
+     "highlight": [
+      "broke?"
+     ],
+     "in": "none"
+    },
+    {
+     "type": "text",
+     "text": "Working capital management",
+     "x": 560,
+     "y": 520,
+     "size": 62,
+     "maxWidth": 900,
+     "reveal": "all",
+     "in": "none"
+    },
+    {
+     "type": "prop",
+     "name": "chart_up",
+     "x": 380,
+     "y": 800,
+     "w": 300,
+     "in": "none"
+    },
+    {
+     "type": "prop",
+     "name": "money_bag",
+     "x": 760,
+     "y": 800,
+     "w": 220,
+     "in": "none"
+    },
+    {
+     "type": "prop",
+     "name": "cross",
+     "x": 840,
+     "y": 720,
+     "w": 110,
+     "in": "none"
+    },
+    {
+     "type": "character",
+     "pose": "facepalm",
+     "expr": "worried",
+     "color": "#F28C28",
+     "hair": "spiky",
+     "x": 1450,
+     "y": 600,
+     "h": 860,
+     "in": "none"
+    }
+   ]
+  }
+ },
+ "scenes": [
+  {
+   "id": "imagine",
+   "word": 0,
+   "chapter": "The paradox",
+   "elements": [
+    {
+     "type": "text",
+     "text": "Imagine this",
+     "size": 80
+    }
+   ]
+  },
+  {
+   "id": "wake_up",
+   "word": 2,
+   "bg": "room",
+   "elements": [
+    {
+     "type": "character",
+     "pose": "armsUp",
+     "expr": "tired",
+     "x": 760,
+     "y": 560,
+     "h": 600
+    },
+    {
+     "type": "prop",
+     "name": "clock",
+     "hour": 7,
+     "minute": 0,
+     "x": 1320,
+     "y": 380,
+     "w": 240,
+     "at_word": 5
+    },
+    {
+     "type": "label",
+     "text": "Tomorrow morning",
+     "x": 1320,
+     "y": 580,
+     "size": 46,
+     "bg": "#fff",
+     "at_word": 5
+    }
+   ]
+  },
+  {
+   "id": "credited",
+   "word": 7,
+   "bg": "navy",
+   "elements": [
+    {
+     "type": "prop",
+     "name": "phone",
+     "header": "BANK",
+     "title": "Amount credited",
+     "big": "₹10,00,000",
+     "bigColor": "#2E7D32",
+     "rows": [
+      [
+       "To",
+       "Your account"
+      ],
+      [
+       "Status",
+       "Success",
+       "#2E7D32"
+      ]
+     ],
+     "x": 960,
+     "y": 560,
+     "w": 400,
+     "in": "slide-up",
+     "at_word": 9
+    }
+   ]
+  },
+  {
+   "id": "feel_rich",
+   "word": 16,
+   "elements": [
+    {
+     "type": "character",
+     "pose": "armsUp",
+     "expr": "excited",
+     "x": 960,
+     "y": 620,
+     "h": 600
+    },
+    {
+     "type": "prop",
+     "name": "cash_stack",
+     "x": 520,
+     "y": 760,
+     "w": 300,
+     "at_word": 19
+    },
+    {
+     "type": "prop",
+     "name": "cash_stack",
+     "x": 1400,
+     "y": 760,
+     "w": 300,
+     "at_word": 19
+    },
+    {
+     "type": "text",
+     "text": "You would probably feel rich",
+     "x": 960,
+     "y": 130,
+     "highlight": [
+      "rich"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "stranger",
+   "word": 21,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Now, imagine something stranger",
+     "size": 72,
+     "highlight": [
+      "stranger"
+     ]
+    },
+    {
+     "type": "prop",
+     "name": "question",
+     "x": 960,
+     "y": 760,
+     "w": 100,
+     "at_word": 24,
+     "emph": {
+      "type": "bounce",
+      "at": 0.9
+     }
+    }
+   ]
+  },
+  {
+   "id": "profit",
+   "word": 25,
+   "elements": [
+    {
+     "type": "prop",
+     "name": "office",
+     "label": "THE COMPANY",
+     "x": 560,
+     "y": 580,
+     "w": 435
+    },
+    {
+     "type": "label",
+     "text": "Profit",
+     "x": 1300,
+     "y": 340,
+     "size": 60,
+     "at_word": 27
+    },
+    {
+     "type": "counter",
+     "from": 0,
+     "to": 1000000,
+     "prefix": "₹",
+     "x": 1300,
+     "y": 500,
+     "size": 140,
+     "color": "#2E7D32",
+     "at_word": 28,
+     "countDur": 1.0
+    }
+   ]
+  },
+  {
+   "id": "sales",
+   "word": 32,
+   "elements": [
+    {
+     "type": "prop",
+     "name": "chart_up",
+     "x": 560,
+     "y": 600,
+     "w": 460
+    },
+    {
+     "type": "label",
+     "text": "Sales",
+     "x": 1300,
+     "y": 340,
+     "size": 60
+    },
+    {
+     "type": "counter",
+     "from": 2000000,
+     "to": 10000000,
+     "prefix": "₹",
+     "x": 1300,
+     "y": 500,
+     "size": 120,
+     "color": "#2E7D32",
+     "at_word": 34,
+     "countDur": 0.9
+    },
+    {
+     "type": "label",
+     "text": "1 crore+",
+     "x": 1300,
+     "y": 680,
+     "size": 56,
+     "color": "#E53935",
+     "at_word": 36
+    }
+   ]
+  },
+  {
+   "id": "customers_love",
+   "word": 37,
+   "bg": "street",
+   "elements": [
+    {
+     "type": "character",
+     "pose": "armsUp",
+     "expr": "happy",
+     "color": "#7E57C2",
+     "hair": "bob",
+     "x": 520,
+     "y": 560,
+     "h": 520
+    },
+    {
+     "type": "character",
+     "pose": "hips",
+     "expr": "smile",
+     "color": "#26A69A",
+     "hair": "cap",
+     "x": 960,
+     "y": 560,
+     "h": 520,
+     "at": 0.15
+    },
+    {
+     "type": "character",
+     "pose": "point",
+     "expr": "happy",
+     "color": "#2F6FD6",
+     "x": 1400,
+     "y": 560,
+     "h": 520,
+     "at": 0.3
+    },
+    {
+     "type": "prop",
+     "name": "heart",
+     "x": 960,
+     "y": 170,
+     "w": 160,
+     "at_word": 38,
+     "emph": {
+      "type": "pulse",
+      "at": 0.8
+     }
+    }
+   ]
+  },
+  {
+   "id": "investors",
+   "word": 41,
+   "bg": "office",
+   "elements": [
+    {
+     "type": "character",
+     "pose": "present",
+     "expr": "smirk",
+     "outfit": "suit",
+     "hair": "bald",
+     "glasses": true,
+     "x": 640,
+     "y": 560,
+     "h": 580
+    },
+    {
+     "type": "prop",
+     "name": "briefcase",
+     "x": 1300,
+     "y": 640,
+     "w": 280,
+     "at_word": 42
+    },
+    {
+     "type": "label",
+     "text": "Investors: impressed",
+     "x": 1300,
+     "y": 430,
+     "size": 52,
+     "bg": "#fff",
+     "at_word": 43
+    }
+   ]
+  },
+  {
+   "id": "months_later",
+   "word": 44,
+   "chapter": "Profitable but broke",
+   "elements": [
+    {
+     "type": "prop",
+     "name": "calendar",
+     "label": "FEW MONTHS LATER",
+     "x": 960,
+     "y": 580,
+     "w": 360
+    },
+    {
+     "type": "text",
+     "text": "Yet, just a few months later",
+     "x": 960,
+     "y": 170
+    }
+   ]
+  },
+  {
+   "id": "salaries",
+   "word": 50,
+   "bg": "yellow",
+   "elements": [
+    {
+     "type": "character",
+     "pose": "shrug",
+     "expr": "sad",
+     "color": "#9AA3AE",
+     "x": 600,
+     "y": 580,
+     "h": 560
+    },
+    {
+     "type": "prop",
+     "name": "document",
+     "title": "SALARY",
+     "rows": [
+      [
+       "Due",
+       "This month"
+      ],
+      [
+       "Paid",
+       "Nil",
+       "#E53935"
+      ]
+     ],
+     "stamp": "UNPAID",
+     "x": 1300,
+     "y": 520,
+     "w": 300,
+     "at_word": 54
+    }
+   ]
+  },
+  {
+   "id": "suppliers",
+   "word": 55,
+   "elements": [
+    {
+     "type": "prop",
+     "name": "factory",
+     "x": 560,
+     "y": 600,
+     "w": 460
+    },
+    {
+     "type": "character",
+     "pose": "point",
+     "expr": "angry",
+     "color": "#8D5524",
+     "hair": "cap",
+     "hairColor": "#5D4037",
+     "x": 1100,
+     "y": 600,
+     "h": 540,
+     "flip": true,
+     "at_word": 58
+    },
+    {
+     "type": "prop",
+     "name": "document",
+     "title": "INVOICE",
+     "stamp": "OVERDUE",
+     "x": 1560,
+     "y": 520,
+     "w": 260,
+     "at_word": 58
+    }
+   ]
+  },
+  {
+   "id": "bankruptcy",
+   "word": 59,
+   "camera": "punch",
+   "elements": [
+    {
+     "type": "prop",
+     "name": "office",
+     "label": "THE COMPANY",
+     "x": 960,
+     "y": 600,
+     "w": 435
+    },
+    {
+     "type": "prop",
+     "name": "fire",
+     "x": 760,
+     "y": 820,
+     "w": 160,
+     "at_word": 65
+    },
+    {
+     "type": "prop",
+     "name": "fire",
+     "x": 1160,
+     "y": 820,
+     "w": 160,
+     "at_word": 65
+    },
+    {
+     "type": "title",
+     "text": "Bankruptcy?",
+     "x": 960,
+     "y": 150,
+     "size": 120,
+     "color": "#E53935",
+     "at_word": 65
+    }
+   ]
+  },
+  {
+   "id": "impossible",
+   "word": 66,
+   "elements": [
+    {
+     "type": "character",
+     "pose": "headScratch",
+     "expr": "confused",
+     "x": 960,
+     "y": 640,
+     "h": 600
+    },
+    {
+     "type": "text",
+     "text": "Sounds impossible",
+     "x": 960,
+     "y": 140
+    }
+   ]
+  },
+  {
+   "id": "thousands",
+   "word": 68,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Thousands of businesses every year",
+     "x": 960,
+     "y": 130,
+     "highlight": [
+      "thousands"
+     ]
+    },
+    {
+     "type": "prop",
+     "name": "office",
+     "x": 360,
+     "y": 560,
+     "w": 246,
+     "at_word": 72
+    },
+    {
+     "type": "prop",
+     "name": "office",
+     "x": 660,
+     "y": 600,
+     "w": 218,
+     "at_word": 72,
+     "at": 0.1
+    },
+    {
+     "type": "prop",
+     "name": "factory",
+     "x": 960,
+     "y": 620,
+     "w": 260,
+     "at_word": 73
+    },
+    {
+     "type": "prop",
+     "name": "office",
+     "x": 1260,
+     "y": 590,
+     "w": 232,
+     "at_word": 74
+    },
+    {
+     "type": "prop",
+     "name": "office",
+     "x": 1560,
+     "y": 560,
+     "w": 246,
+     "at_word": 74
+    },
+    {
+     "type": "prop",
+     "name": "cross",
+     "x": 1560,
+     "y": 860,
+     "w": 90,
+     "at_word": 75
+    },
+    {
+     "type": "prop",
+     "name": "cross",
+     "x": 360,
+     "y": 860,
+     "w": 90,
+     "at_word": 75
+    },
+    {
+     "type": "prop",
+     "name": "cross",
+     "x": 960,
+     "y": 860,
+     "w": 90,
+     "at_word": 76
+    }
+   ]
+  },
+  {
+   "id": "studies",
+   "word": 77,
+   "elements": [
+    {
+     "type": "prop",
+     "name": "document",
+     "title": "RESEARCH",
+     "x": 760,
+     "y": 560,
+     "w": 300,
+     "at_word": 79
+    },
+    {
+     "type": "prop",
+     "name": "magnifier",
+     "x": 1180,
+     "y": 520,
+     "w": 280,
+     "at_word": 82,
+     "emph": {
+      "type": "bounce",
+      "at": 1.6
+     }
+    },
+    {
+     "type": "text",
+     "text": "Studies around the world",
+     "x": 960,
+     "y": 140
+    }
+   ]
+  },
+  {
+   "id": "cash_flow_problems",
+   "word": 85,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Cash flow problems",
+     "x": 960,
+     "y": 330,
+     "size": 90,
+     "highlight": [
+      "cash",
+      "flow"
+     ]
+    },
+    {
+     "type": "text",
+     "text": "one of the biggest reasons businesses fail",
+     "x": 960,
+     "y": 560,
+     "size": 56,
+     "maxWidth": 1300,
+     "at_word": 90
+    },
+    {
+     "type": "prop",
+     "name": "chart_down",
+     "x": 960,
+     "y": 820,
+     "w": 260,
+     "at_word": 96
+    }
+   ]
+  },
+  {
+   "id": "not_unprofitable",
+   "word": 98,
+   "bg": [
+    "yellow",
+    "cream"
+   ],
+   "elements": [
+    {
+     "type": "prop",
+     "name": "chart_up",
+     "x": 480,
+     "y": 580,
+     "w": 400
+    },
+    {
+     "type": "label",
+     "text": "Profits: fine",
+     "x": 480,
+     "y": 280,
+     "size": 56,
+     "bg": "#fff"
+    },
+    {
+     "type": "prop",
+     "name": "check",
+     "x": 660,
+     "y": 720,
+     "w": 140,
+     "at_word": 102
+    },
+    {
+     "type": "prop",
+     "name": "money_bag",
+     "x": 1440,
+     "y": 580,
+     "w": 280,
+     "at_word": 103
+    },
+    {
+     "type": "label",
+     "text": "Cash: empty",
+     "x": 1440,
+     "y": 280,
+     "size": 56,
+     "bg": "#fff",
+     "color": "#E53935",
+     "at_word": 103
+    },
+    {
+     "type": "prop",
+     "name": "cross",
+     "x": 1600,
+     "y": 720,
+     "w": 140,
+     "at_word": 106
+    }
+   ]
+  },
+  {
+   "id": "run_out_of_cash",
+   "word": 106,
+   "bg": "navy",
+   "camera": "push",
+   "elements": [
+    {
+     "type": "prop",
+     "name": "phone",
+     "header": "BANK",
+     "title": "Available balance",
+     "big": "₹0",
+     "bigColor": "#E53935",
+     "rows": [
+      [
+       "Salaries",
+       "Due",
+       "#E53935"
+      ],
+      [
+       "Suppliers",
+       "Overdue",
+       "#E53935"
+      ]
+     ],
+     "x": 960,
+     "y": 560,
+     "w": 400,
+     "in": "slide-up"
+    }
+   ]
+  },
+  {
+   "id": "arjun_story",
+   "word": 110,
+   "chapter": "Arjun's story",
+   "elements": [
+    {
+     "type": "text",
+     "text": "This is the story of Arjun",
+     "x": 960,
+     "y": 140,
+     "highlight": [
+      "Arjun"
+     ]
+    },
+    {
+     "type": "character",
+     "pose": "hips",
+     "expr": "smile",
+     "color": "#F28C28",
+     "hair": "spiky",
+     "x": 700,
+     "y": 640,
+     "h": 600,
+     "at_word": 115
+    },
+    {
+     "type": "prop",
+     "name": "office",
+     "label": "ARJUN'S CO.",
+     "x": 1300,
+     "y": 620,
+     "w": 377,
+     "at_word": 117
+    }
+   ]
+  },
+  {
+   "id": "by_the_end",
+   "word": 119,
+   "elements": [
+    {
+     "type": "character",
+     "pose": "think",
+     "expr": "thinking",
+     "color": "#2F6FD6",
+     "x": 760,
+     "y": 640,
+     "h": 580
+    },
+    {
+     "type": "prop",
+     "name": "lightbulb",
+     "x": 1200,
+     "y": 420,
+     "w": 200,
+     "at_word": 127
+    },
+    {
+     "type": "text",
+     "text": "By the end of this story",
+     "x": 960,
+     "y": 130
+    }
+   ]
+  },
+  {
+   "id": "important_concept",
+   "word": 128,
+   "elements": [
+    {
+     "type": "prop",
+     "name": "grad_cap",
+     "x": 960,
+     "y": 700,
+     "w": 380,
+     "at_word": 132
+    },
+    {
+     "type": "text",
+     "text": "One of the most important concepts in finance",
+     "x": 960,
+     "y": 330,
+     "size": 70,
+     "maxWidth": 1400,
+     "highlight": [
+      "important"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wcm_title",
+   "word": 138,
+   "camera": "punch",
+   "sfx": "boom",
+   "elements": [
+    {
+     "type": "title",
+     "text": "Working capital",
+     "x": 960,
+     "y": 430,
+     "size": 150
+    },
+    {
+     "type": "title",
+     "text": "management",
+     "x": 960,
+     "y": 610,
+     "size": 150,
+     "color": "#E53935",
+     "at_word": 140
+    }
+   ]
+  },
+  {
+   "id": "snack_business",
+   "word": 141,
+   "chapter": "The business",
+   "bg": "desk",
+   "elements": [
+    {
+     "type": "character",
+     "pose": "present",
+     "expr": "happy",
+     "color": "#F28C28",
+     "hair": "spiky",
+     "x": 620,
+     "y": 520,
+     "h": 560
+    },
+    {
+     "type": "label",
+     "text": "Healthy snacking business",
+     "x": 1300,
+     "y": 260,
+     "size": 54,
+     "bg": "#fff",
+     "at_word": 144
+    },
+    {
+     "type": "prop",
+     "name": "chips_bag",
+     "x": 1200,
+     "y": 650,
+     "w": 220,
+     "at_word": 145
+    },
+    {
+     "type": "prop",
+     "name": "protein_bar",
+     "x": 1520,
+     "y": 730,
+     "w": 320,
+     "at_word": 145,
+     "at": 0.2,
+     "rotate": -8
+    }
+   ]
+  },
+  {
+   "id": "nothing_fancy",
+   "word": 147,
+   "elements": [
+    {
+     "type": "text",
+     "text": "Nothing fancy",
+     "x": 960,
+     "y": 160,
+     "size": 70
+    },
+    {
+     "type": "prop",
+     "name": "protein_bar",
+     "x": 640,
+     "y": 580,
+     "w": 420,
+     "at_word": 150,
+     "in": "drop"
+    },
+    {
+     "type": "label",
+     "text": "Protein bars",
+     "x": 640,
+     "y": 780,
+     "size": 54,
+     "at_word": 151
+    },
+    {
+     "type": "prop",
+     "name": "chips_bag",
+     "x": 1300,
+     "y": 560,
+     "w": 230,
+     "at_word": 153,
+     "in": "drop"
+    },
+    {
+     "type": "label",
+     "text": "Healthy chips",
+     "x": 1300,
+     "y": 800,
+     "size": 54,
+     "at_word": 154
+    }
+   ]
+  }
+ ]
+}

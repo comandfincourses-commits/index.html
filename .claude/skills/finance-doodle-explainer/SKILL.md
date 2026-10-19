@@ -20,7 +20,7 @@ Read before starting:
 SK=<path to this skill>            # e.g. ~/.claude/skills/finance-doodle-explainer
 bash $SK/scripts/setup.sh          # checks ffmpeg/node/python, installs faster-whisper, numpy, playwright+chromium
 ```
-Needs: Python 3.9+, Node 18+, ffmpeg. Whisper's model downloads once from huggingface.co. If that host is blocked, use the script-alignment fallback in step 2.
+Needs: Python 3.9+, Node 18+, ffmpeg. Whisper's model downloads once from huggingface.co. If that host is blocked, use `transcribe_sherpa.py` (model from GitHub) or the script-alignment fallback in step 2.
 
 ## 1. Intake (ask only what's missing)
 
@@ -28,6 +28,8 @@ Needs: Python 3.9+, Node 18+, ffmpeg. Whisper's model downloads once from huggin
 - The **script text**, if they have it. It improves accuracy and is required if Whisper can't run.
 - Video title. Branding defaults: `COMandFIN` watermark, ₹ and lakh/crore formatting, yellow `#FDCF3F`. Change these only if asked.
 - Music: `generated` (built-in ukulele loop, fine for drafts), `none`, or a path to a royalty-free track (recommended for publishing).
+
+To use only part of the audio (e.g. "first 1 minute"): prepare and transcribe a slightly longer piece (`ffmpeg -t 75`), then cut at the **sentence end** nearest the requested length, so the clip never stops mid-thought. Trim `voice.wav` there (with a 0.3 s fade) and drop later words from the transcript.
 
 Create a work folder per video, e.g. `videos/<slug>/`, and do everything there.
 
@@ -37,7 +39,9 @@ Create a work folder per video, e.g. `videos/<slug>/`, and do everything there.
 python $SK/scripts/prep_audio.py INPUT_AUDIO WORK [--denoise] [--trim]
 python $SK/scripts/transcribe.py WORK/voice.wav WORK --model small.en
 #   Hinglish / Hindi / heavy accent:  --model large-v3 --language hi   (or omit --language)
-# Fallback when Whisper is unavailable (needs the exact script):
+# If huggingface.co is blocked: Parakeet via sherpa-onnx (model downloads from GitHub releases, English only)
+python $SK/scripts/transcribe_sherpa.py WORK/voice.wav WORK --model-dir <parakeet dir>   # setup steps in the script header
+# Last resort when no speech model is available (needs the exact script):
 python $SK/scripts/align_script.py WORK/voice.wav script.txt WORK
 ```
 Outputs: `transcript.json`, `transcript.txt` (numbered sentences plus a word index), `captions.srt`. Read `transcript.txt` in full. Fix any obviously misheard finance terms in `transcript.json` (e.g. "sip" → "SIP") before planning.
