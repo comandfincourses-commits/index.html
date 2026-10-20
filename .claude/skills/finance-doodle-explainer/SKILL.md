@@ -27,7 +27,7 @@ Needs: Python 3.9+, Node 18+, ffmpeg. Whisper's model downloads once from huggin
 - The audio file (mp3/wav/m4a, or a video to take the audio from). Required.
 - The **script text**, if they have it. It improves accuracy and is required if Whisper can't run.
 - Video title. Branding defaults: `COMandFIN` watermark, ₹ and lakh/crore formatting, yellow `#FDCF3F`. Change these only if asked.
-- Music: `generated` (built-in ukulele loop, fine for drafts), `none`, or a path to a royalty-free track (recommended for publishing).
+- Music: an original arranged track from `scripts/music_gen.py` (default for publishing: `python $SK/scripts/music_gen.py WORK/music.wav --duration <secs>` then `build.py WORK --music WORK/music.wav`), `generated` (simple loop, drafts only), `none`, or the user's own royalty-free file.
 
 To use only part of the audio (e.g. "first 1 minute"): prepare and transcribe a slightly longer piece (`ffmpeg -t 75`), then cut at the **sentence end** nearest the requested length, so the clip never stops mid-thought. Trim `voice.wav` there (with a 0.3 s fade) and drop later words from the transcript.
 
