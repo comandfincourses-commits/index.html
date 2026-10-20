@@ -212,8 +212,9 @@
     if (o.title) { s += txt(120, y, o.title, fit(o.title, 28)); y += 46; }
     if (o.big) { s += txt(120, y + 10, o.big, Math.min(46, Math.floor(300 / String(o.big).length)), o.bigColor || K); y += 70; }
     for (const r of rows) {
-      s += `<text x="34" y="${y}" font-family="Mali" font-weight="700" font-size="19" fill="${K}" dominant-baseline="central">${esc(r[0])}</text>`;
-      s += `<text x="206" y="${y}" font-family="Mali" font-weight="700" font-size="19" fill="${r[2] || K}" text-anchor="end" dominant-baseline="central">${esc(r[1])}</text>`;
+      const fs = Math.min(19, Math.floor(300 / (String(r[0]).length + String(r[1]).length + 2)));
+      s += `<text x="34" y="${y}" font-family="Mali" font-weight="700" font-size="${fs}" fill="${K}" dominant-baseline="central">${esc(r[0])}</text>`;
+      s += `<text x="206" y="${y}" font-family="Mali" font-weight="700" font-size="${fs}" fill="${r[2] || K}" text-anchor="end" dominant-baseline="central">${esc(r[1])}</text>`;
       y += 38;
     }
     return svg('0 0 240 440', 240, 440, s);
@@ -338,14 +339,14 @@
 
   P.document = (o = {}) => {
     let s = `<path d="M10,10 L170,10 L220,60 L220,290 L10,290 Z" ${st('#fff')}/><path d="M170,10 L170,60 L220,60" ${st('#E0E0E0', 5)}/>`;
-    s += txt(110, 48, o.title || 'REPORT', o.title && o.title.length > 9 ? 20 : 26);
+    s += txt(100, 48, o.title || 'REPORT', Math.min(26, Math.floor(250 / String(o.title || 'REPORT').length)));
     const rows = o.rows || null;
     if (rows) rows.slice(0, 6).forEach((r, i) => {
       s += `<text x="26" y="${100 + i * 32}" font-family="Mali" font-weight="700" font-size="17" dominant-baseline="central">${esc(r[0])}</text>` +
         `<text x="204" y="${100 + i * 32}" font-family="Mali" font-weight="700" font-size="17" text-anchor="end" fill="${r[2] || K}" dominant-baseline="central">${esc(r[1])}</text>`;
     });
     else for (let i = 0; i < 6; i++) s += `<path d="M30,${96 + i * 30} L${i % 2 ? 160 : 196},${96 + i * 30}" stroke="#9E9E9E" stroke-width="6"/>`;
-    if (o.stamp) s += `<g transform="rotate(-14 150 250)"><rect x="96" y="226" width="110" height="44" rx="6" fill="none" stroke="${o.stampColor || C.red}" stroke-width="5"/>` + txt(151, 249, o.stamp, 22, o.stampColor || C.red) + '</g>';
+    if (o.stamp) { const sw2 = Math.max(110, String(o.stamp).length * 15 + 24); s += `<g transform="rotate(-14 150 250)"><rect x="${151 - sw2 / 2}" y="226" width="${sw2}" height="44" rx="6" fill="#fff" fill-opacity=".6" stroke="${o.stampColor || C.red}" stroke-width="5"/>` + txt(151, 249, o.stamp, 22, o.stampColor || C.red) + '</g>'; }
     return svg('0 0 230 300', 230, 300, s);
   };
 

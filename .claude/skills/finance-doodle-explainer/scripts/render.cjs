@@ -133,7 +133,7 @@ function timeWords(el, sc, dur, words) {
     }
   }
   let prev = 0;
-  return tokens.map((w, i) => { const t = Math.max(prev, Math.max(at, times[i] ?? at)); prev = t; return { w, t: Math.min(t, Math.max(0, dur - 0.05)) }; });
+  return tokens.map((w, i) => { const t = Math.max(prev, Math.max(at, times[i] ?? at)); prev = t; return { w, t: Math.min(t, Math.max(0, dur - 0.35)) }; });
 }
 
 /* ---------------- browser ---------------- */
