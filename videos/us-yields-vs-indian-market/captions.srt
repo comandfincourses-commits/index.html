@@ -1,0 +1,543 @@
+1
+00:00:00,240 --> 00:00:01,920
+Friends, there is one number which
+
+2
+00:00:02,080 --> 00:00:04,400
+has pulled out fifty two thousand crore
+
+3
+00:00:04,480 --> 00:00:06,640
+from Indian stock market in just two
+
+4
+00:00:06,880 --> 00:00:07,360
+weeks.
+
+5
+00:00:07,600 --> 00:00:09,280
+It is not the Sensex, it is
+
+6
+00:00:09,280 --> 00:00:10,320
+not the RBI.
+
+7
+00:00:10,400 --> 00:00:12,240
+In fact, it is not even an
+
+8
+00:00:12,400 --> 00:00:13,360
+Indian number.
+
+9
+00:00:13,600 --> 00:00:15,440
+It is an interest rate on a
+
+10
+00:00:15,520 --> 00:00:17,920
+bond issued by the US government.
+
+11
+00:00:18,440 --> 00:00:20,760
+Just imagine it is a Monday morning
+
+12
+00:00:20,920 --> 00:00:22,920
+and you open your trading app.
+
+13
+00:00:23,080 --> 00:00:25,560
+Your favorite company has just announced record
+
+14
+00:00:25,720 --> 00:00:27,640
+profits and the share price is down
+
+15
+00:00:27,880 --> 00:00:29,160
+by 4%.
+
+16
+00:00:29,400 --> 00:00:31,320
+You check the news, no problem with
+
+17
+00:00:31,480 --> 00:00:33,720
+the company, no problem with India.
+
+18
+00:00:33,960 --> 00:00:35,240
+Then who is selling?
+
+19
+00:00:35,320 --> 00:00:37,320
+The answer lies in a market most
+
+20
+00:00:37,480 --> 00:00:38,600
+of us ignored.
+
+21
+00:00:38,980 --> 00:00:41,220
+but which actually runs the show?
+
+22
+00:00:41,380 --> 00:00:43,380
+The bond market.
+
+23
+00:00:43,620 --> 00:00:45,540
+Why does bond price fall when interest
+
+24
+00:00:45,860 --> 00:00:47,060
+rates goes up?
+
+25
+00:00:47,140 --> 00:00:48,740
+Let me explain in forty seconds.
+
+26
+00:00:48,820 --> 00:00:50,900
+A bond is nothing but a loan
+
+27
+00:00:51,060 --> 00:00:51,620
+receipt.
+
+28
+00:00:51,800 --> 00:00:53,800
+The government takes thousand from you and
+
+29
+00:00:53,960 --> 00:00:56,120
+says every year I will pay you
+
+30
+00:00:56,200 --> 00:00:57,480
+seventy as interest.
+
+31
+00:00:57,640 --> 00:01:00,040
+That is seven percent and after ten
+
+32
+00:01:00,200 --> 00:01:03,160
+years I will return your one thousand.
+
+33
+00:01:03,400 --> 00:01:06,440
+Now let's imagine interest rates go up.
+
+34
+00:01:06,880 --> 00:01:09,120
+New government bonds are getting eight percent.
+
+35
+00:01:09,280 --> 00:01:11,040
+That means from new bond, you will
+
+36
+00:01:11,120 --> 00:01:13,280
+receive eighty every year.
+
+37
+00:01:13,520 --> 00:01:15,920
+So who will pay thousand for old
+
+38
+00:01:16,320 --> 00:01:18,160
+seventy rupees interest bond?
+
+39
+00:01:18,580 --> 00:01:19,860
+absolutely nobody.
+
+40
+00:01:20,100 --> 00:01:21,780
+If you want to sell it, you
+
+41
+00:01:21,860 --> 00:01:23,460
+will have to reduce the price to
+
+42
+00:01:23,540 --> 00:01:25,860
+around nine thirty three so that the
+
+43
+00:01:26,020 --> 00:01:28,660
+new buyer also earns eight percent.
+
+44
+00:01:29,100 --> 00:01:30,780
+That is the golden rule of bond
+
+45
+00:01:30,860 --> 00:01:31,340
+market.
+
+46
+00:01:31,500 --> 00:01:33,820
+Yield goes up, price comes down.
+
+47
+00:01:34,060 --> 00:01:36,460
+Yield comes down, price goes up.
+
+48
+00:01:36,700 --> 00:01:38,380
+Just like a seesaw.
+
+49
+00:01:38,620 --> 00:01:41,500
+And the entire stock market is sitting
+
+50
+00:01:41,660 --> 00:01:43,020
+on this seesaw.
+
+51
+00:01:43,420 --> 00:01:45,100
+Now the question is how does this
+
+52
+00:01:45,180 --> 00:01:47,500
+seesaw bring down your share price?
+
+53
+00:01:47,660 --> 00:01:48,620
+There are three ways.
+
+54
+00:01:48,860 --> 00:01:50,060
+First, competition.
+
+55
+00:01:50,220 --> 00:01:51,980
+Today, the Government of India's ten years
+
+56
+00:01:52,140 --> 00:01:53,820
+bond is giving around seven point five
+
+57
+00:01:53,900 --> 00:01:56,220
+percent with almost zero risk.
+
+58
+00:01:56,300 --> 00:01:58,700
+So risky shares must offer much more
+
+59
+00:01:59,020 --> 00:02:01,500
+and their prices adjust downwards.
+
+60
+00:02:01,740 --> 00:02:03,100
+Second is valuation.
+
+61
+00:02:03,260 --> 00:02:06,540
+The discount rate analysts use is built
+
+62
+00:02:06,540 --> 00:02:08,060
+on the government bond yield.
+
+63
+00:02:08,380 --> 00:02:10,780
+yield goes up, discount rate goes up,
+
+64
+00:02:10,860 --> 00:02:12,220
+valuation comes down.
+
+65
+00:02:12,460 --> 00:02:14,460
+Same profit, lower price.
+
+66
+00:02:14,620 --> 00:02:16,780
+The third one is borrowing cost.
+
+67
+00:02:17,020 --> 00:02:19,180
+Costlier loans, lower profit.
+
+68
+00:02:19,340 --> 00:02:20,460
+Quick question for you.
+
+69
+00:02:20,540 --> 00:02:23,580
+If bond yields start falling, what will
+
+70
+00:02:23,660 --> 00:02:25,100
+happen to the stock market?
+
+71
+00:02:25,260 --> 00:02:27,660
+Do write your answer in the comments.
+
+72
+00:02:28,260 --> 00:02:29,940
+Now we will try to understand why
+
+73
+00:02:30,100 --> 00:02:31,940
+would a fund manager sitting in New
+
+74
+00:02:31,940 --> 00:02:33,700
+York sell Indian shares.
+
+75
+00:02:33,860 --> 00:02:35,780
+Let us sit in her chair.
+
+76
+00:02:35,860 --> 00:02:38,020
+She is managing one hundred million dollars.
+
+77
+00:02:38,180 --> 00:02:40,500
+Today, the US ten year Treasury yield
+
+78
+00:02:40,580 --> 00:02:41,860
+is around five point one percent to
+
+79
+00:02:41,860 --> 00:02:42,900
+five point two percent.
+
+80
+00:02:43,080 --> 00:02:45,960
+On 14th October, it even crossed 5.3
+
+81
+00:02:46,120 --> 00:02:48,600
+percent, that too in dollars from the
+
+82
+00:02:48,760 --> 00:02:50,840
+world's safest borrower.
+
+83
+00:02:51,340 --> 00:02:53,580
+India's ten-year yield is around seven point
+
+84
+00:02:53,740 --> 00:02:54,540
+four percent.
+
+85
+00:02:54,700 --> 00:02:56,540
+So the gap is only two point
+
+86
+00:02:56,780 --> 00:02:58,300
+two percentage points.
+
+87
+00:02:58,540 --> 00:03:01,580
+As per SBI research, the average gap
+
+88
+00:03:01,900 --> 00:03:03,980
+over the last twenty five years has
+
+89
+00:03:04,140 --> 00:03:05,580
+been more than four.
+
+90
+00:03:05,880 --> 00:03:08,920
+In India, she takes currency risk, hedging
+
+91
+00:03:09,000 --> 00:03:10,920
+cost and market risk for a small
+
+92
+00:03:11,000 --> 00:03:12,040
+extra return.
+
+93
+00:03:12,280 --> 00:03:14,360
+Back home, she gets five percent in
+
+94
+00:03:14,440 --> 00:03:16,520
+dollars almost risk free.
+
+95
+00:03:16,900 --> 00:03:18,020
+So what she will do?
+
+96
+00:03:18,180 --> 00:03:21,140
+She will sell Indian shares, convert rupees
+
+97
+00:03:21,220 --> 00:03:24,260
+into dollars, and buy US Treasury bonds.
+
+98
+00:03:24,420 --> 00:03:27,060
+When hundreds of funds do this together,
+
+99
+00:03:27,220 --> 00:03:30,020
+the dollar strengthens, the rupee weakens,
+
+100
+00:03:30,260 --> 00:03:33,300
+and weak rupee pushes even more money
+
+101
+00:03:33,460 --> 00:03:33,780
+out.
+
+102
+00:03:34,180 --> 00:03:35,540
+Vicious circle.
+
+103
+00:03:35,540 --> 00:03:37,780
+The remote control of the Indian market.
+
+104
+00:03:38,140 --> 00:03:40,460
+is sitting in America.
+
+105
+00:03:40,700 --> 00:03:42,940
+And this is not just theory.
+
+106
+00:03:43,020 --> 00:03:45,500
+In twenty twenty six so far, foreign
+
+107
+00:03:45,580 --> 00:03:48,140
+portfolio investors have withdrawn three point one
+
+108
+00:03:48,300 --> 00:03:51,180
+two lakh crore from Indian equities.
+
+109
+00:03:51,340 --> 00:03:54,060
+That is almost double than one point
+
+110
+00:03:54,220 --> 00:03:56,880
+six six lakh crore They withdrew in
+
+111
+00:03:57,200 --> 00:03:58,800
+full twenty twenty five.
+
+112
+00:03:59,040 --> 00:04:01,840
+The big reason the US high yields,
+
+113
+00:04:02,000 --> 00:04:04,880
+costly crude oil and stronger dollar.
+
+114
+00:04:05,460 --> 00:04:07,860
+Are you selling your shares just because FIIs
+
+115
+00:04:07,940 --> 00:04:08,660
+are selling.
+
+116
+00:04:08,820 --> 00:04:11,300
+Wait, most people read FIIs are selling
+
+117
+00:04:11,460 --> 00:04:12,900
+as India is in trouble.
+
+118
+00:04:13,060 --> 00:04:13,940
+That is wrong.
+
+119
+00:04:14,500 --> 00:04:16,740
+FII selling is mostly not about India.
+
+120
+00:04:16,820 --> 00:04:18,500
+It is about comparing returns.
+
+121
+00:04:18,740 --> 00:04:20,500
+And the proof came in this month
+
+122
+00:04:20,660 --> 00:04:23,300
+itself when the US ten-year yield came
+
+123
+00:04:23,380 --> 00:04:28,340
+down from Above 5.3% to around 5.08%.
+
+124
+00:04:28,500 --> 00:04:31,220
+Foreign investors came back and bought Indian
+
+125
+00:04:31,300 --> 00:04:33,380
+shares for a few sessions.
+
+126
+00:04:33,620 --> 00:04:36,020
+India did not change in those few
+
+127
+00:04:36,100 --> 00:04:36,500
+days.
+
+128
+00:04:36,580 --> 00:04:38,260
+The US yield changed.
+
+129
+00:04:38,420 --> 00:04:40,820
+So before you panic and sell, check
+
+130
+00:04:40,900 --> 00:04:43,780
+one number first, that is US ten
+
+131
+00:04:43,860 --> 00:04:45,300
+years treasury yield.
+
+132
+00:04:45,820 --> 00:04:47,020
+I would like to give you the
+
+133
+00:04:47,100 --> 00:04:50,220
+interview tip, which asked you how rising
+
+134
+00:04:50,460 --> 00:04:53,980
+US yield affect emerging markets like India
+
+135
+00:04:54,380 --> 00:04:58,380
+with three phrases capital outflow, currency depreciation
+
+136
+00:04:58,780 --> 00:05:00,380
+and valuation compression.

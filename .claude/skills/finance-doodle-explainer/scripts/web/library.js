@@ -470,6 +470,38 @@
     `<path d="M100,170 Q20,110 14,62 Q10,14 56,12 Q86,12 100,44 Q114,12 144,12 Q190,14 186,62 Q180,110 100,170 Z" ${st(o.color || C.red)}/>` +
     `<path d="M44,50 Q50,32 68,30" fill="none" stroke="#fff" stroke-width="8"/>`);
 
+  P.seesaw = (o = {}) => {
+    // tilt: -1 = left side down, +1 = right side down
+    const a = (o.tilt ?? 0.6) * 14;
+    const cx = 300, cy = 190, L = 270;
+    let s = `<path d="M${cx},${cy + 8} L${cx - 60},300 L${cx + 60},300 Z" ${st(C.grey)}/>`;
+    s += `<g transform="rotate(${a} ${cx} ${cy})"><rect x="${cx - L}" y="${cy - 12}" width="${2 * L}" height="24" rx="8" ${st('#B07A3F')}/>` +
+      `<rect x="${cx - L + 10}" y="${cy - 92}" width="120" height="80" rx="10" ${st(o.leftColor || C.blue)}/>` + txt(cx - L + 70, cy - 52, o.left || 'YIELD', 26, '#fff') +
+      `<rect x="${cx + L - 130}" y="${cy - 92}" width="120" height="80" rx="10" ${st(o.rightColor || C.green)}/>` + txt(cx + L - 70, cy - 52, o.right || 'PRICE', 26, '#fff') + '</g>';
+    s += `<circle cx="${cx}" cy="${cy}" r="12" ${st(C.gold, 5)}/>`;
+    return svg('0 -20 600 330', 600, 330, s);
+  };
+
+  P.flag = (o = {}) => {
+    let s = `<path d="M20,10 L20,290" stroke="${K}" stroke-width="10"/>`;
+    if (o.country === 'us') {
+      for (let i = 0; i < 7; i++) s += `<rect x="26" y="${20 + i * 22}" width="230" height="22" fill="${i % 2 ? '#fff' : '#D62828'}"/>`;
+      s += `<rect x="26" y="20" width="100" height="88" fill="#1D3A8A"/>`;
+      for (let r = 0; r < 4; r++) for (let c = 0; c < 4; c++) s += `<circle cx="${40 + c * 24}" cy="${32 + r * 21}" r="4" fill="#fff"/>`;
+    } else {
+      s += `<rect x="26" y="20" width="230" height="51" fill="#FF9933"/><rect x="26" y="71" width="230" height="52" fill="#fff"/><rect x="26" y="123" width="230" height="51" fill="#138808"/>`;
+      s += `<circle cx="141" cy="97" r="20" fill="none" stroke="#1D3A8A" stroke-width="4"/><circle cx="141" cy="97" r="4" fill="#1D3A8A"/>`;
+      for (let i = 0; i < 12; i++) { const an = i * Math.PI / 6; s += `<path d="M141,97 L${141 + 20 * Math.cos(an)},${97 + 20 * Math.sin(an)}" stroke="#1D3A8A" stroke-width="2"/>`; }
+    }
+    s += `<rect x="26" y="20" width="230" height="154" fill="none" stroke="${K}" stroke-width="6"/>`;
+    return svg('0 0 270 300', 270, 300, s);
+  };
+
+  P.bond = (o = {}) => svg('0 0 340 230', 340, 230,
+    `<rect x="8" y="8" width="324" height="214" rx="10" ${st('#FFF8E1')}/><rect x="24" y="24" width="292" height="182" rx="6" fill="none" stroke="#B8860B" stroke-width="5" stroke-dasharray="14 6"/>` +
+    txt(170, 62, o.title || 'GOVT BOND', 30) + txt(170, 110, o.value || '₹1,000', 46, '#1B5E20') + txt(170, 160, o.sub || '7% · 10 YEARS', 24, '#555') +
+    `<circle cx="280" cy="180" r="22" ${st(C.red, 4)}/>`);
+
   /* ---------------- Backgrounds ---------------- */
   function background(bg, W = 1920, H = 1080) {
     const wrap = inner => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${inner}</svg>`;
