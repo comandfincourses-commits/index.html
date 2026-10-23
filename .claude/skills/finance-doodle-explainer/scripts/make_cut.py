@@ -32,7 +32,8 @@ def main():
     for k, (s, e) in enumerate(rngs):
         p = os.path.join(a.out, f".part{k}.wav")
         fade = min(0.08, (e - s) / 4)
-        subprocess.run(["ffmpeg", "-y", "-v", "error", "-i", os.path.join(a.src, "voice.wav"), "-ss", str(s), "-to", str(e),
+        # seek BEFORE -i so timestamps restart at 0 (fades are computed on the clip's own clock)
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-ss", str(s), "-to", str(e), "-i", os.path.join(a.src, "voice.wav"),
                         "-af", f"afade=t=in:d={fade},afade=t=out:st={e - s - fade}:d={fade},apad=pad_dur={a.gap}", "-ar", "48000", "-ac", "1", p], check=True)
         parts.append(p)
         for w in words:

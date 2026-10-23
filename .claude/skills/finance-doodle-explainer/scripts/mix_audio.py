@@ -179,7 +179,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("workdir")
     ap.add_argument("--music", default=None, help="path to a music file, 'generated', or 'none'")
-    ap.add_argument("--music-db", type=float, default=None, help="music level vs voice (default -22)")
+    ap.add_argument("--music-db", type=float, default=None, help="music level vs voice (default -18; -25 or lower is inaudible on phones)")
     ap.add_argument("--sfx-db", type=float, default=None, help="SFX level (default -17)")
     ap.add_argument("--no-sfx", action="store_true")
     a = ap.parse_args()
@@ -194,7 +194,7 @@ def main():
     v[:len(voice)] = voice
 
     music_opt = a.music if a.music is not None else meta.get("music", "generated")
-    music_db = a.music_db if a.music_db is not None else meta.get("music_db", -22)
+    music_db = a.music_db if a.music_db is not None else meta.get("music_db", -18)
     sfx_db = a.sfx_db if a.sfx_db is not None else meta.get("sfx_db", -17)
 
     music = np.zeros(n)
