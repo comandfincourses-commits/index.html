@@ -39,7 +39,7 @@ Always run `scripts/timing_check.py` on the finished voiceover and state the est
 ## Workflow
 
 1. **Clarify (only if missing):** topic, language (English / Hinglish, default Hinglish for YouTube, English for LinkedIn), target length (default 75s), speed (default 1.1x), audience (students / professionals). If the user just names a topic, assume the defaults and say so in one line.
-2. **Pick the format** from `references/formats.md` that fits the topic (Myth vs Fact, 3 Mistakes, Explain like a CFO, Real Company Case, Interview Question, Excel Hack, Number Breakdown, Career Roadmap).
+2. **Pick the visual style.** For animated story videos (no presenter), follow `references/visual-style-animated.md` (story world → name the concept → numbered feature cards → slider scorecard; original Indian characters) and write the visual column as numbered animation scenes. This is the default for economics and concept explainers. Then **pick the format** from `references/formats.md` that fits the topic (Myth vs Fact, 3 Mistakes, Explain like a CFO, Real Company Case, Interview Question, Excel Hack, Number Breakdown, Career Roadmap, Concept Story).
 3. **Write 3 hook options** using `references/hooks.md`, then choose the strongest and say why in one line.
 4. **Write the script** with the beat structure below, inside the word budget.
 5. **Check timing** with `python3 scripts/timing_check.py <script.md> --speed <x>`.
@@ -125,5 +125,6 @@ When asked for multiple shorts (e.g. "10 shorts on valuation"), produce a series
 
 - `references/formats.md`: 8 proven short-form formats with skeletons and finance examples
 - `references/hooks.md`: hook formulas and banned openings
+- `references/visual-style-animated.md`: animated concept-story style (from the Econ Lowdown "Economics Explained" reference videos): story world, continuum board, numbered cards, slider scorecard, palette, 9:16 layout
 - `scripts/timing_check.py`: word count → duration estimate at 1.0x/1.1x/1.2x, flags anything outside 60–120s
 - `scripts/speed_and_format.sh`: ffmpeg speed-up (1.0–1.2x), 9:16 conversion, final-length verification

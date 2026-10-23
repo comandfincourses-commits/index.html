@@ -42,6 +42,12 @@ Pick one format per short. Each skeleton is for ~75s at 1.1x (~205 words). Scale
 - Beats: Skills (3) → tools → certifications → portfolio project → realistic salary range with source.
 - Avoid guarantees; use ranges from credible salary surveys.
 
+## 9. Concept Story (animated, no presenter)
+- Hook: drop the viewer into the story world with a question. "Why can't this wheat farmer charge even ₹1 more?"
+- Beats: Story scene → the proof moment (price up, customers leave) → name the concept → 3–4 numbered feature cards → scorecard recap → where it sits on the continuum → real-world / interview link → CTA "Next: <next structure>".
+- Best for: market structures, elasticity, opportunity cost, time value of money, inflation, any concept that can be *shown* before it is *named*.
+- Visuals: see `visual-style-animated.md`.
+
 ## Visual style defaults
 - Speaker framed chest-up, upper third clear for on-screen text.
 - Brand colours for text pops; max 6 words on screen at once.
