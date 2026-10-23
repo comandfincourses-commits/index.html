@@ -96,9 +96,23 @@ function resolveStory(story, transcript) {
   }
   const wm = meta.watermark ? Object.assign({}, meta.watermark) : null;
   if (wm && wm.image) wm.image = fileUrl(wm.image);
+  // Burned-in captions (Shorts/Reels): phrases of up to N words, current word highlighted
+  let captions = null;
+  if (meta.captions && words.length) {
+    const c = Object.assign({ words: 4, y: 0.8, size: 64 }, meta.captions === true ? {} : meta.captions);
+    const groups = [];
+    let g = [];
+    for (const wd of words.filter(x => x.w && x.w.trim())) {
+      if (g.length && (g.length >= c.words || wd.start - g[g.length - 1].end > 0.6)) { groups.push(g); g = []; }
+      g.push({ w: wd.w.replace(/[,;:]$/, ''), t: wd.start, e: wd.end });
+      if (/[.!?]$/.test(wd.w)) { groups.push(g); g = []; }
+    }
+    if (g.length) groups.push(g);
+    captions = Object.assign(c, { groups: groups.map((gr, i) => ({ t: gr[0].t, end: (groups[i + 1] ? Math.min(groups[i + 1][0].t, gr[gr.length - 1].e + 0.8) : gr[gr.length - 1].e + 0.8), words: gr })) });
+  }
   return {
     width: meta.width || 1920, height: meta.height || 1080, fps: meta.fps || 30,
-    duration, audio, watermark: wm, meta, scenes
+    duration, audio, watermark: wm, meta, scenes, captions
   };
 }
 
@@ -143,9 +157,11 @@ async function openPage(chromium, story, scale) {
   page.on('pageerror', e => console.error('[page error]', e.message));
   const tmpl = fs.readFileSync(path.join(WEB, 'template.html'), 'utf8')
     .replace(/__FONTS__/g, 'file://' + FONTS).replace(/__WEB__/g, 'file://' + WEB);
-  const htmlPath = path.join(storyDir, '.render_page.html');
+  // one file per worker: parallel workers must never read a half-written page
+  const htmlPath = path.join(storyDir, `.render_page_${process.pid}_${Math.random().toString(36).slice(2)}.html`);
   fs.writeFileSync(htmlPath, tmpl);
   await page.goto('file://' + htmlPath);
+  fs.unlinkSync(htmlPath);
   await page.evaluate(async () => { await document.fonts.ready; });
   await page.evaluate(s => window.ENGINE.init(s), story);
   // force-load fonts used only inside SVG text

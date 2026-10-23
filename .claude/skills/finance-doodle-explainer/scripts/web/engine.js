@@ -7,7 +7,7 @@
   const LIB = window.LIB;
   const C = LIB.COLORS;
   let S = null, W = 1920, H = 1080;
-  let stage, current = null, built = null;
+  let stage, current = null, built = null, capEl = null;
 
   /* ---------- easing ---------- */
   const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
@@ -484,6 +484,18 @@
         });
       }
     }
+    if (S.captions) {
+      const g = S.captions.groups.find(x => t >= x.t && t < x.end);
+      let html = '';
+      if (g) {
+        let cur = -1;
+        g.words.forEach((wd, i) => { if (t >= wd.t) cur = i; });
+        html = g.words.map((wd, i) => `<span class="${i === cur ? 'on' : ''}">${LIB.esc(wd.w)}</span>`).join(' ');
+        sig += 'C' + S.captions.groups.indexOf(g) + ':' + cur;
+      }
+      if (capEl.innerHTML !== html) capEl.innerHTML = html;
+      capEl.style.display = g ? 'block' : 'none';
+    }
     // watermark is static, no signature impact
     return sig;
   }
@@ -498,6 +510,13 @@
       wm.style.opacity = story.watermark.opacity ?? 0.85;
       wm.innerHTML = story.watermark.image ? `<img src="${story.watermark.image}" style="height:${story.watermark.height || 56}px">` : LIB.esc(story.watermark.text || '');
       document.body.appendChild(wm);
+    }
+    if (story.captions) {
+      capEl = document.createElement('div');
+      capEl.className = 'caps';
+      capEl.style.top = (story.captions.y * H) + 'px';
+      capEl.style.fontSize = story.captions.size + 'px';
+      document.body.appendChild(capEl);
     }
     current = null; built = null;
     return true;

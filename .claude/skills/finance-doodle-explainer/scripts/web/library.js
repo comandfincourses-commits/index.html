@@ -502,6 +502,34 @@
     txt(170, 62, o.title || 'GOVT BOND', 30) + txt(170, 110, o.value || '₹1,000', 46, '#1B5E20') + txt(170, 160, o.sub || '7% · 10 YEARS', 24, '#555') +
     `<circle cx="280" cy="180" r="22" ${st(C.red, 4)}/>`);
 
+  P.chat = (o = {}) => {
+    // group-chat phone: o.title, o.msgs = [[sender, text], ...]
+    const msgs = o.msgs || [['Friend', 'Hi!']];
+    let s = `<rect x="6" y="6" width="288" height="528" rx="34" ${st('#222')}/>` +
+      `<rect x="20" y="40" width="260" height="450" rx="8" fill="#ECE5DD" stroke="${K}" stroke-width="3"/>` +
+      `<rect x="20" y="40" width="260" height="56" fill="#128C7E"/>` + txt(150, 68, o.title || 'IPO GROUP', 22, '#fff') +
+      `<rect x="120" y="506" width="60" height="10" rx="5" fill="#555"/>`;
+    let y = 112;
+    msgs.slice(0, 4).forEach(([who, text], i) => {
+      const words = String(text).split(' '), lines = [];
+      let cur = '';
+      for (const wd of words) { if ((cur + ' ' + wd).trim().length > 20) { lines.push(cur.trim()); cur = wd; } else cur += ' ' + wd; }
+      if (cur.trim()) lines.push(cur.trim());
+      const h = 30 + lines.length * 22;
+      s += `<rect x="32" y="${y}" width="236" height="${h}" rx="10" fill="${i % 2 ? '#DCF8C6' : '#fff'}" stroke="${K}" stroke-width="2"/>`;
+      s += `<text x="44" y="${y + 18}" font-family="Mali" font-weight="700" font-size="14" fill="#128C7E">${esc(who)}</text>`;
+      lines.forEach((ln, k) => { s += `<text x="44" y="${y + 40 + k * 22}" font-family="Mali" font-weight="700" font-size="17" fill="${K}">${esc(ln)}</text>`; });
+      y += h + 10;
+    });
+    return svg('0 0 300 540', 300, 540, s);
+  };
+
+  P.anchor = (o = {}) => svg('0 0 240 280', 240, 280,
+    `<circle cx="120" cy="40" r="24" fill="none" stroke="${K}" stroke-width="20"/><circle cx="120" cy="40" r="24" fill="none" stroke="${o.color || C.grey}" stroke-width="9"/>` +
+    `<path d="M120,64 L120,250 M70,110 L170,110 M30,170 Q40,250 120,250 Q200,250 210,170" fill="none" stroke="${K}" stroke-width="30"/>` +
+    `<path d="M120,64 L120,250 M70,110 L170,110 M30,170 Q40,250 120,250 Q200,250 210,170" fill="none" stroke="${o.color || C.grey}" stroke-width="16"/>` +
+    `<path d="M14,186 L30,150 L50,184 Z M226,186 L210,150 L190,184 Z" ${st(o.color || C.grey, 5)}/>`);
+
   /* ---------------- Backgrounds ---------------- */
   function background(bg, W = 1920, H = 1080) {
     const wrap = inner => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">${inner}</svg>`;

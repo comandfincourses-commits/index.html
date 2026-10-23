@@ -261,8 +261,14 @@ def main():
     raw = os.path.join(a.workdir, ".mix_raw.f32")
     st.tofile(raw)
     out = os.path.join(a.workdir, "mix.wav")
-    r = subprocess.run(["ffmpeg", "-y", "-v", "error", "-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", raw,
-                        "-af", "loudnorm=I=-14:TP=-1.0:LRA=11", "-ar", str(SR), out], capture_output=True, text=True)
+    # two-pass loudnorm: single-pass undershoots by ~3 LU on short (<90 s) clips
+    src = ["-f", "f32le", "-ar", str(SR), "-ac", "2", "-i", raw]
+    probe = subprocess.run(["ffmpeg", "-nostats"] + src + ["-af", "loudnorm=I=-14:TP=-1.0:LRA=11:print_format=json", "-f", "null", "-"],
+                           capture_output=True, text=True).stderr
+    j = json.loads(probe[probe.rindex("{"):])
+    ln = (f"loudnorm=I=-14:TP=-1.0:LRA=11:measured_I={j['input_i']}:measured_TP={j['input_tp']}:"
+          f"measured_LRA={j['input_lra']}:measured_thresh={j['input_thresh']}:offset={j['target_offset']}:linear=true")
+    r = subprocess.run(["ffmpeg", "-y", "-v", "error"] + src + ["-af", ln, "-ar", str(SR), out], capture_output=True, text=True)
     os.remove(raw)
     if r.returncode != 0:
         sys.exit(r.stderr)

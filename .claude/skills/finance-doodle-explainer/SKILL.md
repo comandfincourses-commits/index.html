@@ -77,6 +77,13 @@ python $SK/scripts/build.py WORK --workers 4            # final: about 0.7× rea
 ```
 Output goes to `WORK/output/`: `<Title>.mp4`, `<Title>_thumbnail.png` and `_1280x720.jpg`, `<Title>.srt`, `chapters.txt`.
 
+## 5b. Shorts / Reels and Instagram carousel
+
+- **Cut**: `python $SK/scripts/make_cut.py WORK SHORT_WORK 12.4-45.0 [60.2-71.0 ...]`. Cut at sentence ends from `transcript.txt`, then `fix_transcript.py SHORT_WORK fixes.txt` to correct misheard words (captions are burned in, so spelling matters).
+- **Storyboard**: set `meta.width: 1080, height: 1920, captions: {words: 3, y: 0.79, size: 78}` and put the watermark top-right. Design for centre x = 540: stack elements vertically, keep big text above y ≈ 1350 (the caption band sits below it), open with a hook title in the first second, and end with a 3–4 s "Follow for more" card. Keep the same cast as the long video.
+- **Carousel**: render each slide as a `meta.thumbnail` scene at 1080×1350 with `render.cjs --thumb`: one checklist point per slide, "CHECK n/7" tag, "Swipe →".
+- Write `shorts_copy.md` (title, description and hashtags per Short) and `instagram_caption.md`.
+
 ## 6. QA before handing over
 
 - Extract 8–12 frames around complex builds and look at them: `ffmpeg -ss T -i out.mp4 -frames:v 1 f.png`.
@@ -102,4 +109,5 @@ If running on the user's Windows PC, also copy the output folder to their prefer
 | Words appear early or late | Wrong sentence in `align_script` mode: make sure the script matches the speech. Override with `"words": [t0, t1, ...]` on the element |
 | Render slow | Fewer `camera` moves and `float` (moving frames can't be reused), more `--workers`, or `--draft` for checks |
 | Element off-centre | x/y is the element's **centre** on a 1920×1080 canvas; arrows/lines use absolute `from`/`to` |
+| Phrase lookups fail after `fix_transcript.py` | Corrections merge words; match on the corrected text (e.g. `w("grey market premium")` now finds "Grey market premium") |
 | Custom drawing needed | Use a `svg` element with your own inline SVG (thick `#111` strokes, width 6, flat fills) or an `image` element (PNG with transparent background) |
