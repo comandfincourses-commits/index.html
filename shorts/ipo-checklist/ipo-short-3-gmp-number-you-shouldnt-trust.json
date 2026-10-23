@@ -1,0 +1,214 @@
+{
+ "id": "ipo-short-3-gmp-number-you-shouldnt-trust",
+ "speed": 1.0,
+ "header": {
+  "kicker": "IPO CHECKLIST · 3",
+  "name": "CA Ankit Bajaj",
+  "role": "Founder, COMandFIN"
+ },
+ "theme": {
+  "bg1": "#D9D4F5",
+  "bg2": "#F3F1FC"
+ },
+ "segments": [
+  {
+   "src": "/root/.claude/uploads/923aea9c-8345-5808-96a6-1c89f31588ff/a1bed902-3.mkv",
+   "asr": "asr/asr3.json",
+   "start": 1.6,
+   "end": 30.7,
+   "text": "Just imagine. Your phone buzzes. A WhatsApp group message you have received, and the message is: New IPO opening tomorrow. Grey market premium is ₹120, and it will be a sure-shot listing gain. Your friends have applied, your colleagues have applied. Everybody is talking about it. But fear of missing out is real. But before you put in your hard-earned money, ask the questions a professional analyst asks."
+  },
+  {
+   "src": "/root/.claude/uploads/923aea9c-8345-5808-96a6-1c89f31588ff/5eb58398-9.mkv",
+   "asr": "asr/asr9.json",
+   "start": 5.35,
+   "end": 36.3,
+   "text": "So, applying for an IPO just because your grey market premium is high? You should rethink. Grey market premium is an unofficial and unregulated number. There is no exchange, no SEBI oversight and no guarantee. It can be built up in a few days, and it can vanish overnight. Applying only because of grey market premium is not investing. It is all speculation on a WhatsApp rumour. Use GMP, if at all, as a mood indicator. Never a reason."
+  },
+  {
+   "src": "/root/.claude/uploads/923aea9c-8345-5808-96a6-1c89f31588ff/afcd3162-11.mkv",
+   "asr": "asr/asr11.json",
+   "start": 11.75,
+   "end": 17.45,
+   "text": "If you cannot answer these questions, then do not apply. There will always be another IPO."
+  }
+ ],
+ "scenes": [
+  {
+   "at": "START",
+   "type": "phone",
+   "group": "IPO Tips Group",
+   "members": "Rahul, Priya, Amit + 254 others",
+   "msgs": [
+    {
+     "from": "Rahul",
+     "text": "New IPO opening *tomorrow*!"
+    },
+    {
+     "from": "Rahul",
+     "text": "GMP *₹120*. Sure-shot listing gain!"
+    },
+    {
+     "from": "Priya",
+     "color": "#C2185B",
+     "text": "Applied!"
+    },
+    {
+     "from": "Amit",
+     "color": "#7B1FA2",
+     "text": "Me too!"
+    }
+   ],
+   "badge": "FOMO",
+   "items": [
+    {
+     "k": "m0",
+     "at": "New IPO opening"
+    },
+    {
+     "k": "m1",
+     "at": "Grey market premium is"
+    },
+    {
+     "k": "m2",
+     "at": "Your friends have applied,"
+    },
+    {
+     "k": "m3",
+     "at": "your colleagues have applied."
+    },
+    {
+     "k": "badge",
+     "at": "But fear of"
+    }
+   ]
+  },
+  {
+   "at": "But before you put",
+   "type": "question",
+   "kicker": "PAUSE",
+   "text": "Ask what a *professional analyst* asks",
+   "icon": "doc"
+  },
+  {
+   "at": "So, applying for",
+   "type": "question",
+   "kicker": "CHECK 6",
+   "text": "Applying just because *GMP is high*?",
+   "sub": "Rethink.",
+   "items": [
+    {
+     "k": "sub",
+     "at": "You should rethink."
+    }
+   ],
+   "icon": "q"
+  },
+  {
+   "at": "Grey market premium is an",
+   "type": "stamp",
+   "title": "Grey Market Premium",
+   "word": "GMP",
+   "stamp": "UNOFFICIAL",
+   "rows": [
+    {
+     "text": "No exchange"
+    },
+    {
+     "text": "No SEBI oversight"
+    },
+    {
+     "text": "No guarantee"
+    }
+   ],
+   "items": [
+    {
+     "k": "stamp",
+     "at": "unofficial"
+    },
+    {
+     "k": "r0",
+     "at": "There is no exchange,"
+    },
+    {
+     "k": "r1",
+     "at": "no SEBI oversight"
+    },
+    {
+     "k": "r2",
+     "at": "and no guarantee."
+    }
+   ]
+  },
+  {
+   "at": "It can be built",
+   "type": "vanish",
+   "title": "Built up in *days*…",
+   "label": "Gone overnight",
+   "items": [
+    {
+     "k": "vanish",
+     "at": "and it can vanish"
+    }
+   ]
+  },
+  {
+   "at": "Applying only because",
+   "type": "lines",
+   "kicker": "REALITY CHECK",
+   "title": "That's *not* investing",
+   "rows": [
+    {
+     "icon": "no",
+     "text": "Applying only because of GMP"
+    },
+    {
+     "icon": "warn",
+     "text": "= Speculation on a *WhatsApp rumour*"
+    }
+   ],
+   "items": [
+    {
+     "k": "r0",
+     "at": "Applying only because"
+    },
+    {
+     "k": "r1",
+     "at": "It is all speculation"
+    }
+   ]
+  },
+  {
+   "at": "Use GMP,",
+   "type": "meter",
+   "title": "Use GMP, if at all, as a…",
+   "yes": "Mood indicator",
+   "no": "Never a reason",
+   "items": [
+    {
+     "k": "never",
+     "at": "Never a reason."
+    }
+   ]
+  },
+  {
+   "at": "If you cannot answer",
+   "type": "question",
+   "kicker": "THE RULE",
+   "text": "Can't answer the checks? *Don't apply.*",
+   "sub": "There will always be another IPO.",
+   "items": [
+    {
+     "k": "sub",
+     "at": "There will always"
+    }
+   ],
+   "icon": "no"
+  }
+ ],
+ "end_card": {
+  "title": "Full *7-point IPO checklist* on the channel",
+  "cta": "Follow COMandFIN",
+  "disclaimer": "Educational content only. Not investment advice."
+ }
+}

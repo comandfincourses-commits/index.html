@@ -1,0 +1,207 @@
+{
+ "id": "ipo-short-2-good-company-wrong-price",
+ "speed": 1.1,
+ "header": {
+  "kicker": "IPO CHECKLIST · 2",
+  "name": "CA Ankit Bajaj",
+  "role": "Founder, COMandFIN"
+ },
+ "theme": {
+  "bg1": "#8ECDCF",
+  "bg2": "#E3F4F4"
+ },
+ "segments": [
+  {
+   "src": "/root/.claude/uploads/923aea9c-8345-5808-96a6-1c89f31588ff/9269c1c2-6.mkv",
+   "asr": "asr/asr6.json",
+   "start": 4.25,
+   "end": 8.45,
+   "text": "A good company at the wrong price is a bad investment. Remember this line."
+  },
+  {
+   "src": "/root/.claude/uploads/923aea9c-8345-5808-96a6-1c89f31588ff/69ba49bc-5.mkv",
+   "asr": "asr/asr5.json",
+   "start": 3.35,
+   "end": 43.6,
+   "text": "Are the numbers real? So secondly, we check three years' financial statements of the company, and these financial statements you will find from the Red Herring Prospectus itself. We check whether the revenues are consistent. Is the company making profits, or are these numbers which are only promising in nature? So the most important thing is: check cash flow from the operations. Profit is an opinion, but cash is a reality. Cash is a fact. Company doing profit with negative operating cash flow is a red flag. And also check the debt. If IPO money is going to repay loans, find out why the company borrowed so much in the first place."
+  },
+  {
+   "src": "/root/.claude/uploads/923aea9c-8345-5808-96a6-1c89f31588ff/9269c1c2-6.mkv",
+   "asr": "asr/asr6.json",
+   "start": 8.65,
+   "end": 39.12,
+   "text": "The RHP has a section called Basis for Offer Price. It compares the company's P/E ratio with listed peers. Say the industry trades at 30 times earnings, and this IPO is priced at 60 times. You are paying double, so the company must grow much faster just to justify the price. Many IPOs are priced for perfection, because the seller wants the maximum price. And remember, the seller knows the business far better than you. So the full checklist is available on the channel."
+  }
+ ],
+ "scenes": [
+  {
+   "at": "START",
+   "type": "question",
+   "kicker": "REMEMBER THIS LINE",
+   "text": "A good company at the *wrong price* is a *bad investment*.",
+   "icon": "rupee"
+  },
+  {
+   "at": "Are the numbers real?",
+   "type": "lines",
+   "kicker": "CHECK 2",
+   "title": "Are the numbers *real*?",
+   "rows": [
+    {
+     "text": "3 years of financials (in the RHP)"
+    },
+    {
+     "text": "Revenue growing *consistently*?"
+    },
+    {
+     "text": "Real profits, or only *promises*?"
+    }
+   ],
+   "items": [
+    {
+     "k": "r0",
+     "at": "So secondly,"
+    },
+    {
+     "k": "r1",
+     "at": "We check whether"
+    },
+    {
+     "k": "r2",
+     "at": "Is the company making"
+    }
+   ]
+  },
+  {
+   "at": "So the most important",
+   "type": "bars",
+   "kicker": "PROFIT vs CASH",
+   "title": "Profit is an *opinion*. Cash is a *fact*.",
+   "bars": [
+    {
+     "label": "Profit",
+     "v": 60,
+     "val": "+ Profit"
+    },
+    {
+     "label": "Operating cash flow",
+     "v": -45,
+     "val": "− Cash"
+    }
+   ],
+   "note": "RED FLAG",
+   "items": [
+    {
+     "k": "b0",
+     "at": "Profit is an opinion,"
+    },
+    {
+     "k": "b1",
+     "at": "Company doing profit"
+    },
+    {
+     "k": "note",
+     "at": "is a red flag."
+    }
+   ]
+  },
+  {
+   "at": "And also check the debt.",
+   "type": "question",
+   "kicker": "AND CHECK DEBT",
+   "text": "IPO money going to *repay loans*?",
+   "sub": "Ask why the company borrowed so much in the first place.",
+   "items": [
+    {
+     "k": "sub",
+     "at": "find out why"
+    }
+   ],
+   "icon": "warn"
+  },
+  {
+   "at": "The RHP has a section",
+   "type": "doc",
+   "title": "Check 3: Is the *price* right?",
+   "doc": "Red Herring Prospectus (RHP)",
+   "sections": [
+    "Objects of the Offer",
+    "Basis for Offer Price",
+    "Risk Factors",
+    "Financial Information"
+   ],
+   "highlight": 1,
+   "items": [
+    {
+     "k": "hl",
+     "at": "Basis for Offer Price."
+    }
+   ]
+  },
+  {
+   "at": "Say the industry",
+   "type": "bars",
+   "kicker": "P/E COMPARISON",
+   "title": "Same industry, *double* the price",
+   "bars": [
+    {
+     "label": "Industry P/E",
+     "v": 30,
+     "val": "30x"
+    },
+    {
+     "label": "This IPO",
+     "v": 60,
+     "val": "60x",
+     "color": "accent"
+    }
+   ],
+   "note": "You pay DOUBLE",
+   "items": [
+    {
+     "k": "b0",
+     "at": "Say the industry"
+    },
+    {
+     "k": "b1",
+     "at": "and this IPO"
+    },
+    {
+     "k": "note",
+     "at": "You are paying double,"
+    }
+   ]
+  },
+  {
+   "at": "Many IPOs are priced",
+   "type": "lines",
+   "kicker": "REMEMBER",
+   "title": "Priced for *perfection*",
+   "rows": [
+    {
+     "icon": "warn",
+     "text": "The seller wants the *maximum price*"
+    },
+    {
+     "icon": "warn",
+     "text": "The seller knows the business *far better than you*"
+    }
+   ],
+   "items": [
+    {
+     "k": "r0",
+     "at": "because the seller"
+    },
+    {
+     "k": "r1",
+     "at": "And remember,"
+    }
+   ]
+  }
+ ],
+ "end_card": {
+  "title": "Full *7-point IPO checklist* on the channel",
+  "cta": "Follow COMandFIN",
+  "disclaimer": "Educational content only. Not investment advice."
+ }
+}

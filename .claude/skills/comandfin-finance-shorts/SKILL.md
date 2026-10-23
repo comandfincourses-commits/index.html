@@ -1,6 +1,6 @@
 ---
 name: comandfin-finance-shorts
-description: Create COMandFIN-style YouTube Shorts and Instagram Reels (1–2 minutes, played at 1.0x–1.2x) on finance, accounting, valuation, Excel, AI-in-finance, career and certification topics. Produces a timed, word-budgeted vertical-video script (hook, value beats, payoff, CTA) with on-screen text, B-roll/visual cues, captions, SEO title, description, hashtags and an ffmpeg speed/format pass. Use whenever the user asks for a short, reel, vertical video, 60-second/90-second explainer, "shorts script", or wants a topic turned into short-form content, even if they only name the topic.
+description: Create COMandFIN-style YouTube Shorts and Instagram Reels (1–2 minutes, played at 1.0x–1.2x), either as scripts or as finished MP4s edited from the user's own voice recordings, on finance, accounting, valuation, Excel, AI-in-finance, career and certification topics. Produces a timed, word-budgeted vertical-video script (hook, value beats, payoff, CTA) with on-screen text, B-roll/visual cues, captions, SEO title, description, hashtags and an ffmpeg speed/format pass. Use whenever the user asks for a short, reel, vertical video, 60-second/90-second explainer, "shorts script", or wants a topic turned into short-form content, even if they only name the topic. Also use when the user uploads voice/audio/screen recordings and asks to edit them into a short or reel.
 ---
 
 # COMandFIN Finance Shorts & Reels
@@ -46,6 +46,20 @@ Always run `scripts/timing_check.py` on the finished voiceover and state the est
 6. **Package it:** titles, description, hashtags, captions, thumbnail/cover text, pinned comment.
 7. **Edit notes:** the ffmpeg pass in `scripts/speed_and_format.sh` to apply speed, convert to 9:16 and verify the final length.
 8. **Save** to `shorts/<YYYY-MM-DD>-<slug>.md` in the working directory (the user's preferred local location is `D:\Certificate\claude ppts\ppts\`; tell them to copy it there if you can't write to it).
+
+## Workflow B: user supplies voice recordings → finished Short (MP4)
+
+Use when the user uploads audio/video recordings of themselves reading a script (e.g. screen recordings of a teleprompter, one file per script section) and asks you to edit them into Shorts.
+
+1. **Inspect** each file (`ffprobe`). If the video track is just a screen recording, use the audio only; read the script text off a few frames (`ffmpeg -ss <t> -frames:v 1`) to learn the section order.
+2. **Transcribe with word timings:** `python3 tools/asr.py <srt-stub-dir> <vosk-model-dir> in.mkv asr.json ...`. A small English Vosk model works offline. If Hugging Face is blocked, the npm package `transcribe2texts` ships `vosk-model-small-en-us-0.15` (unpack it and use only the model folder). `pip install --no-deps vosk` and give it an empty `srt.py` stub if the `srt` wheel won't build.
+3. **Pick the Shorts.** Follow the script's own "SHORT" markers, but combine sections until each Short is a complete 60–120s piece at 1.0–1.2x. Strong opener first (hook/story), one idea, end on a CTA or a rule-of-thumb line. Look for retakes and false starts in the transcript and cut them.
+4. **Write a spec** (`shorts/<topic>/<id>.json`): `segments` (source file, start/end seconds from the word timings, and the *corrected* transcript of exactly what is spoken), `scenes` (each starts at an anchor phrase from that transcript, with `items` for in-scene reveals), `header`, `theme`, `end_card`.
+5. **Build:** `python3 tools/build_short.py spec.json out/` tightens pauses to ≤0.32s, joins segments, then cleans the voice (high-pass, FFT denoise, presence EQ, compression), applies the speed-up with atempo and normalises to −14 LUFS. It also aligns the corrected words to the recognised timings for word-by-word captions and writes `timeline.json`. Check the printed length is 60–120s.
+6. **Preview, then render:** `node tools/render.mjs out/ --preview 3,20,40` writes PNG frames. Look at them and fix overlaps before `node tools/render.mjs out/` renders the 1080×1920 30 fps MP4 (Chromium + ffmpeg, with soft whooshes on scene changes).
+7. **Deliver** the MP4s plus a publishing pack (title, description, hashtags, pinned comment), and flag any statistic in the voiceover that you could not verify.
+
+Scene types in `tools/template.html`: `stockdrop`, `question` (optional `icon`: coins, warn, rupee, doc, q, ok, no), `split`, `stat`, `lines`, `doc`, `bars` (supports negative bars), `phone` (chat), `stamp`, `vanish`, `meter`, `end`. Add new types there in the same pattern.
 
 ## Beat structure (scale timings to chosen length)
 
@@ -128,3 +142,5 @@ When asked for multiple shorts (e.g. "10 shorts on valuation"), produce a series
 - `references/visual-style-animated.md`: animated concept-story style (from the Econ Lowdown "Economics Explained" reference videos): story world, continuum board, numbered cards, slider scorecard, palette, 9:16 layout
 - `scripts/timing_check.py`: word count → duration estimate at 1.0x/1.1x/1.2x, flags anything outside 60–120s
 - `scripts/speed_and_format.sh`: ffmpeg speed-up (1.0–1.2x), 9:16 conversion, final-length verification
+- `tools/asr.py`, `tools/build_short.py`, `tools/render.mjs`, `tools/template.html`: voice-recording → edited, captioned, animated Short (Workflow B)
+- `assets/fonts/`: Poppins (SIL OFL) used by the renderer

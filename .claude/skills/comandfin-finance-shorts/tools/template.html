@@ -1,0 +1,212 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:P;font-weight:500;src:url(../assets/fonts/poppins-latin-500-normal.woff2)}
+@font-face{font-family:P;font-weight:700;src:url(../assets/fonts/poppins-latin-700-normal.woff2)}
+@font-face{font-family:P;font-weight:800;src:url(../assets/fonts/poppins-latin-800-normal.woff2)}
+*{box-sizing:border-box;margin:0}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#000}
+#root{position:relative;width:1080px;height:1920px;overflow:hidden;font-family:P,"DejaVu Sans",sans-serif;color:var(--ink)}
+.a{position:absolute}
+.c{text-align:center}
+.card{background:#fff;border-radius:36px;box-shadow:0 18px 40px rgba(11,31,51,.14)}
+.pill{display:inline-block;border-radius:999px;padding:10px 28px;font-weight:700}
+.h1{font-weight:800;font-size:92px;line-height:1.08;letter-spacing:-1px}
+.h2{font-weight:800;font-size:66px;line-height:1.12}
+.h3{font-weight:700;font-size:46px;line-height:1.2}
+.b{font-weight:500;font-size:38px;line-height:1.3}
+.hl{color:var(--accent)}
+#cap{position:absolute;left:60px;right:60px;top:1300px;display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;
+ font-weight:800;font-size:74px;line-height:1.15;text-align:center}
+#cap span{padding:2px 14px;border-radius:18px;color:var(--capink)}
+#cap span.on{background:var(--accent);color:#fff}
+</style></head>
+<body><div id="root"></div>
+<script>
+let TL=null;
+const clamp=x=>Math.max(0,Math.min(1,x));
+const ease=x=>1-Math.pow(1-clamp(x),3);
+const back=x=>{x=clamp(x);const c=1.7;return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2)};
+let LT=0;
+const P=(t0,d=.45)=>ease((LT-t0)/d);
+const pop=(p,dy=50)=>`opacity:${clamp(p*1.4)};transform:translateY(${(1-p)*dy}px) scale(${.92+.08*p})`;
+const tk=(sc,k,def=0)=>{const it=(sc.items||[]).find(i=>i.k===k);return it&&it.t!=null?it.t:def};
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const mark=s=>esc(s).replace(/\*(.+?)\*/g,'<span class="hl">$1</span>');
+
+const ICON={
+ rupee:(c)=>`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="${c}"/><circle cx="50" cy="50" r="38" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="4"/><text x="50" y="68" text-anchor="middle" font-size="52" font-weight="800" fill="#fff" font-family="DejaVu Sans">₹</text></svg>`,
+ factory:(c)=>`<svg viewBox="0 0 120 100"><path d="M8 92V50l26-16v16l26-16v16l26-16V16h18v76z" fill="${c}"/><rect x="20" y="64" width="14" height="14" fill="#fff"/><rect x="46" y="64" width="14" height="14" fill="#fff"/><rect x="72" y="64" width="14" height="14" fill="#fff"/></svg>`,
+ people:(c)=>`<svg viewBox="0 0 120 100"><circle cx="38" cy="30" r="16" fill="${c}"/><path d="M10 92c0-26 12-40 28-40s28 14 28 40z" fill="${c}"/><circle cx="82" cy="34" r="14" fill="${c}" opacity=".7"/><path d="M58 92c2-22 12-34 24-34s24 12 24 34z" fill="${c}" opacity=".7"/></svg>`,
+ door:(c)=>`<svg viewBox="0 0 100 100"><rect x="18" y="8" width="52" height="86" rx="4" fill="${c}"/><circle cx="58" cy="54" r="4" fill="#fff"/><path d="M70 50h24m-10-10 10 10-10 10" stroke="${c}" stroke-width="7" fill="none" stroke-linecap="round"/></svg>`,
+ doc:(c)=>`<svg viewBox="0 0 100 120"><path d="M10 6h58l22 22v86H10z" fill="#fff" stroke="${c}" stroke-width="5"/><path d="M68 6v22h22" fill="none" stroke="${c}" stroke-width="5"/><g stroke="${c}" stroke-width="5" opacity=".5"><path d="M24 50h52M24 66h52M24 82h36"/></g></svg>`,
+ warn:(c)=>`<svg viewBox="0 0 100 90"><path d="M50 6 96 86H4z" fill="${c}"/><rect x="45" y="32" width="10" height="30" rx="4" fill="#fff"/><circle cx="50" cy="73" r="6" fill="#fff"/></svg>`,
+ ok:(c)=>`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="${c}"/><path d="M28 52l15 15 30-32" stroke="#fff" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+ no:(c)=>`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="${c}"/><path d="M32 32l36 36M68 32 32 68" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg>`,
+ q:(c)=>`<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="${c}"/><text x="50" y="70" text-anchor="middle" font-size="60" font-weight="800" fill="#fff" font-family="P">?</text></svg>`,
+};
+const ic=(n,c,x,y,s,st='')=>`<div class="a" style="left:${x-s/2}px;top:${y-s/2}px;width:${s}px;height:${s}px;${st}">${ICON[n](c)}</div>`;
+
+const S={};
+// --- hook: big stock drop -------------------------------------------------
+S.stockdrop=(sc,T)=>{
+ const tp=tk(sc,'price'),td=tk(sc,'drop'),tn=tk(sc,'name'),tw=tk(sc,'warn',99);
+ const pd=P(td,1.4);
+ // line: flat then falls
+ const pts=[];for(let i=0;i<=40;i++){const x=i/40;let y=.25+.03*Math.sin(i*1.3);if(x>.45)y+= (x-.45)/.55*.55*pd;pts.push([110+x*860,560+y*420])}
+ const vis=Math.round(40*clamp(P(tp,1)+ (LT>td?1:0)));
+ const path=pts.slice(0,Math.max(2,LT>td?Math.round(18+22*pd):Math.round(18*P(tp,1)))).map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+ return `
+ <div class="a c" style="left:0;right:0;top:270px;${pop(P(0))}"><span class="pill" style="background:${T.ink};color:#fff;font-size:40px">${esc(sc.date)}</span></div>
+ <div class="a c h2" style="left:60px;right:60px;top:360px;${pop(P(.2))}">${mark(sc.label)}</div>
+ <div class="a card" style="left:70px;top:520px;width:940px;height:520px;${pop(P(tp))}"></div>
+ <svg class="a" style="left:0;top:0" width="1080" height="1200"><g stroke="${T.grid}" stroke-width="2">${[0,1,2,3].map(i=>`<line x1="110" x2="970" y1="${600+i*120}" y2="${600+i*120}"/>`).join('')}</g>
+ <path d="${path}" fill="none" stroke="${LT>td?T.bad:T.good}" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" opacity="${P(tp)}"/></svg>
+ <div class="a" style="left:110px;top:580px;${pop(P(tp+.2))}"><span class="pill" style="background:${T.good};color:#fff;font-size:44px">Issue price ${esc(sc.price)}</span></div>
+ <div class="a" style="right:110px;top:860px;${pop(back((LT-td-.6)/.5))}"><span class="pill" style="background:${T.bad};color:#fff;font-size:64px">${esc(sc.drop)}</span><div class="b c" style="margin-top:8px;color:${T.bad};font-weight:700">${esc(sc.dropLabel)}</div></div>
+ <div class="a c h1" style="left:0;right:0;top:1085px;font-size:84px;${pop(P(tn))}">${mark(sc.name)}</div>`;
+};
+// --- big question / statement --------------------------------------------
+S.question=(sc,T)=>{
+ const coins=[0,1,2,3,4].map(i=>{const p=P(.2+i*.12,.6);const x=220+i*160,y=880+Math.sin(LT*2+i)*14;return ic('rupee',T.accent,x,y-(1-p)*80,110,`opacity:${p}`)}).join('');
+ return `${sc.kicker?`<div class="a c" style="left:0;right:0;top:300px;${pop(P(0))}"><span class="pill" style="background:${T.ink};color:#fff;font-size:42px">${esc(sc.kicker)}</span></div>`:''}
+ <div class="a c h1" style="left:70px;right:70px;top:430px;${pop(P(.1))}">${mark(sc.text)}</div>
+ ${sc.icon==='coins'?coins:(ICON[sc.icon]?ic(sc.icon,sc.icon==='ok'?T.good:(sc.icon==='rupee'||sc.icon==='q'?T.accent:(sc.icon==='doc'?T.ink:T.bad)),540,sc.sub?1000:900+Math.sin(LT*2)*10,sc.sub?150:240,`opacity:${P(.4)};transform:scale(${.6+.4*back((LT-.4)/.5)})`):'')}${sc.sub?`<div class="a c h3" style="left:90px;right:90px;top:${sc.icon==='coins'?1010:800}px;color:${T.muted};${pop(P(tk(sc,'sub',.5)))}">${mark(sc.sub)}</div>`:''}`;
+};
+// --- two-way split: fresh issue vs OFS -----------------------------------
+S.split=(sc,T)=>{
+ const tl=tk(sc,'left'),tr=tk(sc,'right'),tlb=tk(sc,'leftb',tl+.8),trb=tk(sc,'rightb',tr+.8);
+ const col=(o,x,t0,tb,iconN,clr)=>`
+  <div class="a card" style="left:${x}px;top:560px;width:450px;height:600px;${pop(P(t0))}">
+   <div class="c" style="padding-top:30px">${ICON[iconN](clr).replace('<svg','<svg width="150" height="125"')}</div>
+   <div class="c h3" style="color:${clr};padding:6px 20px 0">${esc(o.title)}</div>
+   <div class="c b" style="font-weight:700;padding:4px 20px">→ ${esc(o.to)}</div>
+   <div style="padding:14px 34px 0">${(o.bullets||[]).map((b,i)=>`<div class="b" style="font-size:34px;${pop(P(tb+i*.5),20)}">• ${esc(b)}</div>`).join('')}</div>
+  </div>`;
+ const lp=P(tl,.6),rp=P(tr,.6);
+ return `<div class="a c" style="left:0;right:0;top:280px;${pop(P(0))}"><span class="pill" style="background:${T.ink};color:#fff;font-size:56px;padding:16px 48px">${esc(sc.top)}</span></div>
+ <svg class="a" style="left:0;top:0" width="1080" height="600"><path d="M540 390 V450 H285 V${450+100*lp}" stroke="${T.good}" stroke-width="10" fill="none" opacity="${lp}"/><path d="M540 450 H795 V${450+100*rp}" stroke="${T.bad}" stroke-width="10" fill="none" opacity="${rp}"/></svg>
+ ${col(sc.left,60,tl,tlb,'factory',T.good)}${col(sc.right,570,tr,trb,'people',T.bad)}`;
+};
+// --- big stat + share bar --------------------------------------------------
+S.stat=(sc,T)=>{
+ const tb=tk(sc,'bar',1.2),p=P(tb,1.1);
+ return `${sc.kicker?`<div class="a c" style="left:0;right:0;top:300px;${pop(P(0))}"><span class="pill" style="background:${T.ink};color:#fff;font-size:40px">${esc(sc.kicker)}</span></div>`:''}
+ <div class="a c h1" style="left:40px;right:40px;top:420px;font-size:110px;color:${T.accent};${pop(P(.1))}">${esc(sc.big)}</div>
+ <div class="a c h3" style="left:80px;right:80px;top:560px;${pop(P(.3))}">${mark(sc.sub)}</div>
+ <div class="a card" style="left:70px;top:720px;width:940px;height:360px;padding:44px;${pop(P(tb))}">
+  <div class="b" style="font-weight:700">${esc(sc.bar.label)}</div>
+  <div style="margin-top:22px;height:90px;border-radius:45px;background:${T.grid};overflow:hidden;position:relative">
+   <div style="height:100%;width:${sc.bar.pct*p}%;background:${T.bad};border-radius:45px"></div>
+   <div style="position:absolute;left:50%;top:-10px;bottom:-10px;border-left:6px dashed ${T.ink};opacity:.6"></div></div>
+  <div class="h3" style="margin-top:26px;color:${T.bad};${pop(P(tb+1),10)}">${esc(sc.bar.note)}</div></div>
+ ${sc.source?`<div class="a c" style="left:0;right:0;top:1110px;font-size:28px;color:${T.muted}">${esc(sc.source)}</div>`:''}`;
+};
+// --- list of lines with icons (warnings, checks) --------------------------
+S.lines=(sc,T)=>{
+ const rows=sc.rows.map((r,i)=>{const t0=tk(sc,'r'+i,.4+i*.6);const p=P(t0);const y=560+i*150;
+  return `<div class="a card" style="left:70px;top:${y}px;width:940px;height:126px;display:flex;align-items:center;gap:26px;padding:0 34px;${pop(p,30)}">
+   <div style="width:76px;height:76px;flex:none">${ICON[r.icon||'ok'](r.icon==='no'||r.icon==='warn'?T.bad:T.good)}</div><div class="b" style="font-weight:700;font-size:40px">${mark(r.text)}</div></div>`}).join('');
+ return `${sc.kicker?`<div class="a c" style="left:0;right:0;top:290px;${pop(P(0))}"><span class="pill" style="background:${T.ink};color:#fff;font-size:40px">${esc(sc.kicker)}</span></div>`:''}
+ <div class="a c h2" style="left:60px;right:60px;top:380px;${pop(P(.1))}">${mark(sc.title)}</div>${rows}`;
+};
+// --- document with highlighted section -------------------------------------
+S.doc=(sc,T)=>{
+ const th=tk(sc,'hl',.8),p=P(th,.5);
+ return `<div class="a c h2" style="left:60px;right:60px;top:300px;${pop(P(0))}">${mark(sc.title)}</div>
+ <div class="a card" style="left:200px;top:470px;width:680px;height:640px;padding:50px 54px;${pop(P(.2))}">
+  <div class="h3" style="color:${T.ink}">${esc(sc.doc)}</div><div style="height:6px;width:120px;background:${T.accent};margin:16px 0 26px;border-radius:3px"></div>
+  ${sc.sections.map((s,i)=>{const on=i===sc.highlight;return `<div class="b" style="font-size:36px;padding:14px 20px;margin:0 -20px 8px;border-radius:16px;font-weight:${on?800:500};${on?`background:rgba(232,160,40,${.9*p});color:${p>.5?'#fff':T.ink};transform:scale(${1+.06*p})`:`color:${T.muted}`}">${esc(s)}</div>`}).join('')}
+ </div>`;
+};
+// --- bar comparison (P/E, profit vs cash) --------------------------------
+S.bars=(sc,T)=>{
+ const neg=sc.bars.some(b=>b.v<0);const max=Math.max(...sc.bars.map(b=>Math.abs(b.v)));const H=neg?200:380,base=neg?860:1060;
+ const w=760/sc.bars.length;
+ const bars=sc.bars.map((b,i)=>{const t0=tk(sc,'b'+i,.4+i*.7);const p=P(t0,.8);const h=Math.abs(b.v)/max*H*p;const x=160+i*w+w*.18,bw=w*.64;
+  const clr=b.v<0?T.bad:(b.color==='accent'?T.accent:T.good);const y=b.v<0?base:base-h;
+  return `<div class="a" style="left:${x}px;top:${y}px;width:${bw}px;height:${h}px;background:${clr};border-radius:${b.v<0?'0 0 22px 22px':'22px 22px 0 0'}"></div>
+  <div class="a c h2" style="left:${x-40}px;width:${bw+80}px;top:${b.v<0?base+h+8:base-h-84}px;color:${clr};opacity:${p}">${esc(b.val)}</div>
+  <div class="a c b" style="left:${x-80}px;width:${bw+160}px;top:${b.v<0?base-56:base+16}px;font-weight:700;font-size:34px;opacity:${P(t0)}">${esc(b.label)}</div>`}).join('');
+ const tn=tk(sc,'note',99),tc=Math.max(.2,tk(sc,'b0',.6)-.5);
+ return `${sc.kicker?`<div class="a c" style="left:0;right:0;top:290px;${pop(P(0))}"><span class="pill" style="background:${T.ink};color:#fff;font-size:40px">${esc(sc.kicker)}</span></div>`:''}
+ <div class="a c h2" style="left:60px;right:60px;top:375px;font-size:58px;${pop(P(.1))}">${mark(sc.title)}</div>
+ <div class="a card" style="left:70px;top:560px;width:940px;height:600px;${pop(P(tc))}"></div>
+ <div class="a" style="left:120px;right:120px;top:${base}px;height:4px;background:${T.ink};opacity:${P(tc+.1)}"></div>${bars}
+ ${sc.note?`<div class="a c" style="left:0;right:0;top:1190px;${pop(back((LT-tn)/.5))}"><span class="pill" style="background:${T.bad};color:#fff;font-size:46px">${esc(sc.note)}</span></div>`:''}`;
+};
+// --- WhatsApp-style phone --------------------------------------------------
+S.phone=(sc,T)=>{
+ const msgs=sc.msgs.map((m,i)=>{const t0=tk(sc,'m'+i,.4+i*.8);const p=P(t0,.35);
+  return `<div style="align-self:${m.me?'flex-end':'flex-start'};max-width:82%;background:${m.me?'#D9FDD3':'#fff'};border-radius:22px;padding:14px 22px;margin-bottom:16px;box-shadow:0 2px 4px rgba(0,0,0,.1);${pop(p,24)}">
+   ${m.from?`<div style="font-size:26px;font-weight:700;color:${m.color||'#1F7AC0'}">${esc(m.from)}</div>`:''}<div style="font-size:34px;font-weight:500;line-height:1.3">${mark(m.text)}</div></div>`}).join('');
+ const sh=Math.sin(LT*40)*(LT<.6?6:0);
+ return `<div class="a card" style="left:230px;top:270px;width:620px;height:960px;border-radius:70px;background:#1B1B1F;padding:26px;transform:translateX(${sh}px);${LT<.35?pop(P(0)):''}">
+  <div style="background:#EFE7DD;border-radius:48px;height:100%;overflow:hidden;display:flex;flex-direction:column">
+   <div style="background:#0B6E5C;color:#fff;padding:34px 30px 22px;font-size:32px;font-weight:700">${esc(sc.group)}<div style="font-size:22px;font-weight:500;opacity:.8">${esc(sc.members||'')}</div></div>
+   <div style="flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:20px">${msgs}</div></div></div>
+ ${sc.badge?`<div class="a" style="left:740px;top:240px;${pop(back((LT-tk(sc,'badge',99))/.4))}"><span class="pill" style="background:${T.bad};color:#fff;font-size:44px">${esc(sc.badge)}</span></div>`:''}`;
+};
+// --- stamp: big word with crosses -----------------------------------------
+S.stamp=(sc,T)=>{
+ const ts=tk(sc,'stamp',.6),p=back((LT-ts)/.35);
+ return `<div class="a c h2" style="left:60px;right:60px;top:300px;${pop(P(0))}">${mark(sc.title)}</div>
+ <div class="a c" style="left:0;right:0;top:440px;${pop(P(.2))}"><span class="pill" style="background:${T.ink};color:#fff;font-size:72px;padding:20px 56px">${esc(sc.word)}</span></div>
+ <div class="a c" style="left:0;right:0;top:600px;opacity:${clamp(p)};transform:rotate(-8deg) scale(${2-p})"><span style="display:inline-block;border:10px solid ${T.bad};color:${T.bad};font-weight:800;font-size:68px;padding:6px 36px;border-radius:18px">${esc(sc.stamp)}</span></div>
+ ${(sc.rows||[]).map((r,i)=>{const t0=tk(sc,'r'+i,1+i*.5);return `<div class="a" style="left:180px;top:${790+i*120}px;display:flex;align-items:center;gap:26px;${pop(P(t0),20)}"><div style="width:84px;height:84px">${ICON.no(T.bad)}</div><div class="h3">${esc(r.text)}</div></div>`}).join('')}`;
+};
+// --- build up then vanish ---------------------------------------------------
+S.vanish=(sc,T)=>{
+ const tv=tk(sc,'vanish',2);const n=7;
+ const bars=[...Array(n)].map((_,i)=>{const up=P(.2+i*.18,.4);const dn=P(tv+.1,.5);const h=(120+i*60)*up*(1-dn);
+  return `<div class="a" style="left:${160+i*112}px;top:${1080-h}px;width:84px;height:${h}px;background:${T.accent};border-radius:16px 16px 0 0"></div>`}).join('');
+ return `<div class="a c h2" style="left:60px;right:60px;top:320px;${pop(P(0))}">${mark(sc.title)}</div>
+ <div class="a card" style="left:70px;top:500px;width:940px;height:640px;${pop(P(.1))}"></div>${bars}
+ <div class="a" style="left:120px;right:120px;top:1080px;height:4px;background:${T.ink}"></div>
+ <div class="a c" style="left:0;right:0;top:620px;${pop(back((LT-tv-.5)/.4))}"><span class="pill" style="background:${T.bad};color:#fff;font-size:52px">${esc(sc.label)}</span></div>`;
+};
+// --- meter: mood vs reason --------------------------------------------------
+S.meter=(sc,T)=>{
+ const tt=tk(sc,'never',1.5);const ang=-60+Math.sin(LT*1.6)*35;
+ return `<div class="a c h2" style="left:60px;right:60px;top:300px;${pop(P(0))}">${mark(sc.title)}</div>
+ <svg class="a" style="left:190px;top:470px;${pop(P(.2))}" width="700" height="420" viewBox="0 0 700 420">
+  <path d="M60 380 A290 290 0 0 1 640 380" fill="none" stroke="${T.grid}" stroke-width="60"/>
+  <path d="M60 380 A290 290 0 0 1 350 90" fill="none" stroke="${T.good}" stroke-width="60" opacity=".85"/>
+  <path d="M350 90 A290 290 0 0 1 640 380" fill="none" stroke="${T.bad}" stroke-width="60" opacity=".85"/>
+  <g transform="rotate(${ang} 350 380)"><path d="M342 380 L350 130 L358 380z" fill="${T.ink}"/></g><circle cx="350" cy="380" r="26" fill="${T.ink}"/></svg>
+ <div class="a" style="left:120px;top:920px;width:400px;${pop(P(.5))}" ><div class="c" style="width:90px;height:90px;margin:0 auto">${ICON.ok(T.good)}</div><div class="c h3">${esc(sc.yes)}</div></div>
+ <div class="a" style="left:560px;top:920px;width:400px;${pop(P(tt))}"><div class="c" style="width:90px;height:90px;margin:0 auto">${ICON.no(T.bad)}</div><div class="c h3">${esc(sc.no)}</div></div>`;
+};
+// --- end card ----------------------------------------------------------------
+S.end=(sc,T)=>`
+ <div class="a c" style="left:0;right:0;top:420px;${pop(P(0))}"><div class="h1" style="font-size:96px">COMand<span class="hl">FIN</span></div></div>
+ <div class="a c h2" style="left:80px;right:80px;top:600px;${pop(P(.2))}">${mark(sc.title||'')}</div>
+ <div class="a c" style="left:0;right:0;top:860px;${pop(back((LT-.5)/.4))}"><span class="pill" style="background:${T.accent};color:#fff;font-size:50px;padding:18px 50px">${esc(sc.cta||'Follow for more')}</span></div>
+ <div class="a c b" style="left:100px;right:100px;top:1040px;font-size:30px;color:${T.muted};${pop(P(.7))}">${esc(sc.disclaimer||'')}</div>`;
+
+function frame(t){
+ const T=Object.assign({bg1:'#BFF0F7',bg2:'#E8F9FB',ink:'#0B1F33',capink:'#0B1F33',muted:'#4A5D70',accent:'#E8A028',good:'#1A8F6B',bad:'#D64545',grid:'#E3EEF2'},TL.theme);
+ const r=document.getElementById('root');
+ r.style.setProperty('--ink',T.ink);r.style.setProperty('--accent',T.accent);r.style.setProperty('--capink',T.capink);
+ const sc=TL.scenes.find(s=>t>=s.start&&t<s.end)||TL.scenes[TL.scenes.length-1];
+ LT=t-sc.start;
+ const out=Math.max(0,Math.min(1,(sc.end-t)/.25)); // quick fade/scale out
+ let html=`<div class="a" style="inset:0;background:linear-gradient(180deg,${T.bg1},${T.bg2})"></div>`;
+ // drifting background shapes (subtle motion like the reference)
+ html+=[0,1,2].map(i=>`<div class="a" style="left:${[-120,760,200][i]+Math.sin(t*.3+i)*30}px;top:${[180,640,1500][i]+Math.cos(t*.25+i)*30}px;width:${[420,480,360][i]}px;height:${[420,480,360][i]}px;border-radius:50%;background:#fff;opacity:.28"></div>`).join('');
+ // header
+ const h=TL.header||{};
+ html+=`<div class="a" style="left:0;top:0;height:10px;width:${1080*t/TL.duration}px;background:${T.accent}"></div>
+ <div class="a" style="left:60px;top:120px"><span class="pill" style="background:${T.ink};color:#fff;font-size:30px;letter-spacing:2px">${esc(h.kicker||'')}</span></div>
+ <div class="a" style="right:60px;top:118px;font-weight:800;font-size:40px">COMand<span class="hl">FIN</span></div>`;
+ html+=`<div class="a" style="inset:0;opacity:${out};transform:scale(${.96+.04*out});transform-origin:540px 700px">${(S[sc.type]||S.question)(sc,T)}</div>`;
+ // lower third
+ if(h.name&&t<5){const p=ease(t/.5)*ease((5-t)/.4);html+=`<div class="a" style="left:60px;top:1540px;opacity:${p};transform:translateX(${(1-p)*-40}px)"><div class="card" style="padding:18px 32px;border-left:12px solid ${T.accent};border-radius:20px"><div style="font-weight:800;font-size:40px">${esc(h.name)}</div><div style="font-weight:500;font-size:28px;color:${T.muted}">${esc(h.role||'')}</div></div></div>`}
+ // captions
+ const c=TL.captions.find(c=>t>=c.s&&t<c.e);
+ html+=`<div id="cap">${c&&sc.type!=='end'?c.words.map(w=>`<span class="${t>=w.s&&t<w.e+.08?'on':''}">${esc(w.w)}</span>`).join(''):''}</div>`;
+ r.innerHTML=html;
+}
+window.setTimeline=tl=>{TL=tl};
+window.renderFrame=t=>frame(t);
+</script></body></html>

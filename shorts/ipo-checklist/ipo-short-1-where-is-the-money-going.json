@@ -1,0 +1,179 @@
+{
+ "id": "ipo-short-1-where-is-the-money-going",
+ "speed": 1.1,
+ "header": {
+  "kicker": "IPO CHECKLIST · 1",
+  "name": "CA Ankit Bajaj",
+  "role": "Founder, COMandFIN"
+ },
+ "theme": {
+  "bg1": "#BFF0F7",
+  "bg2": "#EAFAFC"
+ },
+ "segments": [
+  {
+   "src": "/root/.claude/uploads/923aea9c-8345-5808-96a6-1c89f31588ff/fcb4045d-1.mkv",
+   "asr": "asr/asr1.json",
+   "start": 11.0,
+   "end": 34.4,
+   "text": "Friends, in November 2021, lakhs of investors applied for what was then India's biggest IPO. Issue price: ₹2,150. On listing day, the share closed about 27% lower. The company was Paytm. And many of those investors had not checked a few simple things before clicking “Apply”."
+  },
+  {
+   "src": "/root/.claude/uploads/923aea9c-8345-5808-96a6-1c89f31588ff/976c286d-4.mkv",
+   "asr": "asr/asr4.json",
+   "start": 5.55,
+   "end": 71.6,
+   "text": "Before you apply for the IPO, ask one question to yourself: where is my money going? Every IPO has two parts. The first part is Fresh Issue. Now in Fresh Issue, new shares are created and the money goes to the company, whether it is for expansion, for setting up new plants, or for the repayment of loans. The second part is Offer for Sale. Under OFS, existing shareholders sell their shares. Now the money goes to them, not to the company. As per SEBI's annual report, IPOs raised around ₹1.89 lakh crore in financial year 2025–26, and more than half of that was Offer for Sale. OFS is not always bad. But if promoters and early investors are selling a big chunk, ask yourself: if they are exiting at this price, why should I buy? Or why should I take entry into the stock? You will find this in the Objects of the Offer, which is a section of the Red Herring Prospectus. So the full checklist is available on the channel."
+  }
+ ],
+ "scenes": [
+  {
+   "at": "START",
+   "type": "stockdrop",
+   "date": "NOVEMBER 2021",
+   "label": "India's *biggest IPO* at the time",
+   "price": "₹2,150",
+   "drop": "−27%",
+   "dropLabel": "on listing day",
+   "name": "The company: *Paytm*",
+   "items": [
+    {
+     "k": "price",
+     "at": "Issue price:"
+    },
+    {
+     "k": "drop",
+     "at": "On listing day,"
+    },
+    {
+     "k": "name",
+     "at": "The company was Paytm."
+    }
+   ]
+  },
+  {
+   "at": "And many of those",
+   "type": "question",
+   "kicker": "BEFORE YOU CLICK APPLY",
+   "text": "Most investors skipped a few *simple checks*",
+   "icon": "warn"
+  },
+  {
+   "at": "Before you apply",
+   "type": "question",
+   "kicker": "CHECK 1",
+   "text": "Where is my *money* going?",
+   "icon": "coins"
+  },
+  {
+   "at": "Every IPO has two parts.",
+   "type": "split",
+   "top": "Every IPO = 2 parts",
+   "left": {
+    "title": "Fresh Issue",
+    "to": "Company",
+    "bullets": [
+     "Expansion",
+     "New plants",
+     "Repay loans"
+    ]
+   },
+   "right": {
+    "title": "Offer for Sale",
+    "to": "Existing shareholders",
+    "bullets": [
+     "Old shares sold",
+     "Company gets ₹0"
+    ]
+   },
+   "items": [
+    {
+     "k": "left",
+     "at": "The first part"
+    },
+    {
+     "k": "leftb",
+     "at": "whether it is for expansion,"
+    },
+    {
+     "k": "right",
+     "at": "The second part"
+    },
+    {
+     "k": "rightb",
+     "at": "existing shareholders sell"
+    }
+   ]
+  },
+  {
+   "at": "As per SEBI's",
+   "type": "stat",
+   "kicker": "FY 2025–26",
+   "big": "₹1.89 lakh crore",
+   "sub": "raised through IPOs",
+   "bar": {
+    "label": "Share that was Offer for Sale",
+    "pct": 56,
+    "note": "More than half went to sellers"
+   },
+   "source": "Source: SEBI Annual Report",
+   "items": [
+    {
+     "k": "bar",
+     "at": "and more than half"
+    }
+   ]
+  },
+  {
+   "at": "OFS is not always bad.",
+   "type": "lines",
+   "kicker": "RED FLAG CHECK",
+   "title": "OFS is *not always bad*, but…",
+   "rows": [
+    {
+     "icon": "warn",
+     "text": "Promoters selling a *big chunk*?"
+    },
+    {
+     "icon": "q",
+     "text": "Exiting at this price? *Why should I enter?*"
+    }
+   ],
+   "items": [
+    {
+     "k": "r0",
+     "at": "But if promoters"
+    },
+    {
+     "k": "r1",
+     "at": "ask yourself: if"
+    }
+   ]
+  },
+  {
+   "at": "You will find this",
+   "type": "doc",
+   "title": "Where to *check*",
+   "doc": "Red Herring Prospectus (RHP)",
+   "sections": [
+    "Objects of the Offer",
+    "Basis for Offer Price",
+    "Risk Factors",
+    "Outstanding Litigation",
+    "Financial Information"
+   ],
+   "highlight": 0,
+   "items": [
+    {
+     "k": "hl",
+     "at": "Objects of the Offer,"
+    }
+   ]
+  }
+ ],
+ "end_card": {
+  "title": "Full *7-point IPO checklist* on the channel",
+  "cta": "Follow COMandFIN",
+  "disclaimer": "Educational content only. Not investment advice."
+ }
+}
