@@ -42,8 +42,8 @@ const args = ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(fps)
 for (const _ of cuts) args.push('-f', 'lavfi', '-t', '0.4', '-i',
   'anoisesrc=color=pink:amplitude=0.5,highpass=f=600,lowpass=f=4500,afade=t=in:d=0.15,afade=t=out:st=0.15:d=0.25,volume=-30dB,aformat=channel_layouts=stereo:sample_rates=48000');
 const mix = cuts.length
-  ? `${sfx.join(';')};[1:a]${cuts.map((_, i) => `[w${i}]`).join('')}amix=inputs=${cuts.length + 1}:normalize=0:duration=first[a]`
-  : '[1:a]anull[a]';
+  ? `${sfx.join(';')};[1:a]${cuts.map((_, i) => `[w${i}]`).join('')}amix=inputs=${cuts.length + 1}:normalize=0:duration=first,apad[a]`
+  : '[1:a]apad[a]';  // pad: the end card runs past the voice
 args.push('-filter_complex', mix, '-map', '0:v', '-map', '[a]', '-c:v', 'libx264', '-preset', 'medium', '-crf', '19',
   '-pix_fmt', 'yuv420p', '-r', String(fps), '-c:a', 'aac', '-b:a', '192k', '-shortest', '-movflags', '+faststart',
   path.join(dir, `${tl.id}.mp4`));
