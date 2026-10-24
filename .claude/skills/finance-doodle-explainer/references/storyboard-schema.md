@@ -16,7 +16,9 @@ The canvas is **1920×1080**. `x`/`y` give the **centre** of an element. Times i
     "lead": 0.08,                           // a scene cuts this many seconds before its first word
     "watermark": { "text": "COMandFIN", "position": "bottom-right", "opacity": 0.8 },
                                             // or { "image": "logo.png", "height": 56 }
-    "thumbnail": { "bg": "yellow", "elements": [ ... ] }   // a scene object, rendered as a PNG
+    "thumbnail": { "bg": "yellow", "elements": [ ... ] },  // a scene object, rendered as a PNG
+    "teaser": "7.7-17.4",                   // long-form: 5-10 s hook (body seconds) -> teaser + brand intro prepended
+    "intro": "path/intro.mp4",              // optional; default assets/brand/intro.mp4
   },
   "include": ["part2.json"],                // optional: more files, each with {"scenes":[...]}
   "scenes": [ { ... }, ... ]

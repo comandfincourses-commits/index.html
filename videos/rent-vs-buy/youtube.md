@@ -15,13 +15,14 @@ Is video mein samjho:
 • Ghar kharidne se pehle khud se poochne wale 3 sawaal
 
 Chapters
-0:00 The ₹1.2 crore question
-0:50 ₹1.2 crore ke ghar ki asli cost
-1:47 EMI jo decisions control kare
-2:37 Agar rent karo toh?
-3:36 Toh kya karein?
-4:04 3 sawaal
-4:37 Final tip
+0:00 Coming up + intro
+0:15 The ₹1.2 crore question
+1:05 ₹1.2 crore ke ghar ki asli cost
+2:02 EMI jo decisions control kare
+2:52 Agar rent karo toh?
+3:51 Toh kya karein?
+4:19 3 sawaal
+4:52 Final tip
 
 Comments mein batao: BUY ya RENT, aur kyun?
 Practical finance seekho COMandFIN ke saath: https://comandfin.com

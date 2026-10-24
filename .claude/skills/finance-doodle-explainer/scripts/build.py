@@ -100,6 +100,18 @@ def main():
             for t, c in chapters:
                 f.write(f"{ts(0 if t < 0.5 else t)} {c}\n")
 
+    # Long-form house format: TEASER -> BRAND INTRO -> body (skipped for drafts, ranges and vertical cuts)
+    src_meta = json.load(open(story_path)).get("meta", {})  # source of truth even with --skip-render
+    teaser = src_meta.get("teaser")
+    if teaser and not a.draft and not a.range and meta.get("width", 1920) > meta.get("height", 1080):
+        body = os.path.join(wd, "body_" + os.path.basename(final))
+        os.replace(final, body)
+        cmd = [sys.executable, os.path.join(HERE, "assemble_long.py"), body, "--teaser", teaser, "--out", final,
+               "--chapters", os.path.join(out_dir, "chapters.txt")]
+        if src_meta.get("intro"):
+            cmd += ["--intro", os.path.join(wd, src_meta["intro"])]
+        run(cmd)
+
     dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of",
                                 "default=nk=1:nw=1", final], capture_output=True, text=True).stdout or 0)
     print(f"\nDONE  {final}  ({dur / 60:.1f} min)")

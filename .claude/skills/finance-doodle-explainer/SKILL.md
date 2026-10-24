@@ -77,6 +77,17 @@ python $SK/scripts/build.py WORK --workers 4            # final: about 0.7× rea
 ```
 Output goes to `WORK/output/`: `<Title>.mp4`, `<Title>_thumbnail.png` and `_1280x720.jpg`, `<Title>.srt`, `chapters.txt`.
 
+## 5a. House format for every long-form video: TEASER → INTRO → VIDEO (mandatory)
+
+Every long-form (16:9) video opens with:
+1. **Teaser hook (5–10 s):** the punchiest complete sentence(s) from the video itself, such as a shocking number, a bold claim or a "how is that possible?" moment. Take it from `transcript.txt` and cut on word boundaries. It plays with its own visuals, voice and music, plus a red "COMING UP" badge.
+2. **Brand intro:** `assets/brand/intro.mp4` (COMandFIN, 10 s). Never edit or re-time it.
+3. **The video.**
+
+Set `"teaser": "START-END"` (seconds in the body video) in `meta`, and `build.py` does the rest. It renders the body, appends teaser and intro with `assemble_long.py`, normalises the whole programme to -14 LUFS, and shifts `chapters.txt` (first chapter: `0:00 Coming up + intro`). To retrofit an existing video:
+`python $SK/scripts/assemble_long.py body.mp4 --teaser 7.7-17.4 --out final.mp4 --description youtube_description.txt`
+Keep `body_*.mp4` (the version without teaser and intro); Shorts, vertical cuts and teaser re-picks are made from it. Shorts and Reels do **not** get the intro.
+
 ## 5b. Shorts / Reels and Instagram carousel
 
 - **Cut**: `python $SK/scripts/make_cut.py WORK SHORT_WORK 12.4-45.0 [60.2-71.0 ...]`. Cut at sentence ends from `transcript.txt`, then `fix_transcript.py SHORT_WORK fixes.txt` to correct misheard words (captions are burned in, so spelling matters).
