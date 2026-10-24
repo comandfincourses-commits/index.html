@@ -1,0 +1,193 @@
+{
+ "format": "short",
+ "slug": "short-broker-shut-down-is-your-money-safe",
+ "title": "Broker Shut Down. Is Your Money Safe?",
+ "series": "Stock Market Explained",
+ "audio": "voice.wav",
+ "captions_file": "captions.json",
+ "scenes": [
+  {
+   "type": "character",
+   "at": 0,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "You"
+    }
+   ],
+   "say": "Just bought *10 shares*!",
+   "prop": "coin"
+  },
+  {
+   "type": "character",
+   "at": 4.2,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "worried",
+     "pose": "shrug",
+     "label": "Seller's broker"
+    }
+   ],
+   "say": "We're *shutting down*!",
+   "prop": "warning"
+  },
+  {
+   "type": "character",
+   "at": 8.8,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "worried",
+     "pose": "shrug",
+     "label": "You"
+    }
+   ],
+   "think": true,
+   "say": "Did I just *lose my money*?"
+  },
+  {
+   "type": "title",
+   "at": 10.7,
+   "tag": "Absolutely not",
+   "text": "Thanks to the *Clearing Corporation*",
+   "sub": "One of the biggest players in the stock market",
+   "icon": "shield"
+  },
+  {
+   "type": "flow",
+   "at": 19.0,
+   "title": "The moment your trade is matched...",
+   "steps": [
+    {
+     "title": "Seller",
+     "text": "Sells to the clearing corp",
+     "icon": "people"
+    },
+    {
+     "title": "Clearing Corp",
+     "text": "Steps *in the middle*",
+     "icon": "shield"
+    },
+    {
+     "title": "You",
+     "text": "Buy from the clearing corp",
+     "icon": "check"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": 27.3,
+   "tag": "Remember this word",
+   "text": "*Novation*",
+   "sub": "Your counterparty is now the clearing corporation",
+   "icon": "bulb"
+  },
+  {
+   "type": "list",
+   "at": 28.9,
+   "title": "Your trade is *safe* because",
+   "items": [
+    "It is *not* with the unknown seller",
+    "*Margins* collected upfront",
+    "The *Settlement Guarantee Fund*"
+   ],
+   "icon": "shield"
+  },
+  {
+   "type": "quote",
+   "at": 41.2,
+   "text": "You don't trust the stranger. You trust the *system*."
+  },
+  {
+   "type": "title",
+   "at": 50.4,
+   "tag": "Comment below",
+   "text": "Comment *SYSTEM*",
+   "sub": "if you learned something new. Full story on the channel",
+   "icon": "bulb"
+  },
+  {
+   "type": "character",
+   "at": 56.15,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "point"
+    }
+   ],
+   "say": "Subscribe to *COMandFIN* for practical finance every day!"
+  },
+  {
+   "type": "character",
+   "at": 62.05,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "*Like, share & subscribe!*",
+   "prop": "bell"
+  }
+ ],
+ "cta_times": [
+  16,
+  40
+ ],
+ "cta_lines": [
+  "Learning something? *Like* & *Subscribe*!",
+  "*Share* with a friend who trades"
+ ],
+ "thumbnail": {
+  "text": "Broker shut down? *Is your money safe?*",
+  "tag": "Must know",
+  "who": "woman",
+  "mood": "worried",
+  "pose": "shrug",
+  "icon": "shield"
+ },
+ "meta": {
+  "titles": [
+   "Your Broker Shuts Down Tomorrow. Did You Lose Money? #Shorts",
+   "Novation Explained in 60 Seconds #Shorts",
+   "Why You Can Buy Shares From a Total Stranger #Shorts"
+  ],
+  "description": "You bought 10 shares and the seller's broker shut down the next day. Did you lose your money? No, because of the clearing corporation and novation, backed by margins and the Settlement Guarantee Fund.\n\nFull story: Journey of One Trade on the COMandFIN channel.\n\n👍 Like  🔁 Share  🔔 Subscribe to COMandFIN\nEducational content, not investment advice.",
+  "caption": "Your seller's broker shuts down the day after you buy. Did you lose your money? 😨\n\nAbsolutely not. 🛡️ The clearing corporation steps in the middle of every trade. It becomes the seller to you and the buyer to the seller. That's called NOVATION.\n\nBacked by margins + the Settlement Guarantee Fund.\nYou don't trust the stranger. You trust the system.\n\nComment SYSTEM if you learned something new 👇\n👍 Like  🔁 Share  🔔 Follow @COMandFIN\n\nEducational content, not investment advice.",
+  "hashtags": [
+   "#StockMarket",
+   "#IndianStockMarket",
+   "#NSE",
+   "#SEBI",
+   "#DematAccount",
+   "#StockMarketForBeginners",
+   "#Finance",
+   "#Investing",
+   "#COMandFIN",
+   "#Shorts",
+   "#Novation",
+   "#ClearingCorporation"
+  ],
+  "tags": [
+   "clearing corporation",
+   "novation",
+   "what if my broker shuts down",
+   "is my money safe in stock market",
+   "settlement guarantee fund",
+   "stock market for beginners",
+   "comandfin"
+  ],
+  "pinned_comment": "Comment SYSTEM if you learned something new 👇 Full story: Journey of One Trade on our channel."
+ }
+}

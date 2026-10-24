@@ -1,0 +1,255 @@
+{
+ "format": "short",
+ "slug": "short-6-institutions-behind-one-buy",
+ "title": "6 Institutions Behind One BUY Tap",
+ "series": "Stock Market Explained",
+ "audio": "voice.wav",
+ "captions_file": "captions.json",
+ "scenes": [
+  {
+   "type": "character",
+   "at": 0,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "happy",
+     "pose": "point",
+     "label": "You"
+    }
+   ],
+   "say": "Tap *BUY*... done! Easy, right?",
+   "prop": "phone"
+  },
+  {
+   "type": "bignumber",
+   "at": 5.3,
+   "value": "6",
+   "label": "*institutions* just worked for you",
+   "icon": "people",
+   "color": "gold"
+  },
+  {
+   "type": "character",
+   "at": 8.4,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "serious",
+     "pose": "point",
+     "label": "1 · Broker"
+    }
+   ],
+   "say": "Money available? Order sent to the *exchange*!",
+   "prop": "phone"
+  },
+  {
+   "type": "title",
+   "at": 13.4,
+   "tag": "Player 2",
+   "text": "The *Exchange*",
+   "sub": "NSE or BSE",
+   "icon": "exchange"
+  },
+  {
+   "type": "character",
+   "at": 17.3,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "Buyer"
+    },
+    {
+     "who": "investor",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "Seller"
+    }
+   ],
+   "say": "Matched in a *fraction of a second*!"
+  },
+  {
+   "type": "title",
+   "at": 22.9,
+   "tag": "Player 3",
+   "text": "The *Clearing Corporation*",
+   "sub": "Guarantees every trade",
+   "icon": "shield"
+  },
+  {
+   "type": "flow",
+   "at": 25.2,
+   "title": "It steps *in the middle*",
+   "steps": [
+    {
+     "title": "Seller",
+     "text": "Sells to the clearing corp",
+     "icon": "people"
+    },
+    {
+     "title": "Clearing Corp",
+     "text": "Buyer to the seller, *seller to the buyer*",
+     "icon": "shield"
+    },
+    {
+     "title": "Buyer",
+     "text": "Safe even if a broker *defaults*",
+     "icon": "check"
+    }
+   ]
+  },
+  {
+   "type": "title",
+   "at": 33.2,
+   "tag": "Player 4",
+   "text": "The *Depository*",
+   "sub": "NSDL or CDSL: moves shares into your demat",
+   "icon": "lock"
+  },
+  {
+   "type": "title",
+   "at": 40.9,
+   "tag": "Player 5",
+   "text": "The *Bank*",
+   "sub": "Moves your money",
+   "icon": "bank"
+  },
+  {
+   "type": "title",
+   "at": 44.8,
+   "tag": "Player 6",
+   "text": "*SEBI*: the regulator",
+   "sub": "Watches every player",
+   "icon": "target"
+  },
+  {
+   "type": "flow",
+   "at": 47.6,
+   "title": "*6 players*, 1 trade",
+   "steps": [
+    {
+     "title": "Broker",
+     "icon": "phone"
+    },
+    {
+     "title": "Exchange",
+     "icon": "exchange"
+    },
+    {
+     "title": "Clearing Corp",
+     "icon": "shield"
+    },
+    {
+     "title": "Depository",
+     "icon": "lock"
+    },
+    {
+     "title": "Bank",
+     "icon": "bank"
+    },
+    {
+     "title": "SEBI",
+     "icon": "target"
+    }
+   ]
+  },
+  {
+   "type": "bignumber",
+   "at": 56.0,
+   "value": "T+1",
+   "label": "Buy today, shares in your demat *tomorrow*",
+   "icon": "calendar",
+   "color": "gold"
+  },
+  {
+   "type": "title",
+   "at": 64.4,
+   "tag": "Remember",
+   "text": "It's not an app. It's a *relay race*.",
+   "sub": "Full story on the channel",
+   "icon": "people"
+  },
+  {
+   "type": "character",
+   "at": 73.05000000000001,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "point"
+    }
+   ],
+   "say": "Subscribe to *COMandFIN* for practical finance every day!"
+  },
+  {
+   "type": "character",
+   "at": 78.95,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "*Like, share & subscribe!*",
+   "prop": "bell"
+  }
+ ],
+ "cta_times": [
+  20,
+  52
+ ],
+ "cta_lines": [
+  "Learning something? *Like* & *Subscribe*!",
+  "*Share* with a friend who just started investing"
+ ],
+ "thumbnail": {
+  "text": "*6 players* behind one BUY tap",
+  "tag": "Stock market",
+  "who": "woman",
+  "mood": "surprised",
+  "pose": "point",
+  "icon": "phone"
+ },
+ "meta": {
+  "titles": [
+   "You Tap BUY… 6 Institutions Just Worked for You #Shorts",
+   "What Really Happens When You Buy a Share? #Shorts",
+   "Broker → NSE → Clearing Corp → Demat in 60 Seconds #Shorts"
+  ],
+  "description": "You tap BUY and 2 seconds later the order is executed. Behind that tap: your broker, the exchange (NSE/BSE), the clearing corporation, the depository (NSDL/CDSL), your bank and SEBI.\n\nFull story: Journey of One Trade on the COMandFIN channel.\n\n👍 Like  🔁 Share  🔔 Subscribe to COMandFIN\nEducational content, not investment advice.",
+  "caption": "You tap BUY. 2 seconds later: order executed. 📲\n\nBut 6 institutions just worked for you 👇\n1️⃣ Broker\n2️⃣ Exchange (NSE/BSE)\n3️⃣ Clearing Corporation\n4️⃣ Depository (NSDL/CDSL)\n5️⃣ Bank\n6️⃣ SEBI\n\nIt's not an app. It's a relay race. 🏃\n\n👍 Like  🔁 Share with a friend who just started investing  🔔 Follow @COMandFIN\nFull story on our YouTube channel.\n\nEducational content, not investment advice.",
+  "hashtags": [
+   "#StockMarket",
+   "#IndianStockMarket",
+   "#NSE",
+   "#SEBI",
+   "#DematAccount",
+   "#StockMarketForBeginners",
+   "#Finance",
+   "#Investing",
+   "#COMandFIN",
+   "#Shorts",
+   "#T1Settlement",
+   "#ClearingCorporation"
+  ],
+  "tags": [
+   "how stock market works",
+   "what happens when you buy a share",
+   "stock market for beginners",
+   "nse bse",
+   "clearing corporation",
+   "nsdl cdsl",
+   "sebi",
+   "t+1 settlement",
+   "comandfin"
+  ],
+  "pinned_comment": "Which of the 6 players did you not know about? 👇 Full story: Journey of One Trade on our channel."
+ }
+}
