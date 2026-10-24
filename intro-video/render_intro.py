@@ -233,71 +233,23 @@ def s_shatter(t, t0=3.8, t1=4.6):
     return img
 
 
-CERTS = [
-    # (name, awarding body, structure, focus area)
-    ("US CMA", "IMA, USA", "2 PARTS", ["Management Accounting,", "FP&A & Strategy"]),
-    ("ACCA", "ACCA, UK", "13 EXAMS", ["Global Accounting,", "IFRS, Audit & Tax"]),
-    ("CFA", "CFA Institute, USA", "3 LEVELS", ["Investment Analysis &", "Portfolio Management"]),
-]
-F_CERT = font("Black", 104)
-F_BODY = font("SemiBold", 32)
-F_FACT = font("ExtraBold", 40)
+END = 5.8  # end card starts here
 
-def cert_card(name, body, fact, focus, w=500, h=480):
-    c = Image.new("RGBA", (w, h), (0, 0, 0, 0))
-    d = ImageDraw.Draw(c)
-    d.rounded_rectangle((0, 0, w, h), radius=26, fill=(250, 251, 253, 255))
-    d.rounded_rectangle((0, 0, w, 26), radius=13, fill=GOLD + (255,))
-    d.rectangle((0, 13, w, 26), fill=GOLD + (255,))
-    d.text((w / 2, 125), name, font=F_CERT, fill=NAVY, anchor="mm")
-    d.text((w / 2, 205), body, font=F_BODY, fill=(90, 104, 125), anchor="mm")
-    d.rectangle((w / 2 - 60, 245, w / 2 + 60, 250), fill=GOLD)
-    d.rounded_rectangle((w / 2 - 120, 280, w / 2 + 120, 340), radius=30, fill=GREEN)
-    d.text((w / 2, 311), fact, font=F_FACT, fill=WHITE, anchor="mm")
-    for i, line in enumerate(focus):
-        d.text((w / 2, 392 + i * 44), line, font=F_BODY, fill=NAVY, anchor="mm")
-    return c
-CARDS = [cert_card(*c) for c in CERTS]
-BG_CERT = gradient_overlay(
-    kenburns(P_LECTURE, 0.5, 1.05, 1.05).filter(ImageFilter.GaussianBlur(14)), NAVY, 0.88, 0.80)
-
-def s_certs(t, t0=4.6, t1=6.6):
-    """Global certification programmes: US CMA, ACCA, CFA."""
-    img = BG_CERT.copy()
-    streaks(img, t * 0.6, GOLD, 33, n=4, alpha=60)
-    hp = ease_out(prog(t, t0 + 0.02, t0 + 0.35))
-    if hp > 0:
-        lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dl = ImageDraw.Draw(lay)
-        f1, f2 = font("ExtraBold", 40), font("Medium", 34)
-        h1, h2 = "PROFESSIONAL CERTIFICATION TRAINING", "Learn from a Chartered Accountant with 14+ years of experience"
-        tw = text_w(h1, f1, 8)
-        draw_tracked(dl, (W / 2 - tw / 2, 120 - (1 - hp) * 40), h1, f1, GOLD + (int(255 * hp),), 8)
-        dl.text((W / 2, 205 - (1 - hp) * 40), h2, font=f2, fill=WHITE + (int(235 * hp),), anchor="mm")
-        img.paste(lay, (0, 0), lay)
-    cw, gap = CARDS[0].width, 70
-    x0 = (W - (3 * cw + 2 * gap)) / 2
-    for i, card in enumerate(CARDS):
-        q = prog(t, t0 + 0.18 + i * 0.16, t0 + 0.68 + i * 0.16)
-        if q <= 0: continue
-        dy = (1 - back_out(q, 1.3)) * 420
-        c = card.copy()
-        c.putalpha(c.getchannel("A").point(lambda v: int(v * min(1, q * 2.5))))
-        sh = Image.new("RGBA", (cw + 80, card.height + 80), (0, 0, 0, 0))
-        ImageDraw.Draw(sh).rounded_rectangle((40, 52, cw + 40, card.height + 52), radius=26, fill=(0, 0, 0, int(120 * q)))
-        sh = sh.filter(ImageFilter.GaussianBlur(18))
-        x, y = int(x0 + i * (cw + gap)), int(320 + dy)
-        img.paste(sh, (x - 40, y - 40), sh)
-        img.paste(c, (x, y), c)
-    fp = ease_out(prog(t, t0 + 1.0, t0 + 1.35))
-    if fp > 0:
-        lay = Image.new("RGBA", (W, H), (0, 0, 0, 0)); dl = ImageDraw.Draw(lay)
-        dl.text((W / 2, 900 + (1 - fp) * 30), "Also: US CPA  •  FRM  •  DIP IFRS",
-                font=font("SemiBold", 34), fill=WHITE + (int(220 * fp),), anchor="mm")
-        img.paste(lay, (0, 0), lay)
+TICKER = "  VALUATION  •  EQUITY RESEARCH  •  FP&A  •  INVESTMENT BANKING  •  "
+def s_ticker(t, t0=4.6, t1=END):
+    p = prog(t, t0, t1)
+    img = Image.new("RGB", (W, H), (248, 249, 251))
+    d = ImageDraw.Draw(img)
+    tw = text_w(TICKER, F_HUGE, 4)
+    x = W * 0.35 - p * (tw * 0.55)
+    draw_tracked(d, (x, H / 2 - 120), TICKER, F_HUGE, NAVY, 4)
+    for i, (yy, L, sp) in enumerate([(0.24, 520, 1.0), (0.30, 260, 1.6), (0.72, 420, 1.3), (0.78, 680, 0.8)]):
+        xx = W - ((p * sp * 2400 + i * 330) % (W + L))
+        d.rounded_rectangle((xx, H * yy, xx + L, H * yy + 18), radius=9, fill=GREEN if i % 2 == 0 else GOLD)
     return img
 
 CHIPS = ["US CMA", "ACCA", "CFA", "FRM", "US CPA"]
-def s_end(t, t0=6.6):
+def s_end(t, t0=END):
     """Logo reveal end-card with portrait (holds to 10s)."""
     img = BG_END.copy()
     pp = ease_out(prog(t, t0, t0 + 0.7))
@@ -362,8 +314,8 @@ SCENES = [
     (2.0, 3.0, lambda t: photo_scene(P_LECTURE, t, 2.0, 3.0, "FINANCIAL MODELLING", NAVY, (240, 220, 170), 0.35, -0.5, align="left")),
     (3.0, 3.8, lambda t: photo_scene(P_GROUP, t, 3.0, 3.8, "INDUSTRY-READY SKILLS", NAVY, (150, 235, 210), 0.5, 0.4, label=False)),
     (3.8, 4.6, s_shatter),
-    (4.6, 6.6, s_certs),
-    (6.6, 10.01, s_end),
+    (4.6, END, s_ticker),
+    (END, 10.01, s_end),
 ]
 CUTS = [s[0] for s in SCENES[1:]]
 
@@ -427,39 +379,39 @@ def soundtrack():
     # I–V–vi–IV in C major, two beats per chord
     prog_ = [(48, [60, 64, 67, 72]), (43, [59, 62, 67, 71]), (45, [60, 64, 69, 72]), (41, [60, 65, 69, 72])]
     t = 0.0; k = 0
-    while t < 6.55:
+    while t < END - 0.05:
         root, ch = prog_[k % 4]
         for e in range(4):                      # 8th-note arpeggio
             at = t + e * beat / 2
-            if at < 6.55: add(pluck(note(ch[[0, 2, 1, 3][e]] + 12), 0.55), at, 0.5)
+            if at < END - 0.05: add(pluck(note(ch[[0, 2, 1, 3][e]] + 12), 0.55), at, 0.5)
         add(bass(note(root), beat * 2), t)
         for b in range(2):
             at = t + b * beat
-            if at < 6.5:
+            if at < END - 0.1:
                 add(kick(), at, 0.85)
                 if (k * 2 + b) % 2 == 1: add(clap(), at, 0.9)
         t += beat * 2; k += 1
     s = 0.0
-    while s < 6.5:
+    while s < END - 0.1:
         add(shaker(), s + beat / 4); s += beat / 2
     for c in CUTS[:-1]: add(whoosh(), c - 0.2, 0.8)
     # clap roll + rising noise into the logo reveal
-    for i, at in enumerate(np.cumsum([0.16, 0.13, 0.11, 0.09, 0.08, 0.07, 0.06, 0.05])[:-1] + 5.95):
+    for i, at in enumerate(np.cumsum([0.16, 0.13, 0.11, 0.09, 0.08, 0.07, 0.06, 0.05])[:-1] + END - 0.65):
         add(clap(), at, 0.3 + 0.08 * i)
     m = int(0.9 * sr); x = np.linspace(0, 1, m)
-    add(np.convolve(rnd.randn(m), np.ones(5) / 5, "same") * x ** 2.5 * 0.5, 5.7)
+    add(np.convolve(rnd.randn(m), np.ones(5) / 5, "same") * x ** 2.5 * 0.5, END - 0.9)
     # impact + bright C-major resolve under the end card
     L = int(2.4 * sr); x = np.arange(L) / sr
     boom = np.sin(2 * np.pi * (38 + 70 * np.exp(-x * 9)) * x) * np.exp(-x * 2.5)
-    add(1.0 * boom, 6.6)
-    add(kick(), 6.6, 1.0)
-    pad_t = np.arange(int((DUR - 6.6) * sr)) / sr
+    add(1.0 * boom, END)
+    add(kick(), END, 1.0)
+    pad_t = np.arange(int((DUR - END) * sr)) / sr
     pad = sum(np.sin(2 * np.pi * note(m_) * pad_t) + 0.2 * np.sin(4 * np.pi * note(m_) * pad_t)
               for m_ in (48, 55, 60, 64, 67, 72)) / 6
     pad *= np.minimum(1, pad_t / 0.15) * np.exp(-pad_t * 0.35) * 0.55
-    add(pad, 6.6)
+    add(pad, END)
     for i, m_ in enumerate((72, 76, 79, 84, 88)):           # rising sparkle arpeggio
-        add(pluck(note(m_), 1.6, 0.997), 7.2 + i * 0.12, 0.35)
+        add(pluck(note(m_), 1.6, 0.997), END + 0.6 + i * 0.12, 0.35)
     out[-int(0.5 * sr):] *= np.linspace(1, 0, int(0.5 * sr))
     out = np.tanh(out * 1.2)
     out = out / np.max(np.abs(out)) * 0.89
