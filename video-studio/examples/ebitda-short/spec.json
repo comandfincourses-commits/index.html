@@ -1,0 +1,31 @@
+{
+  "format": "short",
+  "slug": "ebitda-in-60-seconds",
+  "title": "EBITDA in 60 Seconds",
+  "series": "Finance Explained Simply",
+  "audio": "voice.wav",
+  "scenes": [
+    {"type": "title", "tag": "Finance in 60 sec", "text": "What is *EBITDA*?", "sub": "And why every analyst asks for it", "icon": "chart",
+     "line": "What is EBITDA, and why does every analyst ask for it?"},
+    {"type": "character", "bg": "office", "cast": [{"who": "student", "mood": "worried", "pose": "shrug"}], "say": "Profit... or cash? I'm confused!", "think": true, "prop": "coin",
+     "line": "Meet Rohan. He just joined a finance team, and his manager keeps saying, check the *EBITDA*."},
+    {"type": "formula", "text": "EBITDA = Net Profit\n+ Interest + Tax\n+ Depreciation + Amortisation", "note": "Earnings *before* the non-operating stuff",
+     "line": "EBITDA stands for earnings before interest, tax, depreciation and amortisation."},
+    {"type": "character", "bg": "classroom", "cast": [{"who": "prof", "mood": "happy", "pose": "point"}], "say": "It shows how well the *core business* earns.", "prop": "bulb",
+     "line": "In simple words, it shows how much the *core business* earns, before financing and accounting choices."},
+    {"type": "chart", "kind": "bar", "title": "Same EBITDA, different *Net Profit*", "values": [500, 500], "labels": ["Company A\n(no debt)", "Company B\n(heavy debt)"], "prefix": "₹", "suffix": " Cr", "colors": ["green", "blue"], "note": "So EBITDA lets you compare *fairly*",
+     "line": "That is why analysts love it. Two companies with very different debt can be compared fairly."},
+    {"type": "compare", "title": "But be careful", "left": {"title": "EBITDA is NOT", "points": ["Cash flow", "Net profit", "Free money"]}, "right": {"title": "Always check", "points": ["Capex needs", "Working capital", "Debt repayments"]},
+     "line": "But remember, EBITDA is *not* cash. Always check capex, working capital and debt."},
+    {"type": "bignumber", "value": "8x", "label": "A typical *EV / EBITDA* multiple you will hear in deals", "icon": "target", "color": "gold",
+     "line": "Bankers even value companies using EV to EBITDA multiples. Learn that next!"}
+  ],
+  "thumbnail": {"text": "*EBITDA* explained in 60 sec", "tag": "Interview must-know", "who": "prof", "mood": "surprised", "pose": "point", "icon": "up"},
+  "meta": {
+    "titles": ["EBITDA Explained in 60 Seconds | Finance Basics #Shorts", "What is EBITDA? Every Analyst Must Know This", "EBITDA vs Net Profit — Explained Simply"],
+    "caption": "EBITDA is the first number every analyst checks — but it is NOT cash. 💡\n\nIn 60 seconds: what EBITDA means, why analysts use it to compare companies, and the one mistake freshers make.\n\n👍 Like if this helped\n🔁 Share with a friend preparing for finance interviews\n🔔 Follow COMandFIN for daily finance lessons\n\nLearn Financial Modelling & Valuation: www.COMandFIN.com",
+    "hashtags": ["#EBITDA", "#Finance", "#FinancialModelling", "#Valuation", "#InvestmentBanking", "#EquityResearch", "#CA", "#MBA", "#FinanceInterview", "#COMandFIN", "#Shorts"],
+    "tags": ["ebitda", "what is ebitda", "ebitda explained", "ebitda vs net profit", "ev ebitda", "finance basics", "financial modelling", "valuation", "comandfin"],
+    "pinned_comment": "Which term should we explain next — EV/EBITDA, Free Cash Flow or Working Capital? Comment below 👇"
+  }
+}

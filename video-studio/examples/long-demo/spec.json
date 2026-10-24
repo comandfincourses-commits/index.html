@@ -1,0 +1,27 @@
+{
+  "format": "long",
+  "slug": "why-profitable-companies-go-bankrupt",
+  "title": "Why Profitable Companies Go Bankrupt",
+  "audio": "voice.wav",
+  "scenes": [
+    {"type": "title", "tag": "Finance explained simply", "text": "Why *profitable* companies go *bankrupt*", "sub": "The cash flow trap nobody talks about", "icon": "warning",
+     "line": "How can a company that makes a profit still go bankrupt? Let us understand the cash flow trap."},
+    {"type": "character", "bg": "city", "cast": [{"who": "boss", "mood": "happy", "pose": "cheer"}, {"who": "prof", "mood": "serious"}], "speaker": 0, "say": "Record sales this year! We made *₹50 Cr* profit!",
+     "line": "Meet Mr. Mehta. His company just reported record sales and fifty crore rupees of profit."},
+    {"type": "character", "bg": "office", "cast": [{"who": "boss", "mood": "worried", "pose": "shrug"}, {"who": "prof", "mood": "neutral", "pose": "point"}], "speaker": 1, "say": "Then why can't you pay *salaries* next month?", "prop": "warning",
+     "line": "So why can he not pay salaries next month? Because profit is an opinion, but cash is a fact."},
+    {"type": "chart", "kind": "line", "title": "Profit went *up*... cash went *down*", "values": [40, 28, 15, 6, 2], "labels": ["Q1", "Q2", "Q3", "Q4", "Q5"], "prefix": "₹", "suffix": " Cr", "note": "Cash balance falling every quarter",
+     "line": "His customers pay after one hundred and twenty days, but suppliers want money in thirty. Cash kept falling every quarter."},
+    {"type": "list", "title": "3 warning signs to check", "items": ["Receivable days keep *rising*", "Inventory piling up in warehouses", "Operating cash flow *negative* despite profit"],
+     "line": "Watch three warning signs. Rising receivable days, piling inventory, and negative operating cash flow despite profit."},
+    {"type": "quote", "text": "Revenue is vanity, profit is sanity, but *cash is king*.", "by": "Old finance proverb",
+     "line": "Remember. Revenue is vanity, profit is sanity, but cash is king."}
+  ],
+  "thumbnail": {"text": "Profit *₹50 Cr*... still *bankrupt*?", "tag": "Cash flow trap", "who": "boss", "mood": "worried", "pose": "shrug", "icon": "down"},
+  "meta": {
+    "titles": ["Why Profitable Companies Go Bankrupt | Cash Flow Explained Simply", "Profit ≠ Cash: The Trap That Kills Businesses"],
+    "description": "Profitable on paper, bankrupt in reality. In this video, CA Ankit Bajaj explains the cash flow trap with a simple story.\n\n🔔 Subscribe to COMandFIN for practical finance lessons.\n👍 Like and share with a friend preparing for finance interviews.\n\nLearn more: www.COMandFIN.com",
+    "chapters": ["0:00 Intro", "0:02 Profit but no cash?", "0:20 The cash flow trap", "0:35 Three warning signs", "0:45 Key takeaway"],
+    "hashtags": ["#CashFlow", "#WorkingCapital", "#FinancialStatementAnalysis", "#Finance", "#COMandFIN"]
+  }
+}
