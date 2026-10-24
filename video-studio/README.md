@@ -8,7 +8,15 @@ repeated Like / Share / Subscribe call-outs.
 | Format | Size | Length | Extras |
 |---|---|---|---|
 | `short` (YouTube Shorts / Instagram Reels) | 1080×1920 | 30 s – 2 min | branded header, bold captions, progress bar, 9:16 cover + 16:9 thumbnail |
-| `long` (YouTube) | 1920×1080 | up to ~6 min | 2 s logo intro, watermark, subtitles, 8 s end screen with "Watch Next" slots |
+| `long` (YouTube) | 1920×1080 | up to ~6 min | teaser hook + channel intro, watermark, subtitles, 8 s end screen with "Watch Next" slots |
+
+### Long-form running order
+
+1. **Teaser hook (5–10 s)**: a "COMING UP" replay of the strongest moment of the
+   voice-over, ending on a natural pause, with a white flash + whoosh into the intro.
+2. **Channel intro**: `assets/intro.mp4` (the 10 s COMandFIN intro), conformed to the
+   video's size and loudness.
+3. **Main video** → **end screen**.
 
 Every video gets: logo branding throughout, 1–3 animated **Like · Share · Subscribe**
 pop-ups (with click + "ding"), a branded end card, a thumbnail, and a publish kit
@@ -50,6 +58,9 @@ test voice from a spec, for checking timing before the real recording arrives.
   "series": "Finance Explained Simply", // header line on Shorts
   "audio": "voice.mp3",              // relative to the spec file
   "music": "bed.mp3", "music_volume": 0.08,   // optional background music
+  "teaser": {"start": 92.0, "end": 100.5},   // long only; voice-over seconds. Omit = auto-pick,
+                                             // false = no teaser. Or mark a scene "teaser": true
+  "intro_video": "my_intro.mp4",     // long only; default assets/intro.mp4, false = none
   "cta_times": [8, 30],              // optional; default 1–2 for shorts, 3 for long
   "cta_lines": ["Found this useful? *Like* & *Subscribe*!"],
   "end_message": "Share this with someone who is learning *finance*!",
@@ -67,6 +78,8 @@ Use `\n` for a forced line break.
 ### Scene types
 
 Every scene has `line` (the narration spoken during it — drives timing and captions).
+Long videos: add `"chapter": "Name"` to the scenes that start a chapter. The publish kit then
+lists YouTube chapter timestamps, already shifted for the teaser and intro.
 
 | type | fields | looks like |
 |---|---|---|

@@ -820,6 +820,19 @@ def cta_sprite(u, line, subscribed=False):
 
 
 @lru_cache(4)
+def teaser_badge(u):
+    fs = 40 * u
+    w = int(text_w("COMING UP", "head", fs) + 110 * u)
+    h = int(76 * u)
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle((0, 0, w - 1, h - 1), radius=h // 2, fill=YT_RED, outline=WHITE, width=max(2, int(4 * u)))
+    d.polygon([(30 * u, 22 * u), (30 * u, 54 * u), (58 * u, 38 * u)], fill=WHITE)
+    draw_text(d, 74 * u, 52 * u, "COMING UP", "head", fs, WHITE)
+    return img
+
+
+@lru_cache(4)
 def watermark(u):
     lg, wm = logo(int(70 * u)), wordmark(int(30 * u))
     img = Image.new("RGBA", (int(lg.width + wm.width + 46 * u), int(lg.height + 12 * u)), (0, 0, 0, 0))
@@ -1036,6 +1049,21 @@ class Renderer:
         tv = t - ctx.intro
         if tv >= self.total:
             return outro_frame(ctx, tv - self.total)
+        return self.body(tv)
+
+    def teaser_frame(self, i, start, length):
+        """Cold-open hook: a replay of the strongest moment, with a COMING UP badge."""
+        ctx, u = self.ctx, self.ctx.u
+        t = i / FPS
+        img = self.body(start + t, ctas=False)
+        badge = teaser_badge(u)
+        paste(img, badge, 40 * u, 40 * u, scale=ease_back(t / 0.35), anchor="topleft")
+        if t > length - 0.35:
+            img = Image.blend(img, Image.new("RGBA", img.size, WHITE + (255,)), clamp((t - length + 0.35) / 0.35))
+        return img
+
+    def body(self, tv, ctas=True):
+        ctx = self.ctx
         scenes = ctx.spec["scenes"]
         si = max(k for k, sc in enumerate(scenes) if sc["_t0"] <= tv + 1e-6) if tv >= scenes[0]["_t0"] else 0
         sc = scenes[si]
@@ -1072,7 +1100,7 @@ class Renderer:
             paste(img, watermark(u), ctx.W - 24 * u, 24 * u, alpha=0.92, anchor="topright")
             if cap:
                 paste(img, caption_sprite(False, u, cap[2]), ctx.W / 2, ctx.H - 40 * u, anchor="bottom")
-        for t0, line in self.ctas:
+        for t0, line in (self.ctas if ctas else []):
             ct = tv - t0
             if 0 <= ct < 3.6:
                 sub = ct > 1.75
@@ -1096,6 +1124,14 @@ class Renderer:
         return img
 
 
+def x264(ctx, path, src=("-f", "rawvideo", "-pix_fmt", "rgb24")):
+    """Identical encoder settings for every part, so parts concat without re-encoding."""
+    inp = list(src) + (["-s", f"{ctx.W}x{ctx.H}", "-r", str(FPS), "-i", "-"] if src[0] == "-f" else [])
+    return (["ffmpeg", "-v", "error", "-y"] + inp +
+            ["-c:v", "libx264", "-preset", "veryfast" if ctx.k < 1 else "medium", "-crf", "20", "-profile:v", "high",
+             "-pix_fmt", "yuv420p", "-r", str(FPS)])
+
+
 def render_range(args):
     ctx_args, timeline, a, b, path = args
     ctx = Ctx(*ctx_args)
@@ -1103,10 +1139,7 @@ def render_range(args):
     for sc, (t0, dur) in zip(ctx.spec["scenes"], sched):
         sc["_t0"], sc["_dur"] = t0, dur
     r = Renderer(ctx, total, caps, ctas, mouth)
-    enc = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s",
-                            f"{ctx.W}x{ctx.H}", "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset",
-                            "veryfast" if ctx.k < 1 else "medium", "-crf", "20", "-pix_fmt", "yuv420p", path],
-                           stdin=subprocess.PIPE)
+    enc = subprocess.Popen(x264(ctx, path) + [path], stdin=subprocess.PIPE)
     for i in range(a, b):
         enc.stdin.write(r.frame(i).convert("RGB").tobytes())
     enc.stdin.close()
@@ -1143,12 +1176,108 @@ def build_audio(ctx, voice, total, ctas, out):
         fade = int(SR * 2)
         m[-fade:] *= np.linspace(1, 0, fade)
         mix += m
+    encode_audio(mix, out)
+
+
+AAC = ["-ar", str(SR), "-ac", "2", "-c:a", "aac", "-b:a", "192k"]
+LOUDNORM = "loudnorm=I=-14:TP=-1.5:LRA=11"
+
+
+def encode_audio(mix, out):
     raw = out + ".f32"
-    mix.tofile(raw)
+    mix.astype(np.float32).tofile(raw)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", raw, "-af",
-                    "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", str(SR), "-ac", "2", "-c:a", "aac", "-b:a", "192k", out],
-                   check=True)
+                    LOUDNORM] + AAC + [out], check=True)
     os.remove(raw)
+
+
+def whoosh(dur=0.6, vol=0.22):
+    n = int(SR * dur)
+    noise = np.random.default_rng(3).standard_normal(n).astype(np.float32)
+    k = 40
+    smooth = np.convolve(noise, np.ones(k) / k, mode="same")
+    return (smooth * np.hanning(n) * vol * 6).astype(np.float32)
+
+
+# ------------------------------------------------------------------ teaser ---
+def pick_teaser(spec, total, prof):
+    """(start, end) of the 5-10 s hook replayed before the intro, or None.
+
+    spec["teaser"]: false | {"start": s, "end": e} | omitted (auto). A scene can also be
+    marked "teaser": true. End points snap to a pause in the voice-over."""
+    cfg = spec.get("teaser", {})
+    if cfg is False:
+        return None
+    scenes = spec["scenes"]
+    if "start" in cfg:
+        start = float(cfg["start"])
+        target = float(cfg.get("end", start + 8))
+    else:
+        marked = [sc for sc in scenes if sc.get("teaser")]
+        strong = [sc for sc in scenes if sc["_t0"] >= total * 0.2 and
+                  (sc["type"] in ("bignumber", "chart", "compare") or sc.get("say"))]
+        sc = (marked or strong or scenes[len(scenes) // 2:])[0]
+        start, target = sc["_t0"], sc["_t0"] + 8
+    lo, hi = start + 5, min(start + 10, total)
+    if prof:
+        pauses = [m for m, _ in prof[1] if lo <= m <= hi]
+        if pauses:
+            target = min(pauses, key=lambda m: abs(m - target))
+    end = clamp(target, min(lo, total), hi)
+    return start, end
+
+
+def render_teaser(ctx, renderer, voice, start, end, path, tmp):
+    length = end - start
+    nfr = int(length * FPS)
+    vid = os.path.join(tmp, "teaser_v.mp4")
+    enc = subprocess.Popen(x264(ctx, vid) + [vid], stdin=subprocess.PIPE)
+    for i in range(nfr):
+        enc.stdin.write(renderer.teaser_frame(i, start, length).convert("RGB").tobytes())
+    enc.stdin.close()
+    enc.wait()
+    n = int(nfr / FPS * SR)
+    mix = np.zeros(n, np.float32)
+    if voice is not None:
+        seg = voice[int(start * SR):int(start * SR) + n].copy()
+        f_in, f_out = int(0.08 * SR), int(0.3 * SR)
+        seg[:f_in] *= np.linspace(0, 1, min(f_in, len(seg)))
+        seg[-f_out:] *= np.linspace(1, 0, min(f_out, len(seg)))
+        mix[:len(seg)] += seg
+    w = whoosh()
+    mix[max(0, n - len(w)):] += w[:min(n, len(w))]
+    aud = os.path.join(tmp, "teaser_a.m4a")
+    encode_audio(mix, aud)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", vid, "-i", aud, "-c", "copy", "-shortest", path], check=True)
+    return nfr / FPS
+
+
+def prepare_intro(ctx, src, path):
+    """Conform the channel intro to the video's size, frame rate and audio format."""
+    W, H = ctx.W, ctx.H
+    has_audio = bool(subprocess.run(["ffprobe", "-v", "error", "-select_streams", "a", "-show_entries",
+                                     "stream=index", "-of", "csv=p=0", src], capture_output=True, text=True).stdout.strip())
+    cmd = x264(ctx, path, src=("-i", src))
+    if not has_audio:
+        cmd[4:4] = ["-f", "lavfi", "-i", f"anullsrc=r={SR}:cl=stereo"]
+        cmd += ["-shortest"]
+    cmd += ["-vf", f"scale={W}:{H}:force_original_aspect_ratio=decrease,pad={W}:{H}:(ow-iw)/2:(oh-ih)/2:color=white,"
+                   f"setsar=1", "-af", LOUDNORM] + AAC + [path]
+    subprocess.run(cmd, check=True)
+    return float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", path],
+                                capture_output=True, text=True).stdout)
+
+
+def concat(parts, out, tmp):
+    lst = os.path.join(tmp, "parts.txt")
+    open(lst, "w").write("".join(f"file '{p}'\n" for p in parts))
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-c", "copy",
+                    "-movflags", "+faststart", out], check=True)
+
+
+def ts(sec):
+    sec = int(round(sec))
+    return f"{sec // 60}:{sec % 60:02d}"
 
 
 # --------------------------------------------------------------- thumbnail ---
@@ -1224,6 +1353,14 @@ def render(spec_path, out_dir, draft=False, jobs=None):
     spec = json.load(open(spec_path, encoding="utf-8"))
     base = os.path.dirname(os.path.abspath(spec_path))
     fmt = spec.get("format", "short")
+    intro_video = None
+    if fmt == "long" and spec.get("intro_video", True):
+        iv = spec.get("intro_video") if isinstance(spec.get("intro_video"), str) else os.path.join(HERE, "assets",
+                                                                                                    "intro.mp4")
+        iv = iv if os.path.isabs(iv) else os.path.join(base, iv)
+        if os.path.exists(iv):
+            intro_video = iv
+            spec.setdefault("intro", 0.0)  # the channel intro replaces the built-in logo sting
     ctx = Ctx(spec, fmt, draft)
     os.makedirs(out_dir, exist_ok=True)
     name = spec.get("slug") or re.sub(r"[^a-z0-9]+", "-", spec.get("title", "video").lower()).strip("-")
@@ -1233,6 +1370,9 @@ def render(spec_path, out_dir, draft=False, jobs=None):
         voice = load_audio(ap)
         prof = speech_profile(voice)
         mouth = prof[0]
+    else:
+        prof = None
+    if voice is not None:
         total, caps = build_timeline(ctx, len(voice) / SR, prof)
     else:
         total, caps = build_timeline(ctx)
@@ -1258,10 +1398,33 @@ def render(spec_path, out_dir, draft=False, jobs=None):
     audio = os.path.join(tmp, "audio.m4a")
     build_audio(ctx, voice, total, ctas, audio)
     out = os.path.join(out_dir, f"{name}{'_draft' if draft else ''}.mp4")
+    main = os.path.join(tmp, "main.mp4") if fmt == "long" else out
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", audio, "-c:v",
-                    "copy", "-c:a", "copy", "-shortest", "-movflags", "+faststart", out], check=True)
+                    "copy", "-c:a", "copy", "-shortest", "-movflags", "+faststart", main], check=True)
+    length, offset = n / FPS, ctx.intro
+    if fmt == "long":
+        parts = []
+        tz = pick_teaser(spec, total, prof)
+        if tz:
+            r = Renderer(ctx, total, caps, ctas, mouth)
+            tl = render_teaser(ctx, r, voice, *tz, os.path.join(tmp, "teaser.mp4"), tmp)
+            parts.append(os.path.join(tmp, "teaser.mp4"))
+            print(f"[studio] teaser hook {tz[0]:.1f}-{tz[1]:.1f}s of voice-over ({tl:.1f}s)")
+            offset += tl
+        if intro_video:
+            il = prepare_intro(ctx, intro_video, os.path.join(tmp, "intro.mp4"))
+            parts.append(os.path.join(tmp, "intro.mp4"))
+            print(f"[studio] channel intro {os.path.basename(intro_video)} ({il:.1f}s)")
+            offset += il
+        concat(parts + [main], out, tmp)
+        length = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of",
+                                       "csv=p=0", out], capture_output=True, text=True).stdout)
+        chapters = [(sc["_t0"], sc["chapter"]) for sc in spec["scenes"] if sc.get("chapter")]
+        if chapters:
+            spec.setdefault("meta", {})["chapters"] = [f"0:00 {spec.get('teaser_chapter', 'Intro')}"] + [
+                f"{ts(offset + t)} {c}" for t, c in chapters]
     shutil.rmtree(tmp)
-    make_extras(spec, fmt, out_dir, name, n / FPS)
+    make_extras(spec, fmt, out_dir, name, length)
     print(f"[studio] wrote {out}")
     return out
 
