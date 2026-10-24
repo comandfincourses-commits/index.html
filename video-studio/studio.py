@@ -1003,6 +1003,48 @@ def load_audio(path):
     return np.frombuffer(raw, np.float32).copy()
 
 
+def tighten_pauses(voice, keep=0.3, longer_than=0.4, floor_db=35):
+    """Shorten every pause longer than `longer_than` s to `keep` s.
+
+    Returns (new_voice, remap) where remap(t) converts an original voice-over time to the
+    tightened timeline (times inside a removed gap land on the cut)."""
+    hop = SR // 100
+    n = len(voice) // hop
+    db = 20 * np.log10(np.sqrt(np.mean(voice[:n * hop].reshape(n, hop) ** 2, axis=1) + 1e-12))
+    quiet = db < np.percentile(db, 95) - floor_db
+    cuts, i = [], 0
+    while i < n:
+        if quiet[i]:
+            j = i
+            while j < n and quiet[j]:
+                j += 1
+            if (j - i) / 100 > longer_than and j < n:
+                half = keep / 2
+                cuts.append(((i / 100 + half if i else 0) * SR, (j / 100 - half) * SR))
+            i = j
+        else:
+            i += 1
+    pieces, segs, pos, new_len = [], [], 0, 0
+    fade = int(0.008 * SR)
+    for a, b in [(int(a), int(b)) for a, b in cuts] + [(len(voice), len(voice))]:
+        piece = voice[pos:a].copy()
+        if len(piece) > 2 * fade:
+            piece[:fade] *= np.linspace(0, 1, fade)
+            piece[-fade:] *= np.linspace(1, 0, fade)
+        segs.append((pos / SR, a / SR, new_len / SR))
+        pieces.append(piece)
+        new_len += len(piece)
+        pos = b
+    starts = np.array([o0 for o0, _, _ in segs])
+
+    def remap(t):
+        k = max(0, int(np.searchsorted(starts, t, side="right")) - 1)
+        o0, o1, n0 = segs[k]
+        return n0 + min(t, o1) - o0
+
+    return np.concatenate(pieces), remap
+
+
 def speech_profile(voice):
     """Per-frame mouth level (0-2) and silence midpoints for alignment."""
     hop = SR // FPS
@@ -1349,11 +1391,12 @@ def whoosh(dur=0.6, vol=0.22):
 def pick_teaser(spec, total, prof):
     """(start, end) of the 5-10 s hook replayed before the intro, or None.
 
-    spec["teaser"]: false | {"start": s, "end": e} | omitted (auto). A scene can also be
-    marked "teaser": true. End points snap to a pause in the voice-over."""
-    cfg = spec.get("teaser", {})
-    if cfg is False:
+    spec["teaser"]: omitted/false = no teaser | true = auto-pick | {"start": s, "end": e}.
+    A scene can also be marked "teaser": true. End points snap to a pause in the voice-over."""
+    cfg = spec.get("teaser")
+    if not cfg and not any(sc.get("teaser") for sc in spec["scenes"]):
         return None
+    cfg = cfg if isinstance(cfg, dict) else {}
     scenes = spec["scenes"]
     if "start" in cfg:
         start = float(cfg["start"])
@@ -1514,13 +1557,33 @@ def render(spec_path, out_dir, draft=False, jobs=None):
     if spec.get("audio"):
         ap = spec["audio"] if os.path.isabs(spec["audio"]) else os.path.join(base, spec["audio"])
         voice = load_audio(ap)
+        tp = spec.get("tighten_pauses", True)
+        if tp:
+            before = len(voice) / SR
+            voice, remap = tighten_pauses(voice, **(tp if isinstance(tp, dict) else {}))
+            for sc in spec["scenes"]:
+                if "at" in sc:
+                    sc["at"] = remap(float(sc["at"]))
+            if isinstance(spec.get("teaser"), dict):
+                for k in ("start", "end"):
+                    if k in spec["teaser"]:
+                        spec["teaser"][k] = remap(float(spec["teaser"][k]))
+            spec["_remap"] = remap
+            print(f"[studio] pauses tightened: {before:.1f}s -> {len(voice) / SR:.1f}s of voice-over")
         prof = speech_profile(voice)
         mouth = prof[0]
     else:
         prof = None
     if spec.get("captions_file"):
         cf = spec["captions_file"] if os.path.isabs(spec["captions_file"]) else os.path.join(base, spec["captions_file"])
-        spec["_caption_segments"] = json.load(open(cf, encoding="utf-8"))
+        segs = json.load(open(cf, encoding="utf-8"))
+        rm = spec.get("_remap")
+        if rm:
+            segs = [dict(sg, start=rm(sg["start"]), end=rm(sg["end"])) for sg in segs]
+        spec["_caption_segments"] = segs
+    if spec.get("_remap") and spec.get("cta_times"):
+        spec["cta_times"] = [spec["_remap"](float(t)) for t in spec["cta_times"]]
+    spec.pop("_remap", None)
     if voice is not None:
         total, caps = build_timeline(ctx, len(voice) / SR, prof)
     else:

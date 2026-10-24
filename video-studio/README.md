@@ -12,8 +12,8 @@ repeated Like / Share / Subscribe call-outs.
 
 ### Long-form running order
 
-1. **Teaser hook (5–10 s)**: a "COMING UP" replay of the strongest moment of the
-   voice-over, ending on a natural pause, with a white flash + whoosh into the intro.
+1. **Teaser hook (optional, off by default)**: `"teaser": true` (auto-pick) or
+   `{"start", "end"}` adds a 5–10 s "COMING UP" replay before the intro.
 2. **Channel intro**: `assets/intro.mp4` (the 10 s COMandFIN intro), conformed to the
    video's size and loudness.
 3. **Main video** → **end screen**.
@@ -58,8 +58,11 @@ test voice from a spec, for checking timing before the real recording arrives.
   "series": "Finance Explained Simply", // header line on Shorts
   "audio": "voice.mp3",              // relative to the spec file
   "music": "bed.mp3", "music_volume": 0.08,   // optional background music
-  "teaser": {"start": 92.0, "end": 100.5},   // long only; voice-over seconds. Omit = auto-pick,
-                                             // false = no teaser. Or mark a scene "teaser": true
+  "teaser": {"start": 92.0, "end": 100.5},   // long only, optional; voice-over seconds, or true
+                                             // to auto-pick. Omitted = no teaser
+  "tighten_pauses": true,            // default: every pause > 0.4 s shortened to 0.3 s;
+                                     // false = keep the recording as is. Times in the spec
+                                     // ("at", captions, cta_times) stay in original voice-over seconds
   "intro_video": "my_intro.mp4",     // long only; default assets/intro.mp4, false = none
   "cta_times": [8, 30],              // optional; default 1–2 for shorts, 3 for long
   "cta_lines": ["Found this useful? *Like* & *Subscribe*!"],
