@@ -1,0 +1,780 @@
+{
+ "format": "long",
+ "slug": "stock-market-journey-of-one-trade",
+ "title": "Journey of One Trade: How the Indian Stock Market Works",
+ "audio": "voice.wav",
+ "captions_file": "captions.json",
+ "teaser": {
+  "start": 234.1,
+  "end": 243.0
+ },
+ "cta_times": [
+  66,
+  264,
+  388
+ ],
+ "cta_lines": [
+  "Learning something new? *Like* & *Subscribe*!",
+  "*Share* this with a friend who just opened a demat account",
+  "*Subscribe* to COMandFIN for practical finance"
+ ],
+ "end_message": "Share this with someone who just started *investing*!",
+ "scenes": [
+  {
+   "type": "character",
+   "at": 0,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "happy",
+     "pose": "point"
+    }
+   ],
+   "say": "Tap *BUY*... order executed!",
+   "prop": "phone",
+   "chapter": "One trade, two strangers"
+  },
+  {
+   "type": "character",
+   "at": 5.0,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "surprised",
+     "pose": "idle",
+     "label": "You"
+    },
+    {
+     "who": "investor",
+     "mood": "neutral",
+     "pose": "idle",
+     "label": "A stranger, 1,000 km away"
+    }
+   ],
+   "speaker": 0,
+   "think": true,
+   "say": "Who sold me these shares?"
+  },
+  {
+   "type": "title",
+   "at": 15.3,
+   "tag": "The big question",
+   "text": "Nobody *cheats* anybody. *How?*",
+   "icon": "shield"
+  },
+  {
+   "type": "title",
+   "at": 22.5,
+   "tag": "Today's journey",
+   "text": "Follow *one trade* from the BUY button to your *demat account*",
+   "sub": "...and meet every institution on the way",
+   "icon": "phone"
+  },
+  {
+   "type": "flow",
+   "at": 34.0,
+   "title": "The players you will meet",
+   "steps": [
+    {
+     "title": "Broker",
+     "icon": "phone"
+    },
+    {
+     "title": "Exchange",
+     "icon": "exchange"
+    },
+    {
+     "title": "Clearing Corp",
+     "icon": "shield"
+    },
+    {
+     "title": "Depository",
+     "icon": "lock"
+    },
+    {
+     "title": "Bank",
+     "icon": "bank"
+    },
+    {
+     "title": "SEBI",
+     "icon": "target"
+    }
+   ]
+  },
+  {
+   "type": "character",
+   "at": 44.5,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "*Priya* · Pune"
+    }
+   ],
+   "say": "Time to stop watching and start *investing*!",
+   "chapter": "Meet Priya & Mr. Kapoor"
+  },
+  {
+   "type": "bignumber",
+   "at": 55.9,
+   "value": "₹15,000",
+   "label": "*10 shares* of a large IT company at *₹1,500* each",
+   "icon": "coin",
+   "color": "gold"
+  },
+  {
+   "type": "character",
+   "at": 61.9,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "investor",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "*Mr. Kapoor* · Jaipur"
+    }
+   ],
+   "say": "Selling 10 shares to pay my granddaughter's *college fees*."
+  },
+  {
+   "type": "character",
+   "at": 75.9,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "neutral",
+     "pose": "think",
+     "label": "*Priya* · Pune"
+    },
+    {
+     "who": "investor",
+     "mood": "neutral",
+     "pose": "idle",
+     "label": "*Mr. Kapoor* · Jaipur"
+    }
+   ],
+   "speaker": 0,
+   "think": true,
+   "say": "Two cities. *One trade.* How do we meet?"
+  },
+  {
+   "type": "title",
+   "at": 84.5,
+   "bg": "dark",
+   "tag": "Flashback",
+   "text": "India, *1990*",
+   "sub": "A very different story",
+   "icon": "calendar",
+   "chapter": "Flashback: trading in 1990"
+  },
+  {
+   "type": "list",
+   "at": 93.6,
+   "title": "Buying shares in *1990*",
+   "items": [
+    "Shares were *paper certificates*",
+    "Brokers shouted prices in a trading ring",
+    "Certificates travelled by post, signatures checked by hand",
+    "Transfers took *weeks*, fakes were a real risk"
+   ],
+   "icon": "doc"
+  },
+  {
+   "type": "flow",
+   "at": 109.8,
+   "title": "How India *fixed* it",
+   "steps": [
+    {
+     "title": "1992",
+     "text": "Securities scam; *SEBI Act* gives SEBI statutory powers",
+     "icon": "warning"
+    },
+    {
+     "title": "1994",
+     "text": "NSE starts *screen-based* trading",
+     "icon": "exchange"
+    },
+    {
+     "title": "1996",
+     "text": "*NSDL*, India's first depository: shares go electronic",
+     "icon": "lock"
+    }
+   ]
+  },
+  {
+   "type": "quote",
+   "at": 131.8,
+   "text": "The system Priya uses today was built because the old one *failed*.",
+   "by": "Lesson from history"
+  },
+  {
+   "type": "title",
+   "at": 139.8,
+   "tag": "Step 1",
+   "text": "The *Broker*",
+   "sub": "Priya's entry gate to the exchange",
+   "icon": "phone",
+   "chapter": "Step 1: The broker"
+  },
+  {
+   "type": "character",
+   "at": 148.1,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "neutral",
+     "pose": "idle",
+     "label": "*Priya* · Pune"
+    },
+    {
+     "who": "boss",
+     "mood": "serious",
+     "pose": "point",
+     "label": "Broker · SEBI-registered"
+    }
+   ],
+   "speaker": 1,
+   "say": "Do you have *₹15,000* available?"
+  },
+  {
+   "type": "character",
+   "at": 162.6,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "investor",
+     "mood": "neutral",
+     "pose": "idle",
+     "label": "*Mr. Kapoor* · Jaipur"
+    },
+    {
+     "who": "boss",
+     "mood": "serious",
+     "pose": "point",
+     "label": "Broker"
+    }
+   ],
+   "speaker": 1,
+   "say": "Are the 10 shares in your *demat*?",
+   "prop": "lock"
+  },
+  {
+   "type": "list",
+   "at": 170.3,
+   "title": "Checks before any order goes out",
+   "items": [
+    "Buyer: *funds* available",
+    "Seller: *shares* in demat",
+    "Seller authorises with *TPIN / OTP*",
+    "No shares, *no sale*"
+   ],
+   "icon": "check"
+  },
+  {
+   "type": "title",
+   "at": 183.8,
+   "tag": "Step 2",
+   "text": "The *Stock Exchange*",
+   "sub": "NSE / BSE: a giant digital marketplace",
+   "icon": "exchange",
+   "chapter": "Step 2: The exchange"
+  },
+  {
+   "type": "compare",
+   "at": 191.6,
+   "title": "The *order book*",
+   "left": {
+    "title": "BUY orders",
+    "color": "green",
+    "points": [
+     "*Priya*: 10 @ ₹1,500",
+     "Buyer: 25 @ ₹1,499",
+     "Buyer: 40 @ ₹1,498"
+    ]
+   },
+   "right": {
+    "title": "SELL orders",
+    "color": "red",
+    "points": [
+     "*Mr. Kapoor*: 10 @ ₹1,500",
+     "Seller: 15 @ ₹1,501",
+     "Seller: 30 @ ₹1,503"
+    ]
+   }
+  },
+  {
+   "type": "list",
+   "at": 200.9,
+   "title": "*Price-time* priority",
+   "items": [
+    "*Best price* is matched first",
+    "Same price? *Whoever came first*"
+   ],
+   "icon": "target"
+  },
+  {
+   "type": "character",
+   "at": 206.6,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "*Priya* · Pune"
+    },
+    {
+     "who": "investor",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "*Mr. Kapoor* · Jaipur"
+    }
+   ],
+   "speaker": 0,
+   "say": "Matched at *₹1,500* in a fraction of a second!",
+   "prop": "check"
+  },
+  {
+   "type": "title",
+   "at": 221.3,
+   "tag": "Step 3 · the hidden hero",
+   "text": "The *Clearing Corporation*",
+   "sub": "NSE Clearing (NSE) · ICCL (BSE)",
+   "icon": "shield",
+   "chapter": "Step 3: The clearing corporation"
+  },
+  {
+   "type": "flow",
+   "at": 230.8,
+   "title": "*Novation*: the clearing corporation steps in the middle",
+   "steps": [
+    {
+     "title": "Mr. Kapoor",
+     "text": "Sells to the clearing corporation",
+     "icon": "people"
+    },
+    {
+     "title": "Clearing Corporation",
+     "text": "Buyer to every seller, *seller to every buyer*",
+     "icon": "shield"
+    },
+    {
+     "title": "Priya",
+     "text": "Buys from the clearing corporation",
+     "icon": "people"
+    }
+   ]
+  },
+  {
+   "type": "character",
+   "at": 242.9,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "worried",
+     "pose": "shrug",
+     "label": "Kapoor's broker"
+    },
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "point"
+    }
+   ],
+   "speaker": 1,
+   "say": "Broker defaults? Priya *still* gets her shares.",
+   "prop": "shield"
+  },
+  {
+   "type": "list",
+   "at": 253.8,
+   "title": "Why the guarantee holds",
+   "items": [
+    "Clearing corporation is the *counterparty*",
+    "Backed by *margins*",
+    "Backed by the *Settlement Guarantee Fund*"
+   ],
+   "icon": "shield"
+  },
+  {
+   "type": "quote",
+   "at": 257.8,
+   "text": "Two strangers trade without trusting each other, because they trust the *system*."
+  },
+  {
+   "type": "title",
+   "at": 268.1,
+   "tag": "Step 4",
+   "text": "*Settlement*: T+1",
+   "sub": "Trade day + 1 working day",
+   "icon": "calendar",
+   "chapter": "Step 4: Settlement (T+1)"
+  },
+  {
+   "type": "flow",
+   "at": 278.9,
+   "title": "How the shares move",
+   "steps": [
+    {
+     "title": "Monday",
+     "text": "Trade *matched*",
+     "icon": "exchange"
+    },
+    {
+     "title": "Tuesday",
+     "text": "Shares leave Kapoor's demat",
+     "icon": "calendar"
+    },
+    {
+     "title": "NSDL / CDSL",
+     "text": "Depository moves the shares",
+     "icon": "lock"
+    },
+    {
+     "title": "Priya's demat",
+     "text": "Credited *directly* by the clearing corp (since Oct 2024)",
+     "icon": "check"
+    }
+   ]
+  },
+  {
+   "type": "character",
+   "at": 298.5,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "investor",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "*Mr. Kapoor* · Jaipur"
+    }
+   ],
+   "say": "*₹15,000* received, minus charges & taxes.",
+   "prop": "bag"
+  },
+  {
+   "type": "bignumber",
+   "at": 308.3,
+   "value": "T+0",
+   "label": "Optional *same-day settlement* for the top 500 stocks",
+   "icon": "clock",
+   "color": "gold"
+  },
+  {
+   "type": "title",
+   "at": 318.9,
+   "tag": "Step 5",
+   "text": "Where do *banks* fit in?",
+   "sub": "Wherever money moves",
+   "icon": "bank",
+   "chapter": "Step 5: Banks & UPI block"
+  },
+  {
+   "type": "compare",
+   "at": 325.4,
+   "title": "Two ways Priya can pay",
+   "left": {
+    "title": "Transfer to broker",
+    "color": "blue",
+    "points": [
+     "Bank sends money to the broker",
+     "Broker holds it until used"
+    ]
+   },
+   "right": {
+    "title": "UPI block (like ASBA)",
+    "color": "green",
+    "points": [
+     "Money stays *blocked* in her own bank",
+     "Debited only when the trade *settles*"
+    ]
+   }
+  },
+  {
+   "type": "flow",
+   "at": 346.1,
+   "title": "Behind the scenes, every day",
+   "steps": [
+    {
+     "title": "Brokers",
+     "icon": "phone"
+    },
+    {
+     "title": "Clearing banks",
+     "text": "Move funds daily",
+     "icon": "bank"
+    },
+    {
+     "title": "Clearing Corporation",
+     "icon": "shield"
+    }
+   ]
+  },
+  {
+   "type": "character",
+   "at": 358.6,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Mutual fund / FPI"
+    }
+   ],
+   "say": "Buying *₹500 crore* of shares!",
+   "prop": "bag",
+   "chapter": "Step 6: Custodians"
+  },
+  {
+   "type": "title",
+   "at": 367.0,
+   "tag": "Step 6",
+   "text": "The *Custodian*",
+   "sub": "A high-security locker + back office for institutions",
+   "icon": "lock"
+  },
+  {
+   "type": "list",
+   "at": 375.6,
+   "title": "What a custodian does",
+   "items": [
+    "Holds securities *safely*",
+    "Settles trades with the clearing corporation",
+    "Collects *dividends*",
+    "Handles bonuses & splits",
+    "Reports everything back"
+   ],
+   "icon": "check"
+  },
+  {
+   "type": "character",
+   "at": 392.1,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "*Priya* · Pune"
+    }
+   ],
+   "say": "I don't need one. My *broker & DP* do this job."
+  },
+  {
+   "type": "title",
+   "at": 403.3,
+   "tag": "The referee",
+   "text": "*SEBI*: the regulator",
+   "sub": "Writes the rules for every player",
+   "icon": "shield",
+   "chapter": "SEBI: the referee"
+  },
+  {
+   "type": "list",
+   "at": 419.0,
+   "title": "What SEBI does",
+   "items": [
+    "*Registers* every player",
+    "*Monitors* trading",
+    "*Punishes* wrongdoing"
+   ],
+   "icon": "check"
+  },
+  {
+   "type": "bignumber",
+   "at": 425.5,
+   "value": "₹2,000 Cr",
+   "label": "Karvy (2019) misused client shares; SEBI barred it, registration later cancelled",
+   "icon": "warning",
+   "color": "red"
+  },
+  {
+   "type": "list",
+   "at": 441.5,
+   "title": "The rule change",
+   "items": [
+    "Client shares can't be *pooled* with the broker",
+    "Shares go *straight* to your demat account"
+   ],
+   "icon": "check"
+  },
+  {
+   "type": "bignumber",
+   "at": 451.9,
+   "value": "~23 Cr",
+   "label": "demat accounts trust a system of *total strangers*",
+   "icon": "people",
+   "color": "gold"
+  },
+  {
+   "type": "flow",
+   "at": 463.4,
+   "title": "One trade, one *relay race*",
+   "steps": [
+    {
+     "title": "Broker",
+     "text": "Takes the order",
+     "icon": "phone"
+    },
+    {
+     "title": "Exchange",
+     "text": "Matches it",
+     "icon": "exchange"
+    },
+    {
+     "title": "Clearing Corp",
+     "text": "*Guarantees* it",
+     "icon": "shield"
+    },
+    {
+     "title": "Depository",
+     "text": "Moves the shares",
+     "icon": "lock"
+    },
+    {
+     "title": "Bank",
+     "text": "Moves the money",
+     "icon": "bank"
+    },
+    {
+     "title": "Custodian",
+     "text": "For big institutions",
+     "icon": "doc"
+    }
+   ],
+   "note": "...and *SEBI* watches everyone",
+   "chapter": "Recap: the relay race"
+  },
+  {
+   "type": "character",
+   "at": 482.3,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "woman",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "*Priya* · Pune"
+    },
+    {
+     "who": "investor",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "*Mr. Kapoor* · Jaipur"
+    }
+   ],
+   "speaker": 1,
+   "say": "Shares delivered. *College fees paid!*"
+  },
+  {
+   "type": "title",
+   "at": 490.1,
+   "tag": "Comment below",
+   "text": "Which player was *new* to you?",
+   "icon": "bulb"
+  },
+  {
+   "type": "character",
+   "at": 495.6,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "Subscribe to *COMandFIN* for practical finance!"
+  },
+  {
+   "type": "title",
+   "at": 501.1,
+   "tag": "Next video",
+   "text": "What happens to your money in an *F&O trade*?",
+   "icon": "up"
+  },
+  {
+   "type": "title",
+   "at": 506.8,
+   "bg": "dark",
+   "tag": "Disclaimer",
+   "text": "For *educational purposes* only",
+   "sub": "Not investment advice",
+   "icon": "doc"
+  },
+  {
+   "type": "character",
+   "at": 512.9,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "*Like, share & subscribe!*",
+   "prop": "bell"
+  }
+ ],
+ "thumbnail": {
+  "text": "What happens after you tap *BUY*?",
+  "tag": "Indian stock market",
+  "who": "woman",
+  "mood": "surprised",
+  "pose": "point",
+  "icon": "phone"
+ },
+ "meta": {
+  "titles": [
+   "What Happens After You Tap BUY? | How the Indian Stock Market Really Works",
+   "Journey of One Trade: Broker → NSE → Clearing Corp → Demat | Explained Simply",
+   "Who Really Sold You Your Shares? The Indian Stock Market Explained"
+  ],
+  "description": "You tap BUY. Two seconds later, the order is executed — but who sold you those shares, and why does nobody cheat?\n\nIn this video, CA Ankit Bajaj follows one single trade — Priya in Pune buying, Mr. Kapoor in Jaipur selling — through every institution in the Indian stock market:\n• Broker and pre-trade checks (funds, demat holdings, TPIN/OTP)\n• NSE/BSE order book and price-time priority\n• Clearing corporation and novation (NSE Clearing, ICCL)\n• T+1 settlement, NSDL/CDSL and direct payout to your demat\n• Banks, clearing banks and the UPI block option\n• Custodians for mutual funds and FPIs\n• SEBI as the regulator, and lessons from the Karvy case\n\n📌 Disclaimer: This video is for educational purposes only and is not investment advice.\n\n👍 Like if you learned something new\n🔁 Share with a friend who just opened a demat account\n🔔 Subscribe to COMandFIN for practical finance every day\n\n🌐 www.COMandFIN.com",
+  "hashtags": [
+   "#StockMarket",
+   "#IndianStockMarket",
+   "#NSE",
+   "#BSE",
+   "#SEBI",
+   "#DematAccount",
+   "#StockMarketForBeginners",
+   "#T1Settlement",
+   "#ClearingCorporation",
+   "#Investing",
+   "#Finance",
+   "#COMandFIN"
+  ],
+  "tags": [
+   "how stock market works",
+   "indian stock market explained",
+   "what happens when you buy a share",
+   "clearing corporation",
+   "novation",
+   "t+1 settlement",
+   "nsdl cdsl",
+   "demat account",
+   "sebi",
+   "stock broker",
+   "order book",
+   "price time priority",
+   "custodian",
+   "upi block asba",
+   "karvy case",
+   "stock market for beginners",
+   "comandfin",
+   "ca ankit bajaj"
+  ],
+  "pinned_comment": "Which of these players did you NOT know about before today — the clearing corporation, the custodian, or the depository? Tell me below 👇 Next video: what really happens to your money in an F&O trade.",
+  "caption": "You tap BUY. 2 seconds later, a stranger 1,000 km away has sold you his shares — and nobody cheats anybody. 🤝\n\nHere's the full journey of one trade in the Indian stock market: broker → exchange → clearing corporation → depository → bank → SEBI.\n\n👍 Like  🔁 Share  🔔 Follow COMandFIN\n#StockMarket #NSE #SEBI #DematAccount #Finance #COMandFIN"
+ }
+}

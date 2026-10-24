@@ -1,3 +1,4 @@
 out/
 __pycache__/
 examples/*/voice.wav
+projects/*/voice.*

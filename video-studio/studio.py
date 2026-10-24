@@ -406,6 +406,50 @@ def icon(kind, size, color=None):
             d.line([P(78, 38), P(78, 70)], fill=INK, width=lw)
             d.polygon([P(12, 80), P(88, 80), P(78, 66), P(22, 66)], fill=col, outline=INK, width=lw)
             d.ellipse(B(42, 78, 58, 94), fill=INK)
+        elif kind == "phone":
+            d.rounded_rectangle(B(24, 2, 76, 98), radius=int(10 * s), fill=(40, 44, 56), outline=INK, width=lw)
+            d.rounded_rectangle(B(30, 12, 70, 84), radius=int(4 * s), fill=(220, 236, 250))
+            d.rounded_rectangle(B(34, 56, 66, 74), radius=int(5 * s), fill=GREEN)
+            d.text(P(50, 66), "BUY", font=_font("Poppins-ExtraBold.ttf", 11 * s), fill=WHITE, anchor="mm")
+            d.line([P(36, 24), P(60, 24)], fill=GREY, width=lw)
+            d.line([P(36, 36), P(52, 36)], fill=GREY, width=lw)
+        elif kind == "shield":
+            pts = [(50, 4), (90, 18), (86, 58), (50, 96), (14, 58), (10, 18)]
+            d.polygon([P(*p) for p in pts], fill=color or GREEN, outline=INK, width=lw)
+            d.line([P(32, 50), P(46, 64), P(70, 36)], fill=WHITE, width=int(10 * s), joint="curve")
+        elif kind == "lock":
+            d.arc(B(26, 4, 74, 60), 180, 360, fill=INK, width=int(14 * s))
+            d.arc(B(26, 4, 74, 60), 180, 360, fill=(170, 170, 180), width=int(7 * s))
+            d.line([P(26, 32), P(26, 46)], fill=INK, width=int(10 * s))
+            d.line([P(74, 32), P(74, 46)], fill=INK, width=int(10 * s))
+            d.rounded_rectangle(B(12, 42, 88, 96), radius=int(10 * s), fill=color or GOLD, outline=INK, width=lw)
+            d.ellipse(B(43, 56, 57, 70), fill=INK)
+            d.rectangle(B(47, 64, 53, 84), fill=INK)
+        elif kind == "calendar":
+            d.rounded_rectangle(B(6, 12, 94, 96), radius=int(8 * s), fill=WHITE, outline=INK, width=lw)
+            d.rounded_rectangle(B(6, 12, 94, 36), radius=int(8 * s), fill=color or RED, outline=INK, width=lw)
+            for x in (28, 72):
+                d.line([P(x, 4), P(x, 20)], fill=INK, width=int(8 * s))
+            for r in range(3):
+                for c_ in range(4):
+                    d.rectangle(B(16 + c_ * 19, 44 + r * 16, 26 + c_ * 19, 52 + r * 16), fill=(200, 200, 210))
+        elif kind == "clock":
+            d.ellipse(B(6, 6, 94, 94), fill=WHITE, outline=INK, width=lw)
+            for a in range(0, 360, 30):
+                x, y = 50 + 38 * math.cos(math.radians(a)), 50 + 38 * math.sin(math.radians(a))
+                d.ellipse(B(x - 2.5, y - 2.5, x + 2.5, y + 2.5), fill=INK)
+            d.line([P(50, 50), P(50, 22)], fill=INK, width=int(7 * s))
+            d.line([P(50, 50), P(70, 60)], fill=color or RED, width=int(6 * s))
+        elif kind == "people":
+            for cx, cy, col in ((34, 30, BLUE), (66, 30, GREEN)):
+                d.chord(B(cx - 26, cy + 22, cx + 26, cy + 82), 180, 360, fill=col, outline=INK, width=lw)
+                d.ellipse(B(cx - 15, cy - 15, cx + 15, cy + 15), fill=SKIN, outline=INK, width=lw)
+        elif kind == "exchange":
+            d.rounded_rectangle(B(4, 10, 96, 90), radius=int(8 * s), fill=NAVY, outline=INK, width=lw)
+            pts = [(14, 70), (32, 52), (46, 60), (64, 32), (86, 22)]
+            d.line([P(*p) for p in pts], fill=GREEN, width=int(7 * s), joint="curve")
+            for i, h in enumerate((14, 24, 18, 30)):
+                d.rectangle(B(16 + i * 18, 84 - h, 24 + i * 18, 84), fill=(90, 120, 170))
     return supersample(size, size, fn)
 
 
@@ -527,11 +571,12 @@ def scene_static(ctx, sc):
     _, _, w, h = ctx.stage
     typ = sc["type"]
     bg = sc.get("bg") or {"title": "studio", "character": "office", "chart": "paper", "bignumber": "dark",
-                          "list": "paper", "compare": "paper", "formula": "classroom", "quote": "dark"}.get(typ, "paper")
+                          "list": "paper", "compare": "paper", "formula": "classroom", "quote": "dark",
+                          "flow": "paper"}.get(typ, "paper")
     img = background(bg, w, h).copy()
     d = ImageDraw.Draw(img)
     title = sc.get("title")
-    if title and typ in ("chart", "list", "compare"):
+    if title and typ in ("chart", "list", "compare", "flow"):
         t = rich_block(title, "head", h * 0.058, w * 0.86, NAVY, hl=GOLD if bg != "paper" else BLUE, max_lines=2)
         paste(img, t, w / 2, h * 0.045, anchor="top")
         sc["_title_h"] = t.height
@@ -566,6 +611,55 @@ def fmt_val(v, sc):
     return f"{sc.get('prefix', '')}{s}{sc.get('suffix', '')}"
 
 
+@lru_cache(64)
+def name_tag(text, size, max_w):
+    t = rich_block(text, "bold", size, max_w, WHITE, hl=GOLD, max_lines=2)
+    img = Image.new("RGBA", (t.width + int(size * 0.9), t.height + int(size * 0.3)), (0, 0, 0, 0))
+    ImageDraw.Draw(img).rounded_rectangle((0, 0, img.width - 1, img.height - 1), radius=int(size * 0.6),
+                                          fill=NAVY + (235,), outline=GOLD, width=max(2, size // 12))
+    img.alpha_composite(t, (int(size * 0.45), int(size * 0.15)))
+    return img
+
+
+@lru_cache(64)
+def flow_card(step, cw, ch, u, active, horizontal_row):
+    """One box of a flow / timeline scene."""
+    img = Image.new("RGBA", (int(cw), int(ch)), (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    d.rounded_rectangle((3, 3, cw - 4, ch - 4), radius=int(min(cw, ch) * 0.12), fill=WHITE,
+                        outline=GOLD if active else INK, width=max(3, int((9 if active else 5) * u)))
+    step = dict(step)
+    title, text, ic = step.get("title", ""), step.get("text", ""), step.get("icon")
+    if horizontal_row:      # tall card: icon on top, text below, block centred
+        isz = int(min(cw * 0.45, ch * 0.34)) if ic else 0
+        tt = rich_block(title, "head", min(cw * 0.15, 54 * u), cw * 0.9, NAVY, hl=BLUE, max_lines=2)
+        tx = rich_block(text, "bold", min(cw * 0.105, 38 * u), cw * 0.9, GREY, hl=GREEN, max_lines=4) if text else None
+        gap = ch * 0.04
+        total = isz + (gap if ic else 0) + tt.height + (tx.height if tx else 0)
+        y = max(ch * 0.05, (ch - total) / 2)
+        if ic:
+            paste(img, icon(ic, isz), cw / 2, y, anchor="top")
+            y += isz + gap
+        paste(img, tt, cw / 2, y, anchor="top")
+        if tx:
+            paste(img, tx, cw / 2, y + tt.height, anchor="top")
+    else:                   # wide card: icon left, text right
+        x = ch * 0.15
+        if ic:
+            isz = int(ch * 0.62)
+            paste(img, icon(ic, isz), x, ch / 2, anchor="left")
+            x += isz + ch * 0.15
+        tt = rich_block(title, "head", min(ch * 0.3, 46 * u), cw - x - ch * 0.15, NAVY, hl=BLUE, align="left",
+                        max_lines=1)
+        tx = rich_block(text, "med", min(ch * 0.2, 32 * u), cw - x - ch * 0.15, INK, hl=GREEN, align="left",
+                        max_lines=2) if text else None
+        th = tt.height + (tx.height if tx else 0)
+        paste(img, tt, x, (ch - th) / 2, anchor="topleft")
+        if tx:
+            paste(img, tx, x, (ch - th) / 2 + tt.height, anchor="topleft")
+    return img
+
+
 def draw_cast(ctx, img, sc, lt, mouth_level, talking):
     _, _, w, h = ctx.stage
     cast = sc.get("cast") or []
@@ -588,6 +682,9 @@ def draw_cast(ctx, img, sc, lt, mouth_level, talking):
         paste(img, sh, x, feet - ch_h * 0.012)
         paste(img, spr, x, feet + bob + (1 - ent) * h * 0.25, anchor="bottom")
         heads.append((x, feet - ch_h))
+        if c.get("label"):
+            tag = name_tag(c["label"], int(h * 0.032), int(w * 0.3))
+            paste(img, tag, x, feet - ch_h * 0.3 + (1 - ent) * h * 0.25, alpha=clamp(lt / 0.4))
     return heads
 
 
@@ -769,6 +866,44 @@ def render_scene(ctx, sc, static, lt, mouth_level, talking):
         if sc.get("cast"):
             draw_cast(ctx, img, sc, lt, mouth_level, talking)
 
+    elif typ == "flow":
+        steps = sc["steps"]
+        n = len(steps)
+        top = h * 0.07 + sc.get("_title_h", 0) + h * 0.04
+        bottom = h * (safe_bottom(ctx) - 0.02)
+        row = not ctx.short and not sc.get("vertical")
+        reveal = max(0.4, dur * 0.75) / n
+        shown = [i for i in range(n) if lt >= i * reveal]
+        if row:
+            gap = w * 0.035
+            cw = (w * 0.94 - gap * (n - 1)) / n
+            chh = min(bottom - top, cw * 1.15)
+            y0 = top + (bottom - top - chh) / 2
+            pos = [(w * 0.03 + i * (cw + gap), y0) for i in range(n)]
+        else:
+            gap = h * 0.025
+            chh = min((bottom - top - gap * (n - 1)) / n, h * 0.2)
+            cw = w * 0.86
+            y0 = top + (bottom - top - n * chh - gap * (n - 1)) / 2
+            pos = [(w * 0.07, y0 + i * (chh + gap)) for i in range(n)]
+        for i in shown:
+            a = ease_back((lt - i * reveal) / 0.35)
+            x, y = pos[i]
+            card = flow_card(tuple(sorted(steps[i].items())),
+                             int(cw), int(chh), u, i == shown[-1] and lt < dur * 0.85, row)
+            paste(img, card, x + cw / 2, y + chh / 2, scale=clamp(a, 0, 1.15), alpha=clamp(a))
+            if i > 0 and a > 0.2:
+                if row:
+                    ax, ay = x - gap / 2, y + chh / 2
+                    pts = [(ax - gap * 0.32, ay - gap * 0.4), (ax + gap * 0.38, ay), (ax - gap * 0.32, ay + gap * 0.4)]
+                else:
+                    ax, ay = x + cw / 2, y - gap / 2
+                    pts = [(ax - gap * 0.6, ay - gap * 0.35), (ax, ay + gap * 0.45), (ax + gap * 0.6, ay - gap * 0.35)]
+                d.polygon(pts, fill=GOLD, outline=INK)
+        if sc.get("note"):
+            nt = rich_block(sc["note"], "hand", h * 0.05, w * 0.9, NAVY, hl=RED, max_lines=1)
+            paste(img, nt, w / 2, h * safe_bottom(ctx), alpha=clamp((lt - dur * 0.8) / 0.3), anchor="bottom")
+
     elif typ == "quote":
         q = rich_block("“" + sc["text"] + "”", "hand", h * 0.07, w * 0.8, WHITE, hl=GOLD, max_lines=5)
         paste(img, q, w / 2, h * 0.42, alpha=clamp(lt / 0.5))
@@ -939,8 +1074,19 @@ def build_timeline(ctx, voice_dur=None, prof=None):
             sc["_t0"], sc["_dur"] = t, dur
             t += dur
         total = t
-    # captions: spread over the voiced part of each scene
     caps = []
+    if ctx.spec.get("_caption_segments") is not None:
+        # captions follow the timed transcript, phrase by phrase
+        for seg in ctx.spec["_caption_segments"]:
+            chunks = chunk_words(parse_rich(seg["text"]), ctx.short)
+            wts = [sum(word_weight(w) for w, _ in c) for c in chunks]
+            tt, span = seg["start"], seg["end"] - seg["start"]
+            for c, wgt in zip(chunks, wts):
+                dt = span * wgt / sum(wts)
+                caps.append((tt, tt + dt, tuple(c)))
+                tt += dt
+        return total, caps
+    # captions: spread over the voiced part of each scene
     for sc in scenes:
         if not sc["_words"] or sc.get("captions") is False:
             continue
@@ -1372,6 +1518,9 @@ def render(spec_path, out_dir, draft=False, jobs=None):
         mouth = prof[0]
     else:
         prof = None
+    if spec.get("captions_file"):
+        cf = spec["captions_file"] if os.path.isabs(spec["captions_file"]) else os.path.join(base, spec["captions_file"])
+        spec["_caption_segments"] = json.load(open(cf, encoding="utf-8"))
     if voice is not None:
         total, caps = build_timeline(ctx, len(voice) / SR, prof)
     else:

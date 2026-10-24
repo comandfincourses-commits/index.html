@@ -91,13 +91,34 @@ lists YouTube chapter timestamps, already shifted for the teaser and intro.
 | `compare` | `title`, `left`/`right` = `{title, points, color}` | two cards with a VS badge |
 | `formula` | `text` (use `\n`), `note`, `cast` | chalk formula written on a blackboard |
 | `quote` | `text`, `by` | big quote on a dark background |
+| `flow` | `title`, `steps` = `[{title, text, icon}]`, `note`, `vertical` | process / timeline boxes joined by arrows, revealed one by one |
 
-- `cast`: `[{"who": "prof", "mood": "happy", "pose": "point", "x": 0.3}]`
+- `cast`: `[{"who": "prof", "mood": "happy", "pose": "point", "x": 0.3, "label": "*Priya* · Pune"}]`
+  (`label` = name badge on the character)
   - `who`: `prof` (CA / teacher, navy suit), `student`, `investor`, `boss`, `woman`, `generic`
   - `mood`: `neutral`, `happy`, `worried`, `sad`, `angry`, `serious`, `surprised`
   - `pose`: `idle`, `point`, `wave`, `shrug`, `think`, `cheer`
 - `bg`: `office`, `classroom`, `city`, `studio`, `dark`, `paper`, `brand`
 - `icon` / `prop`: `up`, `down`, `coin`, `bag`, `bulb`, `bank`, `chart`, `warning`,
-  `check`, `cross`, `target`, `doc`, `like`, `share`, `bell`
+  `check`, `cross`, `target`, `doc`, `like`, `share`, `bell`, `phone`, `shield`, `lock`,
+  `calendar`, `clock`, `people`, `exchange`
+
+## Transcribing a voice-over
+
+```bash
+pip install sherpa-onnx
+# models (GitHub releases of k2-fsa/sherpa-onnx, tag asr-models):
+#   sherpa-onnx-whisper-small.tar.bz2  and  silero_vad.onnx  -> MODELS/
+python3 tools/transcribe.py voice.wav transcript.json --models MODELS --lang en
+```
+
+Correct any misheard words in the JSON (and add `*highlights*`), then point the spec at it
+with `"captions_file": "captions.json"`: captions then follow each spoken phrase exactly.
+Give every scene an `"at"` (seconds) taken from the transcript for frame-accurate cuts.
+
+## Projects
+
+- `projects/stock-market-one-trade/`: "Journey of One Trade" (long, 9:04). The voice-over
+  (`voice.wav`) is not committed; put it back next to `spec.json` to re-render.
 
 See `examples/ebitda-short/spec.json` and `examples/long-demo/spec.json`.

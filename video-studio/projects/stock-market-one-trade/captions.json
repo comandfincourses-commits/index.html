@@ -1,0 +1,562 @@
+[
+ {
+  "start": 1.8,
+  "end": 4.9,
+  "text": "You tap *BUY*. Two seconds later — order executed."
+ },
+ {
+  "start": 5.22,
+  "end": 9.06,
+  "text": "But in those 2 seconds, a stranger 1,000 km away"
+ },
+ {
+  "start": 9.41,
+  "end": 10.75,
+  "text": "sold you his shares."
+ },
+ {
+  "start": 11.14,
+  "end": 15.14,
+  "text": "He doesn't know your name and you don't know his name."
+ },
+ {
+  "start": 15.49,
+  "end": 17.73,
+  "text": "And still nobody cheats anybody."
+ },
+ {
+  "start": 18.05,
+  "end": 18.43,
+  "text": "How?"
+ },
+ {
+  "start": 22.73,
+  "end": 27.14,
+  "text": "Today we will follow one single trade, from the BUY button to your *demat account*,"
+ },
+ {
+  "start": 27.72,
+  "end": 33.73,
+  "text": "and meet every institution that touches your money and your shares on the way."
+ },
+ {
+  "start": 34.18,
+  "end": 40.87,
+  "text": "By the end, you will understand the Indian stock market better than most people who trade every day."
+ },
+ {
+  "start": 44.77,
+  "end": 49.54,
+  "text": "Meet *Priya* — 28 years old, software engineer, stays in Pune."
+ },
+ {
+  "start": 49.93,
+  "end": 53.99,
+  "text": "She has finally decided to stop just watching finance reels"
+ },
+ {
+  "start": 54.34,
+  "end": 55.65,
+  "text": "and actually invest."
+ },
+ {
+  "start": 56.04,
+  "end": 61.6,
+  "text": "She wants *10 shares* of a large IT company at *₹1,500* each."
+ },
+ {
+  "start": 62.09,
+  "end": 63.59,
+  "text": "Now meet *Mr. Kapoor*."
+ },
+ {
+  "start": 63.94,
+  "end": 66.43,
+  "text": "Retired bank officer, stays in Jaipur."
+ },
+ {
+  "start": 66.79,
+  "end": 71.01,
+  "text": "His granddaughter got admission to an engineering college."
+ },
+ {
+  "start": 71.4,
+  "end": 75.65,
+  "text": "and he wants to sell 10 shares of the same company to pay the fees."
+ },
+ {
+  "start": 76.07,
+  "end": 78.72,
+  "text": "Two people, two cities, *one trade*."
+ },
+ {
+  "start": 79.11,
+  "end": 82.21,
+  "text": "Let's see how they meet without ever meeting."
+ },
+ {
+  "start": 84.65,
+  "end": 90.79,
+  "text": "Before we move forward, a quick flashback. If Priya had done this in *1990*,"
+ },
+ {
+  "start": 91.3,
+  "end": 93.35,
+  "text": "it would have been a very different story."
+ },
+ {
+  "start": 93.73,
+  "end": 95.3,
+  "text": "Shares were *paper certificates*."
+ },
+ {
+  "start": 95.69,
+  "end": 100.03,
+  "text": "Brokers shouted prices across a trading ring in Mumbai."
+ },
+ {
+  "start": 100.39,
+  "end": 104.13,
+  "text": "Certificates travelled by post. Signatures were checked by hand,"
+ },
+ {
+  "start": 104.52,
+  "end": 106.63,
+  "text": "and a transfer could take *weeks*."
+ },
+ {
+  "start": 107.01,
+  "end": 109.57,
+  "text": "Fake certificates were a real risk."
+ },
+ {
+  "start": 109.93,
+  "end": 113.12,
+  "text": "Then came the *1992 securities scam*."
+ },
+ {
+  "start": 113.61,
+  "end": 117.7,
+  "text": "That same year, SEBI got statutory powers through the SEBI Act."
+ },
+ {
+  "start": 118.31,
+  "end": 121.76,
+  "text": "NSE started screen-based trading in *1994*,"
+ },
+ {
+  "start": 122.12,
+  "end": 126.63,
+  "text": "and in *1996*, NSDL — India's first depository —"
+ },
+ {
+  "start": 127.05,
+  "end": 131.46,
+  "text": "moved shares out of paper and into electronic form."
+ },
+ {
+  "start": 131.97,
+  "end": 137.73,
+  "text": "So the system Priya uses today was built because the old one *failed*."
+ },
+ {
+  "start": 139.91,
+  "end": 145.28,
+  "text": "Let's come back to today."
+ },
+ {
+  "start": 145.86,
+  "end": 147.68,
+  "text": "10 shares at ₹1,500."
+ },
+ {
+  "start": 148.26,
+  "end": 151.68,
+  "text": "Her broker is a SEBI-registered member of the exchange."
+ },
+ {
+  "start": 152.13,
+  "end": 154.47,
+  "text": "Priya can't walk into NSE herself."
+ },
+ {
+  "start": 155.05,
+  "end": 157.15,
+  "text": "The broker is her entry gate."
+ },
+ {
+  "start": 157.67,
+  "end": 162.24,
+  "text": "Before sending the order, the broker checks: does Priya have *₹15,000* available?"
+ },
+ {
+  "start": 162.82,
+  "end": 165.83,
+  "text": "In Jaipur, Mr. Kapoor places a sell order."
+ },
+ {
+  "start": 166.25,
+  "end": 169.99,
+  "text": "His broker checks the 10 shares are in his demat account,"
+ },
+ {
+  "start": 170.5,
+  "end": 177.12,
+  "text": "and he authorises the sale with a *TPIN or OTP*. No shares, no sale."
+ },
+ {
+  "start": 183.94,
+  "end": 187.78,
+  "text": "Both orders reach the stock exchange — NSE or BSE."
+ },
+ {
+  "start": 188.1,
+  "end": 191.46,
+  "text": "Think of the exchange as a giant digital marketplace."
+ },
+ {
+  "start": 191.81,
+  "end": 195.46,
+  "text": "Every buy order and sell order sits in an *order book*."
+ },
+ {
+  "start": 196.2,
+  "end": 197.76,
+  "text": "A computer matching engine"
+ },
+ {
+  "start": 198.09,
+  "end": 200.58,
+  "text": "fills them on *price-time priority*:"
+ },
+ {
+  "start": 201.03,
+  "end": 206.47,
+  "text": "best price first — and if prices are equal, whoever came first."
+ },
+ {
+  "start": 206.79,
+  "end": 210.47,
+  "text": "Priya buys at ₹1,500, meets Mr. Kapoor"
+ },
+ {
+  "start": 210.79,
+  "end": 212.29,
+  "text": "selling at ₹1,500."
+ },
+ {
+  "start": 212.71,
+  "end": 215.01,
+  "text": "Matched in a fraction of a second,"
+ },
+ {
+  "start": 215.49,
+  "end": 218.47,
+  "text": "and neither knows who the other is."
+ },
+ {
+  "start": 221.51,
+  "end": 226.37,
+  "text": "Now the most important player — the one nobody talks about: the *clearing corporation*."
+ },
+ {
+  "start": 227.05,
+  "end": 230.5,
+  "text": "NSE Clearing, or ICCL for BSE."
+ },
+ {
+  "start": 230.95,
+  "end": 233.79,
+  "text": "Here's the magic. Once the trade is matched,"
+ },
+ {
+  "start": 234.15,
+  "end": 236.55,
+  "text": "the clearing corporation steps in the middle."
+ },
+ {
+  "start": 236.93,
+  "end": 240.67,
+  "text": "It becomes the buyer for Mr. Kapoor, and the seller for Priya."
+ },
+ {
+  "start": 241.13,
+  "end": 242.56,
+  "text": "This is called *novation*."
+ },
+ {
+  "start": 243.08,
+  "end": 246.56,
+  "text": "So what if Mr. Kapoor's broker defaults tomorrow?"
+ },
+ {
+  "start": 247.11,
+  "end": 250.37,
+  "text": "Priya will still receive her shares, because her"
+ },
+ {
+  "start": 250.69,
+  "end": 253.6,
+  "text": "counterparty is now the clearing corporation,"
+ },
+ {
+  "start": 254.02,
+  "end": 257.44,
+  "text": "backed by *margins* and a *settlement guarantee fund*."
+ },
+ {
+  "start": 257.93,
+  "end": 265.09,
+  "text": "That is why two strangers can trade without trusting each other — because they trust the *system*."
+ },
+ {
+  "start": 268.26,
+  "end": 272.48,
+  "text": "Next is *settlement*, where the money and shares actually move."
+ },
+ {
+  "start": 272.9,
+  "end": 275.46,
+  "text": "India follows *T+1* settlement:"
+ },
+ {
+  "start": 275.97,
+  "end": 278.59,
+  "text": "trade day plus 1 working day."
+ },
+ {
+  "start": 279.14,
+  "end": 284.93,
+  "text": "Priya buys on Monday. By Tuesday, the shares move out of Mr. Kapoor's demat account"
+ },
+ {
+  "start": 285.29,
+  "end": 288.26,
+  "text": "through the depository — NSDL or CDSL."
+ },
+ {
+  "start": 288.74,
+  "end": 290.72,
+  "text": "Since *October 2024*,"
+ },
+ {
+  "start": 291.08,
+  "end": 296.07,
+  "text": "they are credited *directly* into Priya's demat account by the clearing corporation,"
+ },
+ {
+  "start": 296.39,
+  "end": 298.21,
+  "text": "not parked with the broker."
+ },
+ {
+  "start": 298.73,
+  "end": 301.6,
+  "text": "On the same day, the money moves through clearing banks,"
+ },
+ {
+  "start": 301.93,
+  "end": 308.0,
+  "text": "and Mr. Kapoor receives his ₹15,000, minus charges and taxes."
+ },
+ {
+  "start": 308.49,
+  "end": 313.22,
+  "text": "India even has optional same-day — *T+0* — settlement"
+ },
+ {
+  "start": 313.57,
+  "end": 316.07,
+  "text": "for the top 500 stocks."
+ },
+ {
+  "start": 319.14,
+  "end": 325.15,
+  "text": "Now, where do *banks* fit in? Wherever money moves, a bank gets involved."
+ },
+ {
+  "start": 325.64,
+  "end": 329.95,
+  "text": "Priya's bank holds her money and transfers it to her broker."
+ },
+ {
+  "start": 330.34,
+  "end": 335.27,
+  "text": "Large brokers must now also offer a *UPI block* option,"
+ },
+ {
+  "start": 335.75,
+  "end": 339.62,
+  "text": "where her money stays blocked in her own bank account"
+ },
+ {
+  "start": 339.97,
+  "end": 345.83,
+  "text": "and is debited only when the trade settles — just like ASBA in IPOs."
+ },
+ {
+  "start": 346.28,
+  "end": 352.29,
+  "text": "Behind the scenes, *clearing banks* move funds between brokers and the clearing corporation every day."
+ },
+ {
+  "start": 358.82,
+  "end": 364.48,
+  "text": "Now, what if the buyer is not Priya, but a mutual fund or a foreign investor buying"
+ },
+ {
+  "start": 364.87,
+  "end": 366.79,
+  "text": "*₹500 crore* of shares?"
+ },
+ {
+  "start": 367.17,
+  "end": 371.94,
+  "text": "They use a *custodian* — usually a large bank registered with SEBI."
+ },
+ {
+  "start": 372.39,
+  "end": 375.43,
+  "text": "Think of the custodian as a high-security locker"
+ },
+ {
+  "start": 375.75,
+  "end": 380.58,
+  "text": "plus a back office for institutions. It holds their securities"
+ },
+ {
+  "start": 380.93,
+  "end": 381.47,
+  "text": "safely,"
+ },
+ {
+  "start": 381.83,
+  "end": 385.09,
+  "text": "settles their trades with the clearing corporation,"
+ },
+ {
+  "start": 385.45,
+  "end": 386.5,
+  "text": "collects dividends,"
+ },
+ {
+  "start": 386.82,
+  "end": 389.31,
+  "text": "handles bonuses and splits,"
+ },
+ {
+  "start": 389.8,
+  "end": 391.87,
+  "text": "and reports everything back."
+ },
+ {
+  "start": 392.29,
+  "end": 395.27,
+  "text": "Retail investors like Priya don't need one."
+ },
+ {
+  "start": 395.81,
+  "end": 399.62,
+  "text": "Their brokers and depository participants do this job."
+ },
+ {
+  "start": 403.46,
+  "end": 408.45,
+  "text": "We have seen that so many players are involved in the Indian stock market,"
+ },
+ {
+  "start": 408.87,
+  "end": 418.75,
+  "text": "so there is a need for a regulator — and *SEBI* creates the rules for every party involved."
+ },
+ {
+  "start": 419.24,
+  "end": 421.25,
+  "text": "SEBI registers every player,"
+ },
+ {
+  "start": 421.67,
+  "end": 438.31,
+  "text": "monitors trading and punishes wrongdoing. For example, in 2019 a big broker, *Karvy*, misused client shares. SEBI barred Karvy in 2019 over defaults of around *₹2,000 crore*,"
+ },
+ {
+  "start": 438.66,
+  "end": 441.19,
+  "text": "and later cancelled its registration."
+ },
+ {
+  "start": 441.67,
+  "end": 444.07,
+  "text": "After that, SEBI tightened the rules."
+ },
+ {
+  "start": 444.42,
+  "end": 448.1,
+  "text": "Client shares can't be *pooled* with the broker anymore,"
+ },
+ {
+  "start": 448.65,
+  "end": 451.75,
+  "text": "and they now go straight into your demat account."
+ },
+ {
+  "start": 452.13,
+  "end": 460.99,
+  "text": "That is why around *23 crore* demat accounts can trust a system where buyers and sellers are total strangers."
+ },
+ {
+  "start": 463.59,
+  "end": 471.52,
+  "text": "So: one trade, one relay race. The broker takes your order, the exchange matches it, the clearing corporation"
+ },
+ {
+  "start": 471.91,
+  "end": 475.01,
+  "text": "guarantees it, the depository moves the shares,"
+ },
+ {
+  "start": 475.43,
+  "end": 481.89,
+  "text": "the bank moves the money, the custodian does it for big institutions — and SEBI watches everyone."
+ },
+ {
+  "start": 482.47,
+  "end": 486.21,
+  "text": "Priya got her shares. Mr. Kapoor paid the college fees."
+ },
+ {
+  "start": 486.6,
+  "end": 489.86,
+  "text": "And they will never know each other's name."
+ },
+ {
+  "start": 490.28,
+  "end": 495.46,
+  "text": "Tell me in the comments: which of these players did you not know about before today?"
+ },
+ {
+  "start": 495.81,
+  "end": 498.75,
+  "text": "If you want such practical finance every day,"
+ },
+ {
+  "start": 499.11,
+  "end": 500.93,
+  "text": "do subscribe to *COMandFIN*."
+ },
+ {
+  "start": 501.29,
+  "end": 506.11,
+  "text": "Next video: what actually happens to your money when you place an *F&O trade*?"
+ },
+ {
+  "start": 507.01,
+  "end": 512.74,
+  "text": "Once again, this video is only for educational purposes. It is *not investment advice*."
+ },
+ {
+  "start": 513.16,
+  "end": 516.26,
+  "text": "Do *like, share and subscribe*. Thank you so much."
+ }
+]
