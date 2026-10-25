@@ -150,12 +150,19 @@
   "*Share* with a friend who trades"
  ],
  "thumbnail": {
-  "text": "Broker shut down? *Is your money safe?*",
-  "tag": "Must know",
-  "who": "woman",
-  "mood": "worried",
-  "pose": "shrug",
-  "icon": "shield"
+  "style": "split",
+  "left": {
+   "word": "BROKER SHUT!",
+   "color": "red",
+   "art": "closed_shop"
+  },
+  "right": {
+   "word": "MONEY SAFE?",
+   "color": "green",
+   "art": "safe_money",
+   "check": true
+  },
+  "box": "10 SHARES GONE?"
  },
  "meta": {
   "titles": [

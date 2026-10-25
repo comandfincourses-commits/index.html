@@ -41,8 +41,9 @@ FORMATS = {
 
 # ----------------------------------------------------------------- fonts ----
 FONT_FILES = {"head": "Poppins-ExtraBold.ttf", "bold": "Poppins-Bold.ttf", "med": "Poppins-Medium.ttf",
-              "hand": "Kalam-Bold.ttf", "script": "Caveat-Bold.ttf"}
-FALLBACKS = ["Kalam-Bold.ttf", "NotoSansDevanagari-Bold.ttf"]
+              "hand": "Kalam-Bold.ttf", "script": "Caveat-Bold.ttf",
+              "chunky": "LuckiestGuy-Regular.ttf"}
+FALLBACKS = ["Poppins-ExtraBold.ttf", "Kalam-Bold.ttf", "NotoSansDevanagari-Bold.ttf"]
 
 
 @lru_cache(None)
@@ -222,6 +223,7 @@ CAST = {
                      tie=RED, legs=(45, 45, 50), beard=(170, 170, 170)),
     "woman": dict(skin=SKIN, hair=(35, 30, 30), style="long", top=(150, 40, 60), legs=(40, 40, 50)),
     "generic": dict(skin=WHITE, hair=None, top=(118, 150, 205), legs=(50, 50, 60)),
+    "thumbguy": dict(skin=WHITE, hair=None, top=(48, 112, 214), legs=(58, 58, 64), tuft=True),
     "boss": dict(skin=SKIN2, hair=(30, 30, 30), style="bald", glasses=False, top=(30, 30, 36), shirt=WHITE,
                  tie=BLUE, legs=(30, 30, 36)),
 }
@@ -253,7 +255,8 @@ def character(who, mood="neutral", pose="idle", mouth=0, blink=False, height=600
                 "wave": [((190, 470), (165, 600), (150, 720)), ((410, 470), (520, 430), (560, 280))],
                 "shrug": [((190, 470), (95, 560), (55, 450)), ((410, 470), (505, 560), (545, 450))],
                 "think": [((190, 470), (165, 600), (150, 720)), ((410, 470), (420, 600), (330, 420))],
-                "cheer": [((190, 470), (110, 360), (70, 230)), ((410, 470), (490, 360), (530, 230))]}[pose]
+                "cheer": [((190, 470), (110, 360), (70, 230)), ((410, 470), (490, 360), (530, 230))],
+                "scratch": [((190, 470), (165, 600), (150, 720)), ((410, 470), (545, 330), (450, 165))]}[pose]
         for a in arms:
             pts = [P(*p) for p in a]
             d.line(pts, fill=INK, width=int(26 * s), joint="curve")
@@ -290,13 +293,17 @@ def character(who, mood="neutral", pose="idle", mouth=0, blink=False, height=600
                  "sad": ((205, 212, 262, 190), (338, 190, 395, 212)),
                  "angry": ((205, 188, 262, 212), (338, 212, 395, 188)),
                  "serious": ((205, 192, 262, 206), (338, 206, 395, 192)),
-                 "surprised": ((205, 172, 262, 165), (338, 165, 395, 172))}.get(mood)
+                 "surprised": ((205, 172, 262, 165), (338, 165, 395, 172)),
+                 "shocked": ((190, 182, 270, 170), (330, 160, 410, 150))}.get(mood)
         if brows and not (c.get("glasses") and mood == "neutral"):
             for b in brows:
                 d.line([P(b[0], b[1]), P(b[2], b[3])], fill=INK, width=int(11 * s))
         er = 22 if mood == "surprised" else 16
         for ex in (235, 365):
-            if blink:
+            if mood == "shocked" and not blink:
+                d.ellipse(B(ex - 46, 262 - 52, ex + 46, 262 + 52), fill=WHITE, outline=INK, width=lw)
+                d.ellipse(B(ex - 13, 262 - 8, ex + 13, 262 + 18), fill=INK)
+            elif blink:
                 d.line([P(ex - 18, 262), P(ex + 18, 262)], fill=INK, width=int(8 * s))
             else:
                 d.ellipse(B(ex - er, 262 - er, ex + er, 262 + er), fill=INK)
@@ -318,12 +325,17 @@ def character(who, mood="neutral", pose="idle", mouth=0, blink=False, height=600
             d.chord(B(250, 300, 350, 385), 15, 165, fill=(110, 35, 40), outline=INK, width=int(8 * s))
         elif sad:
             d.arc(B(258, 350, 342, 410), 200, 340, fill=INK, width=int(9 * s))
-        elif mood == "surprised":
-            d.ellipse(B(282, 335, 318, 380), fill=(110, 35, 40), outline=INK, width=int(8 * s))
+        elif mood in ("surprised", "shocked"):
+            d.ellipse(B(280, 345, 320, 395), fill=INK if mood == "shocked" else (110, 35, 40), outline=INK,
+                      width=int(8 * s))
         elif mood == "angry":
             d.line([P(270, 362), P(330, 356)], fill=INK, width=int(9 * s))
         else:
             d.arc(B(265, 320, 335, 370), 30, 150, fill=INK, width=int(9 * s))
+        if c.get("tuft"):
+            d.arc(B(280, 20, 340, 80), 150, 400, fill=INK, width=int(9 * s))
+        if pose == "scratch":   # hand rests on top of the head
+            d.ellipse(B(426, 141, 474, 189), fill=c["skin"], outline=INK, width=lw)
     return supersample(w, height, fn)
 
 
@@ -1470,8 +1482,146 @@ def ts(sec):
 
 
 # --------------------------------------------------------------- thumbnail ---
+PANEL = {"red": (229, 57, 53), "green": (67, 160, 71), "blue": (30, 136, 229), "orange": (245, 124, 0),
+         "purple": (123, 63, 190), "navy": (20, 48, 92), "teal": (0, 150, 136)}
+BOX_YELLOW = (253, 216, 53)
+
+
+@lru_cache(64)
+def art(kind, size):
+    """Large flat illustrations for split thumbnails (100 x 100 unit box)."""
+    if kind in ("phone_buy",):
+        return icon("phone", size)
+
+    def fn(d, k):
+        s = size * k / 100
+        P = lambda x, y: (x * s, y * s)
+        B = lambda x0, y0, x1, y1: (x0 * s, y0 * s, x1 * s, y1 * s)
+        lw = max(2, int(3 * s))
+        if kind == "stranger":
+            d.chord(B(14, 52, 86, 140), 180, 360, fill=(84, 86, 98), outline=INK, width=lw)
+            d.ellipse(B(28, 8, 72, 52), fill=(84, 86, 98), outline=INK, width=lw)
+            d.text(P(50, 32), "?", font=_font("LuckiestGuy-Regular.ttf", 34 * s), fill=WHITE, anchor="mm")
+        elif kind == "players6":
+            ics = ["phone", "exchange", "shield", "lock", "bank", "target"]
+            for i, ic in enumerate(ics):
+                cx, cy = 20 + (i % 3) * 30, 30 + (i // 3) * 40
+                d.ellipse(B(cx - 14, cy - 14, cx + 14, cy + 14), fill=WHITE, outline=INK, width=lw)
+        elif kind == "closed_shop":
+            d.rectangle(B(10, 34, 90, 92), fill=(238, 226, 205), outline=INK, width=lw)
+            for i in range(8):
+                d.rectangle(B(6 + i * 11, 22, 17 + i * 11, 36), fill=RED if i % 2 == 0 else WHITE)
+            d.rectangle(B(6, 22, 94, 36), outline=INK, width=lw)
+            d.rectangle(B(40, 58, 60, 92), fill=(120, 80, 50), outline=INK, width=lw)
+            d.rectangle(B(16, 46, 34, 60), fill=(160, 200, 230), outline=INK, width=lw)
+            d.rectangle(B(66, 46, 84, 60), fill=(160, 200, 230), outline=INK, width=lw)
+            d.line([P(38, 42), P(50, 30)], fill=INK, width=lw)
+            d.line([P(62, 42), P(50, 30)], fill=INK, width=lw)
+            d.rounded_rectangle(B(26, 40, 74, 56), radius=int(3 * s), fill=RED, outline=INK, width=lw)
+            d.text(P(50, 49), "CLOSED", font=_font("LuckiestGuy-Regular.ttf", 10 * s), fill=WHITE, anchor="mm")
+            d.text(P(50, 12), "BROKER", font=_font("LuckiestGuy-Regular.ttf", 12 * s), fill=WHITE, anchor="mm",
+                   stroke_width=int(1.5 * s), stroke_fill=INK)
+        elif kind == "safe_money":
+            for cx, cy in ((22, 78), (78, 78), (16, 58), (84, 58)):
+                d.ellipse(B(cx - 10, cy - 10, cx + 10, cy + 10), fill=BOX_YELLOW, outline=INK, width=lw)
+                d.text(P(cx, cy + 1), "₹", font=_font("Poppins-ExtraBold.ttf", 11 * s), fill=(150, 110, 20),
+                       anchor="mm")
+    img = supersample(size, size, fn)
+    if kind == "safe_money":
+        paste(img, icon("shield", int(size * 0.62)), size / 2, size * 0.42)
+    if kind == "players6":
+        for i, ic in enumerate(["phone", "exchange", "shield", "lock", "bank", "target"]):
+            cx, cy = 20 + (i % 3) * 30, 30 + (i // 3) * 40
+            paste(img, icon(ic, int(size * 0.17)), cx * size / 100, cy * size / 100)
+            d2 = ImageDraw.Draw(img)
+            x, y = (cx + 12) * size / 100, (cy - 10) * size / 100
+            r = size * 0.06
+            d2.ellipse((x - r, y - r, x + r, y + r), fill=BOX_YELLOW, outline=INK, width=max(2, int(size * 0.012)))
+            d2.text((x, y + size * 0.005), str(i + 1), font=_font("LuckiestGuy-Regular.ttf", size * 0.08), fill=INK,
+                    anchor="mm")
+    return img
+
+
+@lru_cache(4)
+def check_badge(size):
+    def fn(d, k):
+        s = size * k / 100
+        d.ellipse((4 * s, 4 * s, 96 * s, 96 * s), outline=INK, width=int(9 * s))
+        d.ellipse((8 * s, 8 * s, 92 * s, 92 * s), outline=WHITE, width=int(6 * s))
+        d.line([(28 * s, 52 * s), (44 * s, 68 * s), (74 * s, 34 * s)], fill=WHITE, width=int(11 * s), joint="curve")
+    return supersample(size, size, fn)
+
+
+def chunky_word(text, size, max_w, angle=0.0):
+    while text_w(text, "chunky", size) > max_w and size > 20:
+        size *= 0.94
+    pad = int(size * 0.2)
+    w, h = int(text_w(text, "chunky", size) + 2 * pad), int(size * 1.35 + 2 * pad)
+    img = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    draw_text(ImageDraw.Draw(img), pad, pad + size * 1.05, text, "chunky", size, WHITE, stroke=max(3, size * 0.1),
+              stroke_fill=INK)
+    return img.rotate(angle, resample=Image.BICUBIC, expand=True) if angle else img
+
+
+def split_thumbnail(th, path, size):
+    """'This vs that' thumbnail: two coloured halves, chunky words, a puzzled character, a yellow box."""
+    W, H = size
+    vertical = H > W
+    L, R = th["left"], th["right"]
+    img = Image.new("RGBA", (W, H), PANEL.get(L.get("color"), L.get("color", PANEL["red"])) + (255,))
+    d = ImageDraw.Draw(img)
+    rc = PANEL.get(R.get("color"), R.get("color", PANEL["green"]))
+    lw = max(4, int(min(W, H) * 0.008))
+    if vertical:
+        d.rectangle((0, H / 2, W, H), fill=rc)
+        d.line([(0, H / 2), (W, H / 2)], fill=INK, width=lw)
+        paste(img, chunky_word(L["word"], int(W * 0.17), W * 0.9, 2), W / 2, H * 0.205)
+        paste(img, chunky_word(R["word"], int(W * 0.17), W * 0.9, -2), W / 2, H * 0.795)
+        a_sz = int(W * 0.3)
+        paste(img, art(L["art"], a_sz), W * 0.2, H * 0.37)
+        paste(img, art(R["art"], a_sz), W * 0.8, H * 0.63)
+        for side, x, y in ((L, W * 0.33, H * 0.3), (R, W * 0.93, H * 0.54)):
+            if side.get("check"):
+                paste(img, check_badge(int(W * 0.13)), x, y)
+        ch = character(th.get("who", "thumbguy"), th.get("mood", "shocked"), th.get("pose", "scratch"), 0, False,
+                       int(H * 0.38))
+        paste(img, ch, W / 2, H * 0.72, anchor="bottom")
+        box_y, box_fs = H * 0.9, W * 0.085
+    else:
+        d.rectangle((W / 2, 0, W, H), fill=rc)
+        d.line([(W / 2, 0), (W / 2, H)], fill=INK, width=lw)
+        paste(img, chunky_word(L["word"], int(H * 0.2), W * 0.42, 2), W * 0.25, H * 0.15)
+        paste(img, chunky_word(R["word"], int(H * 0.2), W * 0.42, -2), W * 0.75, H * 0.15)
+        a_sz = int(H * 0.42)
+        paste(img, art(L["art"], a_sz), W * 0.2, H * 0.6)
+        paste(img, art(R["art"], a_sz), W * 0.8, H * 0.6)
+        for side, x in ((L, W * 0.37), (R, W * 0.9)):
+            if side.get("check"):
+                paste(img, check_badge(int(H * 0.17)), x, H * 0.38)
+        ch = character(th.get("who", "thumbguy"), th.get("mood", "shocked"), th.get("pose", "scratch"), 0, False,
+                       int(H * 1.0))
+        paste(img, ch, W / 2, H * 1.17, anchor="bottom")
+        box_y, box_fs = H * 0.9, H * 0.095
+    if th.get("box"):
+        bt = Image.new("RGBA", (int(text_w(th["box"], "chunky", box_fs) + box_fs), int(box_fs * 1.55)), (0, 0, 0, 0))
+        bd = ImageDraw.Draw(bt)
+        bd.rounded_rectangle((lw / 2, lw / 2, bt.width - lw / 2, bt.height - lw / 2), radius=int(box_fs * 0.18),
+                             fill=BOX_YELLOW, outline=INK, width=lw)
+        draw_text(bd, box_fs * 0.5, box_fs * 1.2, th["box"], "chunky", box_fs, INK)
+        maxw = W * (0.94 if vertical else 0.64)
+        paste(img, bt, W / 2, box_y, scale=min(1.0, maxw / bt.width))
+    wm = watermark(min(W, H) / 1080 * (1.4 if vertical else 1.05))
+    if vertical:
+        paste(img, wm, W - W * 0.03, H * 0.025, anchor="topright")
+    else:
+        paste(img, wm, W - W * 0.015, H - H * 0.02 - wm.height, anchor="topright")
+    img.convert("RGB").save(path, quality=93)
+
+
 def thumbnail(spec, fmt, path, size=(1280, 720)):
     th = spec.get("thumbnail", {})
+    if th.get("style") == "split":
+        return split_thumbnail(th, path, size)
     W, H = size
     u = min(W, H) / 720
     vertical = H > W

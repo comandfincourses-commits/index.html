@@ -722,12 +722,18 @@
   }
  ],
  "thumbnail": {
-  "text": "What happens after you tap *BUY*?",
-  "tag": "Indian stock market",
-  "who": "woman",
-  "mood": "surprised",
-  "pose": "point",
-  "icon": "phone"
+  "style": "split",
+  "left": {
+   "word": "BUY",
+   "color": "green",
+   "art": "phone_buy"
+  },
+  "right": {
+   "word": "SELL",
+   "color": "red",
+   "art": "stranger"
+  },
+  "box": "₹15,000 TO A STRANGER?"
  },
  "meta": {
   "titles": [

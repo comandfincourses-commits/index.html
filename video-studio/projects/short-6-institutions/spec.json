@@ -210,12 +210,19 @@
   "*Share* with a friend who just started investing"
  ],
  "thumbnail": {
-  "text": "*6 players* behind one BUY tap",
-  "tag": "Stock market",
-  "who": "woman",
-  "mood": "surprised",
-  "pose": "point",
-  "icon": "phone"
+  "style": "split",
+  "left": {
+   "word": "1 TAP",
+   "color": "red",
+   "art": "phone_buy"
+  },
+  "right": {
+   "word": "6 PLAYERS",
+   "color": "green",
+   "art": "players6",
+   "check": true
+  },
+  "box": "IN 2 SECONDS?"
  },
  "meta": {
   "titles": [
