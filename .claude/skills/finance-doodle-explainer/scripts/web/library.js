@@ -75,6 +75,7 @@
       case 'bob': return `<path d="M50,170 Q36,30 150,22 Q264,30 250,170 Z" ${st(color || '#E91E8C', 5)}/>`;
       case 'long': return `<path d="M50,250 Q30,30 150,22 Q270,30 250,250 Z" ${st(color || '#5D3A1A', 5)}/>`;
       case 'fringe': return `<path d="M62,104 Q64,32 150,26 Q236,32 238,104 Q214,70 180,78 Q150,62 120,80 Q86,70 62,104 Z" ${st(color || '#E91E8C', 5)}/>`;
+      case 'side': return `<path d="M66,104 Q58,30 150,24 Q236,26 238,96 Q214,58 160,62 Q120,64 100,48 Q84,70 66,104 Z" ${st(color || '#B08D57', 5)}/><path d="M100,48 Q130,40 160,62" fill="none" stroke="${K}" stroke-width="4"/>`;
       case 'cap': return `<path d="M62,100 Q62,22 150,22 Q238,22 238,100 Z" ${st(color || C.red, 5)}/><path d="M200,96 L282,100 Q284,112 236,112 L200,108 Z" ${st(color || C.red, 5)}/><circle cx="150" cy="24" r="7" ${st(color || C.red, 4)}/>`;
       case 'curl':
       default: return `<path d="M150,32 q2,-30 26,-24 q12,4 4,14" fill="none" stroke="${K}" stroke-width="6"/>`;
@@ -529,6 +530,46 @@
     `<path d="M120,64 L120,250 M70,110 L170,110 M30,170 Q40,250 120,250 Q200,250 210,170" fill="none" stroke="${K}" stroke-width="30"/>` +
     `<path d="M120,64 L120,250 M70,110 L170,110 M30,170 Q40,250 120,250 Q200,250 210,170" fill="none" stroke="${o.color || C.grey}" stroke-width="16"/>` +
     `<path d="M14,186 L30,150 L50,184 Z M226,186 L210,150 L190,184 Z" ${st(o.color || C.grey, 5)}/>`);
+
+  P.ms_logo = (o = {}) => svg('0 0 240 240', 240, 240,
+    `<rect x="10" y="10" width="105" height="105" fill="#F25022"/><rect x="125" y="10" width="105" height="105" fill="#7FBA00"/>` +
+    `<rect x="10" y="125" width="105" height="105" fill="#00A4EF"/><rect x="125" y="125" width="105" height="105" fill="#FFB900"/>` +
+    (o.text ? txt(120, 270, o.text, 34) : ''));
+
+  P.robot = (o = {}) => svg('0 0 260 320', 260, 320,
+    `<path d="M130,10 L130,44" stroke="${K}" stroke-width="8"/><circle cx="130" cy="12" r="12" ${st(C.red, 5)}/>` +
+    `<rect x="40" y="44" width="180" height="130" rx="30" ${st(o.color || '#B0BEC5')}/>` +
+    `<circle cx="94" cy="104" r="24" ${st('#81D4FA', 5)}/><circle cx="166" cy="104" r="24" ${st('#81D4FA', 5)}/>` +
+    `<circle cx="94" cy="104" r="8" fill="${K}"/><circle cx="166" cy="104" r="8" fill="${K}"/>` +
+    `<rect x="96" y="140" width="68" height="16" rx="6" ${st('#fff', 4)}/>` + txt(130, 149, 'AI', 14) +
+    `<rect x="60" y="180" width="140" height="120" rx="20" ${st(o.color || '#B0BEC5')}/>` +
+    `<rect x="98" y="206" width="64" height="44" rx="8" ${st('#FFE082', 4)}/>` +
+    `<path d="M60,200 L14,250 M200,200 L246,250" stroke="${K}" stroke-width="16"/><path d="M60,200 L14,250 M200,200 L246,250" stroke="${o.color || '#B0BEC5'}" stroke-width="8"/>`);
+
+  P.laptop = (o = {}) => {
+    let s = `<rect x="40" y="10" width="300" height="200" rx="14" ${st('#263238')}/><rect x="56" y="26" width="268" height="168" fill="#1E1E1E"/>`;
+    const lines = o.lines || ['def model():', '  rev = 1.2*x', '  return rev', 'print(model())'];
+    const cols = ['#82AAFF', '#C3E88D', '#F78C6C', '#FFCB6B'];
+    lines.slice(0, 6).forEach((l, i) => { s += `<text x="70" y="${56 + i * 28}" font-family="monospace" font-weight="700" font-size="20" fill="${cols[i % 4]}">${esc(l)}</text>`; });
+    s += `<path d="M10,214 L370,214 L346,244 L34,244 Z" ${st('#90A4AE')}/>`;
+    if (o.label) s += txt(190, 278, o.label, 30);
+    return svg('0 0 380 290', 380, 290, s);
+  };
+
+  P.slides = (o = {}) => svg('0 0 320 260', 320, 260,
+    `<path d="M160,200 L160,250 M110,250 L210,250" stroke="${K}" stroke-width="8"/>` +
+    `<rect x="10" y="10" width="300" height="190" rx="8" ${st('#fff')}/><rect x="10" y="10" width="300" height="40" fill="${o.color || C.blue}" stroke="${K}" stroke-width="6"/>` +
+    txt(160, 31, o.title || 'Q3 REVIEW', 22, '#fff') +
+    [[60, 150, 40], [110, 120, 70], [160, 100, 90], [210, 80, 110]].map(([x, y, h]) => `<rect x="${x}" y="${y}" width="34" height="${h}" fill="${C.green}" stroke="${K}" stroke-width="4"/>`).join('') +
+    `<path d="M260,70 L290,70 M260,95 L290,95 M260,120 L284,120" stroke="#9E9E9E" stroke-width="6"/>`);
+
+  P.spreadsheet = (o = {}) => {
+    let s = `<rect x="6" y="6" width="348" height="248" rx="10" ${st('#fff')}/><rect x="6" y="6" width="348" height="36" fill="#1D6F42" stroke="${K}" stroke-width="6"/>` + txt(180, 25, o.title || 'MODEL.xlsx', 20, '#fff');
+    for (let r = 0; r < 5; r++) for (let c = 0; c < 4; c++) s += `<rect x="${20 + c * 82}" y="${56 + r * 38}" width="82" height="38" fill="${r === 0 ? '#E8F5E9' : '#fff'}" stroke="#9E9E9E" stroke-width="2"/>`;
+    const vals = o.rows || [['', 'FY24', 'FY25', 'FY26'], ['Rev', '120', '148', '182'], ['EBITDA', '24', '31', '40'], ['PAT', '12', '16', '21'], ['Margin', '10%', '11%', '12%']];
+    vals.forEach((row, r) => row.forEach((v, c) => { s += txt(61 + c * 82, 76 + r * 38, v, 16); }));
+    return svg('0 0 360 260', 360, 260, s);
+  };
 
   /* ---------------- Backgrounds ---------------- */
   function background(bg, W = 1920, H = 1080) {
