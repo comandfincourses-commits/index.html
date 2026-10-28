@@ -1,0 +1,191 @@
+1
+00:00:00,000 --> 00:00:01,840
+Your job may not be taken by
+
+2
+00:00:01,920 --> 00:00:04,800
+AI, but by someone who knows how
+
+3
+00:00:04,960 --> 00:00:05,840
+to use AI.
+
+4
+00:00:06,240 --> 00:00:07,120
+Imagine this.
+
+5
+00:00:07,360 --> 00:00:09,360
+A task that takes an employee eight
+
+6
+00:00:09,440 --> 00:00:11,600
+hours to complete could potentially be done
+
+7
+00:00:11,760 --> 00:00:13,760
+in minutes with the help of AI.
+
+8
+00:00:14,000 --> 00:00:15,200
+Sounds scary, right?
+
+9
+00:00:15,440 --> 00:00:17,360
+But how does AI actually work?
+
+10
+00:00:17,780 --> 00:00:19,940
+AI is trained on massive amounts of
+
+11
+00:00:20,020 --> 00:00:20,420
+data.
+
+12
+00:00:20,580 --> 00:00:23,860
+It identifies patterns, understands your instructions and
+
+13
+00:00:23,940 --> 00:00:28,020
+generates outputs like reports, emails, financial analysis,
+
+14
+00:00:28,100 --> 00:00:29,380
+and even computer code.
+
+15
+00:00:29,720 --> 00:00:31,960
+Now imagine a company that employs 100 people
+
+16
+00:00:32,760 --> 00:00:34,120
+for repetitive tasks.
+
+17
+00:00:34,280 --> 00:00:36,440
+If AI helps the company automate a
+
+18
+00:00:36,520 --> 00:00:38,600
+significant part of that work, it may
+
+19
+00:00:38,680 --> 00:00:40,840
+need fewer people for the same output.
+
+20
+00:00:41,080 --> 00:00:43,080
+And this is why AI is creating
+
+21
+00:00:43,160 --> 00:00:46,680
+serious concerns across industries, including IT.
+
+22
+00:00:46,840 --> 00:00:50,600
+On October 28, 2026, Indian IT stocks,
+
+23
+00:00:50,680 --> 00:00:54,360
+including Infosys, TCS and Tech Mahindra, reportedly
+
+24
+00:00:54,440 --> 00:00:56,600
+fell by up to five percent amid
+
+25
+00:00:56,680 --> 00:00:58,760
+concerns about AI and the future of
+
+26
+00:00:58,840 --> 00:01:00,520
+traditional IT services.
+
+27
+00:01:00,760 --> 00:01:02,280
+But here is what most people are
+
+28
+00:01:02,360 --> 00:01:02,840
+missing.
+
+29
+00:01:03,160 --> 00:01:06,280
+AI will not necessarily eliminate every job.
+
+30
+00:01:06,440 --> 00:01:08,840
+It will change the skills companies demand.
+
+31
+00:01:09,000 --> 00:01:11,160
+People who can combine professional knowledge with
+
+32
+00:01:11,240 --> 00:01:14,040
+AI tools may have a significant advantage
+
+33
+00:01:14,200 --> 00:01:16,040
+over those who refuse to adapt.
+
+34
+00:01:16,200 --> 00:01:19,320
+Whether you work in finance, accounting, marketing,
+
+35
+00:01:19,480 --> 00:01:22,280
+coding or business management, start learning how
+
+36
+00:01:22,440 --> 00:01:25,080
+AI can make you faster, smarter and
+
+37
+00:01:25,160 --> 00:01:26,040
+more productive.
+
+38
+00:01:26,280 --> 00:01:27,960
+Because the biggest risk is not that
+
+39
+00:01:28,120 --> 00:01:30,200
+AI will replace everyone, it is that
+
+40
+00:01:30,280 --> 00:01:32,440
+you might get left behind while others
+
+41
+00:01:32,520 --> 00:01:33,400
+learn to use it.
+
+42
+00:01:33,620 --> 00:01:35,620
+If you found this video useful, like
+
+43
+00:01:35,860 --> 00:01:37,540
+it, share it with your friends and
+
+44
+00:01:37,620 --> 00:01:40,740
+subscribe for more insights on finance, technology
+
+45
+00:01:40,900 --> 00:01:41,940
+and career growth.
+
+46
+00:01:42,100 --> 00:01:44,420
+Remember, don't compete against AI.
+
+47
+00:01:44,580 --> 00:01:46,420
+Learn to work with AI before your
+
+48
+00:01:46,580 --> 00:01:47,460
+competition does.
