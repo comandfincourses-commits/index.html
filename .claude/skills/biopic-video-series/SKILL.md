@@ -29,7 +29,9 @@ The house style comes from the reference series: AI-generated, photorealistic dr
 - Source footage is 16:9. The builder normalises everything to 1920×1080 at 30 fps.
 
 ## Workflow per part
-1. **Get the narration text.** Ask Ankit for the script that was fed to ElevenLabs. Speech-to-text models cannot be downloaded in the cloud sandbox: HuggingFace and OpenAI model hosts are blocked; only PyPI and npm are reachable.
+1. **Transcribe the audio yourself.** Ankit expects you to work from the audio alone, so don't ask for the script. HuggingFace is blocked, so get Whisper-small (CTranslate2 int8) from npm:
+   `@skillninja/shortmovie-telop-model-p0..p3`. Download each `dist.tarball`, concatenate `model.bin.part0..3` into `model.bin`, verify it against `model.sha256`, and copy over the json files. Then:
+   `pip install faster-whisper` → `python3 -I scripts/transcribe.py vo.mp3 transcript.json <model_dir>` (word timestamps; run it in the background, as it takes several minutes on CPU).
 2. **Time the script to the audio.** Use pause detection to find beat boundaries:
    `ffmpeg -i vo.mp3 -af silencedetect=n=-35dB:d=0.35 -f null -`
    Map the sentences to the gaps and produce a beat sheet with timecodes.
@@ -43,6 +45,7 @@ Write one sheet per era (child / young / middle-aged / elder) and reuse it verba
 
 ## Files
 - `scripts/build_episode.py`: the full assembler (teaser → intro → recap → story + VO/music/subs → end card).
+- `scripts/transcribe.py`: timestamped transcription, decoded through ffmpeg.
 - `scripts/make_short.sh`: 9:16 Short builder. Use it only when Ankit gives a dedicated Shorts audio.
 - `assets/Intro_Video.mp4`: the COMandFIN 10 s intro.
 - `reference/shot_list_template.md`: shot list and prompt template.
