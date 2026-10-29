@@ -21,6 +21,8 @@ The house style comes from the reference series: AI-generated, photorealistic dr
 - Stick to publicly documented events. No invented scandals, endorsements or defamatory scenes.
 - Never reuse third-party footage (e.g. other channels' films) in a published episode. The reference clips are a style guide only.
 
+- Ankit wants the **cinematic AI-character style** only. Do not make motion-graphics or animated-infographic versions in its place (he declined one for Warren Buffett Part 1).
+
 ## Visual grammar (from the reference edit)
 - Shots last 3–5 s, with a hard cut on each new beat (about 12–15 cuts per minute).
 - Coverage cycle: establishing wide or aerial → medium two-shot → emotional close-up → insert detail (hands, phone, newspaper, ticker).
