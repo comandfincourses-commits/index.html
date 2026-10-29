@@ -20,7 +20,10 @@ episode.json example:
   "output": "out/RJ_Part2.mp4"
 }
 "voiceover", "music", "subtitles" and "recap" are optional. Paths are relative to the json file.
-Optional keys: "target_minutes": [8, 9], "clip_audio_volume" (default 0.15 with a voiceover),
+Scenes may be plain paths or {"src", "start", "dur"} to cut each clip to its shot slot.
+"supers": [{"at": 43.8, "dur": 3, "text": "OMAHA, NEBRASKA • 1930"}] adds top-left captions (story time).
+Optional keys: "title_at" (s into the story to show the title card, default 0), "disclaimer" (default true),
+"target_minutes": [8, 9], "clip_audio_volume" (default 0.15 with a voiceover),
 "voiceover_delay" (s, default 0.5), "tail_seconds" (default 1.5).
 With a voiceover, the story length follows the voiceover: the scene clips are cut to it (or the last frame is held).
 """
@@ -116,6 +119,21 @@ def main(cfg_path):
     # 2. Intro
     norm(P(cfg["intro"]), f"{t}/02_intro.mp4")
     parts.append(f"{t}/02_intro.mp4")
+    # 2b. AI-dramatisation disclaimer (3.5 s)
+    if cfg.get("disclaimer", True):
+        dpng = f"{t}/disc.png"
+        im = Image.new("RGB", (W, H), (0, 0, 0)); d = ImageDraw.Draw(im)
+        txt = ["DISCLAIMER", "", "This is a creative dramatisation produced with the help of artificial intelligence,",
+               f"inspired by publicly available information on the life of {series}.",
+               "Some scenes, dialogues and visuals are recreated for storytelling and educational purposes."]
+        for k, line in enumerate(txt):
+            f = ImageFont.truetype(BLK if k == 0 else SB, 40 if k == 0 else 30)
+            w = d.textlength(line, font=f); d.text(((W - w) / 2, 400 + k * 52), line, font=f, fill="white")
+        im.save(dpng)
+        run(["ffmpeg", "-v", "error", "-y", "-loop", "1", "-t", "3.5", "-i", dpng, "-f", "lavfi", "-t", "3.5", "-i",
+             "anullsrc=r=48000:cl=stereo", "-vf", f"fps={FPS},format=yuv420p,setsar=1", "-c:v", "libx264", "-crf", "19",
+             "-c:a", "aac", "-b:a", "192k", "-shortest", f"{t}/02b_disc.mp4"])
+        parts.append(f"{t}/02b_disc.mp4")
     # 3. Recap (Part 2 onwards)
     if part > 1:
         for i, c in enumerate(cfg.get("recap", [])):
@@ -126,7 +144,10 @@ def main(cfg_path):
     story = []
     for i, s in enumerate(cfg["scenes"]):
         o = f"{t}/04_scene_{i:03d}.mp4"
-        norm(P(s), o)
+        if isinstance(s, dict):
+            norm(P(s["src"]), o, s.get("start", 0), s.get("dur"))
+        else:
+            norm(P(s), o)
         story.append(o)
     # 5. End card: last 6 s of the intro with CTA overlay
     idur = dur(P(cfg["intro"]))
@@ -146,11 +167,22 @@ def main(cfg_path):
                  "-t", str(vo), "-c:v", "libx264", "-crf", "19", "-c:a", "aac", f"{t}/story_pad.mp4"])
             os.replace(f"{t}/story_pad.mp4", f"{t}/story_raw.mp4")
         sd = vo
-    cmd = ["ffmpeg", "-v", "error", "-y", "-i", f"{t}/story_raw.mp4", "-loop", "1", "-t", "4", "-i", f"{t}/title.png"]
+    ta = cfg.get("title_at", 0)
+    cmd = ["ffmpeg", "-v", "error", "-y", "-i", f"{t}/story_raw.mp4", "-loop", "1", "-i", f"{t}/title.png"]
     clip_vol = cfg.get("clip_audio_volume", 0.15 if cfg.get("voiceover") else 1.0)
     amix, n = [f"[0:a]volume={clip_vol}[a0]"], 1
     labels = ["[a0]"]
-    idx = 2
+    sup_in = []
+    for k, sp in enumerate(cfg.get("supers", [])):  # top-left location/year captions
+        sp_png = f"{t}/sup{k}.png"
+        im = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+        f = ImageFont.truetype(SB, 34)
+        d.text((92, 82), sp["text"], font=f, fill=(0, 0, 0, 140))
+        d.text((90, 80), sp["text"], font=f, fill="white")
+        im.save(sp_png)
+        cmd += ["-loop", "1", "-i", sp_png]
+        sup_in.append((sp, 2 + k))
+    idx = 2 + len(sup_in)
     if cfg.get("voiceover"):
         cmd += ["-i", P(cfg["voiceover"])]
         amix.append(f"[{idx}:a]adelay={int(cfg.get('voiceover_delay', 0.5) * 1000)}:all=1[vod]")
@@ -158,7 +190,14 @@ def main(cfg_path):
     if cfg.get("music"):
         cmd += ["-stream_loop", "-1", "-i", P(cfg["music"])]
         amix.append(f"[{idx}:a]volume=0.12,afade=t=out:st={sd - 3}:d=3[bg]"); labels.append("[bg]"); idx += 1; n += 1
-    vf = "[0:v][1:v]overlay=0:0:eof_action=pass[vt]"
+    vf = f"[1:v]fade=t=in:st={ta}:d=0.5:alpha=1,fade=t=out:st={ta + 3.5}:d=0.5:alpha=1[tt];[0:v][tt]overlay=0:0:shortest=1:enable='between(t,{ta},{ta + 4})'[vt0]"
+    last = "vt0"
+    for k, (sp, ii) in enumerate(sup_in):
+        a, b = sp["at"], sp["at"] + sp.get("dur", 3)
+        vf += (f";[{ii}:v]fade=t=in:st={a}:d=0.4:alpha=1,fade=t=out:st={b - 0.4}:d=0.4:alpha=1[sp{k}];"
+               f"[{last}][sp{k}]overlay=0:0:shortest=1:enable='between(t,{a},{b})'[vs{k}]")
+        last = f"vs{k}"
+    vf += f";[{last}]null[vt]"
     if cfg.get("subtitles"):
         vf += (f";[vt]subtitles='{P(cfg['subtitles'])}':force_style='FontName=Inter SemiBold,FontSize=20,"
                f"PrimaryColour=&H00FFFFFF,OutlineColour=&H80000000,BorderStyle=3,MarginV=40'[v]")
