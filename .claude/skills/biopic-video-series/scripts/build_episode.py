@@ -20,7 +20,8 @@ episode.json example:
   "output": "out/RJ_Part2.mp4"
 }
 "voiceover", "music", "subtitles" and "recap" are optional. Paths are relative to the json file.
-Scenes may be plain paths or {"src", "start", "dur"} to cut each clip to its shot slot.
+Scenes may be plain paths or {"src", "start", "dur", "slow"} to cut each clip to its shot slot
+("slow": 1.1 stretches a clip 10% to fill a slot longer than the clip).
 "supers": [{"at": 43.8, "dur": 3, "text": "OMAHA, NEBRASKA • 1930"}] adds top-left captions (story time).
 Optional keys: "title_at" (s into the story to show the title card, default 0), "disclaimer" (default true),
 "target_minutes": [8, 9], "clip_audio_volume" (default 0.15 with a voiceover),
@@ -55,20 +56,27 @@ def has_audio(p):
     return bool(r.stdout.strip())
 
 
-def norm(src, out, start=0.0, length=None, overlay=None):
-    """Re-encode any clip to the house format; adds silent audio if the clip has none."""
+def norm(src, out, start=0.0, length=None, overlay=None, slow=1.0):
+    """Re-encode any clip to the house format; adds silent audio if the clip has none.
+    slow > 1 stretches the clip (e.g. 1.1 = 10% slow motion) so a short clip fills a longer slot."""
     cmd = ["ffmpeg", "-v", "error", "-y", "-ss", str(start)]
     if length:
-        cmd += ["-t", str(length)]
+        cmd += ["-t", str(length / slow)]
     cmd += ["-i", src]
     if overlay:
         cmd += ["-loop", "1", "-i", overlay]
     if not has_audio(src):
         cmd += ["-f", "lavfi", "-i", "anullsrc=r=48000:cl=stereo"]
     a_idx = 2 if overlay else 1
-    vf = f"[0:v]{NORM}[v0]"
+    vf = f"[0:v]setpts=PTS*{slow},{NORM}[v0]"
     vf += ";[v0][1:v]overlay=0:0:shortest=1[v]" if overlay else ";[v0]null[v]"
-    amap = "0:a" if has_audio(src) else f"{a_idx}:a"
+    if has_audio(src):
+        vf += f";[0:a]atempo={1 / slow:.4f}[a]"
+        amap = "[a]"
+    else:
+        amap = f"{a_idx}:a"
+    if length:
+        cmd += ["-t", str(length)]
     cmd += ["-filter_complex", vf, "-map", "[v]", "-map", amap, "-shortest",
             "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-ar", "48000", "-ac", "2",
             "-c:a", "aac", "-b:a", "192k", out]
@@ -145,7 +153,7 @@ def main(cfg_path):
     for i, s in enumerate(cfg["scenes"]):
         o = f"{t}/04_scene_{i:03d}.mp4"
         if isinstance(s, dict):
-            norm(P(s["src"]), o, s.get("start", 0), s.get("dur"))
+            norm(P(s["src"]), o, s.get("start", 0), s.get("dur"), slow=s.get("slow", 1.0))
         else:
             norm(P(s), o)
         story.append(o)

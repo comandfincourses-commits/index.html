@@ -1,0 +1,284 @@
+{
+ "series": "Warren Buffett",
+ "part": 1,
+ "intro": "assets/Intro_Video.mp4",
+ "title_at": 22.6,
+ "target_minutes": [
+  4,
+  5.5
+ ],
+ "teaser": [
+  {
+   "src": "clips/s043.mp4",
+   "start": 4.5,
+   "dur": 3
+  },
+  {
+   "src": "clips/w26.mp4",
+   "start": 3.0,
+   "dur": 3
+  },
+  {
+   "src": "clips/w32.mp4",
+   "start": 2.0,
+   "dur": 3
+  }
+ ],
+ "scenes": [
+  {
+   "src": "clips/w01.mp4",
+   "start": 0.0,
+   "dur": 5.8
+  },
+  {
+   "src": "clips/w02.mp4",
+   "start": 0.0,
+   "dur": 5.8
+  },
+  {
+   "src": "clips/s043.mp4",
+   "start": 4.0,
+   "dur": 3.9
+  },
+  {
+   "src": "clips/w04.mp4",
+   "start": 0.0,
+   "dur": 7.0
+  },
+  {
+   "src": "clips/w05.mp4",
+   "start": 0.0,
+   "dur": 7.0
+  },
+  {
+   "src": "clips/w06.mp4",
+   "start": 0.0,
+   "dur": 5.5
+  },
+  {
+   "src": "clips/w07.mp4",
+   "start": 0.0,
+   "dur": 8.8,
+   "slow": 1.128
+  },
+  {
+   "src": "clips/w08.mp4",
+   "start": 0.0,
+   "dur": 8.2,
+   "slow": 1.051
+  },
+  {
+   "src": "clips/w09.mp4",
+   "start": 0.0,
+   "dur": 8.8,
+   "slow": 1.128
+  },
+  {
+   "src": "clips/w10.mp4",
+   "start": 0.0,
+   "dur": 8.1,
+   "slow": 1.038
+  },
+  {
+   "src": "clips/w11.mp4",
+   "start": 0.0,
+   "dur": 8.1,
+   "slow": 1.038
+  },
+  {
+   "src": "clips/w12.mp4",
+   "start": 0.0,
+   "dur": 8.6,
+   "slow": 1.103
+  },
+  {
+   "src": "clips/w13.mp4",
+   "start": 0.0,
+   "dur": 7.9,
+   "slow": 1.013
+  },
+  {
+   "src": "clips/w14.mp4",
+   "start": 0.0,
+   "dur": 6.6
+  },
+  {
+   "src": "clips/w15.mp4",
+   "start": 0.0,
+   "dur": 6.4
+  },
+  {
+   "src": "clips/w16.mp4",
+   "start": 0.0,
+   "dur": 5.9
+  },
+  {
+   "src": "clips/w17.mp4",
+   "start": 0.0,
+   "dur": 7.1
+  },
+  {
+   "src": "clips/w18.mp4",
+   "start": 0.0,
+   "dur": 7.0
+  },
+  {
+   "src": "clips/w19.mp4",
+   "start": 0.0,
+   "dur": 6.6
+  },
+  {
+   "src": "clips/w20.mp4",
+   "start": 0.0,
+   "dur": 8.9,
+   "slow": 1.141
+  },
+  {
+   "src": "clips/w21.mp4",
+   "start": 0.0,
+   "dur": 8.5,
+   "slow": 1.09
+  },
+  {
+   "src": "clips/w22.mp4",
+   "start": 0.0,
+   "dur": 8.5,
+   "slow": 1.09
+  },
+  {
+   "src": "clips/w23.mp4",
+   "start": 0.0,
+   "dur": 7.3
+  },
+  {
+   "src": "clips/w24.mp4",
+   "start": 0.0,
+   "dur": 7.2
+  },
+  {
+   "src": "clips/w25.mp4",
+   "start": 0.0,
+   "dur": 7.2
+  },
+  {
+   "src": "clips/w26.mp4",
+   "start": 0.0,
+   "dur": 7.6
+  },
+  {
+   "src": "clips/w27.mp4",
+   "start": 0.0,
+   "dur": 8.2,
+   "slow": 1.051
+  },
+  {
+   "src": "clips/w28.mp4",
+   "start": 0.0,
+   "dur": 8.5,
+   "slow": 1.09
+  },
+  {
+   "src": "clips/w29.mp4",
+   "start": 0.0,
+   "dur": 7.0
+  },
+  {
+   "src": "clips/w30.mp4",
+   "start": 0.0,
+   "dur": 6.7
+  },
+  {
+   "src": "clips/w31.mp4",
+   "start": 0.0,
+   "dur": 5.8
+  },
+  {
+   "src": "clips/w32.mp4",
+   "start": 0.0,
+   "dur": 5.9
+  },
+  {
+   "src": "clips/w33.mp4",
+   "start": 0.0,
+   "dur": 8.5,
+   "slow": 1.09
+  },
+  {
+   "src": "clips/w34.mp4",
+   "start": 0.0,
+   "dur": 6.4
+  },
+  {
+   "src": "clips/w35.mp4",
+   "start": 0.0,
+   "dur": 7.2
+  },
+  {
+   "src": "clips/w36.mp4",
+   "start": 0.0,
+   "dur": 8.5,
+   "slow": 1.09
+  },
+  {
+   "src": "clips/w37.mp4",
+   "start": 0.0,
+   "dur": 8.9,
+   "slow": 1.141
+  }
+ ],
+ "supers": [
+  {
+   "at": 43.8,
+   "dur": 3.0,
+   "text": "OMAHA, NEBRASKA \u2022 30 AUGUST 1930"
+  },
+  {
+   "at": 52.0,
+   "dur": 3.0,
+   "text": "NEW YORK \u2022 1929"
+  },
+  {
+   "at": 85.6,
+   "dur": 3.0,
+   "text": "OMAHA \u2022 1936"
+  },
+  {
+   "at": 112.4,
+   "dur": 3.0,
+   "text": "OMAHA \u2022 1942"
+  },
+  {
+   "at": 150.5,
+   "dur": 3.0,
+   "text": "1942"
+  },
+  {
+   "at": 159.0,
+   "dur": 3.0,
+   "text": "WASHINGTON, D.C."
+  },
+  {
+   "at": 173.5,
+   "dur": 3.0,
+   "text": "AGE 13"
+  },
+  {
+   "at": 196.5,
+   "dur": 3.0,
+   "text": "NEBRASKA"
+  },
+  {
+   "at": 212.0,
+   "dur": 3.0,
+   "text": "UNIVERSITY OF NEBRASKA \u2022 1950"
+  },
+  {
+   "at": 218.7,
+   "dur": 3.0,
+   "text": "HARVARD BUSINESS SCHOOL \u2022 1950"
+  }
+ ],
+ "voiceover": "audio/WB_Part1_VO.mp3",
+ "voiceover_delay": 0,
+ "output": "out/WarrenBuffett_Part1.mp4"
+}
