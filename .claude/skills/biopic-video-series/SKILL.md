@@ -41,6 +41,14 @@ The house style comes from the reference series: AI-generated, photorealistic dr
 4. **Footage generation is done by Ankit** in an AI video tool (Veo / Kling / Runway / Hailuo). This environment has no image or video generation model. He names the clips `s001.mp4`, `s002.mp4`, … in shot-list order.
 5. **Assemble** with `scripts/build_episode.py episode.json` (see the docstring for the schema; use `"target_minutes": [4, 5]` for shorter parts). Check frames at the teaser, title, recap and end card before delivering.
 
+## Google Flow lessons (from Warren Buffett Part 1 tests)
+- Never put real names in Flow prompts; describe look-alike characters instead (real public figures get blocked).
+- Character ingredients made from plain-background portraits leak that grey backdrop into **Ingredients to Video** clips. Use the **two-step method**: first *Create image* with the character attached and a detailed period set, then *Frames to Video* with that still as the first frame and a short motion prompt.
+- Some Flow models refuse character ingredients ("You cannot use character ingredients with this model"); switch the model, or use Frames to Video.
+- AI-generated print is gibberish, so ask for newspapers, letters and signs to be "out of focus and not legible", and cut around readable text in the edit.
+- Ankit's browser had a third-party "Flow Automation" extension that pasted prompts several times; tell him to turn it off.
+- Flow clips come out at 1280×720, 24 fps, about 8 s. The builder upscales them; cut each clip to the strongest part of the action with the per-scene `start`.
+
 ## Character sheet format
 `<Name>, <age> in <year>, <build>, <face/hair>, <signature clothing>, <setting>, photorealistic, cinematic 35mm, <grade>`
 Write one sheet per era (child / young / middle-aged / elder) and reuse it verbatim in every prompt.
