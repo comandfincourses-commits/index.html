@@ -51,6 +51,8 @@ The house style comes from the reference series: AI-generated, photorealistic dr
 
 - Never write "35mm film look" in Flow prompts. Flow draws literal film-strip borders, sprocket holes and edge codes. Say "cinematic, clean full-frame image, no borders, no film frame" instead.
 
+- Ankit wants **realistic live-action characters**, not cartoon, 2D or 3D-animated. Realism cues that work: "ultra-realistic live-action period film, real actors, natural skin texture, shot on a cinema camera with a 50mm lens, not CGI, not plastic skin". Avoid "film still" and "35mm", which produce film-strip borders.
+
 ## Character sheet format
 `<Name>, <age> in <year>, <build>, <face/hair>, <signature clothing>, <setting>, photorealistic, cinematic 35mm, <grade>`
 Write one sheet per era (child / young / middle-aged / elder) and reuse it verbatim in every prompt.

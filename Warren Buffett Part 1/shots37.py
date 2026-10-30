@@ -6,6 +6,7 @@ VO_END = 269.9
 CLIP = 7.8          # usable seconds in a Flow 8 s clip
 STYLE = {"warm": "Warm golden-hour light, soft amber tones", "cold": "Cold overcast light, desaturated teal-grey tones",
          "night": "Low-key lamp light, deep shadows, warm practical lights", "neutral": "Natural daylight, gentle film colour"}
+REAL = "Ultra-realistic live-action period film, real actors, natural skin texture with pores and fine imperfections, realistic hair strands, true-to-life proportions, shot on a cinema camera with a 50mm lens, natural motivated light, subtle film grain, not CGI, not cartoon, not illustration, not plastic or airbrushed skin"
 SUF = "Photorealistic period drama, cinematic, shallow depth of field, slow subtle camera movement, clean full-frame image with no borders, no film frame, no scratches, no text, no subtitles, no logos."
 BLUR = " Any printed or handwritten text is out of focus and not legible."
 TXT = ("newspaper", "letter", "form", "certificate", "chalkboard", "diary", "notebook", "notice", "sign", "deed", "brochure")
@@ -106,11 +107,11 @@ for i, (st, cue, sup, chars, grade, vis) in enumerate(S):
     blur = BLUR if any(k in vis.lower() for k in TXT) else ""
     if chars:
         star = " ★" if "close" in vis.lower() or chars.count(",") == 0 and grade in ("cold", "night") else ""
-        md.append(f"Characters to attach: **{chars}**{star}\n\nIMAGE:\n```\nCinematic film still: {vis}. Real, detailed period location with depth, "
-                  f"not a studio backdrop, natural motivated light.{blur} {STYLE[grade]}. Photorealistic, cinematic, shallow depth of field, clean full-frame image with no borders, no film frame, no scratches, 16:9.\n```\n"
-                  f"MOTION:\n```\n{vis}. Subtle natural movement, slow subtle camera movement, cinematic.{blur} Clean full frame, no borders, no film frame, no scratches, no text, no subtitles, no logos.\n```\n")
+        md.append(f"Characters to attach: **{chars}**{star}\n\nIMAGE:\n```\nRealistic live-action scene: {vis}. Real, detailed period location with depth, "
+                  f"not a studio backdrop.{blur} {STYLE[grade]}. {REAL}. Shallow depth of field, clean full-frame image with no borders, no film frame, no scratches, 16:9.\n```\n"
+                  f"MOTION:\n```\n{vis}. Realistic, natural human movement and expressions, live-action footage, slow subtle camera movement.{blur} Clean full frame, no borders, no film frame, no scratches, no text, no subtitles, no logos.\n```\n")
     else:
-        md.append(f"Text to Video:\n```\n{vis}.{blur} {STYLE[grade]}. {SUF}\n```\n")
+        md.append(f"Text to Video:\n```\n{vis}.{blur} {STYLE[grade]}. Ultra-realistic live-action period film, real locations, shot on a cinema camera, natural light, subtle film grain, not CGI. {SUF}\n```\n")
 
 open("WB_Part1_Flow_Prompts_37.md", "w").write("\n".join(md))
 with open("WB_Part1_Tracker_37.csv", "w", newline="") as f:
