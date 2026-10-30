@@ -49,6 +49,8 @@ The house style comes from the reference series: AI-generated, photorealistic dr
 - Ankit's browser had a third-party "Flow Automation" extension that pasted prompts several times; tell him to turn it off.
 - Flow clips come out at 1280×720, 24 fps, about 8 s. The builder upscales them; cut each clip to the strongest part of the action with the per-scene `start`.
 
+- Never write "35mm film look" in Flow prompts. Flow draws literal film-strip borders, sprocket holes and edge codes. Say "cinematic, clean full-frame image, no borders, no film frame" instead.
+
 ## Character sheet format
 `<Name>, <age> in <year>, <build>, <face/hair>, <signature clothing>, <setting>, photorealistic, cinematic 35mm, <grade>`
 Write one sheet per era (child / young / middle-aged / elder) and reuse it verbatim in every prompt.

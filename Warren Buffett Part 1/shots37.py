@@ -6,7 +6,7 @@ VO_END = 269.9
 CLIP = 7.8          # usable seconds in a Flow 8 s clip
 STYLE = {"warm": "Warm golden-hour light, soft amber tones", "cold": "Cold overcast light, desaturated teal-grey tones",
          "night": "Low-key lamp light, deep shadows, warm practical lights", "neutral": "Natural daylight, gentle film colour"}
-SUF = "Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos."
+SUF = "Photorealistic period drama, cinematic, shallow depth of field, slow subtle camera movement, clean full-frame image with no borders, no film frame, no scratches, no text, no subtitles, no logos."
 BLUR = " Any printed or handwritten text is out of focus and not legible."
 TXT = ("newspaper", "letter", "form", "certificate", "chalkboard", "diary", "notebook", "notice", "sign", "deed", "brochure")
 
@@ -107,8 +107,8 @@ for i, (st, cue, sup, chars, grade, vis) in enumerate(S):
     if chars:
         star = " ★" if "close" in vis.lower() or chars.count(",") == 0 and grade in ("cold", "night") else ""
         md.append(f"Characters to attach: **{chars}**{star}\n\nIMAGE:\n```\nCinematic film still: {vis}. Real, detailed period location with depth, "
-                  f"not a studio backdrop, natural motivated light.{blur} {STYLE[grade]}. Photorealistic, 35mm film look, shallow depth of field, 16:9.\n```\n"
-                  f"MOTION:\n```\n{vis}. Subtle natural movement, slow subtle camera movement, cinematic 35mm.{blur} No text, no subtitles, no logos.\n```\n")
+                  f"not a studio backdrop, natural motivated light.{blur} {STYLE[grade]}. Photorealistic, cinematic, shallow depth of field, clean full-frame image with no borders, no film frame, no scratches, 16:9.\n```\n"
+                  f"MOTION:\n```\n{vis}. Subtle natural movement, slow subtle camera movement, cinematic.{blur} Clean full frame, no borders, no film frame, no scratches, no text, no subtitles, no logos.\n```\n")
     else:
         md.append(f"Text to Video:\n```\n{vis}.{blur} {STYLE[grade]}. {SUF}\n```\n")
 
