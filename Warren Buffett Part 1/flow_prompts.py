@@ -19,9 +19,18 @@ PORTRAIT = ("Photorealistic character reference portrait of {d}. Waist-up, facin
 REPL = {"glass Coca-Cola bottles": "classic glass soda bottles", "Coca-Cola": "soda", "Coke bottle": "glass soda bottle", "US Capitol dome": "the domed Capitol building in Washington", "Ford ": ""}
 LOC = ("Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), "
        "with natural motivated light from windows or lamps and depth in the background. ")
-FIX = {  # shots whose description needs an explicit set
- "The boy reads a newspaper stock page, eyes widen in shock, slow push-in on his face":
- "In a 1940s Omaha family living room with patterned wallpaper, a wooden bookshelf and a window behind him, the boy sits at a wooden table reading a newspaper stock page; his eyes widen in shock; slow push-in on his face",
+FIX = {}  # per-shot description overrides
+SET = {  # explicit sets for character shots whose description has none
+ "s001": "on a wooden kitchen table in a 1940s Omaha home",
+ "s004": "standing in a 1940s brokerage office with a chalkboard of prices behind him",
+ "s023": "in a modest 1930s bedroom with a wooden wardrobe",
+ "s030": "inside a 1930s grocery store with wooden shelves of tins and jars, a brass cash register and sunlit front windows",
+ "s064": "in the back room of a 1940s barbershop",
+ "s068": "at a wooden desk in his 1940s bedroom",
+ "s073": "in a dim, wood-panelled university corridor",
+ "s076": "on a rainy campus path lined with bare trees",
+ "s080": "in a small 1950 boarding-house room",
+ "s083": "on an open Nebraska road at sunrise",
 }
 SUF = "Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos."
 
@@ -37,20 +46,35 @@ out = ["# Warren Buffett Part 1: Google Flow Prompts\n",
        "Generate the four ages of the main character (BOY 6 → YOUNG MAN 20) one after another, and reuse the same face for each, so he looks like the same person growing up.\n"]
 for code, (name, desc) in ING.items():
     out.append(f"### {name}\n```\n{PORTRAIT.format(d=desc)}\n```\n")
-out += ["## STEP 2: Generate the shots (video)\n",
-        "Use **Ingredients to Video**. Attach the ingredients listed for each shot, paste the prompt, and generate at **16:9, 8 s**. "
-        "Download the clip and rename it exactly as the shot number (e.g. `s001.mp4`). "
-        "Use **Fast** quality for close-ups of characters (marked ★) and **Lite/standard** for the rest.\n"]
+TXT = ("newspaper", "letter", "form", "certificate", "sign", "notice", "chalkboard", "blackboard", "diary", "notebook", "brochure", "deed", "passbook", "tag")
+BLUR = " Any printed or handwritten text is out of focus and not legible."
+out += ["## STEP 2: Generate the shots\n",
+        "**Shots with characters (two steps, gives the real film look):**\n",
+        "1. **Create image**: attach the listed character(s) and paste the **IMAGE** prompt. Regenerate until the set and face look right.\n",
+        "2. **Frames to Video**: set that image as the **first frame** (no character needed now), paste the **MOTION** prompt, 16:9, 8 s.\n",
+        "**Shots without characters:** use **Text to Video** with the single **VIDEO** prompt.\n",
+        "Download each clip and rename it exactly as the shot number (e.g. `s001.mp4`). Use Fast/Quality for shots marked with a star, and the cheaper setting for the rest.\n",
+        "Shot s043 is already done and approved.\n"]
 for i, (st, cue, sup, chars, grade, vis) in enumerate(S):
     sid = f"s{i + 1:03d}"
     codes = [c for c in chars.split(",") if c]
-    ings = ", ".join(ING[c][0] for c in codes) or "none"
+    ings = ", ".join(ING[c][0] for c in codes)
     v = clean(FIX.get(vis, vis))
-    if codes:
-        v = v + ". " + LOC.strip().rstrip(".")
-    for c in codes:  # refer to characters by ingredient name
-        pass
+    if sid in SET:
+        v = f"{v}, {SET[sid]}"
+    blur = BLUR if any(k in v.lower() for k in TXT) else ""
+    tone = STYLE[grade].capitalize()
     star = " ★" if codes and "close-up" in vis.lower() else ""
-    out.append(f"**{sid}**{star} · Ingredients: *{ings}* · Narration: {cue or '(continues)'}\n```\n{v}. {STYLE[grade].capitalize()}. {SUF}\n```\n")
+    head = f"**{sid}**{star} · Narration: {cue or '(continues)'}"
+    if sid == "s043":
+        out.append(head + " · DONE\n"); continue
+    if codes:
+        img = (f"Cinematic film still: {v}. Real, detailed period location with depth, not a studio backdrop, "
+               f"natural motivated light.{blur} {tone}. Photorealistic, 35mm film look, shallow depth of field, 16:9.")
+        mot = (f"{v}. Subtle natural movement, cinematic 35mm, slow subtle camera movement.{blur} No text, no subtitles, no logos.")
+        out.append(f"{head} · Characters: *{ings}*\n\nIMAGE:\n```\n{img}\n```\nMOTION:\n```\n{mot}\n```\n")
+    else:
+        vid = f"{v}.{blur} {tone}. {SUF}"
+        out.append(f"{head} · Text to Video\n\nVIDEO:\n```\n{vid}\n```\n")
 open("WB_Part1_Flow_Prompts.md", "w").write("\n".join(out))
 print("ok", len(S))
