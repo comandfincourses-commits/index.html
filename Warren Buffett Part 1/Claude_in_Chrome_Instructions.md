@@ -1,50 +1,45 @@
-# Instructions to paste into Claude in Chrome
+# Instructions to paste into Claude in Chrome (37-shot version)
 
 Before you start:
-- Turn off the "Flow Automation – Auto Flow" extension (chrome://extensions → toggle it off). It scrambles the prompt box.
-- Open your Google Flow project (flow.google.com) in the active tab.
-- Keep `WB_Part1_Flow_Prompts.md` open, or paste its contents into the chat when Claude in Chrome asks for it.
+- Turn off the "Flow Automation – Auto Flow" extension (chrome://extensions → toggle it off).
+- Open your Google Flow project (flow.google.com) in the active tab. The characters are already saved: Boy 6, Boy 11, Teen 14, Young Man 20, Father, Mother, Sister, Grandfather, Friend.
+- Open `WB_Part1_Flow_Prompts_37.md` and copy its full contents. You will paste it into Message 1.
 
 ---
 
-## Message 1: test run (paste this first)
+## Message 1: set-up and first batch (paste this, then paste the prompt file below it)
 
 ```
-You are helping me generate video clips in Google Flow (the tab that is open) for my YouTube biopic series.
+You are helping me generate video clips in Google Flow (the open tab) for my YouTube biopic series. Below this message is my prompt file with shots w01 to w37.
 
 Rules:
-- Use only the Flow tab. Do not change account settings, buy credits, or change my plan.
-- Before typing a prompt, always clear the prompt box completely (select all, delete).
-- Put the character ingredient first by typing "@" and choosing it from the list, then paste the prompt text exactly once.
-- Settings for every clip: Video, 16:9 landscape, 8 seconds, 1 output.
-- After each generation finishes, download the clip and tell me its file name.
-- If Flow shows an error or refuses a prompt, stop and tell me the exact message.
+- Use only the Flow tab. Do not change account settings, buy credits, upgrade, or change my plan.
+- Never type real people's names into Flow.
+- Before typing any prompt, clear the prompt box completely (select all, delete), then paste the prompt exactly once.
+- Skip w03 (already done).
 
-Task 1: A character called "Boy 11" already exists. Generate this clip with the ingredient @Boy 11:
+For a shot that lists "Characters to attach":
+  Step 1: Switch the output to Image. Attach each listed character (type @ and pick the name). Paste the IMAGE prompt. Generate.
+  Step 2: Use Frames to Video with the generated image as the first frame. No characters are needed in this step. Paste the MOTION prompt. Settings: 16:9, 8 seconds, 1 output. Generate.
 
-The boy reads a newspaper stock page, eyes widen in shock, slow push-in on his face. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+For a shot marked "Text to Video":
+  Paste the single prompt in Text to Video. Settings: 16:9, 8 seconds, 1 output.
 
-Download it and name it s043.mp4.
+After each video finishes, download it and name it with the shot number, e.g. w01.mp4.
+If Flow shows an error, refuses a prompt, or says credits are low, stop and tell me the exact message.
+
+Do the first batch only: w01, w02, w04, w05. Then stop and tell me the file names.
+
+[PASTE THE CONTENTS OF WB_Part1_Flow_Prompts_37.md HERE]
 ```
 
-## Message 2: create the remaining characters
+## Message 2: next batches (after Claude Code approves the first batch)
 
 ```
-Now create these characters in Flow (Characters → New character), one at a time, using each portrait prompt from STEP 1 of the prompt file I give you: BOY 6, TEEN 14, YOUNG MAN 20, FATHER, MOTHER, SISTER, GRANDFATHER, FRIEND. Name each character exactly as written. For BOY 6, TEEN 14 and YOUNG MAN 20, make the face look like the same person as Boy 11 at a different age. Show me each result before saving it.
+The first batch is approved. Continue in order with the next 8 shots that are not yet downloaded, using the same rules. Stop after 8 and tell me the file names.
 ```
-
-## Message 3: test shots
-
-```
-Generate shots s001, s013, s030, s073 and s080 from STEP 2 of the prompt file. For each, attach the ingredients listed for that shot, paste the prompt once, use the same settings, and download as sXXX.mp4. Then stop so I can review.
-```
-
-## Message 4: all remaining shots (only after the test shots are approved)
-
-```
-Generate all remaining shots from s001 to s085 in STEP 2 that are not yet downloaded, in order, with the listed ingredients. Download each as sXXX.mp4. Pause every 10 shots and give me a short status.
-```
+Repeat Message 2 until all shots up to w37 are done.
 
 ---
 
-When the clips are downloaded, zip them and upload the zip to the Claude Code session. Claude Code then assembles the final video with your voiceover, the COMandFIN intro, the teaser, the captions and the end card.
+After each batch, zip the clips and upload the zip to the Claude Code session for review. When all 36 are approved, Claude Code assembles the final video with your voiceover, the COMandFIN intro, the teaser, the captions and the end card.
