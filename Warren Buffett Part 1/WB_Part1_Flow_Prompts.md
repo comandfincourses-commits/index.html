@@ -57,12 +57,12 @@ Use **Ingredients to Video**. Attach the ingredients listed for each shot, paste
 
 **s001** ★ · Ingredients: *BOY 11* · Narration: Socho, ek 11 saal ka bachcha…
 ```
-Extreme close-up of a boy's small hands counting coins and folded dollar bills on a wooden table, lamp light. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Extreme close-up of a boy's small hands counting coins and folded dollar bills on a wooden table, lamp light. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s002** · Ingredients: *BOY 11, FATHER* · Narration: …pehla share khareedta hai
 ```
-1940s brokerage office: the boy pushes a small stack of bills across a wooden counter to a clerk; a chalkboard of stock prices behind. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+1940s brokerage office: the boy pushes a small stack of bills across a wooden counter to a clerk; a chalkboard of stock prices behind. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s003** · Ingredients: *none* · Narration: …share girne lagta hai
@@ -72,7 +72,7 @@ Close-up of a clerk's hand erasing a chalk stock price and writing a lower numbe
 
 **s004** ★ · Ingredients: *BOY 11* · Narration: Darr ke maare bech deta hai
 ```
-Close-up of the boy's anxious face, he bites his lip and nods reluctantly. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Close-up of the boy's anxious face, he bites his lip and nods reluctantly. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s005** · Ingredients: *none* · Narration: …wahi share 5 guna ho gaya
@@ -82,7 +82,7 @@ Macro shot of a 1940s newspaper stock table, a finger traces a line to a much hi
 
 **s006** · Ingredients: *BOY 11* · Narration: Us din ek lesson seekha…
 ```
-The boy stands at a window at dusk looking out at Omaha rooftops, thoughtful, silhouette with rim light. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The boy stands at a window at dusk looking out at Omaha rooftops, thoughtful, silhouette with rim light. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s007** · Ingredients: *none* · Narration: …duniya ka sabse famous investor
@@ -112,7 +112,7 @@ Close-up of a glowing 1930s wooden valve radio dial being turned in a cosy livin
 
 **s012** ★ · Ingredients: *BOY 6* · Narration: [CTA] Subscribe aur bell icon…
 ```
-Close-up of a small boy's thumb ringing a shiny bicycle bell, playful, shallow focus. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Close-up of a small boy's thumb ringing a shiny bicycle bell, playful, shallow focus. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s013** · Ingredients: *none* · Narration: 30 August 1930
@@ -122,12 +122,12 @@ Aerial establishing shot of 1930 downtown Omaha, brick buildings, Model A cars, 
 
 **s014** · Ingredients: *MOTHER* · Narration: …Warren Edward Buffett ka janam
 ```
-1930 hospital room, the mother in bed tenderly holds a newborn wrapped in a white blanket, soft window light. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+1930 hospital room, the mother in bed tenderly holds a newborn wrapped in a white blanket, soft window light. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s015** · Ingredients: *FATHER* · Narration: (continues)
 ```
-The father looks through hospital nursery glass at the newborn, proud gentle smile, hat in hand. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The father looks through hospital nursery glass at the newborn, proud gentle smile, hat in hand. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s016** · Ingredients: *none* · Narration: 1929 mein stock market crash
@@ -152,7 +152,7 @@ Desperate crowd pressing against the locked glass doors of a small bank with a C
 
 **s020** · Ingredients: *FATHER* · Narration: Howard ka bank bhi band
 ```
-The father stands alone outside a shuttered small-town bank, holding his hat, stunned, rain. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The father stands alone outside a shuttered small-town bank, holding his hat, stunned, rain. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s021** · Ingredients: *none* · Narration: (continues)
@@ -162,27 +162,27 @@ Close-up of a hand-written notice taped to a bank door, raindrops running down t
 
 **s022** · Ingredients: *MOTHER* · Narration: Ghar mein paise ki tangi
 ```
-Night kitchen table, the mother counts a few coins into a glass jar under an oil lamp, worried. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Night kitchen table, the mother counts a few coins into a glass jar under an oil lamp, worried. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s023** · Ingredients: *FATHER* · Narration: Howard ne haar nahi maani
 ```
-The father buttons his suit jacket in front of a mirror, determined jaw, morning light. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The father buttons his suit jacket in front of a mirror, determined jaw, morning light. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s024** · Ingredients: *FATHER* · Narration: Apni brokerage firm shuru ki
 ```
-A sign painter finishes gold lettering on a frosted glass office door while the father watches proudly. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+A sign painter finishes gold lettering on a frosted glass office door while the father watches proudly. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s025** · Ingredients: *BOY 6, FATHER* · Narration: Paise, mehnat aur risk…
 ```
-A small boy sits under his father's desk watching him talk on a candlestick telephone, papers everywhere. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+A small boy sits under his father's desk watching him talk on a candlestick telephone, papers everywhere. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s026** ★ · Ingredients: *BOY 6* · Narration: (continues)
 ```
-Macro close-up of the small boy's eyes, numbers and paper slips reflected, curious. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Macro close-up of the small boy's eyes, numbers and paper slips reflected, curious. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s027** · Ingredients: *none* · Narration: Baaki bachche khilono se khelte…
@@ -192,7 +192,7 @@ Children play with tin toy trucks and a ball in a 1930s backyard, soft focus. Wa
 
 **s028** · Ingredients: *BOY 6* · Narration: …Warren numbers se
 ```
-The small boy sits alone on a porch step writing numbers in a tiny notebook, counting passing cars. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The small boy sits alone on a porch step writing numbers in a tiny notebook, counting passing cars. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s029** · Ingredients: *none* · Narration: 6 saal ki umar mein…
@@ -202,32 +202,32 @@ Exterior of a 1930s neighbourhood grocery store with striped awning and produce 
 
 **s030** · Ingredients: *BOY 6, GRANDFATHER* · Narration: Dadaji ki grocery shop se…
 ```
-Behind the counter the grandfather hands the boy a six-pack of classic glass soda bottles, smiling. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Behind the counter the grandfather hands the boy a six-pack of classic glass soda bottles, smiling. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s031** · Ingredients: *BOY 6* · Narration: …25 cents mein khareeda
 ```
-Macro: a small hand places a silver quarter on a worn wooden shop counter. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Macro: a small hand places a silver quarter on a worn wooden shop counter. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s032** · Ingredients: *BOY 6* · Narration: Ek-ek bottle 5 cents mein becha
 ```
-The boy at a front door sells a glass soda bottle to a neighbour lady who hands him a nickel. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The boy at a front door sells a glass soda bottle to a neighbour lady who hands him a nickel. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s033** · Ingredients: *BOY 6* · Narration: 6 bottles se 30 cents…
 ```
-The boy pulls a wooden wagon of soda bottles along a leafy sidewalk, men buying from him. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The boy pulls a wooden wagon of soda bottles along a leafy sidewalk, men buying from him. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s034** ★ · Ingredients: *BOY 6* · Narration: …profit 5 cents
 ```
-Close-up: small fingers line up six nickels on a porch step one by one. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Close-up: small fingers line up six nickels on a porch step one by one. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s035** · Ingredients: *BOY 6* · Narration: Aap bolenge 5 cent se kya hota hai…
 ```
-The boy writes figures in a notebook at the kitchen table by lamp light, tongue out in concentration. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The boy writes figures in a notebook at the kitchen table by lamp light, tongue out in concentration. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s036** · Ingredients: *none* · Narration: Khareedo sasta, becho value pe
@@ -242,7 +242,7 @@ Time-lapse of golden sunlight sweeping across a modern Omaha office tower, sky m
 
 **s038** · Ingredients: *BOY 11, SISTER* · Narration: 11 saal ki umar mein pehla share
 ```
-The boy and his sister count dollar bills together at a broker's counter in their father's office. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The boy and his sister count dollar bills together at a broker's counter in their father's office. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s039** · Ingredients: *none* · Narration: 3 shares Cities Service Preferred
@@ -257,22 +257,22 @@ Chalkboard: a price is erased and rewritten lower; the boy's worried reflection 
 
 **s041** · Ingredients: *BOY 11, SISTER* · Narration: Behen ki daant
 ```
-Dinner table: the sister scolds the boy, who stares down at his plate, guilty. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Dinner table: the sister scolds the boy, who stares down at his plate, guilty. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s042** · Ingredients: *BOY 11* · Narration: $40 pe bech diya
 ```
-The boy at the broker's counter, relieved, pockets a small profit and walks away. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The boy at the broker's counter, relieved, pockets a small profit and walks away. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s043** · Ingredients: *BOY 11* · Narration: Kuch saal baad ~$200
 ```
-The boy reads a newspaper stock page, eyes widen in shock, slow push-in on his face. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+In a 1940s Omaha family living room with patterned wallpaper, a wooden bookshelf and a window behind him, the boy sits at a wooden table reading a newspaper stock page; his eyes widen in shock; slow push-in on his face. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s044** · Ingredients: *BOY 11* · Narration: Do lessons, zindagi bhar yaad
 ```
-The boy sits on his bed at night writing in a small diary by a bedside lamp. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The boy sits on his bed at night writing in a small diary by a bedside lamp. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s045** · Ingredients: *none* · Narration: Purchase price pe mat atko
@@ -292,7 +292,7 @@ Time-lapse of a seedling growing into a small plant in a clay pot on a sunny win
 
 **s048** · Ingredients: *BOY 11* · Narration: [CTA] Lesson pasand aaya…
 ```
-The boy sits on a wooden fence at sunset over Nebraska wheat fields, smiling. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The boy sits on a wooden fence at sunset over Nebraska wheat fields, smiling. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s049** · Ingredients: *none* · Narration: [CTA] Us dost ke saath share karo…
@@ -302,7 +302,7 @@ Two 1940s friends share a newspaper on a park bench, one laughs and points at a 
 
 **s050** · Ingredients: *FATHER* · Narration: 1942 mein pitaji Congress ke liye chune gaye
 ```
-The father speaks at a podium draped with American flags, crowd applauding, 1940s election rally. Natural daylight, gentle film colour. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The father speaks at a podium draped with American flags, crowd applauding, 1940s election rally. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Natural daylight, gentle film colour. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s051** · Ingredients: *none* · Narration: (continues)
@@ -312,52 +312,52 @@ Establishing shot of the the domed Capitol building in Washington in the 1940s, 
 
 **s052** · Ingredients: *TEEN 14, MOTHER* · Narration: Family Washington shift ho gayi
 ```
-The family loads suitcases into a 1940s sedan outside a modest Omaha house, the teenager reluctant. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The family loads suitcases into a 1940s sedan outside a modest Omaha house, the teenager reluctant. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s053** · Ingredients: *TEEN 14* · Narration: Warren bilkul khush nahi tha
 ```
-The teenager stares out of a car window, rain streaking the glass, sad. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The teenager stares out of a car window, rain streaking the glass, sad. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s054** · Ingredients: *TEEN 14* · Narration: School mein grades gir gaye
 ```
-1943 classroom: the teenager slumps at a back desk, a report card with low marks in front of him. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+1943 classroom: the teenager slumps at a back desk, a report card with low marks in front of him. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s055** · Ingredients: *TEEN 14* · Narration: Dukh ko ek kaam mein badal diya
 ```
-The teenager lying on his bed staring at the ceiling, then sitting up with sudden determination. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The teenager lying on his bed staring at the ceiling, then sitting up with sudden determination. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s056** · Ingredients: *TEEN 14* · Narration: Subah-subah newspaper delivery
 ```
-Blue dawn: the teenager on a bicycle with a newspaper bag tosses papers onto porches of a 1940s street. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Blue dawn: the teenager on a bicycle with a newspaper bag tosses papers onto porches of a 1940s street. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s057** ★ · Ingredients: *TEEN 14* · Narration: Roz saikdon akhbaar
 ```
-Close-up of fast hands folding a tall stack of newspapers on the floor at dawn. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Close-up of fast hands folding a tall stack of newspapers on the floor at dawn. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s058** · Ingredients: *TEEN 14* · Narration: 13 saal mein pehla tax return
 ```
-The teenager fills in a printed tax form with a fountain pen at the kitchen table. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The teenager fills in a printed tax form with a fountain pen at the kitchen table. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s059** · Ingredients: *TEEN 14* · Narration: Cycle ko business expense dikhaya
 ```
-Slow pan from a bicycle leaning against a wall to the tax form on the table beside it. Natural daylight, gentle film colour. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Slow pan from a bicycle leaning against a wall to the tax form on the table beside it. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Natural daylight, gentle film colour. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s060** · Ingredients: *TEEN 14, FRIEND* · Narration: Pinball machine $25 mein
 ```
-Two teenagers inspect a dusty used pinball machine in a junk shop, a $25 price tag hangs on it. Natural daylight, gentle film colour. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Two teenagers inspect a dusty used pinball machine in a junk shop, a $25 price tag hangs on it. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Natural daylight, gentle film colour. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s061** · Ingredients: *TEEN 14, FRIEND* · Narration: (continues)
 ```
-The two teenagers wheel the pinball machine on a hand truck into a 1940s barbershop. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The two teenagers wheel the pinball machine on a hand truck into a 1940s barbershop. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s062** · Ingredients: *none* · Narration: Customers wait karte-karte khelte
@@ -372,17 +372,17 @@ Montage-style shot: several pinball machines lined up in different barbershops, 
 
 **s064** · Ingredients: *TEEN 14, FRIEND* · Narration: Business $1,200 mein bika
 ```
-A handshake with a businessman across a table, an envelope of cash slides across. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+A handshake with a businessman across a table, an envelope of cash slides across. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s065** · Ingredients: *TEEN 14* · Narration: Us paise se… Nebraska mein
 ```
-The teenager stands in a vast Nebraska farm field at golden hour, wind moving the wheat. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The teenager stands in a vast Nebraska farm field at golden hour, wind moving the wheat. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s066** · Ingredients: *TEEN 14* · Narration: Farm khareeda
 ```
-The teenager signs a land deed with an old farmer at a wooden farmhouse table. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The teenager signs a land deed with an old farmer at a wooden farmhouse table. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s067** · Ingredients: *none* · Narration: (continues)
@@ -392,17 +392,17 @@ A tenant farmer drives a vintage tractor across the field while the teenager wat
 
 **s068** ★ · Ingredients: *TEEN 14* · Narration: (continues)
 ```
-Close-up of the teenager entering rent money into a savings passbook, coins and bills beside it. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Close-up of the teenager entering rent money into a savings passbook, coins and bills beside it. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s069** · Ingredients: *YOUNG MAN 20, FATHER* · Narration: Pitaji ke kehne pe padhai
 ```
-Father and son talk in a study lined with books, the father hands him a college brochure. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Father and son talk in a study lined with books, the father hands him a college brochure. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s070** · Ingredients: *YOUNG MAN 20* · Narration: 19 saal mein graduate
 ```
-Graduation day on a 1950 campus lawn, the young man in cap and gown smiles at his parents. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Graduation day on a 1950 campus lawn, the young man in cap and gown smiles at his parents. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s071** · Ingredients: *none* · Narration: Harvard Business School mein apply
@@ -412,32 +412,32 @@ Establishing shot of a red-brick Ivy League campus with a white cupola, autumn l
 
 **s072** · Ingredients: *YOUNG MAN 20* · Narration: (continues)
 ```
-Interview room: the young man sits across a desk from a stern professor in tweed, tense. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Interview room: the young man sits across a desk from a stern professor in tweed, tense. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s073** ★ · Ingredients: *YOUNG MAN 20* · Narration: …Harvard ne reject kar diya
 ```
-Close-up of a rejection letter trembling slightly in his hands. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Close-up of a rejection letter trembling slightly in his hands. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s074** · Ingredients: *YOUNG MAN 20* · Narration: Bachpan se business kar raha tha…
 ```
-The young man sits by a train window staring at the folded letter, grey countryside passing. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The young man sits by a train window staring at the folded letter, grey countryside passing. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s075** · Ingredients: *YOUNG MAN 20* · Narration: …top school ne mana kar diya
 ```
-He walks alone along a rainy campus path, coat collar up, hands in pockets. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+He walks alone along a rainy campus path, coat collar up, hands in pockets. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s076** ★ · Ingredients: *YOUNG MAN 20* · Narration: Woh toot sakta tha
 ```
-Tight close-up of his face, eyes glistening, rain on his cheeks. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Tight close-up of his face, eyes glistening, rain on his cheeks. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Cold overcast light, desaturated teal-grey tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s077** · Ingredients: *YOUNG MAN 20* · Narration: Lekin yahi rejection turning point bana
 ```
-He stops and looks up as the rain eases and sunlight breaks through the clouds. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+He stops and looks up as the rain eases and sunlight breaks through the clouds. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s078** · Ingredients: *none* · Narration: Haath lagi ek kitaab
@@ -452,7 +452,7 @@ Back-view silhouette of an older professor in a three-piece suit writing at a le
 
 **s080** · Ingredients: *YOUNG MAN 20* · Narration: Woh kahani hai Part 2 mein
 ```
-The young man opens the blue book under a desk lamp at night, his face lit with fascination, slow push-in. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The young man opens the blue book under a desk lamp at night, his face lit with fascination, slow push-in. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Low-key lamp light, deep shadows, warm practical lights. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s081** · Ingredients: *none* · Narration: Aaj ka lesson: rejection ant nahi
@@ -462,17 +462,17 @@ Sunrise over a long empty Nebraska road stretching to the horizon. Warm golden-h
 
 **s082** · Ingredients: *YOUNG MAN 20* · Narration: …sahi raste ki shuruaat
 ```
-The young man walks forward along the road toward the sunrise, back view, suitcase in hand. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+The young man walks forward along the road toward the sunrise, back view, suitcase in hand. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s083** ★ · Ingredients: *YOUNG MAN 20* · Narration: [CTA] Comment: main rukunga nahi
 ```
-Close-up of his determined face in golden light, a small confident smile. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+Close-up of his determined face in golden light, a small confident smile. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Warm golden-hour light, soft amber tones. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s084** · Ingredients: *YOUNG MAN 20* · Narration: [CTA] Like, share, subscribe
 ```
-A steam train pulls out of a 1950 station; he looks out of the window, determined. Natural daylight, gentle film colour. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
+A steam train pulls out of a 1950 station; he looks out of the window, determined. Filmed on a real, detailed period location (not a studio backdrop, not a plain wall), with natural motivated light from windows or lamps and depth in the background. Natural daylight, gentle film colour. Photorealistic period film, cinematic 35mm look, shallow depth of field, slow subtle camera movement, no text, no subtitles, no logos.
 ```
 
 **s085** · Ingredients: *none* · Narration: Part 2: asli struggle
