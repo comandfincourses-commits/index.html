@@ -23,6 +23,11 @@ The house style comes from the reference series: AI-generated, photorealistic dr
 
 - Ankit wants the **cinematic AI-character style** only. Do not make motion-graphics or animated-infographic versions in its place (he declined one for Warren Buffett Part 1).
 
+## Style option B: 2D comic cartoon (no AI credits)
+When AI video credits run out, Ankit asked for a 2D comic style like the "Crayon Capital" explainer videos: round-head characters with thick outlines, speech bubbles and handwritten captions. Draw **original** characters in that style; never reuse another channel's clips or character designs.
+- `cartoon/engine.py`: the character `bust()` with expressions (neutral, happy, sad, worried, angry, shock), talking, blinking and arm poses; `bubble()` for speech, thought and caption bubbles; `label()`. Font: Patrick Hand (OFL, from npm `@fontsource/patrick-hand`).
+- `Warren Buffett Part 1/cartoon/scenes.py`: a full example with 37 scenes timed to the voiceover. Each scene is `@scene(t0, t1)` plus a draw function. Render with `python3 -I scenes.py story.mp4`, then assemble with `build_episode.py` (one scene = the whole story file, `clip_audio_volume` 0, teaser cut from the story file).
+
 ## Visual grammar (from the reference edit)
 - Shots last 3–5 s, with a hard cut on each new beat (about 12–15 cuts per minute).
 - Coverage cycle: establishing wide or aerial → medium two-shot → emotional close-up → insert detail (hands, phone, newspaper, ticker).

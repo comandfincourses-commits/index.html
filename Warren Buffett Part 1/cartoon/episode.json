@@ -1,0 +1,15 @@
+{
+ "series": "Warren Buffett", "part": 1,
+ "intro": "assets/Intro_Video.mp4",
+ "title_at": 22.6,
+ "target_minutes": [4, 5.5],
+ "teaser": [
+  {"src": "cartoon_story.mp4", "start": 120.0, "dur": 3},
+  {"src": "cartoon_story.mp4", "start": 183.4, "dur": 3},
+  {"src": "cartoon_story.mp4", "start": 225.7, "dur": 3}
+ ],
+ "scenes": [{"src": "cartoon_story.mp4", "start": 0, "dur": 269.9}],
+ "voiceover": "audio/WB_Part1_VO.mp3", "voiceover_delay": 0,
+ "clip_audio_volume": 0,
+ "output": "out/WarrenBuffett_Part1_Cartoon.mp4"
+}
