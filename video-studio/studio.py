@@ -223,6 +223,12 @@ CAST = {
                      tie=RED, legs=(45, 45, 50), beard=(170, 170, 170)),
     "woman": dict(skin=SKIN, hair=(35, 30, 30), style="long", top=(150, 40, 60), legs=(40, 40, 50)),
     "generic": dict(skin=WHITE, hair=None, top=(118, 150, 205), legs=(50, 50, 60)),
+    "warren": dict(skin=SKIN, hair=(112, 80, 54), style="side", glasses=True, top=(118, 122, 132), shirt=WHITE,
+                   tie=RED, legs=(60, 60, 66)),
+    "graham": dict(skin=SKIN, hair=(205, 205, 210), style="side", top=(36, 40, 58), shirt=WHITE, tie=GOLD,
+                   legs=(36, 40, 50)),
+    "munger": dict(skin=SKIN2, hair=(150, 150, 150), style="side", glasses=True, top=(70, 70, 76), shirt=WHITE,
+                   tie=NAVY, legs=(50, 50, 56)),
     "thumbguy": dict(skin=WHITE, hair=None, top=(48, 112, 214), legs=(58, 58, 64), tuft=True),
     "boss": dict(skin=SKIN2, hair=(30, 30, 30), style="bald", glasses=False, top=(30, 30, 36), shirt=WHITE,
                  tie=BLUE, legs=(30, 30, 36)),
@@ -505,6 +511,21 @@ def icon(kind, size, color=None):
                 d.ellipse(B(cx - 4, cy - 4, cx + 4, cy + 4), fill=WHITE, outline=INK)
             d.line([P(26, 70), P(22, 96)], fill=INK, width=int(5 * s))
             d.line([P(74, 70), P(78, 96)], fill=INK, width=int(5 * s))
+        elif kind == "mic":
+            d.rounded_rectangle(B(34, 4, 66, 56), radius=int(16 * s), fill=(150, 150, 160), outline=INK, width=lw)
+            for y in (16, 26, 36, 46):
+                d.line([P(40, y), P(60, y)], fill=(90, 90, 100), width=max(1, lw // 2))
+            d.arc(B(22, 26, 78, 74), 0, 180, fill=INK, width=int(5 * s))
+            d.line([P(50, 74), P(50, 90)], fill=INK, width=int(5 * s))
+            d.line([P(34, 92), P(66, 92)], fill=INK, width=int(6 * s))
+        elif kind == "factory":
+            d.polygon([P(6, 92), P(6, 46), P(28, 58), P(28, 46), P(50, 58), P(50, 46), P(72, 58), P(72, 92)],
+                      fill=(150, 110, 90), outline=INK, width=lw)
+            d.rectangle(B(72, 14, 88, 92), fill=(120, 90, 75), outline=INK, width=lw)
+            for i, cy in enumerate((8, 0)):
+                d.ellipse(B(74 + i * 8, cy - 2, 92 + i * 8, cy + 12), fill=(190, 190, 195), outline=INK, width=lw)
+            for x in (14, 34, 54):
+                d.rectangle(B(x, 68, x + 10, 80), fill=(250, 220, 140), outline=INK, width=max(1, lw // 2))
         elif kind == "exchange":
             d.rounded_rectangle(B(4, 10, 96, 90), radius=int(8 * s), fill=NAVY, outline=INK, width=lw)
             pts = [(14, 70), (32, 52), (46, 60), (64, 32), (86, 22)]
@@ -1402,7 +1423,8 @@ def tone(freqs, dur, vol=0.25, decay=8.0):
     return (sum(np.sin(2 * np.pi * f * t) for f in freqs) / len(freqs) * np.exp(-decay * t) * vol).astype(np.float32)
 
 
-def build_audio(ctx, voice, total, ctas, out):
+def build_audio(ctx, voice, total, ctas, out, split=None):
+    """Mix voice, sfx and music; with split=(seconds, out2) write two files cut at that time."""
     n = int((ctx.intro + total + ctx.outro) * SR)
     mix = np.zeros(n, np.float32)
     v0 = int(ctx.intro * SR)
@@ -1425,7 +1447,12 @@ def build_audio(ctx, voice, total, ctas, out):
         fade = int(SR * 2)
         m[-fade:] *= np.linspace(1, 0, fade)
         mix += m
-    encode_audio(mix, out)
+    if split:
+        k = int(round(split[0] * FPS)) * (SR // FPS)
+        encode_audio(mix[:k], out)
+        encode_audio(mix[k:], split[1])
+    else:
+        encode_audio(mix, out)
 
 
 AAC = ["-ar", str(SR), "-ac", "2", "-c:a", "aac", "-b:a", "192k"]
@@ -1765,6 +1792,8 @@ def render(spec_path, out_dir, draft=False, jobs=None):
             for sc in spec["scenes"]:
                 if "at" in sc:
                     sc["at"] = remap(float(sc["at"]))
+            if "intro_after" in spec:
+                spec["intro_after"] = remap(float(spec["intro_after"]))
             if isinstance(spec.get("teaser"), dict):
                 for k in ("start", "end"):
                     if k in spec["teaser"]:
@@ -1797,23 +1826,39 @@ def render(spec_path, out_dir, draft=False, jobs=None):
     tmp = tempfile.mkdtemp(prefix="studio_")
     sched = [(sc["_t0"], sc["_dur"]) for sc in spec["scenes"]]
     timeline = (total, caps, ctas, mouth, sched)
-    step = math.ceil(n / jobs)
-    tasks = [((spec, fmt, draft), timeline, a, min(n, a + step), os.path.join(tmp, f"seg{a:06d}.mp4"))
-             for a in range(0, n, step)]
+    # cold open: the channel intro is inserted after the first `intro_after` seconds of voice-over
+    split = spec.get("intro_after") if fmt == "long" and intro_video else None
+    fs = int(round((ctx.intro + split) * FPS)) if split else None
+    bounds = [(0, fs), (fs, n)] if split else [(0, n)]
+    tasks = []
+    for a0, a1 in bounds:
+        step = math.ceil((a1 - a0) / max(1, round(jobs * (a1 - a0) / n)))
+        tasks += [((spec, fmt, draft), timeline, a, min(a1, a + step), os.path.join(tmp, f"seg{a:06d}.mp4"))
+                  for a in range(a0, a1, step)]
     print(f"[studio] {fmt} | voice {total:.1f}s | total {n / FPS:.1f}s | {n} frames | {len(caps)} captions | "
           f"CTAs at {[round(t, 1) for t, _ in ctas]}", flush=True)
     for sc in spec["scenes"]:
         print(f"   {sc['_t0']:6.2f}s +{sc['_dur']:5.2f}s  {sc['type']:<10} {sc.get('line', '')[:60]}")
     with mp.get_context("fork").Pool(len(tasks)) as pool:
         segs = pool.map(render_range, tasks)
-    lst = os.path.join(tmp, "list.txt")
-    open(lst, "w").write("".join(f"file '{s}'\n" for s in segs))
-    audio = os.path.join(tmp, "audio.m4a")
-    build_audio(ctx, voice, total, ctas, audio)
     out = os.path.join(out_dir, f"{name}{'_draft' if draft else ''}.mp4")
-    main = os.path.join(tmp, "main.mp4") if fmt == "long" else out
-    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", audio, "-c:v",
-                    "copy", "-c:a", "copy", "-shortest", "-movflags", "+faststart", main], check=True)
+    audio, audio_b = os.path.join(tmp, "audio.m4a"), os.path.join(tmp, "audio_b.m4a")
+    build_audio(ctx, voice, total, ctas, audio, (ctx.intro + split, audio_b) if split else None)
+
+    def mux(seg_list, aud, dst):
+        lst = os.path.join(tmp, os.path.basename(dst) + ".txt")
+        open(lst, "w").write("".join(f"file '{s}'\n" for s in seg_list))
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", lst, "-i", aud, "-c:v",
+                        "copy", "-c:a", "copy", "-shortest", "-movflags", "+faststart", dst], check=True)
+
+    if split:
+        first = [sg for sg, t in zip(segs, tasks) if t[2] < fs]
+        mux(first, audio, os.path.join(tmp, "cold_open.mp4"))
+        mux([sg for sg in segs if sg not in first], audio_b, os.path.join(tmp, "main.mp4"))
+        main = os.path.join(tmp, "main.mp4")
+    else:
+        main = os.path.join(tmp, "main.mp4") if fmt == "long" else out
+        mux(segs, audio, main)
     length, offset = n / FPS, ctx.intro
     if fmt == "long":
         parts = []
@@ -1824,6 +1869,10 @@ def render(spec_path, out_dir, draft=False, jobs=None):
             parts.append(os.path.join(tmp, "teaser.mp4"))
             print(f"[studio] teaser hook {tz[0]:.1f}-{tz[1]:.1f}s of voice-over ({tl:.1f}s)")
             offset += tl
+        pre = offset
+        if split:
+            parts.append(os.path.join(tmp, "cold_open.mp4"))
+            print(f"[studio] cold open: first {split:.1f}s of voice-over, then the channel intro")
         if intro_video:
             il = prepare_intro(ctx, intro_video, os.path.join(tmp, "intro.mp4"))
             parts.append(os.path.join(tmp, "intro.mp4"))
@@ -1832,10 +1881,12 @@ def render(spec_path, out_dir, draft=False, jobs=None):
         concat(parts + [main], out, tmp)
         length = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of",
                                        "csv=p=0", out], capture_output=True, text=True).stdout)
-        chapters = [(sc["_t0"], sc["chapter"]) for sc in spec["scenes"] if sc.get("chapter")]
+        chapters = [((pre if split and t < split else offset) + t, c)
+                    for t, c in ((sc["_t0"], sc["chapter"]) for sc in spec["scenes"] if sc.get("chapter"))]
         if chapters:
-            spec.setdefault("meta", {})["chapters"] = [f"0:00 {spec.get('teaser_chapter', 'Intro')}"] + [
-                f"{ts(offset + t)} {c}" for t, c in chapters]
+            if chapters[0][0] > 0.5:
+                chapters.insert(0, (0, spec.get("teaser_chapter", "Intro")))
+            spec.setdefault("meta", {})["chapters"] = [f"{ts(t)} {c}" for t, c in chapters]
     shutil.rmtree(tmp)
     make_extras(spec, fmt, out_dir, name, length)
     print(f"[studio] wrote {out}")

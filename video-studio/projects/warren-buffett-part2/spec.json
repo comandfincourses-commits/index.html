@@ -1,0 +1,633 @@
+{
+ "format": "long",
+ "slug": "warren-buffett-part-2-rejection-fear-mistake",
+ "title": "Warren Buffett, Part 2: Rejection, Fear and a Big Mistake",
+ "audio": "voice.wav",
+ "captions_file": "captions.json",
+ "intro_after": 25.04,
+ "cta_times": [
+  20.5,
+  137,
+  264
+ ],
+ "cta_lines": [
+  "New here? *Subscribe* for the full series!",
+  "*Like* & comment: beat fear by *facing it*",
+  "*Subscribe* so you don't miss Part 3"
+ ],
+ "end_message": "Share this with someone who is afraid to *start*!",
+ "scenes": [
+  {
+   "type": "character",
+   "at": 0.0,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Young Warren"
+    },
+    {
+     "who": "graham",
+     "mood": "neutral",
+     "pose": "idle",
+     "label": "Benjamin Graham · his idol"
+    }
+   ],
+   "speaker": 0,
+   "say": "Sir, I'll work for you for *free*!",
+   "chapter": "The boy who worked for free"
+  },
+  {
+   "type": "character",
+   "at": 6.01,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "worried",
+     "pose": "idle",
+     "label": "Young Warren"
+    },
+    {
+     "who": "graham",
+     "mood": "serious",
+     "pose": "idle",
+     "label": "Benjamin Graham · his idol"
+    }
+   ],
+   "speaker": 1,
+   "say": "*No.*",
+   "prop": "cross"
+  },
+  {
+   "type": "title",
+   "at": 8.07,
+   "bg": "dark",
+   "tag": "Warren Buffett · Part 2",
+   "text": "Rejection, *fear* and a *big mistake*",
+   "sub": "How he still made his own way",
+   "icon": "target"
+  },
+  {
+   "type": "character",
+   "at": 17.07,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "Missed Part 1? Link in the *description*. New here? *Subscribe!*",
+   "prop": "bell"
+  },
+  {
+   "type": "character",
+   "at": 25.04,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "surprised",
+     "pose": "idle",
+     "label": "Warren · age 19"
+    }
+   ],
+   "think": true,
+   "say": "*The Intelligent Investor* by Benjamin Graham...",
+   "prop": "book",
+   "chapter": "The book that changed everything"
+  },
+  {
+   "type": "list",
+   "at": 33.38,
+   "title": "The book's *simple idea*",
+   "items": [
+    "A share is not just a *ticker*",
+    "It's a *piece of a business*",
+    "Know its *real value*",
+    "Buy when the market sells it *cheap*"
+   ],
+   "icon": "check"
+  },
+  {
+   "type": "character",
+   "at": 44.82,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "Warren"
+    }
+   ],
+   "say": "It's like a light *switched on*!",
+   "prop": "bulb"
+  },
+  {
+   "type": "title",
+   "at": 48.43,
+   "tag": "Next stop",
+   "text": "*Columbia* University",
+   "sub": "To study under his guru, Benjamin Graham",
+   "icon": "gradcap"
+  },
+  {
+   "type": "character",
+   "at": 58.48,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "graham",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Graham · Chairman, GEICO"
+    },
+    {
+     "who": "warren",
+     "mood": "surprised",
+     "pose": "think",
+     "label": "Warren"
+    }
+   ],
+   "speaker": 1,
+   "think": true,
+   "say": "My guru runs an *insurance company*?",
+   "prop": "shield",
+   "chapter": "A Saturday at GEICO"
+  },
+  {
+   "type": "character",
+   "at": 65.05,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "happy",
+     "pose": "point",
+     "label": "One Saturday · Washington DC"
+    }
+   ],
+   "say": "Next stop: *GEICO's* office!",
+   "prop": "calendar"
+  },
+  {
+   "type": "character",
+   "at": 71.97,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "generic",
+     "mood": "neutral",
+     "pose": "idle",
+     "label": "Guard"
+    },
+    {
+     "who": "warren",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren"
+    }
+   ],
+   "speaker": 1,
+   "say": "Can anyone explain the *business* to me?"
+  },
+  {
+   "type": "character",
+   "at": 78.25,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Lorimer Davidson · GEICO"
+    },
+    {
+     "who": "warren",
+     "mood": "surprised",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ],
+   "speaker": 0,
+   "say": "Insurance? Sit down, let me *explain*...",
+   "prop": "shield"
+  },
+  {
+   "type": "bignumber",
+   "at": 82.25,
+   "value": "4 hours",
+   "label": "of insurance lessons, for an *unknown boy*",
+   "icon": "clock",
+   "color": "gold"
+  },
+  {
+   "type": "title",
+   "at": 86.81,
+   "tag": "Years later",
+   "text": "GEICO: one of Buffett's *favourite* companies",
+   "icon": "shield"
+  },
+  {
+   "type": "quote",
+   "at": 93.19,
+   "text": "If you want to learn, *knock on the door*. Even on a Saturday.",
+   "by": "Lesson 1"
+  },
+  {
+   "type": "character",
+   "at": 102.08,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren · graduate"
+    },
+    {
+     "who": "graham",
+     "mood": "neutral",
+     "pose": "idle",
+     "label": "Benjamin Graham"
+    }
+   ],
+   "speaker": 0,
+   "say": "I'll work at your firm *without salary*!"
+  },
+  {
+   "type": "character",
+   "at": 104.91,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "sad",
+     "pose": "idle",
+     "label": "Warren · graduate"
+    },
+    {
+     "who": "graham",
+     "mood": "serious",
+     "pose": "idle",
+     "label": "Benjamin Graham"
+    }
+   ],
+   "speaker": 1,
+   "say": "*No.*",
+   "prop": "cross"
+  },
+  {
+   "type": "character",
+   "at": 106.42,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "Father's firm · Omaha"
+    },
+    {
+     "who": "warren",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren · stockbroker"
+    }
+   ],
+   "speaker": 1,
+   "say": "Would you like to buy some *stocks*?",
+   "prop": "chart"
+  },
+  {
+   "type": "character",
+   "at": 110.5,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "worried",
+     "pose": "shrug",
+     "label": "Warren"
+    }
+   ],
+   "think": true,
+   "say": "Public speaking? My hands *shake*...",
+   "prop": "mic",
+   "chapter": "Beating the fear"
+  },
+  {
+   "type": "bignumber",
+   "at": 118.12,
+   "value": "$100",
+   "label": "for Dale Carnegie's *public speaking* course",
+   "icon": "mic",
+   "color": "gold"
+  },
+  {
+   "type": "quote",
+   "at": 123.34,
+   "text": "The most important degree of my life.",
+   "by": "Warren Buffett, on the Dale Carnegie course"
+  },
+  {
+   "type": "character",
+   "at": 128.41,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "graham",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Benjamin Graham"
+    },
+    {
+     "who": "warren",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "Warren"
+    }
+   ],
+   "speaker": 0,
+   "say": "*1954*: come and work for me!",
+   "prop": "check"
+  },
+  {
+   "type": "character",
+   "at": 135.0,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "point"
+    }
+   ],
+   "say": "*Like* & comment: beat fear by *facing it*!",
+   "prop": "like"
+  },
+  {
+   "type": "compare",
+   "at": 142.62,
+   "title": "*1956*: Graham retires. Two paths",
+   "left": {
+    "title": "New York job",
+    "color": "blue",
+    "points": [
+     "Safe salary",
+     "Work for someone else"
+    ]
+   },
+   "right": {
+    "title": "Back to Omaha",
+    "color": "green",
+    "points": [
+     "His *own business*",
+     "*His choice*"
+    ]
+   },
+   "chapter": "The Buffett Partnership"
+  },
+  {
+   "type": "bignumber",
+   "at": 152.9,
+   "value": "26",
+   "label": "years old: Warren starts the *Buffett Partnership*",
+   "icon": "people",
+   "color": "gold"
+  },
+  {
+   "type": "chart",
+   "at": 156.7,
+   "kind": "bar",
+   "title": "Where did the money come from?",
+   "values": [
+    105000,
+    100
+   ],
+   "labels": [
+    "Family & friends",
+    "Warren himself"
+   ],
+   "prefix": "$",
+   "colors": [
+    "blue",
+    "gold"
+   ],
+   "note": "Warren put in just *$100*"
+  },
+  {
+   "type": "character",
+   "at": 165.36,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "serious",
+     "pose": "idle",
+     "label": "Warren · home office"
+    }
+   ],
+   "say": "Annual reports, numbers, *discipline*.",
+   "prop": "doc"
+  },
+  {
+   "type": "chart",
+   "at": 174.5,
+   "kind": "bar",
+   "title": "1957–1969: average yearly return",
+   "values": [
+    29.5,
+    7.4
+   ],
+   "labels": [
+    "Buffett Partnership",
+    "Dow Jones"
+   ],
+   "suffix": "%",
+   "decimals": 1,
+   "colors": [
+    "green",
+    "blue"
+   ],
+   "note": "Left the Dow *far behind*"
+  },
+  {
+   "type": "title",
+   "at": 180.88,
+   "bg": "dark",
+   "tag": "Warren's biggest mistake",
+   "text": "The *angry* investment",
+   "icon": "warning",
+   "chapter": "The most expensive mistake"
+  },
+  {
+   "type": "title",
+   "at": 188.82,
+   "tag": "1962",
+   "text": "*Berkshire Hathaway*",
+   "sub": "A sinking textile mill",
+   "icon": "factory"
+  },
+  {
+   "type": "character",
+   "at": 193.27,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "happy",
+     "pose": "shrug",
+     "label": "Berkshire's boss"
+    },
+    {
+     "who": "warren",
+     "mood": "surprised",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ],
+   "speaker": 0,
+   "say": "Deal at that price... now a bit *lower*."
+  },
+  {
+   "type": "character",
+   "at": 201.26,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "angry",
+     "pose": "point",
+     "label": "Warren"
+    }
+   ],
+   "say": "Then I'll take *control* of the company!",
+   "prop": "factory"
+  },
+  {
+   "type": "list",
+   "at": 207.49,
+   "title": "The problem",
+   "items": [
+    "The textile business was *sinking*",
+    "Buffett: “my *most expensive mistake*”",
+    "A decision made in *anger*"
+   ],
+   "icon": "warning"
+  },
+  {
+   "type": "title",
+   "at": 216.39,
+   "tag": "But look at fate...",
+   "text": "One of the *biggest companies* in the world",
+   "sub": "How? In Part 3",
+   "icon": "up"
+  },
+  {
+   "type": "character",
+   "at": 226.28,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "munger",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Charlie Munger · 1959"
+    },
+    {
+     "who": "warren",
+     "mood": "surprised",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ],
+   "speaker": 0,
+   "say": "Stop buying cheap. Buy a *wonderful company* at a *fair price*.",
+   "chapter": "Charlie Munger changes everything"
+  },
+  {
+   "type": "compare",
+   "at": 236.73,
+   "title": "One line changed everything",
+   "left": {
+    "title": "Before",
+    "color": "red",
+    "points": [
+     "Buy *cheap* companies",
+     "Small, quick profits"
+    ]
+   },
+   "right": {
+    "title": "After Munger",
+    "color": "green",
+    "points": [
+     "Buy *wonderful* companies",
+     "At a *fair* price"
+    ]
+   }
+  },
+  {
+   "type": "title",
+   "at": 240.35,
+   "bg": "dark",
+   "tag": "1969",
+   "text": "Warren *closes* his partnership",
+   "sub": "Nothing in the market was cheap anymore",
+   "icon": "cross"
+  },
+  {
+   "type": "character",
+   "at": 252.92,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "warren",
+     "mood": "serious",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ],
+   "say": "I won't run with the *crowd*."
+  },
+  {
+   "type": "list",
+   "at": 255.3,
+   "title": "Today's *lessons*",
+   "items": [
+    "To learn, *knock on the door*",
+    "*Fear* can be trained",
+    "Never decide in *anger*"
+   ],
+   "icon": "check",
+   "chapter": "Today's lessons"
+  },
+  {
+   "type": "character",
+   "at": 262.76,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "*Like, share & subscribe!*",
+   "prop": "bell"
+  },
+  {
+   "type": "title",
+   "at": 267.46,
+   "tag": "Coming next: the finale",
+   "text": "Part 3: from textile mill to the *Oracle of Omaha*",
+   "icon": "factory"
+  }
+ ],
+ "meta": {}
+}

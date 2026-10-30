@@ -63,6 +63,8 @@ test voice from a spec, for checking timing before the real recording arrives.
   "tighten_pauses": true,            // default: every pause > 0.4 s shortened to 0.3 s;
                                      // false = keep the recording as is. Times in the spec
                                      // ("at", captions, cta_times) stay in original voice-over seconds
+  "intro_after": 25.0,               // long only, optional: cold open. Play the first 25 s of the
+                                     // voice-over, then the channel intro, then the rest
   "intro_video": "my_intro.mp4",     // long only; default assets/intro.mp4, false = none
   "cta_times": [8, 30],              // optional; default 1–2 for shorts, 3 for long
   "cta_lines": ["Found this useful? *Like* & *Subscribe*!"],
