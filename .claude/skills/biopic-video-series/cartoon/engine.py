@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 W, H, FPS = 1920, 1080, 24
 HERE = os.path.dirname(os.path.abspath(__file__))
 INK = (28, 26, 30)
-SKIN = (250, 214, 178)
+SKIN = (243, 211, 176)
 WHITEHEAD = (247, 247, 245)
 _fc = {}
 
@@ -13,7 +13,7 @@ _fc = {}
 def hand(size):
     k = ("hand", size)
     if k not in _fc:
-        _fc[k] = ImageFont.truetype(os.path.join(HERE, "fonts/PatrickHand.woff"), size)
+        _fc[k] = ImageFont.truetype(os.path.join(HERE, "fonts/Caveat.woff"), int(size * 1.15))
     return _fc[k]
 
 
@@ -68,159 +68,191 @@ C = {
 }
 
 
-def bust(img, key, x, y, R, t=0.0, expr="neutral", talk=False, look=0.0, arms="down", seed=0, hold=None):
-    """Draw a character from the chest up. (x, y) = head centre, R = head radius."""
+def _shaded_disc(img, cx, cy, rx, ry, col, ow, shade_k=0.82, off=0.2):
+    """Filled ellipse with a darker crescent on the right, then an ink outline (comic shading)."""
+    pad = int(ow) + 4
+    w_, h_ = int(rx * 2 + pad * 2), int(ry * 2 + pad * 2)
+    lay = Image.new("RGBA", (w_, h_), (0, 0, 0, 0))
+    ld = ImageDraw.Draw(lay)
+    box = (pad, pad, pad + rx * 2, pad + ry * 2)
+    ld.ellipse(box, fill=shade(col, shade_k) + (255,))
+    m = Image.new("L", (w_, h_), 0)
+    ImageDraw.Draw(m).ellipse(box, fill=255)
+    inner = Image.new("RGBA", (w_, h_), (0, 0, 0, 0))
+    ImageDraw.Draw(inner).ellipse((pad - rx * off, pad - ry * 0.06, pad + rx * 2 - rx * off * 1.2, pad + ry * 2 - ry * 0.02), fill=tuple(col[:3]) + (255,))
+    lay.alpha_composite(Image.composite(inner, Image.new("RGBA", (w_, h_), (0, 0, 0, 0)), m))
+    ImageDraw.Draw(lay).ellipse(box, outline=INK, width=int(ow))
+    img.alpha_composite(lay, (int(cx - rx - pad), int(cy - ry - pad)))
+
+
+def _hair(d, x, y, R, st, hc, ow, t):
+    hl = shade(hc, 1.35)
+    if st in ("side", "messy"):
+        for a, b, rx_, ry_ in ((-0.62, -0.62, 0.42, 0.36), (-0.15, -0.86, 0.46, 0.3), (0.38, -0.78, 0.44, 0.32), (0.78, -0.42, 0.3, 0.34)):
+            ell(d, x + a * R, y + b * R, rx_ * R, ry_ * R, hc, ow * 0.9)
+        d.chord((x - R * 1.02, y - R * 1.0, x + R * 1.02, y + R * 0.9), 185, 355, fill=hc)
+        for a, b, rx_, ry_ in ((-0.62, -0.62, 0.42, 0.36), (-0.15, -0.86, 0.46, 0.3), (0.38, -0.78, 0.44, 0.32), (0.78, -0.42, 0.3, 0.34)):
+            ell(d, x + a * R, y + b * R, rx_ * R - ow, ry_ * R - ow, hc)
+        d.arc((x - R * 1.02, y - R * 1.0, x + R * 1.02, y + R * 0.9), 185, 205, fill=INK, width=int(ow))
+        d.arc((x - R * 1.02, y - R * 1.0, x + R * 1.02, y + R * 0.9), 335, 355, fill=INK, width=int(ow))
+        for fx in (-0.55, -0.15, 0.25):
+            poly(d, [(x + (fx - 0.22) * R, y - R * 0.45), (x + (fx + 0.22) * R, y - R * 0.45), (x + (fx + 0.05) * R, y - R * 0.22)], hc)
+        d.arc((x - R * 0.7, y - R * 1.0, x + R * 0.1, y - R * 0.55), 200, 290, fill=hl, width=int(ow * 1.1))
+    elif st == "slick":
+        d.chord((x - R * 1.02, y - R * 1.06, x + R * 1.02, y + R * 0.75), 185, 355, fill=hc, outline=INK, width=int(ow))
+        poly(d, [(x - R * 0.98, y - R * 0.2), (x - R * 0.3, y - R * 0.62), (x + R * 0.98, y - R * 0.32), (x + R * 0.99, y - R * 0.12)], hc)
+        for k in range(3):
+            d.arc((x - R * (0.8 - k * 0.25), y - R * 1.0, x + R * (0.6 + k * 0.1), y - R * 0.3), 200, 300, fill=hl, width=int(ow * 0.7))
+    elif st == "receding":
+        d.chord((x - R * 1.02, y - R * 1.02, x + R * 1.02, y + R * 0.6), 205, 335, fill=hc, outline=INK, width=int(ow))
+        for sx in (-1, 1):
+            ell(d, x + sx * R * 0.9, y - R * 0.28, R * 0.18, R * 0.36, hc, ow * 0.7)
+    elif st in ("white", "oldwhite"):
+        for sx in (-1, 1):
+            ell(d, x + sx * R * 0.9, y - R * 0.22, R * 0.22, R * 0.36, hc, ow * 0.7)
+        if st == "oldwhite":
+            d.chord((x - R * 0.96, y - R * 1.03, x + R * 0.96, y + R * 0.1), 205, 335, fill=hc, outline=INK, width=int(ow * 0.8))
+    elif st == "bob":
+        d.chord((x - R * 1.08, y - R * 1.1, x + R * 1.08, y + R * 0.7), 180, 360, fill=hc, outline=INK, width=int(ow))
+        for k in range(3):
+            d.arc((x - R * 0.85 + k * R * 0.55, y - R * 0.95, x - R * 0.3 + k * R * 0.55, y - R * 0.5), 200, 340, fill=hl, width=int(ow * 0.7))
+    elif st == "braids":
+        d.chord((x - R * 1.04, y - R * 1.07, x + R * 1.04, y + R * 0.62), 180, 360, fill=hc, outline=INK, width=int(ow))
+        d.line([(x, y - R * 1.02), (x, y - R * 0.48)], fill=shade(hc, 0.6), width=int(ow * 0.8))
+    elif st == "curly":
+        for k in range(11):
+            a = math.pi * (0.92 + k * 0.116)
+            ell(d, x + math.cos(a) * R * 0.86, y + math.sin(a) * R * 0.86, R * 0.28, R * 0.28, hc, ow * 0.6)
+    elif st == "bun":
+        ell(d, x, y - R * 1.02, R * 0.32, R * 0.28, hc, ow * 0.8)
+        d.chord((x - R * 1.03, y - R * 1.05, x + R * 1.03, y + R * 0.5), 180, 360, fill=hc, outline=INK, width=int(ow))
+    elif st == "short":
+        d.chord((x - R * 1.02, y - R * 1.04, x + R * 1.02, y + R * 0.6), 190, 350, fill=hc, outline=INK, width=int(ow))
+
+
+def bust(img, key, x, y, R, t=0.0, expr="neutral", talk=False, look=0.0, arms="down", seed=0, hold=None, back=False):
+    """Comic-style character from the chest up: big shaded head, dot eyes, small tapered body.
+    (x, y) = head centre, R = head radius."""
     c = C[key]
     d = ImageDraw.Draw(img, "RGBA")
     R = R * c["scale"]
-    ow = max(3, R * 0.055)
-    bob = math.sin(t * 2.0 + seed) * R * 0.015
-    y = y + bob
-    # torso
-    tw, tt = R * 1.18, y + R * 0.82
+    ow = max(3, R * 0.05)
+    y = y + math.sin(t * 2.0 + seed) * R * 0.012
     top = c["top"]
-    rr(d, (x - tw, tt, x + tw, tt + R * 2.6), R * 0.55, top, ow)
+    # ---- body: narrow egg, shaded
+    bt = y + R * 0.72
+    _shaded_disc(img, x, bt + R * 1.25, R * 0.86, R * 1.25, top, ow, 0.78, 0.25)
+    pat = Image.new("RGBA", img.size, (0, 0, 0, 0))
+    d = ImageDraw.Draw(pat, "RGBA")
     if c.get("plaid"):
-        for k in range(-3, 4):
-            d.line([(x + k * R * 0.32, tt + 6), (x + k * R * 0.32, tt + R * 2.5)], fill=c["plaid"] + (150,), width=int(R * 0.07))
-        for k in range(1, 7):
-            d.line([(x - tw + 8, tt + k * R * 0.36), (x + tw - 8, tt + k * R * 0.36)], fill=c["plaid"] + (150,), width=int(R * 0.07))
+        for k in range(-2, 3):
+            d.line([(x + k * R * 0.28, bt + R * 0.2), (x + k * R * 0.28, bt + R * 2.6)], fill=c["plaid"] + (140,), width=int(R * 0.06))
+        for k in range(1, 6):
+            d.line([(x - R * 0.7, bt + k * R * 0.38), (x + R * 0.7, bt + k * R * 0.38)], fill=c["plaid"] + (140,), width=int(R * 0.06))
     if c.get("stripes"):
-        for k in range(1, 8):
-            d.line([(x - tw + ow, tt + k * R * 0.3), (x + tw - ow, tt + k * R * 0.3)], fill=c["stripes"], width=int(R * 0.12))
+        for k in range(1, 7):
+            d.line([(x - R * 0.72, bt + k * R * 0.34), (x + R * 0.72, bt + k * R * 0.34)], fill=c["stripes"], width=int(R * 0.1))
     if c.get("dots"):
         rnd = random.Random(7)
-        for _ in range(22):
-            ell(d, x + rnd.uniform(-tw * 0.85, tw * 0.85), tt + rnd.uniform(R * 0.2, R * 2.3), R * 0.05, R * 0.05, (245, 245, 255))
-    if c.get("shirt"):
-        poly(d, [(x - R * 0.42, tt + 2), (x + R * 0.42, tt + 2), (x, tt + R * 1.25)], (252, 252, 250), ow * 0.6)
-    if c.get("vest"):
-        poly(d, [(x - tw + ow, tt + R * 0.35), (x - R * 0.2, tt + 4), (x, tt + R * 1.1), (x + R * 0.2, tt + 4), (x + tw - ow, tt + R * 0.35),
-                 (x + tw - ow, tt + R * 2.6), (x - tw + ow, tt + R * 2.6)], c["vest"], ow * 0.6)
-    if c.get("tie"):
-        poly(d, [(x - R * 0.11, tt + R * 0.15), (x + R * 0.11, tt + R * 0.15), (x + R * 0.15, tt + R * 1.1), (x, tt + R * 1.3), (x - R * 0.15, tt + R * 1.1)], c["tie"], ow * 0.5)
-    if c.get("braces"):
-        for sx in (-1, 1):
-            d.line([(x + sx * R * 0.48, tt + 4), (x + sx * R * 0.48, tt + R * 2.6)], fill=c["braces"], width=int(R * 0.14))
-    if c.get("apron"):
-        rr(d, (x - tw * 0.72, tt + R * 0.55, x + tw * 0.72, tt + R * 2.7), R * 0.12, (255, 255, 255), ow * 0.7)
-        for sx in (-1, 1):
-            d.line([(x + sx * tw * 0.62, tt + R * 0.58), (x + sx * R * 0.3, tt + 4)], fill=(235, 235, 235), width=int(R * 0.09))
-    if c.get("collar") or key in ("boy6", "boy11", "friend", "grandpa"):
-        for sx in (-1, 1):
-            poly(d, [(x + sx * R * 0.05, tt + R * 0.2), (x + sx * R * 0.48, tt - 2), (x + sx * R * 0.55, tt + R * 0.28)], (255, 255, 255), ow * 0.6)
-    # arms
+        for _ in range(14):
+            ell(d, x + rnd.uniform(-R * 0.55, R * 0.55), bt + rnd.uniform(R * 0.3, R * 2.4), R * 0.045, R * 0.045, (245, 245, 255))
+    if not back:
+        if c.get("shirt") or c.get("vest"):
+            poly(d, [(x - R * 0.3, bt + R * 0.05), (x + R * 0.3, bt + R * 0.05), (x, bt + R * 0.95)], (250, 250, 248), ow * 0.6)
+        if c.get("vest"):
+            poly(d, [(x - R * 0.3, bt + R * 0.05), (x, bt + R * 0.95), (x - R * 0.12, bt + R * 2.8), (x - R * 0.7, bt + R * 2.5), (x - R * 0.72, bt + R * 0.6)], c["vest"])
+            poly(d, [(x + R * 0.3, bt + R * 0.05), (x, bt + R * 0.95), (x + R * 0.12, bt + R * 2.8), (x + R * 0.7, bt + R * 2.5), (x + R * 0.72, bt + R * 0.6)], shade(c["vest"], 0.8))
+        if c.get("tie"):
+            poly(d, [(x - R * 0.08, bt + R * 0.12), (x + R * 0.08, bt + R * 0.12), (x + R * 0.11, bt + R * 0.85), (x, bt + R * 1.0), (x - R * 0.11, bt + R * 0.85)], c["tie"], ow * 0.4)
+        if c.get("braces"):
+            for sx in (-1, 1):
+                d.line([(x + sx * R * 0.35, bt + R * 0.1), (x + sx * R * 0.42, bt + R * 2.7)], fill=c["braces"], width=int(R * 0.11))
+        if c.get("apron"):
+            rr(d, (x - R * 0.52, bt + R * 0.55, x + R * 0.52, bt + R * 2.9), R * 0.1, (255, 255, 255), ow * 0.6)
+        if c.get("collar") or key in ("boy6", "boy11", "friend", "grandpa", "teen14"):
+            for sx in (-1, 1):
+                poly(d, [(x + sx * R * 0.03, bt + R * 0.25), (x + sx * R * 0.38, bt + R * 0.02), (x + sx * R * 0.42, bt + R * 0.3)], (255, 255, 255), ow * 0.5)
+    # clip all clothing details to the body shape
+    bm = Image.new("L", img.size, 0)
+    ImageDraw.Draw(bm).ellipse((x - R * 0.86 + ow, bt + ow, x + R * 0.86 - ow, bt + R * 2.5 - ow), fill=255)
+    img.alpha_composite(Image.composite(pat, Image.new("RGBA", img.size, (0, 0, 0, 0)), bm))
+    d = ImageDraw.Draw(img, "RGBA")
+    # ---- arms (thin ink strokes with small hands, like the reference)
     def arm(sx, hx_, hy_):
-        sx0, sy0 = x + sx * (tw - R * 0.12), tt + R * 0.35
-        d.line([(sx0, sy0), (hx_, hy_)], fill=INK, width=int(R * 0.34))
-        d.line([(sx0, sy0), (hx_, hy_)], fill=top, width=int(R * 0.34 - ow * 1.6))
-        ell(d, hx_, hy_, R * 0.17, R * 0.17, c["skin"], ow * 0.7)
+        sx0, sy0 = x + sx * R * 0.62, bt + R * 0.55
+        d.line([(sx0, sy0), (hx_, hy_)], fill=INK, width=int(R * 0.09))
+        ell(d, hx_, hy_, R * 0.1, R * 0.1, c["skin"], ow * 0.6)
     if arms == "hold":
-        arm(-1, x - R * 0.55, tt + R * 1.55); arm(1, x + R * 0.55, tt + R * 1.55)
+        arm(-1, x - R * 0.35, bt + R * 1.35); arm(1, x + R * 0.35, bt + R * 1.35)
     elif arms == "raise":
-        arm(-1, x - tw - R * 0.1, tt + R * 2.0); arm(1, x + tw + R * 0.45, y - R * 0.3 + math.sin(t * 6) * R * 0.08)
+        arm(1, x + R * 1.05, y - R * 0.2 + math.sin(t * 6) * R * 0.08)
     elif arms == "point":
-        arm(-1, x - tw - R * 0.1, tt + R * 2.0); arm(1, x + tw + R * 0.95, tt + R * 0.6)
+        arm(1, x + R * 1.5, bt + R * 0.5)
     elif arms == "cross":
-        d.line([(x - tw + R * 0.1, tt + R * 1.1), (x + tw - R * 0.1, tt + R * 1.35)], fill=INK, width=int(R * 0.36))
-        d.line([(x - tw + R * 0.1, tt + R * 1.1), (x + tw - R * 0.1, tt + R * 1.35)], fill=shade(top, 0.92), width=int(R * 0.36 - ow * 1.6))
-        d.line([(x + tw - R * 0.1, tt + R * 1.1), (x - tw + R * 0.1, tt + R * 1.35)], fill=INK, width=int(R * 0.36))
-        d.line([(x + tw - R * 0.1, tt + R * 1.1), (x - tw + R * 0.1, tt + R * 1.35)], fill=top, width=int(R * 0.36 - ow * 1.6))
+        d.line([(x - R * 0.6, bt + R * 1.2), (x + R * 0.6, bt + R * 1.45)], fill=INK, width=int(R * 0.1))
+        d.line([(x + R * 0.6, bt + R * 1.2), (x - R * 0.6, bt + R * 1.45)], fill=INK, width=int(R * 0.1))
     if hold:
-        hold(d, x, tt + R * 1.55, R)
-    # neck + ears + head
-    d.rectangle((x - R * 0.2, y + R * 0.6, x + R * 0.2, tt + 6), fill=c["skin"])
-    if c["ears"]:
-        for sx in (-1, 1):
-            ell(d, x + sx * R * 0.97, y + R * 0.08, R * 0.17 * c["ears"], R * 0.24 * c["ears"], c["skin"], ow * 0.8)
+        hold(d, x, bt + R * 1.35, R)
+    # ---- head
     st, hc = c["style"], c["hair"]
     if st == "bob":
         for sx in (-1, 1):
-            ell(d, x + sx * R * 0.9, y + R * 0.15, R * 0.36, R * 0.55, hc, ow)
+            ell(d, x + sx * R * 0.88, y + R * 0.2, R * 0.34, R * 0.55, hc, ow)
     if st == "braids":
         for sx in (-1, 1):
             for k in range(4):
-                ell(d, x + sx * R * 0.92, y + R * (0.55 + k * 0.42), R * 0.2, R * 0.23, hc, ow * 0.6)
-    ell(d, x, y, R, R, c["skin"], ow)
-    # hair on top
-    if st in ("side", "slick", "short"):
-        d.chord((x - R * 1.02, y - R * 1.06, x + R * 1.02, y + R * 0.75), 180, 360, fill=hc, outline=INK, width=int(ow))
-        poly(d, [(x - R * 0.98, y - R * 0.12), (x - R * 0.35, y - R * 0.55), (x + R * 0.98, y - R * 0.3), (x + R * 0.99, y - R * 0.05)], hc)
-        if st == "side":
-            d.line([(x - R * 0.35, y - R * 1.0), (x - R * 0.42, y - R * 0.5)], fill=shade(hc, 0.7), width=int(ow * 0.8))
-    elif st == "receding":
-        d.chord((x - R * 1.0, y - R * 1.0, x + R * 1.0, y + R * 0.6), 200, 340, fill=hc, outline=INK, width=int(ow))
-        for sx in (-1, 1):
-            ell(d, x + sx * R * 0.86, y - R * 0.3, R * 0.2, R * 0.35, hc)
-    elif st in ("white", "oldwhite"):
-        for sx in (-1, 1):
-            ell(d, x + sx * R * 0.88, y - R * 0.25, R * 0.24, R * 0.38, hc, ow * 0.6)
-        if st == "oldwhite":
-            d.chord((x - R * 0.95, y - R * 1.02, x + R * 0.95, y + R * 0.2), 200, 340, fill=hc, outline=INK, width=int(ow * 0.8))
-    elif st == "bob":
-        d.chord((x - R * 1.05, y - R * 1.08, x + R * 1.05, y + R * 0.6), 180, 360, fill=hc, outline=INK, width=int(ow))
-        for k in range(3):
-            d.arc((x - R * 0.9 + k * R * 0.6, y - R * 0.95, x - R * 0.3 + k * R * 0.6, y - R * 0.45), 200, 340, fill=shade(hc, 1.6), width=int(ow * 0.6))
-    elif st == "braids":
-        d.chord((x - R * 1.03, y - R * 1.06, x + R * 1.03, y + R * 0.6), 180, 360, fill=hc, outline=INK, width=int(ow))
-        d.line([(x, y - R * 1.0), (x, y - R * 0.5)], fill=shade(hc, 0.6), width=int(ow * 0.7))
-    elif st == "curly":
-        for k in range(10):
-            a = math.pi * (0.95 + k * 0.12)
-            ell(d, x + math.cos(a) * R * 0.88, y + math.sin(a) * R * 0.88, R * 0.3, R * 0.3, hc, ow * 0.5)
-    elif st == "bun":
-        ell(d, x, y - R * 1.0, R * 0.35, R * 0.3, hc, ow * 0.7)
-        d.chord((x - R * 1.02, y - R * 1.04, x + R * 1.02, y + R * 0.5), 180, 360, fill=hc, outline=INK, width=int(ow))
-    # face
+                ell(d, x + sx * R * 0.9, y + R * (0.55 + k * 0.4), R * 0.18, R * 0.21, hc, ow * 0.6)
+    skin = c["skin"]
+    _shaded_disc(img, x, y, R, R, skin, ow, 0.84 if skin == WHITEHEAD else 0.86, 0.18)
+    d = ImageDraw.Draw(img, "RGBA")
+    if back:
+        if hc:
+            _shaded_disc(img, x, y - R * 0.12, R * 0.99, R * 0.9, hc, ow, 0.8, 0.2)
+        return
+    if hc:
+        _hair(d, x, y, R, st, hc, ow, t)
+    # ---- face: dot eyes, thick brows, tiny mouth
     blink = ((t + seed * 0.7) % 3.4) < 0.11
-    lx = look * R * 0.12
-    eyy = y + R * 0.02
-    ex = [x - R * 0.34 + lx, x + R * 0.34 + lx]
-    big = expr in ("shock",)
+    lx = look * R * 0.14
+    ey = y + R * 0.05
+    ex = [x - R * 0.27 + lx, x + R * 0.27 + lx]
+    big = expr == "shock"
     for k, exx in enumerate(ex):
         if blink and not big:
-            d.line([(exx - R * 0.1, eyy), (exx + R * 0.1, eyy)], fill=INK, width=int(ow * 0.8))
+            d.line([(exx - R * 0.07, ey), (exx + R * 0.07, ey)], fill=INK, width=int(ow * 0.9))
         else:
-            ell(d, exx, eyy, R * (0.11 if big else 0.075), R * (0.13 if big else 0.105), INK)
-            ell(d, exx - R * 0.025, eyy - R * 0.04, R * 0.025, R * 0.025, (255, 255, 255))
-        sx = -1 if k == 0 else 1
-        by = eyy - R * (0.32 if big else 0.25)
-        if expr in ("angry", "sad", "worried"):
-            dy = R * 0.07 if expr == "angry" else -R * 0.06   # + lowers the inner end
-            inner, outer = (exx + R * 0.14, exx - R * 0.14) if sx < 0 else (exx - R * 0.14, exx + R * 0.14)
-            d.line([(outer, by), (inner, by + dy)], fill=INK, width=int(ow))
+            ell(d, exx, ey, R * (0.075 if big else 0.055), R * (0.12 if big else 0.1), INK)
+        inner_sign = 1 if k == 0 else -1
+        by = ey - R * (0.3 if big else 0.24)
+        if expr == "angry":
+            p1, p2 = (exx - inner_sign * R * 0.12, by - R * 0.04), (exx + inner_sign * R * 0.1, by + R * 0.06)
+        elif expr in ("sad", "worried"):
+            p1, p2 = (exx - inner_sign * R * 0.12, by + R * 0.04), (exx + inner_sign * R * 0.1, by - R * 0.05)
         else:
-            d.arc((exx - R * 0.15, by - R * 0.04, exx + R * 0.15, by + R * 0.12), 200, 340, fill=INK, width=int(ow * 0.9))
+            p1, p2 = (exx - R * 0.11, by), (exx + R * 0.11, by - R * 0.01)
+        d.line([p1, p2], fill=INK, width=int(R * 0.06))
     if c.get("glasses") or c.get("bigglasses"):
-        gr = R * (0.24 if c.get("bigglasses") else 0.19)
+        gr = R * (0.2 if c.get("bigglasses") else 0.16)
         for exx in ex:
-            ell(d, exx, eyy, gr, gr * 0.9, None, ow * 0.7)
-        d.line([(ex[0] + gr, eyy), (ex[1] - gr, eyy)], fill=INK, width=int(ow * 0.6))
+            ell(d, exx, ey, gr, gr * 0.85, None, ow * 0.6)
+        d.line([(ex[0] + gr, ey), (ex[1] - gr, ey)], fill=INK, width=int(ow * 0.5))
     if c.get("wrinkles"):
         for sx in (-1, 1):
-            d.arc((x + sx * R * 0.6 - R * 0.1, eyy + R * 0.1, x + sx * R * 0.6 + R * 0.1, eyy + R * 0.3), 200, 340, fill=shade(c["skin"], 0.7), width=int(ow * 0.5))
-    # nose + mouth
-    d.arc((x + lx - R * 0.08, y + R * 0.18, x + lx + R * 0.08, y + R * 0.34), 300, 120, fill=shade(c["skin"], 0.65), width=int(ow * 0.6))
-    my = y + R * 0.52
-    mx = x + lx
+            d.line([(x + sx * R * 0.52, ey + R * 0.16), (x + sx * R * 0.6, ey + R * 0.26)], fill=shade(skin, 0.7), width=int(ow * 0.5))
+    mx, my = x + lx * 0.8, y + R * 0.42
     open_ = talk and (math.sin(t * 15) > -0.2)
     if expr == "shock":
-        ell(d, mx, my + R * 0.03, R * 0.11, R * 0.15, (90, 30, 35), ow * 0.7)
+        ell(d, mx, my + R * 0.02, R * 0.07, R * 0.1, INK)
     elif open_:
-        ell(d, mx, my, R * 0.15, R * 0.06 + R * 0.06 * abs(math.sin(t * 13)), (90, 30, 35), ow * 0.6)
+        ell(d, mx, my, R * 0.08, R * 0.03 + R * 0.04 * abs(math.sin(t * 13)), INK)
     elif expr == "happy":
-        d.chord((mx - R * 0.22, my - R * 0.16, mx + R * 0.22, my + R * 0.14), 10, 170, fill=(90, 30, 35), outline=INK, width=int(ow * 0.6))
+        d.arc((mx - R * 0.13, my - R * 0.12, mx + R * 0.13, my + R * 0.06), 20, 160, fill=INK, width=int(ow * 0.9))
     elif expr in ("sad", "worried"):
-        d.arc((mx - R * 0.16, my, mx + R * 0.16, my + R * 0.18), 200, 340, fill=INK, width=int(ow * 0.8))
-    elif expr == "angry":
-        d.line([(mx - R * 0.16, my + R * 0.04), (mx + R * 0.16, my + R * 0.02)], fill=INK, width=int(ow))
+        d.arc((mx - R * 0.11, my - R * 0.01, mx + R * 0.11, my + R * 0.13), 200, 340, fill=INK, width=int(ow * 0.9))
     else:
-        d.arc((mx - R * 0.14, my - R * 0.1, mx + R * 0.14, my + R * 0.06), 30, 150, fill=INK, width=int(ow * 0.8))
-    if expr in ("happy", "neutral") and c["skin"] != WHITEHEAD:
-        for sx in (-1, 1):
-            ell(d, x + sx * R * 0.6, y + R * 0.38, R * 0.12, R * 0.07, (245, 150, 140, 90))
+        d.line([(mx - R * 0.09, my), (mx + R * 0.08, my - R * 0.01)], fill=INK, width=int(ow * 0.9))
     if expr == "worried":
-        ell(d, x + R * 0.78, y - R * 0.45, R * 0.07, R * 0.12, (150, 200, 240), ow * 0.4)
+        ell(d, x + R * 0.72, y - R * 0.38, R * 0.06, R * 0.1, (150, 200, 240), ow * 0.4)
 
 
 # ------------------------------------------------------------------ text bubbles
