@@ -355,16 +355,18 @@ def icon(kind, size, color=None):
             d.line([P(*p) for p in pts], fill=col, width=int(9 * s), joint="curve")
             tip = [(92, 18), (68, 24), (86, 42)] if kind == "up" else [(92, 86), (68, 80), (86, 62)]
             d.polygon([P(*p) for p in tip], fill=col, outline=INK, width=lw)
-        elif kind == "coin":
+        elif kind in ("coin", "coin_usd"):
             d.ellipse(B(6, 6, 94, 94), fill=color or GOLD, outline=INK, width=lw)
             d.ellipse(B(18, 18, 82, 82), outline=(160, 118, 30), width=lw)
-            d.text(P(50, 52), "₹", font=_font("Poppins-ExtraBold.ttf", 46 * s), fill=WHITE, anchor="mm",
+            d.text(P(50, 52), "$" if kind == "coin_usd" else "₹", font=_font("Poppins-ExtraBold.ttf", 46 * s),
+                   fill=WHITE, anchor="mm",
                    stroke_width=int(2 * s), stroke_fill=(160, 118, 30))
-        elif kind == "bag":
+        elif kind in ("bag", "bag_usd"):
             d.ellipse(B(14, 30, 86, 96), fill=(196, 160, 96), outline=INK, width=lw)
             d.polygon([P(36, 34), P(30, 10), P(70, 10), P(64, 34)], fill=(196, 160, 96), outline=INK)
             d.line([P(34, 32), P(66, 32)], fill=INK, width=lw)
-            d.text(P(50, 66), "₹", font=_font("Poppins-ExtraBold.ttf", 38 * s), fill=GREEN, anchor="mm")
+            d.text(P(50, 66), "$" if kind == "bag_usd" else "₹", font=_font("Poppins-ExtraBold.ttf", 38 * s),
+                   fill=GREEN, anchor="mm")
         elif kind == "bulb":
             d.ellipse(B(22, 6, 78, 62), fill=(255, 214, 80), outline=INK, width=lw)
             d.rectangle(B(37, 58, 63, 80), fill=(150, 150, 160), outline=INK, width=lw)
@@ -456,6 +458,53 @@ def icon(kind, size, color=None):
             for cx, cy, col in ((34, 30, BLUE), (66, 30, GREEN)):
                 d.chord(B(cx - 26, cy + 22, cx + 26, cy + 82), 180, 360, fill=col, outline=INK, width=lw)
                 d.ellipse(B(cx - 15, cy - 15, cx + 15, cy + 15), fill=SKIN, outline=INK, width=lw)
+        elif kind == "bottle":
+            pts = [(40, 4), (60, 4), (60, 22), (70, 38), (70, 94), (30, 94), (30, 38), (40, 22)]
+            d.polygon([P(*q) for q in pts], fill=(120, 60, 40), outline=INK, width=lw)
+            d.rectangle(B(30, 50, 70, 70), fill=color or RED, outline=INK, width=lw)
+            d.text(P(50, 60), "COLA", font=_font("Poppins-ExtraBold.ttf", 10 * s), fill=WHITE, anchor="mm")
+            d.rectangle(B(38, 0, 62, 8), fill=(200, 200, 205), outline=INK, width=lw)
+        elif kind == "newspaper":
+            d.rounded_rectangle(B(6, 14, 94, 88), radius=int(4 * s), fill=WHITE, outline=INK, width=lw)
+            d.text(P(50, 26), "NEWS", font=_font("Poppins-ExtraBold.ttf", 14 * s), fill=INK, anchor="mm")
+            d.line([P(14, 36), P(86, 36)], fill=INK, width=lw)
+            d.rectangle(B(14, 42, 46, 66), fill=(180, 190, 205))
+            for y in (44, 52, 60, 70, 78):
+                d.line([P(52 if y < 66 else 14, y), P(86, y)], fill=GREY, width=lw)
+        elif kind == "bike":
+            for cx in (24, 76):
+                d.ellipse(B(cx - 18, 52, cx + 18, 88), outline=INK, width=int(5 * s))
+            d.line([P(24, 70), P(44, 44), P(70, 44), P(76, 70)], fill=color or RED, width=int(6 * s), joint="curve")
+            d.line([P(44, 44), P(54, 70), P(70, 44)], fill=color or RED, width=int(6 * s))
+            d.line([P(40, 36), P(50, 36)], fill=INK, width=int(6 * s))
+            d.line([P(70, 44), P(66, 30), P(76, 28)], fill=INK, width=int(5 * s))
+        elif kind == "barn":
+            d.polygon([P(10, 44), P(50, 12), P(90, 44)], fill=(178, 34, 34), outline=INK, width=lw)
+            d.rectangle(B(16, 44, 84, 92), fill=(200, 50, 45), outline=INK, width=lw)
+            d.rectangle(B(38, 58, 62, 92), fill=WHITE, outline=INK, width=lw)
+            d.line([P(38, 58), P(62, 92)], fill=INK, width=lw)
+            d.line([P(62, 58), P(38, 92)], fill=INK, width=lw)
+            d.rectangle(B(0, 92, 100, 98), fill=(90, 160, 70))
+        elif kind == "gradcap":
+            d.polygon([P(50, 20), P(96, 40), P(50, 60), P(4, 40)], fill=NAVY, outline=INK, width=lw)
+            d.chord(B(26, 30, 74, 84), 0, 180, fill=NAVY, outline=INK, width=lw)
+            d.line([P(80, 46), P(80, 74)], fill=GOLD, width=int(4 * s))
+            d.ellipse(B(75, 72, 85, 82), fill=GOLD)
+        elif kind == "book":
+            d.polygon([P(50, 22), P(92, 12), P(92, 80), P(50, 90)], fill=WHITE, outline=INK, width=lw)
+            d.polygon([P(50, 22), P(8, 12), P(8, 80), P(50, 90)], fill=(236, 236, 240), outline=INK, width=lw)
+            d.polygon([P(46, 20), P(54, 20), P(54, 92), P(46, 92)], fill=color or BLUE, outline=INK)
+            for y in (30, 42, 54):
+                d.line([P(60, y + 2), P(84, y - 4)], fill=GREY, width=lw)
+                d.line([P(16, y - 4), P(40, y + 2)], fill=GREY, width=lw)
+        elif kind == "pinball":
+            d.polygon([P(26, 10), P(74, 10), P(80, 70), P(20, 70)], fill=(120, 60, 180), outline=INK, width=lw)
+            d.rectangle(B(30, 16, 70, 40), fill=(255, 214, 80), outline=INK, width=lw)
+            d.text(P(50, 28), "PIN", font=_font("Poppins-ExtraBold.ttf", 12 * s), fill=RED, anchor="mm")
+            for cx, cy in ((38, 52), (50, 58), (62, 50)):
+                d.ellipse(B(cx - 4, cy - 4, cx + 4, cy + 4), fill=WHITE, outline=INK)
+            d.line([P(26, 70), P(22, 96)], fill=INK, width=int(5 * s))
+            d.line([P(74, 70), P(78, 96)], fill=INK, width=int(5 * s))
         elif kind == "exchange":
             d.rounded_rectangle(B(4, 10, 96, 90), radius=int(8 * s), fill=NAVY, outline=INK, width=lw)
             pts = [(14, 70), (32, 52), (46, 60), (64, 32), (86, 22)]
@@ -1492,6 +1541,8 @@ def art(kind, size):
     """Large flat illustrations for split thumbnails (100 x 100 unit box)."""
     if kind in ("phone_buy",):
         return icon("phone", size)
+    if kind not in ("stranger", "players6", "closed_shop", "safe_money"):
+        return icon(kind, size)
 
     def fn(d, k):
         s = size * k / 100

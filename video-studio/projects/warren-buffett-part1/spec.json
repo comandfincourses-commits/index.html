@@ -1,0 +1,691 @@
+{
+ "format": "long",
+ "slug": "warren-buffett-part-1-birth-to-struggle",
+ "title": "Warren Buffett, Part 1: From Birth to Struggle",
+ "audio": "voice.wav",
+ "captions_file": "captions.json",
+ "cta_times": [
+  38,
+  147,
+  259
+ ],
+ "cta_lines": [
+  "Enjoying the story? *Subscribe* for Part 2!",
+  "*Share* with the friend who panics in the market",
+  "*Like* & *Subscribe* for Part 2"
+ ],
+ "end_message": "Share this with someone who never gives up on *investing*!",
+ "scenes": [
+  {
+   "type": "character",
+   "at": 0.0,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Age 11"
+    }
+   ],
+   "say": "All my savings into my *first share*!",
+   "prop": "coin_usd",
+   "chapter": "An 11-year-old's first share"
+  },
+  {
+   "type": "chart",
+   "at": 5.66,
+   "kind": "line",
+   "title": "Then the share *started falling*...",
+   "values": [
+    38,
+    33,
+    27
+   ],
+   "labels": [
+    "Bought",
+    "Week 1",
+    "Week 2"
+   ],
+   "prefix": "$",
+   "color": "red"
+  },
+  {
+   "type": "chart",
+   "at": 10.31,
+   "kind": "line",
+   "title": "He sold in fear... then it went *5x*",
+   "values": [
+    38,
+    27,
+    40,
+    110,
+    200
+   ],
+   "labels": [
+    "Bought",
+    "Fell",
+    "Sold",
+    "...",
+    "Years later"
+   ],
+   "prefix": "$",
+   "color": "green",
+   "note": "The share he *sold* kept growing"
+  },
+  {
+   "type": "title",
+   "at": 18.25,
+   "bg": "dark",
+   "tag": "The world's most famous investor",
+   "text": "*Warren Buffett*",
+   "sub": "The Oracle of Omaha",
+   "icon": "chart"
+  },
+  {
+   "type": "flow",
+   "at": 24.88,
+   "title": "A *3-part* series",
+   "steps": [
+    {
+     "title": "Part 1",
+     "text": "From *birth* to struggle",
+     "icon": "calendar"
+    },
+    {
+     "title": "Part 2",
+     "text": "The *real struggle*",
+     "icon": "book"
+    },
+    {
+     "title": "Part 3",
+     "text": "The *Oracle of Omaha*",
+     "icon": "target"
+    }
+   ]
+  },
+  {
+   "type": "character",
+   "at": 34.88,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "*Subscribe* & hit the *bell* so you don't miss Part 2!",
+   "prop": "bell"
+  },
+  {
+   "type": "bignumber",
+   "at": 44.05,
+   "value": "30 Aug 1930",
+   "label": "Warren Edward Buffett is born in *Omaha, Nebraska*",
+   "icon": "calendar",
+   "color": "gold",
+   "chapter": "Born into the Great Depression"
+  },
+  {
+   "type": "chart",
+   "at": 52.07,
+   "kind": "line",
+   "title": "*1929*: America's stock market crashes",
+   "values": [
+    381,
+    198,
+    165,
+    78,
+    41
+   ],
+   "labels": [
+    "Sep 1929",
+    "Nov 1929",
+    "1930",
+    "1931",
+    "1932"
+   ],
+   "color": "red",
+   "note": "Dow Jones fell almost *90%*"
+  },
+  {
+   "type": "list",
+   "at": 60.91,
+   "title": "The *Great Depression*",
+   "items": [
+    "People losing their *jobs*",
+    "*Banks* shutting down",
+    "Howard Buffett's bank *closed* too"
+   ],
+   "icon": "warning"
+  },
+  {
+   "type": "character",
+   "at": 68.77,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "worried",
+     "pose": "shrug",
+     "label": "Howard Buffett · father"
+    }
+   ],
+   "say": "Money is tight... but I won't *give up*.",
+   "prop": "bank"
+  },
+  {
+   "type": "character",
+   "at": 72.84,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Howard Buffett"
+    },
+    {
+     "who": "student",
+     "mood": "surprised",
+     "pose": "idle",
+     "label": "Little Warren"
+    }
+   ],
+   "speaker": 0,
+   "say": "I'm starting my own *brokerage firm*!",
+   "prop": "chart"
+  },
+  {
+   "type": "character",
+   "at": 81.33,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "Warren"
+    }
+   ],
+   "think": true,
+   "say": "Toys? I'd rather play with *numbers*!",
+   "prop": "coin_usd"
+  },
+  {
+   "type": "character",
+   "at": 85.77,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "investor",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "Grandfather's grocery"
+    },
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren · age 6"
+    }
+   ],
+   "speaker": 1,
+   "say": "A 6-pack of cola for *25 cents*, please!",
+   "prop": "bottle",
+   "chapter": "The 6-year-old businessman"
+  },
+  {
+   "type": "flow",
+   "at": 93.44,
+   "title": "Warren's *first business*",
+   "steps": [
+    {
+     "title": "Buy",
+     "text": "6-pack for *25¢*",
+     "icon": "bottle"
+    },
+    {
+     "title": "Sell",
+     "text": "6 × 5¢ = *30¢*",
+     "icon": "coin_usd"
+    },
+    {
+     "title": "Profit",
+     "text": "*5¢*",
+     "icon": "up"
+    }
+   ]
+  },
+  {
+   "type": "character",
+   "at": 100.39,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren"
+    }
+   ],
+   "say": "Small profit... but a *big idea*!",
+   "prop": "bulb"
+  },
+  {
+   "type": "quote",
+   "at": 104.97,
+   "text": "Buy cheap, sell at value, and keep adding up the *profits*.",
+   "by": "Warren's first business lesson"
+  },
+  {
+   "type": "bignumber",
+   "at": 112.25,
+   "value": "3 shares",
+   "label": "Cities Service at *$38* each: Warren's first investment, at 11",
+   "icon": "doc",
+   "color": "gold",
+   "chapter": "First share at 11"
+  },
+  {
+   "type": "chart",
+   "at": 119.72,
+   "kind": "line",
+   "title": "Panic... then sold at *$40*",
+   "values": [
+    38,
+    27,
+    40
+   ],
+   "labels": [
+    "Bought",
+    "Fell",
+    "Sold"
+   ],
+   "prefix": "$",
+   "color": "red"
+  },
+  {
+   "type": "chart",
+   "at": 129.26,
+   "kind": "bar",
+   "title": "The share he sold went to about *$200*",
+   "values": [
+    40,
+    200
+   ],
+   "labels": [
+    "Warren sold at",
+    "A few years later"
+   ],
+   "prefix": "$",
+   "colors": [
+    "gold",
+    "green"
+   ],
+   "note": "That's *5x*!"
+  },
+  {
+   "type": "list",
+   "at": 133.1,
+   "title": "*2 lessons* for life",
+   "items": [
+    "Don't get stuck on the *price you paid*",
+    "Don't rush: *patience* makes real money"
+   ],
+   "icon": "check"
+  },
+  {
+   "type": "character",
+   "at": 144.16,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "point"
+    }
+   ],
+   "say": "*Like* & *share* with the friend who panics in the market!",
+   "prop": "like"
+  },
+  {
+   "type": "character",
+   "at": 152.56,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "boss",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "Howard Buffett · US Congress, 1942"
+    },
+    {
+     "who": "student",
+     "mood": "worried",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ],
+   "speaker": 0,
+   "say": "We're moving to *Washington DC*!",
+   "chapter": "Washington DC & the newspaper boy"
+  },
+  {
+   "type": "character",
+   "at": 161.54,
+   "bg": "classroom",
+   "board": "Grades: *falling*",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "sad",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ]
+  },
+  {
+   "type": "character",
+   "at": 166.16,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren"
+    }
+   ],
+   "say": "Every morning: *hundreds* of newspapers!",
+   "prop": "newspaper"
+  },
+  {
+   "type": "character",
+   "at": 173.5,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren · age 13"
+    }
+   ],
+   "say": "First tax return. Bicycle = *business expense*!",
+   "prop": "bike"
+  },
+  {
+   "type": "character",
+   "at": 180.66,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "Warren"
+    },
+    {
+     "who": "generic",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "Friend"
+    }
+   ],
+   "speaker": 0,
+   "say": "An old pinball machine for *$25*!",
+   "prop": "pinball",
+   "chapter": "Pinball machines & a farm"
+  },
+  {
+   "type": "flow",
+   "at": 188.28,
+   "title": "The *pinball* business",
+   "steps": [
+    {
+     "title": "1 machine",
+     "text": "In a barbershop",
+     "icon": "pinball"
+    },
+    {
+     "title": "3 machines",
+     "icon": "pinball"
+    },
+    {
+     "title": "More than 3",
+     "icon": "pinball"
+    },
+    {
+     "title": "Sold",
+     "text": "for *$1,200*",
+     "icon": "bag_usd"
+    }
+   ]
+  },
+  {
+   "type": "character",
+   "at": 198.03,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "Warren · age 15"
+    }
+   ],
+   "say": "I own a *40-acre farm*!",
+   "prop": "barn"
+  },
+  {
+   "type": "character",
+   "at": 208.07,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "serious",
+     "pose": "shrug",
+     "label": "Warren"
+    },
+    {
+     "who": "boss",
+     "mood": "serious",
+     "pose": "point",
+     "label": "Father"
+    }
+   ],
+   "speaker": 0,
+   "say": "I'm already doing business. Why *study*?"
+  },
+  {
+   "type": "character",
+   "at": 212.81,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "neutral",
+     "pose": "idle",
+     "label": "Warren"
+    },
+    {
+     "who": "boss",
+     "mood": "serious",
+     "pose": "point",
+     "label": "Father"
+    }
+   ],
+   "speaker": 1,
+   "say": "You *will* go to college.",
+   "prop": "gradcap"
+  },
+  {
+   "type": "bignumber",
+   "at": 216.32,
+   "value": "19",
+   "label": "Graduated from college at just *19*",
+   "icon": "gradcap",
+   "color": "gold",
+   "chapter": "Harvard says no"
+  },
+  {
+   "type": "title",
+   "at": 218.54,
+   "tag": "The dream school",
+   "text": "*Harvard* Business School",
+   "sub": "The world's most famous business school",
+   "icon": "gradcap"
+  },
+  {
+   "type": "character",
+   "at": 223.63,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "investor",
+     "mood": "serious",
+     "pose": "idle",
+     "label": "Harvard interviewer"
+    },
+    {
+     "who": "student",
+     "mood": "worried",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ],
+   "speaker": 0,
+   "say": "Sorry, young man. *Rejected.*",
+   "prop": "cross"
+  },
+  {
+   "type": "character",
+   "at": 230.6,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "sad",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ],
+   "think": true,
+   "say": "Rejected by the *top school* in the world..."
+  },
+  {
+   "type": "title",
+   "at": 233.16,
+   "bg": "dark",
+   "tag": "But...",
+   "text": "The *biggest turning point* of his life",
+   "icon": "up"
+  },
+  {
+   "type": "flow",
+   "at": 238.99,
+   "title": "What changed *everything*",
+   "steps": [
+    {
+     "title": "A book",
+     "text": "in his hands",
+     "icon": "book"
+    },
+    {
+     "title": "A guru",
+     "text": "who changed his *thinking*",
+     "icon": "bulb"
+    }
+   ],
+   "note": "Revealed in *Part 2*"
+  },
+  {
+   "type": "quote",
+   "at": 247.41,
+   "text": "Rejection is not the end. Sometimes it's the start of the *right path*.",
+   "by": "Today's lesson",
+   "chapter": "Today's lesson"
+  },
+  {
+   "type": "title",
+   "at": 253.47,
+   "tag": "Comment below",
+   "text": "Write: *I won't stop*",
+   "sub": "If you've ever faced rejection",
+   "icon": "bulb"
+  },
+  {
+   "type": "character",
+   "at": 258.27,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "*Like, share & subscribe!*",
+   "prop": "bell"
+  },
+  {
+   "type": "title",
+   "at": 262.94,
+   "tag": "Coming next",
+   "text": "Part 2: Warren's *real struggle*",
+   "sub": "See you in the next part",
+   "icon": "book"
+  }
+ ],
+ "thumbnail": {
+  "style": "split",
+  "left": {
+   "word": "SOLD $40",
+   "color": "red",
+   "art": "down"
+  },
+  "right": {
+   "word": "$200 LATER",
+   "color": "green",
+   "art": "up",
+   "check": true
+  },
+  "box": "BUFFETT'S FIRST MISTAKE?"
+ },
+ "meta": {
+  "titles": [
+   "Warren Buffett Ki Kahani Part 1 | 11 Saal Ki Umar Mein Pehla Share",
+   "Warren Buffett Part 1: The Mistake That Made Him the World's Greatest Investor",
+   "How an 11-Year-Old Became Warren Buffett | Birth to Struggle (Part 1)"
+  ],
+  "description": "An 11-year-old puts all his savings into his first share, panics when it falls, and sells at a small profit, only to watch it rise to about $200 a few years later. That child became Warren Buffett.\n\nPart 1 of our 3-part Warren Buffett series (Hindi, with English subtitles):\n• Born on 30 August 1930 in Omaha, Nebraska, in the Great Depression\n• His father's bank closes; Howard Buffett starts his own brokerage firm\n• Age 6: the Coca-Cola 6-pack business (5 cents profit)\n• Age 11: 3 shares of Cities Service at $38, and 2 lessons for life\n• Washington DC, newspaper rounds and his first tax return at 13\n• The pinball business, sold for $1,200, and a 40-acre farm at 15\n• Graduated at 19, then rejected by Harvard Business School\n\nToday's lesson: rejection is not the end. Sometimes it's the start of the right path.\n\n👍 Like  🔁 Share with a friend who panics in the stock market  🔔 Subscribe so you don't miss Part 2\n🌐 www.COMandFIN.com\n\nEducational content, not investment advice.",
+  "hashtags": [
+   "#WarrenBuffett",
+   "#Investing",
+   "#StockMarket",
+   "#ValueInvesting",
+   "#MotivationalStory",
+   "#SuccessStory",
+   "#Finance",
+   "#COMandFIN"
+  ],
+  "tags": [
+   "warren buffett story",
+   "warren buffett biography hindi",
+   "warren buffett part 1",
+   "warren buffett first share",
+   "cities service",
+   "warren buffett childhood",
+   "harvard rejected warren buffett",
+   "oracle of omaha",
+   "value investing",
+   "motivational story hindi",
+   "comandfin"
+  ],
+  "pinned_comment": "Have you ever faced rejection? Write 'I won't stop' below 👇 Part 2, the book and the guru that changed everything, is coming next. Subscribe so you don't miss it 🔔",
+  "caption": "An 11-year-old panic-sold his first share at $40. It later went to about $200. 😳\n\nThat child was Warren Buffett, and that mistake taught him 2 lessons for life:\n1️⃣ Don't get stuck on the price you paid\n2️⃣ Patience makes real money\n\nPart 1 of the Warren Buffett story is live on our YouTube channel.\n👍 Like  🔁 Share  🔔 Follow @COMandFIN\n#WarrenBuffett #Investing #StockMarket #COMandFIN"
+ }
+}
