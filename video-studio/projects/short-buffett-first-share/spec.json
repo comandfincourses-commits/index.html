@@ -1,0 +1,146 @@
+{
+ "format": "short",
+ "slug": "short-buffett-first-share-at-11",
+ "title": "Warren Buffett's First Share at 11",
+ "series": "Warren Buffett Story",
+ "audio": "voice.wav",
+ "captions_file": "captions.json",
+ "scenes": [
+  {
+   "type": "character",
+   "at": 0,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren · age 11"
+    }
+   ],
+   "say": "All my savings... my *first share*!",
+   "prop": "coin_usd"
+  },
+  {
+   "type": "bignumber",
+   "at": 3.930000000000007,
+   "value": "$38",
+   "label": "per share: *3 shares* of Cities Service",
+   "icon": "doc",
+   "color": "gold"
+  },
+  {
+   "type": "chart",
+   "at": 7.6200000000000045,
+   "kind": "line",
+   "title": "Then it *fell*... and he panicked",
+   "values": [
+    38,
+    27,
+    40
+   ],
+   "labels": [
+    "Bought",
+    "Fell",
+    "Sold"
+   ],
+   "prefix": "$",
+   "color": "red"
+  },
+  {
+   "type": "character",
+   "at": 15.320000000000007,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "Warren"
+    }
+   ],
+   "say": "Phew! Sold at *$40*. Small profit!"
+  },
+  {
+   "type": "chart",
+   "at": 17.159999999999997,
+   "kind": "bar",
+   "title": "A few years later...",
+   "values": [
+    40,
+    200
+   ],
+   "labels": [
+    "Warren sold at",
+    "Same share later"
+   ],
+   "prefix": "$",
+   "colors": [
+    "gold",
+    "green"
+   ],
+   "note": "*5x* the price he sold at!"
+  },
+  {
+   "type": "list",
+   "at": 21.0,
+   "title": "*2 lessons* for life",
+   "items": [
+    "Don't get stuck on the *price you paid*",
+    "Don't rush: *patience* makes real money"
+   ],
+   "icon": "check"
+  },
+  {
+   "type": "character",
+   "at": 32.06,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "point"
+    }
+   ],
+   "say": "*Like* & *share* with the friend who panics in the market!",
+   "prop": "like"
+  },
+  {
+   "type": "character",
+   "at": 40.6,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "*Subscribe* to COMandFIN!",
+   "prop": "bell"
+  }
+ ],
+ "cta_times": [
+  18
+ ],
+ "cta_lines": [
+  "Learning from Buffett? *Like* & *Subscribe*!"
+ ],
+ "end_message": "Full story: *Warren Buffett Part 1* on our channel",
+ "thumbnail": {
+  "style": "split",
+  "left": {
+   "word": "SOLD $40",
+   "color": "red",
+   "art": "down"
+  },
+  "right": {
+   "word": "$200 LATER",
+   "color": "green",
+   "art": "up",
+   "check": true
+  },
+  "box": "AGE 11 MISTAKE?"
+ },
+ "meta": {}
+}
