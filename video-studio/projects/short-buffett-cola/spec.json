@@ -1,0 +1,128 @@
+{
+ "format": "short",
+ "slug": "short-buffett-age-6-cola-business",
+ "title": "Warren Buffett's First Business at Age 6",
+ "series": "Warren Buffett Story",
+ "audio": "voice.wav",
+ "captions_file": "captions.json",
+ "scenes": [
+  {
+   "type": "character",
+   "at": 0,
+   "bg": "city",
+   "cast": [
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "cheer",
+     "label": "Warren · age 6"
+    }
+   ],
+   "think": true,
+   "say": "Toys? I'd rather play with *numbers*!",
+   "prop": "coin_usd"
+  },
+  {
+   "type": "character",
+   "at": 4.569999999999993,
+   "bg": "office",
+   "cast": [
+    {
+     "who": "investor",
+     "mood": "happy",
+     "pose": "idle",
+     "label": "Grandfather's grocery"
+    },
+    {
+     "who": "student",
+     "mood": "happy",
+     "pose": "point",
+     "label": "Warren · age 6"
+    }
+   ],
+   "speaker": 1,
+   "say": "A 6-pack of cola for *25 cents*, please!",
+   "prop": "bottle"
+  },
+  {
+   "type": "flow",
+   "at": 12.239999999999995,
+   "title": "Warren's *first business*",
+   "steps": [
+    {
+     "title": "Buy",
+     "text": "6-pack for *25¢*",
+     "icon": "bottle"
+    },
+    {
+     "title": "Sell",
+     "text": "6 × 5¢ = *30¢*",
+     "icon": "coin_usd"
+    },
+    {
+     "title": "Profit",
+     "text": "Just *5¢*",
+     "icon": "up"
+    }
+   ]
+  },
+  {
+   "type": "bignumber",
+   "at": 19.189999999999998,
+   "value": "5¢",
+   "label": "You might say: what's *5 cents*?",
+   "icon": "coin_usd",
+   "color": "gold"
+  },
+  {
+   "type": "quote",
+   "at": 21.72,
+   "text": "Buy cheap, sell at value, and keep adding up the *profits*.",
+   "by": "Warren Buffett, age 6"
+  },
+  {
+   "type": "title",
+   "at": 27.799999999999997,
+   "tag": "That same thinking",
+   "text": "Built a company worth *billions*",
+   "icon": "up"
+  },
+  {
+   "type": "character",
+   "at": 31.2,
+   "bg": "classroom",
+   "cast": [
+    {
+     "who": "prof",
+     "mood": "happy",
+     "pose": "wave"
+    }
+   ],
+   "say": "*Like, share & subscribe!*",
+   "prop": "bell"
+  }
+ ],
+ "cta_times": [
+  13.5
+ ],
+ "cta_lines": [
+  "Like the story? *Like* & *Subscribe*!"
+ ],
+ "end_message": "Full story: *Warren Buffett Part 1* on our channel",
+ "thumbnail": {
+  "style": "split",
+  "left": {
+   "word": "25¢",
+   "color": "red",
+   "art": "bottle"
+  },
+  "right": {
+   "word": "BILLIONS",
+   "color": "green",
+   "art": "up",
+   "check": true
+  },
+  "box": "AGE 6 BUSINESS?"
+ },
+ "meta": {}
+}
