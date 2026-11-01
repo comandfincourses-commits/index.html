@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>COMandFIN Explainer – Option Gamma (animation source)</title>
+<style>
+  html,body{margin:0;background:#111;}
+  canvas{display:block;margin:0 auto;}
+  #ui{color:#ddd;font:13px Inter,Arial;text-align:center;padding:8px}
+</style>
+</head>
+<body>
+<canvas id="c" width="1280" height="720"></canvas>
+<div id="ui">Preview mode: plays in real time. Scrub with ?t=SECONDS in the URL. Render with render.js.</div>
+<script>
+/* =====================================================================
+   COMandFIN "whiteboard-window" explainer engine
+   Every frame is a pure function of time t (seconds) -> deterministic,
+   so the renderer can step frame by frame. Edit SCENES to make new
+   episodes; all copy lives in the scene functions below.
+   ===================================================================== */
+const C = document.getElementById('c'), X = C.getContext('2d');
+const W = 1280, H = 720;
+const COL = {
+  paper:'#FAF8F3', grid:'#ECE7DC', navy:'#0B1F3A', navy2:'#132C52',
+  gold:'#C99A2E', goldL:'#F3D58A', mint:'#0FAE83', red:'#C0392B',
+  ink:'#1B2534', muted:'#5B6B82', white:'#FFFFFF', blue:'#2563EB'
+};
+const FONT = 'Inter, "DejaVu Sans", Arial, sans-serif';
+
+/* ---------- maths / easing ---------- */
+const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v));
+const lerp=(a,b,p)=>a+(b-a)*p;
+const easeOut=p=>1-Math.pow(1-p,3);
+const easeInOut=p=>p<.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;
+const backOut=p=>{const c1=1.70158,c3=c1+1;return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2);};
+const prog=(t,a,b,e=easeOut)=>e(clamp((t-a)/(b-a)));
+
+/* ---------- primitives ---------- */
+function paper(){
+  X.fillStyle=COL.paper;X.fillRect(0,0,W,H);
+  X.strokeStyle=COL.grid;X.lineWidth=1;X.beginPath();
+  for(let x=0;x<=W;x+=26){X.moveTo(x+.5,0);X.lineTo(x+.5,H);}
+  for(let y=0;y<=H;y+=26){X.moveTo(0,y+.5);X.lineTo(W,y+.5);}
+  X.stroke();
+}
+function rr(x,y,w,h,r){X.beginPath();X.roundRect(x,y,w,h,r);}
+function text(s,x,y,{size=20,weight=600,color=COL.ink,align='left',base='middle',font=FONT,alpha=1}={}){
+  X.save();X.globalAlpha*=alpha;X.font=`${weight} ${size}px ${font}`;X.fillStyle=color;
+  X.textAlign=align;X.textBaseline=base;X.fillText(s,x,y);X.restore();
+}
+function typed(s,p){return s.slice(0,Math.round(s.length*clamp(p)));}
+function withPop(cx,cy,p,fn){ // scale-in from centre
+  if(p<=0)return; X.save();X.globalAlpha*=clamp(p*2);
+  const s=backOut(clamp(p));X.translate(cx,cy);X.scale(s,s);X.translate(-cx,-cy);fn();X.restore();
+}
+function chip(x,y,label,{w=null,h=34,fill=COL.gold,color=COL.navy,size=17,p=1,align='center'}={}){
+  if(p<=0)return;
+  X.save();X.font=`700 ${size}px ${FONT}`;const tw=w||X.measureText(label).width+32;X.restore();
+  const bx=align==='center'?x-tw/2:x;
+  withPop(bx+tw/2,y+h/2,p,()=>{
+    X.fillStyle=COL.navy;rr(bx+4,y+4,tw,h,6);X.fill();
+    X.fillStyle=fill;rr(bx,y,tw,h,6);X.fill();X.strokeStyle=COL.navy;X.lineWidth=2;X.stroke();
+    text(label,bx+tw/2,y+h/2+1,{size,weight:700,color,align:'center'});
+  });
+}
+function windowFrame(x,y,w,h,p,title=''){
+  if(p<=0)return;
+  withPop(x+w/2,y+h/2,p,()=>{
+    // hard dotted shadow
+    X.fillStyle=COL.navy;
+    for(let i=x+10;i<x+w+12;i+=6){X.fillRect(i,y+h+4,3,6);}
+    for(let j=y+14;j<y+h+8;j+=6){X.fillRect(x-10,j,6,3);}
+    X.fillStyle=COL.navy;X.fillRect(x+8,y+8,w,h);
+    X.fillStyle=COL.white;X.fillRect(x,y,w,h);
+    X.strokeStyle=COL.navy;X.lineWidth=2.5;X.strokeRect(x,y,w,h);
+    // title bar
+    X.fillStyle=COL.navy;X.fillRect(x,y,w,36);
+    for(let k=0;k<3;k++){X.fillStyle=[COL.red,COL.gold,COL.mint][k];X.beginPath();X.arc(x+20+k*20,y+18,6,0,7);X.fill();}
+    if(title)text(title,x+w/2,y+18,{size:15,weight:600,color:'#D9E2F0',align:'center'});
+    // window buttons
+    ['–','□','×'].forEach((g,k)=>{const bx=x+w-96+k*30;X.strokeStyle='#D9E2F0';X.lineWidth=1.5;X.strokeRect(bx,y+8,22,20);text(g,bx+11,y+18,{size:14,color:'#D9E2F0',align:'center'});});
+    // scrollbar
+    X.fillStyle='#E7EBF1';X.fillRect(x+w-16,y+36,16,h-36);X.fillStyle=COL.navy2;rr(x+w-12,y+70,8,70,4);X.fill();
+  });
+}
+function cursor(x,y,click=0,color=COL.mint){
+  X.save();X.translate(x,y);const s=1-0.15*click;X.scale(s,s);
+  X.beginPath();X.moveTo(0,0);X.lineTo(0,30);X.lineTo(8,23);X.lineTo(14,36);X.lineTo(20,33);X.lineTo(14,21);X.lineTo(24,21);X.closePath();
+  X.fillStyle=color;X.fill();X.strokeStyle=COL.navy;X.lineWidth=2;X.stroke();X.restore();
+  if(click>0){X.save();X.strokeStyle=COL.gold;X.globalAlpha=1-click;X.lineWidth=3;X.beginPath();X.arc(x,y,10+30*click,0,7);X.stroke();X.restore();}
+}
+function sparkle(x,y,r,t,ph=0){
+  const s=r*(0.8+0.25*Math.sin(t*3+ph));X.save();X.strokeStyle=COL.navy;X.lineWidth=1.8;X.beginPath();
+  X.moveTo(x,y-s);X.quadraticCurveTo(x,y,x+s,y);X.quadraticCurveTo(x,y,x,y+s);X.quadraticCurveTo(x,y,x-s,y);X.quadraticCurveTo(x,y,x,y-s);X.stroke();X.restore();
+}
+function coinStack(x,y,t){
+  for(let i=0;i<4;i++){const cx=x+i*26,cy=y-(i%2)*6+2*Math.sin(t*2+i);X.fillStyle=COL.goldL;X.beginPath();X.arc(cx,cy,16,0,7);X.fill();X.strokeStyle=COL.navy;X.lineWidth=2;X.stroke();text('₹',cx,cy+1,{size:15,weight:700,color:COL.navy,align:'center'});}
+}
+function moneyBag(x,y,t){
+  X.save();X.translate(x,y);X.rotate(0.05*Math.sin(t*2));X.strokeStyle=COL.navy;X.lineWidth=2.2;X.fillStyle='#FFF4DC';
+  X.beginPath();X.moveTo(-14,-34);X.lineTo(14,-34);X.lineTo(8,-22);X.quadraticCurveTo(38,-6,30,22);X.quadraticCurveTo(0,34,-30,22);X.quadraticCurveTo(-38,-6,-8,-22);X.closePath();X.fill();X.stroke();
+  text('₹',0,4,{size:26,weight:800,color:COL.gold,align:'center'});X.restore();
+}
+function doodles(t){ // corner decorations used on animation scenes
+  sparkle(70,90,12,t);sparkle(1190,640,10,t,1);sparkle(1150,150,8,t,2);sparkle(120,560,9,t,3);
+  coinStack(40,670,t);moneyBag(1210,665,t);
+}
+function logo(x=1130,y=34,scale=1,alpha=1){
+  X.save();X.globalAlpha*=alpha;X.translate(x,y);X.scale(scale,scale);
+  X.fillStyle=COL.navy;rr(0,0,34,34,8);X.fill();X.fillStyle=COL.gold;rr(6,6,22,22,5);X.fill();
+  text('C',17,18,{size:18,weight:800,color:COL.navy,align:'center'});
+  text('COMandFIN',42,11,{size:15,weight:800,color:COL.navy});
+  text('FINANCE • SIMPLIFIED',42,26,{size:8.5,weight:700,color:COL.gold});
+  X.restore();
+}
+function logoLight(x=1130,y=34){ // for dark presenter scenes
+  X.save();X.fillStyle=COL.gold;rr(x,y,34,34,8);X.fill();text('C',x+17,y+18,{size:18,weight:800,color:COL.navy,align:'center'});
+  text('COMandFIN',x+42,y+11,{size:15,weight:800,color:'#fff'});text('FINANCE • SIMPLIFIED',x+42,y+26,{size:8.5,weight:700,color:COL.gold});X.restore();
+}
+
+/* ---------- presenter placeholder (replace with your camera footage) ---------- */
+function presenter(t,lt,line,lower=null){
+  const g=X.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0A1220');g.addColorStop(1,'#05080F');X.fillStyle=g;X.fillRect(0,0,W,H);
+  // studio rim lights
+  X.save();X.shadowColor='#2F6BFF';X.shadowBlur=40;X.strokeStyle='#3D7BFF';X.lineWidth=6;
+  X.strokeRect(160,250,260,150);X.strokeRect(900,260,240,120);X.restore();
+  for(let i=0;i<14;i++){X.fillStyle='rgba(255,255,255,0.025)';X.fillRect(80+i*85,0,30,H);}
+  // silhouette
+  const sway=Math.sin(lt*1.3)*3;
+  X.fillStyle='#1E2A3E';X.beginPath();X.arc(640+sway,300,70,0,7);X.fill();
+  X.beginPath();X.moveTo(470,720);X.quadraticCurveTo(480,420,640+sway,400);X.quadraticCurveTo(800,420,810,720);X.fill();
+  X.fillStyle='#2A3550';X.fillRect(380,600,520,120); // desk
+  // slate
+  X.fillStyle='rgba(201,154,46,0.95)';rr(40,40,330,36,6);X.fill();
+  text('● PRESENTER ON CAMERA',56,59,{size:16,weight:800,color:COL.navy});
+  X.fillStyle='rgba(255,255,255,0.08)';rr(140,150,1000,70,10);X.fill();
+  text('“'+line+'”',640,185,{size:22,weight:500,color:'#E6ECF5',align:'center',font:'Georgia, "DejaVu Serif", serif'});
+  logoLight();
+  if(lower){ // lower-third
+    const p=prog(lt,lower.in,lower.in+0.6),q=1-prog(lt,lower.out,lower.out+0.5);const a=Math.min(p,q);
+    if(a>0){const x=lerp(-560,60,a);
+      X.fillStyle=COL.navy;X.fillRect(x+6,566,520,78);X.fillStyle=COL.gold;X.fillRect(x,560,520,78);
+      X.fillStyle=COL.white;X.fillRect(x+10,570,500,58);X.strokeStyle=COL.navy;X.lineWidth=2.5;X.strokeRect(x+10,570,500,58);
+      text(lower.title,x+30,590,{size:21,weight:800,color:COL.navy});text(lower.sub,x+30,615,{size:15,weight:600,color:COL.muted});
+    }
+  }
+}
+
+/* ---------- line chart ---------- */
+function lineChart(x,y,w,h,{ymin,ymax,yticks,ylab,title,data,p,color=COL.gold,xl=['9:15','9:30','9:45','10:00','10:15','10:30'],marks=[],titleP=1}){
+  X.strokeStyle=COL.navy;X.lineWidth=2.5;X.beginPath();X.moveTo(x,y);X.lineTo(x,y+h);X.lineTo(x+w,y+h);X.stroke();
+  X.fillStyle=COL.navy;X.beginPath();X.arc(x,y,4,0,7);X.arc(x+w,y+h,4,0,7);X.fill();
+  yticks.forEach(v=>{const yy=y+h-(v-ymin)/(ymax-ymin)*h;X.fillStyle=COL.gold;X.fillRect(x-4,yy-6,8,12);X.strokeStyle=COL.navy;X.lineWidth=1;X.strokeRect(x-4,yy-6,8,12);text(String(v),x-12,yy,{size:12,weight:600,align:'right',color:COL.ink});});
+  xl.forEach((l,i)=>{const xx=x+30+i*(w-50)/(xl.length-1);X.fillStyle=COL.gold;X.fillRect(xx-6,y+h-4,12,8);text(l,xx,y+h+18,{size:12,weight:600,align:'center'});});
+  chip(x+w/2,y+h+30,'Time',{size:12,h:22,p:1});
+  X.save();X.translate(x-56,y+h/2);X.rotate(-Math.PI/2);chip(0,-11,ylab,{size:12,h:22});X.restore();
+  chip(x+w/2,y-46,title,{size:16,h:32,p:titleP});
+  // series
+  const n=data.length,pts=data.map((v,i)=>[x+30+i*(w-50)/(n-1),y+h-(v-ymin)/(ymax-ymin)*h]);
+  const upto=p*(n-1);if(upto<=0)return;
+  X.save();X.lineJoin='round';X.lineCap='round';
+  const path=()=>{X.beginPath();X.moveTo(...pts[0]);let i=1;for(;i<=Math.floor(upto);i++)X.lineTo(...pts[i]);
+    const f=upto-Math.floor(upto);if(f>0&&i<n)X.lineTo(lerp(pts[i-1][0],pts[i][0],f),lerp(pts[i-1][1],pts[i][1],f));};
+  path();X.strokeStyle=COL.navy;X.lineWidth=9;X.stroke();path();X.strokeStyle=color;X.lineWidth=5;X.stroke();
+  const fi=Math.floor(upto),f=upto-fi,hx=fi<n-1?lerp(pts[fi][0],pts[fi+1][0],f):pts[n-1][0],hy=fi<n-1?lerp(pts[fi][1],pts[fi+1][1],f):pts[n-1][1];
+  marks.forEach(m=>{if(upto>=m.i){X.fillStyle=COL.navy;X.beginPath();X.arc(...pts[m.i],7,0,7);X.fill();if(m.label)chip(pts[m.i][0],pts[m.i][1]+(m.dy||-46),m.label,{size:12,h:24,fill:COL.white});}});
+  X.fillStyle=COL.navy;X.beginPath();X.arc(hx,hy,8,0,7);X.fill();X.restore();
+}
+
+/* ---------- calculation window rows ---------- */
+function calcRows(x,y,rows,t){
+  rows.forEach((r,i)=>{
+    const pl=prog(t,r.at,r.at+0.5),pv=clamp((t-r.at-0.6)/(r.typeDur||1.2));
+    if(pl<=0)return;const yy=y+i*58;
+    chip(x,yy,r.label,{w:250,h:36,size:16,p:pl,align:'left'});
+    if(pv>0){text('=',x+272,yy+18,{size:20,weight:700});
+      const s=typed(r.value,pv);X.save();X.font=`700 18px ${FONT}`;const tw=X.measureText(r.value).width;X.restore();
+      X.fillStyle=r.hl?'#E3F7F0':'#EEF1F5';rr(x+294,yy+2,tw+26,32,5);X.fill();
+      text(s,x+307,yy+19,{size:18,weight:700,color:r.hl?'#0A7F60':COL.ink});}
+  });
+}
+
+/* =====================================================================
+   SCENES  (start, end in seconds) – the episode "script"
+   ===================================================================== */
+const SCENES=[
+ // 1. Branded intro: search bar types the URL, click, logo reveal
+ {s:0,e:6,f:(t)=>{
+   paper();
+   for(let i=0;i<40;i++){const px=(i*197)%W,py=(i*113)%380+20+8*Math.sin(t+i);X.fillStyle='rgba(11,31,58,'+(0.15+0.1*(i%3))+')';X.beginPath();X.arc(px,py,1.5+(i%4),0,7);X.fill();}
+   const sb=prog(t,0,0.8);const bx=lerp(-900,190,sb);
+   if(t<4.4){
+     X.fillStyle='rgba(0,0,0,0.08)';rr(bx+6,336,900,70,10);X.fill();
+     X.fillStyle='#FFF7E6';rr(bx,326,780,70,10);X.fill();X.fillStyle=COL.gold;rr(bx+780,326,120,70,10);X.fill();
+     X.strokeStyle=COL.navy;X.lineWidth=2.5;rr(bx,326,900,70,10);X.stroke();
+     X.strokeStyle=COL.navy;X.lineWidth=4;X.beginPath();X.arc(bx+834,356,13,0,7);X.moveTo(bx+844,366);X.lineTo(bx+858,380);X.stroke();
+     const url=typed('https://www.comandfin.com/learn',prog(t,0.9,3,p=>p));
+     text(url+(Math.floor(t*3)%2?'|':''),bx+40,362,{size:34,weight:500,color:COL.ink});
+     const cp=prog(t,3.1,3.8,easeInOut);cursor(lerp(1150,bx+840,cp),lerp(600,370,cp),clamp((t-3.9)/0.4)*(t<4.3?1:0));
+   } else {
+     const p=prog(t,4.4,5.2,backOut);logo(640-190*p,330,p*2.6,clamp(p));
+     text('Practical finance learning for students & professionals',640,470,{size:22,weight:600,color:COL.muted,align:'center',alpha:prog(t,4.9,5.5)});
+   }
+ }},
+ // 2. Presenter hook
+ {s:6,e:12,f:(t,lt)=>presenter(t,lt,'Delta tells you how fast an option moves. But Delta itself never sits still. Today, meet Gamma.',{in:0.6,out:5.0,title:'CA Ankit Bajaj',sub:'Founder, COMandFIN  |  Options & Derivatives'})},
+ // 3. Episode title window
+ {s:12,e:18,f:(t,lt)=>{
+   paper();doodles(t);logo();
+   windowFrame(250,180,780,300,prog(lt,0,0.6),'comandfin.com/learn/option-greeks');
+   if(lt>0.6){
+     text(typed('Option Greeks  •  Episode 2',prog(lt,0.7,2,p=>p)),640,290,{size:26,weight:600,color:COL.muted,align:'center'});
+     text('GAMMA',640,350,{size:64,weight:900,color:COL.navy,align:'center',alpha:prog(lt,1.9,2.5)});
+     text('The speed at which Delta changes',640,405,{size:22,weight:600,color:COL.gold,align:'center',alpha:prog(lt,2.4,3)});
+     const lp=prog(lt,3,5,easeInOut);X.fillStyle='#E7EBF1';rr(470,440,340,12,6);X.fill();X.fillStyle=COL.red;rr(470,440,340*lp,12,6);X.fill();
+     const cp=prog(lt,1,2.8,easeInOut);cursor(lerp(1100,470+340*lp,cp),lerp(650,452,cp),clamp((lt-5)/0.4));
+   }
+ }},
+ // 4. Presenter recap
+ {s:18,e:24,f:(t,lt)=>presenter(t,lt,'Quick recap: a Delta of 0.40 means the premium moves about ₹0.40 for every ₹1 move in the stock.')},
+ // 5. Concept: driving analogy + Delta dial across moneyness
+ {s:24,e:40,f:(t,lt)=>{
+   paper();doodles(t);logo();
+   chip(640,40,'Think of it like driving a car',{size:22,h:42,p:prog(lt,0,0.6)});
+   windowFrame(90,120,560,470,prog(lt,0.4,1),'Delta meter');
+   if(lt>1){
+     // dial
+     const cx=370,cy=420,r=170;X.lineWidth=22;
+     [[COL.red,Math.PI,Math.PI*1.4],[COL.gold,Math.PI*1.4,Math.PI*1.6],[COL.mint,Math.PI*1.6,Math.PI*2]].forEach(([c,a,b])=>{X.strokeStyle=c;X.beginPath();X.arc(cx,cy,r,a,b);X.stroke();});
+     X.strokeStyle=COL.navy;X.lineWidth=2;X.beginPath();X.arc(cx,cy,r+12,Math.PI,2*Math.PI);X.stroke();
+     [['0',Math.PI],['0.5',Math.PI*1.5],['1',Math.PI*2]].forEach(([l,a])=>text(l,cx+Math.cos(a)*(r+34),cy+Math.sin(a)*(r+34),{size:16,weight:700,align:'center'}));
+     ['OTM','ATM','ITM'].forEach((l,i)=>{const a=Math.PI*(1.2+i*0.3);text(l,cx+Math.cos(a)*(r-46),cy+Math.sin(a)*(r-46),{size:14,weight:800,color:COL.navy,align:'center'});});
+     // spot slider drives delta (logistic-ish)
+     const sp=prog(lt,3,11,easeInOut);const spot=lerp(460,540,sp);
+     const delta=1/(1+Math.exp(-(spot-500)/14));
+     const ang=Math.PI*(1+delta);X.strokeStyle=COL.navy;X.lineWidth=6;X.lineCap='round';X.beginPath();X.moveTo(cx,cy);X.lineTo(cx+Math.cos(ang)*(r-30),cy+Math.sin(ang)*(r-30));X.stroke();
+     X.fillStyle=COL.navy;X.beginPath();X.arc(cx,cy,14,0,7);X.fill();
+     chip(cx,cy+30,'Delta = '+delta.toFixed(2),{size:18,h:34,fill:COL.white});
+     // strike ruler
+     const rx=140,rw=460,ry=530;X.strokeStyle=COL.navy;X.lineWidth=2;X.beginPath();X.moveTo(rx,ry);X.lineTo(rx+rw,ry);X.stroke();
+     for(let k=0;k<=8;k++){const xx=rx+k*rw/8;X.beginPath();X.moveTo(xx,ry-6);X.lineTo(xx,ry+6);X.stroke();text(String(460+k*10),xx,ry+20,{size:12,weight:600,align:'center'});}
+     text('Stock price (Strike 500 Call)',rx+rw/2,ry-22,{size:13,weight:700,color:COL.muted,align:'center'});
+     const kx=rx+(spot-460)/80*rw;X.fillStyle=COL.gold;X.strokeStyle=COL.navy;rr(kx-9,ry-12,18,24,4);X.fill();X.stroke();
+   }
+   // right-side explanation cards
+   const cards=[[5,'DELTA  =  Speed','How fast the premium moves for a ₹1 move in the stock',COL.gold],
+                [8.5,'GAMMA  =  Acceleration','How fast Delta itself changes for a ₹1 move',COL.mint]];
+   cards.forEach(([a,h,b,c],i)=>{const p=prog(lt,a,a+0.6);if(p<=0)return;const y=150+i*150;
+     withPop(950,y+55,p,()=>{X.fillStyle=COL.navy;rr(718,y+6,470,110,10);X.fill();X.fillStyle=COL.white;rr(712,y,470,110,10);X.fill();X.strokeStyle=COL.navy;X.lineWidth=2.5;X.stroke();
+       X.fillStyle=c;rr(712,y,14,110,[10,0,0,10]);X.fill();text(h,745,y+34,{size:24,weight:800,color:COL.navy});text(b,745,y+74,{size:15,weight:600,color:COL.muted});});});
+   const fp=prog(lt,12,12.7);if(fp>0)withPop(950,515,fp,()=>{X.fillStyle=COL.navy;rr(700,470,500,90,10);X.fill();
+     text('Gamma  =  Δ Delta  /  Δ Underlying',950,500,{size:23,weight:800,color:COL.goldL,align:'center'});
+     text('(change in Delta per ₹1 move in the stock)',950,534,{size:17,weight:600,color:'#fff',align:'center'});});
+ }},
+ // 6. Presenter bridge
+ {s:40,e:46,f:(t,lt)=>presenter(t,lt,'Let’s put numbers on it. Same stock, one trading morning: watch the price and watch the Delta.')},
+ // 7. Twin charts: underlying vs delta
+ {s:46,e:66,f:(t,lt)=>{
+   paper();logo();
+   windowFrame(40,80,1200,600,prog(lt,0,0.5));
+   if(lt<0.5)return;
+   chip(640,130,'Gamma ≈ 0.02',{size:20,h:38,p:prog(lt,13,13.6),fill:COL.goldL});
+   const u=[100,101.5,100.8,102.6,103.4,102.9,104.8,105.5,105.1,107.2,108,107.6,110];
+   const d=u.map(v=>+(0.40+(v-100)*0.02).toFixed(3));
+   lineChart(170,230,430,300,{ymin:98,ymax:112,yticks:[100,102,104,106,108,110],ylab:'Price (₹)',title:'Underlying: ABC Ltd',data:u,p:prog(lt,1,9,p=>p),titleP:prog(lt,0.6,1.1),
+     marks:[{i:0,label:'₹100',dy:24},{i:12,label:'₹110'}]});
+   lineChart(770,230,400,300,{ymin:0.3,ymax:0.7,yticks:[0.3,0.4,0.5,0.6,0.7],ylab:'Delta',title:'105 Call Option',data:d,p:prog(lt,3,11,p=>p),color:COL.mint,titleP:prog(lt,2.5,3),
+     marks:[{i:0,label:'0.40',dy:24},{i:12,label:'0.60'}]});
+   const np=prog(lt,15,15.6);if(np>0)withPop(640,640,np,()=>{X.fillStyle=COL.navy;rr(330,616,620,44,8);X.fill();
+     text('Stock +₹10   →   Delta +0.20   (0.40 → 0.60)',640,639,{size:20,weight:800,color:COL.goldL,align:'center'});});
+ }},
+ // 8. Calculation window
+ {s:66,e:86,f:(t,lt)=>{
+   paper();doodles(t);logo();
+   windowFrame(250,90,780,480,prog(lt,0,0.5));
+   const ff=prog(lt,0.2,0.7)*(1-prog(lt,14.6,15));if(ff>0){X.save();X.globalAlpha=ff;X.fillStyle='#FFE27A';X.strokeStyle=COL.navy;X.lineWidth=2;X.beginPath();X.moveTo(600,615);X.lineTo(630,615);X.lineTo(640,625);X.lineTo(690,625);X.lineTo(690,670);X.lineTo(600,670);X.closePath();X.fill();X.stroke();X.restore();}
+   if(lt<0.5)return;
+   chip(620,150,'Calculation',{size:20,h:38,p:prog(lt,0.5,1)});
+   calcRows(330,215,[
+     {at:1.5,label:'Change in underlying',value:'₹100 → ₹110  =  10 points'},
+     {at:4,label:'Gamma of option',value:'0.02'},
+     {at:6.5,label:'Change in Delta',value:'10 × 0.02  =  0.20',typeDur:1.8},
+     {at:9.5,label:'Old Delta',value:'0.40'},
+     {at:11.5,label:'New Delta',value:'0.40 + 0.20  =  0.60',typeDur:1.8,hl:true},
+   ],lt);
+   const cy=215+[1.5,4,6.5,9.5,11.5].filter(a=>lt>a).length*58-30;
+   cursor(1000,clamp(cy,200,520),0);
+   const kp=prog(lt,15,15.6);if(kp>0)withPop(640,620,kp,()=>{X.fillStyle=COL.mint;rr(300,592,680,56,10);X.fill();X.strokeStyle=COL.navy;X.lineWidth=2.5;X.stroke();
+     text('Now the premium moves ~₹0.60 per ₹1 (earlier ₹0.40)',640,621,{size:21,weight:800,color:'#fff',align:'center'});});
+ }},
+ // 9. Presenter question
+ {s:86,e:90,f:(t,lt)=>presenter(t,lt,'So which options have the highest Gamma? The answer matters for every trader.')},
+ // 10. Table + gamma bell curve
+ {s:90,e:104,f:(t,lt)=>{
+   paper();logo();doodles(t);
+   windowFrame(60,90,620,470,prog(lt,0,0.5),'Gamma across moneyness');
+   if(lt>0.5){
+     const cols=[90,250,420,650],hd=['Moneyness','Call Delta','Gamma'],rows=[['Deep OTM','≈ 0.05','Low'],['OTM','≈ 0.25','Medium'],['ATM','≈ 0.50','Highest'],['ITM','≈ 0.75','Medium'],['Deep ITM','≈ 0.95','Low']];
+     const ty=150;X.fillStyle=COL.gold;X.fillRect(cols[0],ty,cols[3]-cols[0],44);
+     hd.forEach((h,i)=>text(h,(cols[i]+cols[i+1])/2,ty+22,{size:18,weight:800,color:COL.navy,align:'center'}));
+     rows.forEach((r,j)=>{const y=ty+44+j*58;const p=prog(lt,1+j*1.3,1.5+j*1.3);
+       if(r[0]==='ATM'&&lt>8){X.fillStyle='#E3F7F0';X.fillRect(cols[0],y,cols[3]-cols[0],58);}
+       r.forEach((c,i)=>text(typed(c,p),(cols[i]+cols[i+1])/2,y+29,{size:18,weight:r[0]==='ATM'&&i===2?800:600,color:r[0]==='ATM'&&i===2?'#0A7F60':COL.ink,align:'center'}));});
+     X.strokeStyle=COL.navy;X.lineWidth=1.5;for(let j=0;j<=6;j++){const y=ty+(j===0?0:44+(j-1)*58);X.beginPath();X.moveTo(cols[0],y);X.lineTo(cols[3],y);X.stroke();}
+     cols.forEach(cx=>{X.beginPath();X.moveTo(cx,ty);X.lineTo(cx,ty+44+5*58);X.stroke();});
+   }
+   // bell curve
+   const bp=prog(lt,7.5,8.1);windowFrame(720,90,500,470,bp,'Gamma vs Strike');
+   if(lt>8.1){const ox=780,oy=470,w=400,h=260;X.strokeStyle=COL.navy;X.lineWidth=2.5;X.beginPath();X.moveTo(ox,oy-h);X.lineTo(ox,oy);X.lineTo(ox+w,oy);X.stroke();
+     text('Strike →',ox+w-30,oy+22,{size:13,weight:700,color:COL.muted,align:'center'});X.save();X.translate(ox-18,oy-h/2);X.rotate(-Math.PI/2);text('Gamma',0,0,{size:13,weight:700,color:COL.muted,align:'center'});X.restore();
+     const curve=(sig,pp,col,peak)=>{X.beginPath();for(let i=0;i<=100*pp;i++){const xx=ox+i*w/100,z=(i-50)/sig,yy=oy-Math.exp(-z*z/2)*h*peak;i?X.lineTo(xx,yy):X.moveTo(xx,yy);}X.strokeStyle=col;X.lineWidth=4;X.stroke();};
+     curve(18,prog(lt,8.2,10,p=>p),COL.gold,0.5);
+     if(lt>10.5)curve(7,prog(lt,10.5,12,p=>p),COL.red,0.95);
+     text('ATM',ox+w/2,oy+22,{size:14,weight:800,color:COL.navy,align:'center'});
+     chip(ox+90,oy-h-10,'30 days to expiry',{size:12,h:24,fill:COL.goldL,p:prog(lt,9,9.5)});
+     chip(ox+300,oy-h-10,'2 days to expiry',{size:12,h:24,fill:'#F6C6C0',p:prog(lt,11.5,12)});
+   }
+   const cp=prog(lt,12.4,13);if(cp>0)withPop(640,630,cp,()=>{X.fillStyle=COL.navy;rr(170,604,940,52,10);X.fill();
+     text('ATM options near expiry carry the highest Gamma: small moves, big Delta swings',640,630,{size:19,weight:800,color:COL.goldL,align:'center'});});
+ }},
+ // 11. Presenter close + next episode lower third
+ {s:104,e:109,f:(t,lt)=>presenter(t,lt,'Long options love Gamma; option sellers fear it. Next episode: Theta, the cost of time.',{in:0.8,out:4.3,title:'Next episode:  Theta',sub:'Option Greeks series  •  COMandFIN'})},
+ // 12. End card
+ {s:109,e:113,f:(t,lt)=>{
+   paper();const p=prog(lt,0,0.7,backOut);logo(640-190*p,250,p*2.6,clamp(p));
+   text('Learn Options, Valuation & Financial Modelling the practical way',640,390,{size:22,weight:600,color:COL.muted,align:'center',alpha:prog(lt,0.6,1.1)});
+   chip(520,450,'Subscribe',{size:20,h:44,fill:COL.red,color:'#fff',p:prog(lt,1,1.5)});
+   chip(760,450,'www.comandfin.com',{size:20,h:44,p:prog(lt,1.3,1.8)});
+   text('Educational content only. Not investment advice.',640,680,{size:13,weight:500,color:COL.muted,align:'center',alpha:prog(lt,1.5,2)});
+ }},
+];
+const DURATION=SCENES[SCENES.length-1].e;
+
+function draw(t){
+  const sc=SCENES.find(s=>t>=s.s&&t<s.e)||SCENES[SCENES.length-1];
+  X.save();X.clearRect(0,0,W,H);sc.f(t,t-sc.s);X.restore();
+  // short fade-in at every scene cut (except presenter → hard cut feel kept short)
+  const lt=t-sc.s;if(lt<0.18){X.fillStyle=`rgba(250,248,243,${1-lt/0.18})`;X.fillRect(0,0,W,H);}
+}
+window.drawFrame=draw;window.DURATION=DURATION;
+
+const qs=new URLSearchParams(location.search);
+if(qs.has('render')){draw(0);}
+else if(qs.has('t')){draw(parseFloat(qs.get('t')));}
+else{const t0=performance.now();(function loop(){draw(((performance.now()-t0)/1000)%DURATION);requestAnimationFrame(loop);})();}
+</script>
+</body>
+</html>
