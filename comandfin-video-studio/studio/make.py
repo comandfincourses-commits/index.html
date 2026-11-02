@@ -119,7 +119,8 @@ def main():
     if preview:
         mux(body_v, voice_path, os.path.join(out_dir, 'preview.mp4')); print('preview ready'); return
     end_v = os.path.join(work, 'end.mp4')
-    if not until: node(pdir, 'video', 'end', end_v, 2)
+    endseg = project.get('end_segment', 'end')
+    if not until: node(pdir, 'video', endseg, end_v, 2)
     clips = (project.get('teaser') or {}).get('clips') or []
     teaser_v = os.path.join(work, 'teaser.mp4') if clips else None
     if clips: node(pdir, 'video', 'teaser', teaser_v, 2)
@@ -134,7 +135,7 @@ def main():
     body_a = voice + fx * project.get('sfx_volume', 1.0) + music_bed(pdir, project, n, voice)
     write_wav(os.path.join(work, 'body.wav'), body_a)
     intro_audio = read_audio(INTRO)
-    end_n = int(durs['end'] * SR); end_a = np.zeros((end_n, 2), np.float32)
+    end_n = int(durs[project.get('end_segment', 'end')] * SR); end_a = np.zeros((end_n, 2), np.float32)
     seg = intro_audio[:end_n] * (0.55 if fmt == 'long' else 0.35); fade = np.linspace(1, 0, min(len(seg), SR * 3))
     seg[-len(fade):] *= fade[:, None]; end_a[:len(seg)] = seg; place(end_a, bank['whoosh'], 0.05)
     write_wav(os.path.join(work, 'end.wav'), end_a)

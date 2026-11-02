@@ -50,7 +50,7 @@ async function renderRange(browser, project, seg, f0, f1, out) {
     if (mode === 'durations' || mode === 'events') {
       const pg = await openEngine(browser, project);
       const r = mode === 'events' ? await pg.evaluate(() => window.ENGINE.events())
-        : await pg.evaluate(() => ({ teaser: window.ENGINE.duration('teaser'), body: window.ENGINE.duration('body'), end: window.ENGINE.duration('end') }));
+        : await pg.evaluate(() => ({ teaser: window.ENGINE.duration('teaser'), body: window.ENGINE.duration('body'), end: window.ENGINE.duration('end'), promo: window.ENGINE.duration('promo') }));
       if (mode === 'events') fs.writeFileSync(a[0], JSON.stringify(r)); else console.log(JSON.stringify(r));
     } else if (mode === 'stills') {
       const [seg, ts, outDir] = a; fs.mkdirSync(outDir, { recursive: true });

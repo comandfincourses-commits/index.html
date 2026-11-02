@@ -258,6 +258,34 @@ const SCENE={
     inAt(t,at,()=>{card(b.x+S(80,10),ay,b.w-S(160,20),al.length*S(50,52)+S(110,120),{fill:'#E4F7F0',r:20});pill(b.x+S(80,10)+S(30,30),ay,'ANSWER',S(24,26),{bg:B.green});
       al.forEach((l,i)=>richLine(l,cx,ay+S(70,74)+i*S(50,52),S(38,40),{w:700,c:B.ink,hl:s.hl||[],hc:B.greenD,a:'center'}));});}
  },
+
+ media(s,b,t){ // B-roll photo with slow Ken Burns move + headline
+  const im=IMG[s.photo];const lt=t-s.start,dur=s.end-s.start;const k=clamp(lt/dur);
+  const iw=V?b.w:b.w*0.56,ih=V?Math.min(680,b.h*0.66):b.h,ix=b.x,iy=V?b.y+10:b.y;
+  popAt(ix+iw/2,iy+ih/2,t,s.start,()=>{X.save();X.shadowColor='rgba(9,29,57,0.28)';X.shadowBlur=40;X.shadowOffsetY=14;X.fillStyle='#000';rr(ix,iy,iw,ih,26);X.fill();X.restore();
+    X.save();rr(ix,iy,iw,ih,26);X.clip();
+    if(im&&im.naturalWidth){const z=1.04+0.10*(s.zoomOut?1-k:k);const sc=Math.max(iw/im.naturalWidth,ih/im.naturalHeight)*z;const dw=im.naturalWidth*sc,dh=im.naturalHeight*sc;
+      const fx=s.fx??0.5,fy=s.fy??0.35;const px=ix+iw/2-dw*fx+(s.pan||0)*iw*0.06*(k-0.5),py=iy+ih/2-dh*fy;X.drawImage(im,clamp(px,ix+iw-dw,ix),clamp(py,iy+ih-dh,iy),dw,dh);}
+    const gr=X.createLinearGradient(0,iy+ih*0.55,0,iy+ih);gr.addColorStop(0,'rgba(9,29,57,0)');gr.addColorStop(1,'rgba(9,29,57,0.55)');X.fillStyle=gr;X.fillRect(ix,iy,iw,ih);X.restore();
+    X.strokeStyle=s.accent||B.gold;X.lineWidth=6;rr(ix,iy,iw,ih,26);X.stroke();
+    if(s.label)pill(ix+24,iy+ih-48,s.label.toUpperCase(),S(24,26),{bg:s.accent||B.gold,c:B.navy});});
+  const tx=V?b.x+b.w/2:ix+iw+60,tw_=V?b.w-20:b.w-iw-60,al=V?'center':'left';let y=V?iy+ih+S(0,90):b.y+b.h*0.32;
+  const sz=s.size||S(56,58);const lines=wrap(s.text||'',tw_,sz,900);
+  lines.forEach((l,i)=>inAt(t,s.start+0.35+i*0.12,()=>richLine(l,tx,y+i*sz*1.18,sz,{w:900,hl:s.hl||[],a:al})));
+  y+=lines.length*sz*1.18+S(30,20);
+  if(s.sub)inAt(t,s.start+0.8,()=>wrap(s.sub,tw_,S(34,36),600).forEach((l,i)=>txt(l,tx,y+i*S(44,46),S(34,36),{w:600,c:B.muted,a:al})));
+ },
+ presenter(s,b,t){ // the presenter on screen (cut-out) with a big question
+  const im=IMG[P.cutoutUrl];const lt=t-s.start;
+  const hy=V?b.y+30:b.y+b.h*0.3;const sz=s.size||S(84,92);
+  if(s.kicker)popAt(V?W/2:b.x+60,hy,t,s.start+0.1,()=>pill(V?W/2:b.x,hy,s.kicker.toUpperCase(),S(28,32),{bg:B.green,a:V?'center':'left'}));
+  const lines=wrap(s.heading,V?b.w:b.w*0.55,sz,900);
+  lines.forEach((l,i)=>inAt(t,s.start+0.2+i*0.12,()=>richLine(l,V?W/2:b.x,hy+S(110,120)+i*sz*1.1,sz,{w:900,hl:s.hl||[],a:V?'center':'left'})));
+  if(im&&im.naturalWidth){const h=V?1150:H*0.92,w=im.naturalWidth*h/im.naturalHeight;const x=V?W/2-w/2:W-w-80,y0=H-h+(V?60:0);
+    const p=eo(clamp(lt/0.6));X.save();X.globalAlpha=p;const sway=Math.sin(lt*0.8)*4;
+    const gl=X.createRadialGradient(x+w/2,y0+h*0.35,20,x+w/2,y0+h*0.35,h*0.6);gl.addColorStop(0,'rgba(16,176,127,0.28)');gl.addColorStop(1,'rgba(16,176,127,0)');X.fillStyle=gl;X.fillRect(x-200,y0-100,w+400,h+200);
+    X.drawImage(im,x+sway,y0+(1-p)*80,w,h);X.restore();}
+ },
  profile(s,b,t){ // a person / source card + key points timed to speech
   const t0=s.start;const lw=V?b.w:b.w*0.38;const lh=V?S(0,420):b.h;
   inAt(t,t0,()=>{card(b.x,b.y,lw,lh,{r:24});X.fillStyle=B.navy;rr(b.x,b.y,lw,V?150:200,[24,24,0,0]);X.fill();
@@ -431,7 +459,7 @@ function body(t){
   if(sc){const fade=Math.min(pr(t,sc.start,0.3),1-pr(t,sc.end-0.25,0.25));X.save();X.globalAlpha=clamp(fade);
     const k=ctaSqueeze(t)*0.3,cx=L.stage.x+L.stage.w/2,cy=L.stage.y;X.translate(cx,cy);X.scale(1-k,1-k);X.translate(-cx,-cy);
     (SCENE[sc.type]||SCENE.statement)(sc,L.stage,t);X.restore();}
-  chapterCard(t);hookOverlay(t);avatar(t);captions(t);cta(t);progress(t,P.transcript.duration);
+  chapterCard(t);hookOverlay(t);if(!(sc&&sc.hideAvatar))avatar(t);captions(t);cta(t);progress(t,P.transcript.duration);
 }
 const SEG={
   body:{dur:()=>P.bodyEnd??(P.transcript.duration+0.3),draw:t=>body(t)},
@@ -445,7 +473,7 @@ function setup(project){
   L=V?{stage:{x:60,y:300,w:960,h:1000},cap:{y:1440,size:76,maxW:940},avatar:{x:150,y:1640,r:84,nameX:250,nameY:1640,nameAlign:'left'}}
      :{stage:{x:110,y:150,w:1700,h:730},cap:{y:985,size:38,maxW:1420},avatar:{x:1810,y:975,r:66,nameX:null}};
   AV.src=P.avatarUrl;buildCaptions();
-  const srcs=new Set();if(P.promo&&P.promo.image)srcs.add(P.promo.image);(P.scenes||[]).forEach(sc=>{if(sc.photo)srcs.add(sc.photo);(sc.items||[]).forEach(i=>{if(i&&i.photo)srcs.add(i.photo);});});
+  const srcs=new Set();if((P.scenes||[]).some(x=>x.type==='presenter'))srcs.add(P.cutoutUrl);if(P.promo&&P.promo.image)srcs.add(P.promo.image);(P.scenes||[]).forEach(sc=>{if(sc.photo)srcs.add(sc.photo);(sc.items||[]).forEach(i=>{if(i&&i.photo)srcs.add(i.photo);});});
   const loads=[...srcs].map(u=>new Promise(r=>{const im=new Image();im.onload=r;im.onerror=r;im.src=u;IMG[u]=im;}));
   loads.push(new Promise(r=>{if(AV.complete)r();else{AV.onload=r;AV.onerror=r;}}));return Promise.all(loads);
 }

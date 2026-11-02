@@ -1,0 +1,321 @@
+{
+ "format": "short",
+ "title": "Will AI Take Your Job - Musk Gates Huang",
+ "topic": "AI & Your Job",
+ "audio": "voiceover_natural.wav",
+ "intro_mode": "none",
+ "cta": [
+  {
+   "at": 46.16,
+   "dur": 5.6,
+   "text": "Like & Share with a friend"
+  },
+  {
+   "at": 77.06,
+   "dur": 5.2,
+   "text": "Follow COMandFIN for more"
+  }
+ ],
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 3.77,
+   "type": "presenter",
+   "kicker": "Musk • Gates • Huang",
+   "heading": "Will AI take YOUR job?",
+   "hl": [
+    "YOUR",
+    "job?"
+   ],
+   "hideAvatar": true
+  },
+  {
+   "start": 3.77,
+   "end": 14.25,
+   "type": "cards",
+   "heading": "Imagine a world where…",
+   "cols": 2,
+   "items": [
+    {
+     "icon": "robot",
+     "text": "Robots manufacture products",
+     "at": 3.87
+    },
+    {
+     "icon": "chip",
+     "text": "AI manages businesses",
+     "at": 5.57
+    },
+    {
+     "icon": "car",
+     "text": "Autonomous cars drive you around",
+     "at": 7.42
+    },
+    {
+     "icon": "people",
+     "text": "Machines do the work of millions",
+     "at": 10.45
+    }
+   ]
+  },
+  {
+   "start": 14.25,
+   "end": 21.93,
+   "type": "title",
+   "kicker": "Sounds impossible?",
+   "heading": "3 tech leaders. 3 predictions.",
+   "hl": [
+    "3"
+   ],
+   "sub": "What they are saying about AI, jobs and money"
+  },
+  {
+   "start": 21.93,
+   "end": 45.76,
+   "type": "profile",
+   "name": "Elon Musk",
+   "role": "CEO, Tesla & SpaceX",
+   "source": "Interview with The Economist, July 2026 (as cited)",
+   "label": "Prediction",
+   "points": [
+    {
+     "icon": "chip",
+     "text": "AI could surpass the combined intelligence of humanity in ~5 years",
+     "at": 28.07
+    },
+    {
+     "icon": "robot",
+     "text": "Within 10 years, AI & robots could create an abundance of goods and services",
+     "at": 37.72
+    },
+    {
+     "icon": "money",
+     "text": "Money itself could become almost meaningless",
+     "at": 42.22,
+     "hl": true
+    }
+   ],
+   "photo": "../long-01/media/elon_musk.jpg",
+   "photo_y": 0.04
+  },
+  {
+   "start": 45.76,
+   "end": 53.01,
+   "type": "statement",
+   "text": "A world where robots do most of the work",
+   "hl": [
+    "robots"
+   ],
+   "sub": "and humans no longer need to work simply to survive"
+  },
+  {
+   "start": 53.01,
+   "end": 66.44,
+   "type": "profile",
+   "name": "Bill Gates",
+   "role": "Co-founder, Microsoft",
+   "source": "Essay on AI, August 2026 (as cited)",
+   "label": "Warning",
+   "accent": "#10B07F",
+   "points": [
+    {
+     "icon": "warn",
+     "text": "AI could disrupt employment much faster than previous technological revolutions",
+     "at": 59.56,
+     "hl": true
+    }
+   ],
+   "photo": "../long-01/media/bill_gates.jpg",
+   "photo_y": 0.04
+  },
+  {
+   "start": 66.44,
+   "end": 76.42,
+   "type": "cards",
+   "heading": "Areas flagged for significant disruption",
+   "cols": 3,
+   "items": [
+    {
+     "icon": "chart",
+     "text": "Accounting",
+     "at": 67.94
+    },
+    {
+     "icon": "headset",
+     "text": "Customer Service",
+     "at": 68.54
+    },
+    {
+     "icon": "code",
+     "text": "Software Development",
+     "at": 69.54
+    },
+    {
+     "icon": "scale",
+     "text": "Law",
+     "at": 71.52
+    },
+    {
+     "icon": "heart",
+     "text": "Medicine",
+     "at": 71.72
+    },
+    {
+     "icon": "factory",
+     "text": "Manufacturing",
+     "at": 72.42
+    }
+   ]
+  },
+  {
+   "start": 76.42,
+   "end": 82.86,
+   "type": "statement",
+   "text": "“Human Reserve Jobs”",
+   "hl": [
+    "Human",
+    "Reserve",
+    "Jobs”"
+   ],
+   "accent": "#10B07F",
+   "sub": "Certain responsibilities should stay with humans"
+  },
+  {
+   "start": 82.86,
+   "end": 91.24,
+   "type": "media",
+   "photo": "../../assets/broll/financial_modelling.jpg",
+   "fx": 0.62,
+   "fy": 0.35,
+   "label": "Human Reserve Jobs",
+   "text": "Even when AI can do the job, some work should stay human",
+   "hl": [
+    "stay",
+    "human"
+   ]
+  },
+  {
+   "start": 91.24,
+   "end": 96.94,
+   "type": "question",
+   "label": "Think about it",
+   "q": "Would you want a robot to deliver the news of a life-threatening illness to your family?",
+   "hl": [
+    "too",
+    "important"
+   ]
+  },
+  {
+   "start": 96.94,
+   "end": 104.55,
+   "type": "media",
+   "photo": "../../assets/broll/mentorship.jpg",
+   "fx": 0.42,
+   "fy": 0.4,
+   "label": "Human connection",
+   "accent": "#10B07F",
+   "text": "Some responsibilities are too important to hand over to machines",
+   "hl": [
+    "too",
+    "important"
+   ]
+  },
+  {
+   "start": 104.55,
+   "end": 115.81,
+   "type": "profile",
+   "name": "Jensen Huang",
+   "role": "CEO, NVIDIA",
+   "source": "Milken Institute Global Conference, 2025",
+   "label": "Context",
+   "points": [
+    {
+     "icon": "chip",
+     "text": "NVIDIA powers much of the world's AI revolution",
+     "at": 108.08
+    }
+   ],
+   "photo": "../long-01/media/jensen_huang.jpg",
+   "photo_y": 0.02,
+   "photo_zoom": 0.62
+  },
+  {
+   "start": 115.81,
+   "end": 118.71,
+   "type": "media",
+   "photo": "../../assets/broll/corporate_training.jpg",
+   "fx": 0.45,
+   "fy": 0.42,
+   "label": "Remember this",
+   "zoomOut": true,
+   "text": "Every student and working professional",
+   "hl": [
+    "student",
+    "professional"
+   ]
+  },
+  {
+   "start": 118.71,
+   "end": 126.94,
+   "type": "statement",
+   "text": "You won't lose your job to AI. You'll lose it to somebody who uses AI.",
+   "hl": [
+    "somebody",
+    "uses"
+   ],
+   "accent": "#10B07F",
+   "sub": "Jensen Huang, CEO, NVIDIA"
+  }
+ ],
+ "end_segment": "promo",
+ "promo": {
+  "title": "Watch the complete video on YouTube",
+  "sub": "Link in the post & comments",
+  "cta": "Musk • Gates • Huang + 5 future skills",
+  "image": "../long-01/output/thumbnail.png",
+  "duration": "8:58",
+  "dur": 5
+ },
+ "thumbnail": {
+  "line1": "WILL AI TAKE",
+  "line2": "YOUR JOB?",
+  "badge": "MUSK • GATES • HUANG",
+  "faces": [
+   {
+    "src": "../long-01/media/elon_musk.jpg",
+    "label": "MUSK",
+    "y": 0.04
+   },
+   {
+    "src": "../long-01/media/bill_gates.jpg",
+    "label": "GATES",
+    "y": 0.04
+   },
+   {
+    "src": "../long-01/media/jensen_huang.jpg",
+    "label": "HUANG",
+    "y": 0.02,
+    "z": 0.62
+   }
+  ]
+ },
+ "music": "../../assets/music_library/comandfin_bed_calm.m4a",
+ "music_volume": 1.0,
+ "naturalize": {
+  "breaths": true,
+  "extra_pauses": [
+   [
+    112.2,
+    0.45
+   ],
+   [
+    43.0,
+    0.15
+   ]
+  ]
+ },
+ "naturalized": {
+  "pauses_added": 29,
+  "seconds_added": 7.54
+ }
+}
