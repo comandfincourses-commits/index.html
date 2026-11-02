@@ -353,7 +353,7 @@ function cta(t){
 
 /* ---------------- hook / chapter / teaser overlays ---------------- */
 function hookOverlay(t){ if(!P.hook)return;const d=P.hook.dur||3.2;if(t>d)return;
-  const a=Math.min(pr(t,0,0.35,bo),1-pr(t,d-0.35,0.35));const y=V?L.stage.y+20:L.stage.y-10;const sz=S(54,62);const lines=wrap(P.hook.text,W-S(400,140),sz,900);
+  const a=Math.min(pr(t,0,0.35,bo),1-pr(t,d-0.35,0.35));const y=V?L.stage.y+(P.hook.y??420):L.stage.y-10;const sz=S(54,62);const lines=wrap(P.hook.text,W-S(400,140),sz,900);
   X.save();X.globalAlpha=clamp(a);const bw=Math.max(...lines.map(l=>tw(l,sz,900)))+80,bh=lines.length*sz*1.2+50;
   X.translate(W/2,y+bh/2);X.rotate(-0.02);X.scale(0.9+0.1*a,0.9+0.1*a);X.translate(-W/2,-(y+bh/2));
   card(W/2-bw/2,y,bw,bh,{fill:B.gold,r:18});lines.forEach((l,i)=>txt(l,W/2,y+25+sz*0.6+i*sz*1.2,sz,{w:900,c:B.navy,a:'center'}));X.restore();
@@ -421,8 +421,8 @@ function promoCard(t){
     X.save();X.translate(bx+50,y+h/2);X.rotate(-0.7);X.strokeStyle=B.white;X.lineWidth=5;rr(-26,-10,30,20,10);X.stroke();rr(-4,-10,30,20,10);X.stroke();X.restore();
     txt(sub,bx+88,y+h/2+1,sz,{w:800,c:B.white});});
   y+=(V?40:36)*2.1+(V?70:50);
-  const bob=Math.sin(t*6)*10;inAt(t,1.6,()=>{const ax=al==='center'?rx:rx+40;X.fillStyle=B.goldL;X.beginPath();X.moveTo(ax-26,y+bob);X.lineTo(ax+26,y+bob);X.lineTo(ax,y+34+bob);X.closePath();X.fill();
-    txt(pm.cta||'Tap the link to watch now',al==='center'?rx:rx+80,y+16,V?34:30,{w:700,c:B.goldL,a:al==='center'?'center':'left'});});
+  const bob=Math.sin(t*6)*10;inAt(t,1.6,()=>{const ctr=al==='center';const ax=ctr?rx:rx+40,ay=ctr?y+60:y;X.fillStyle=B.goldL;X.beginPath();X.moveTo(ax-26,ay+bob);X.lineTo(ax+26,ay+bob);X.lineTo(ax,ay+34+bob);X.closePath();X.fill();
+    txt(pm.cta||'Tap the link to watch now',ctr?rx:rx+80,ctr?y:y+16,V?34:30,{w:700,c:B.goldL,a:ctr?'center':'left'});});
 }
 /* ---------------- frame composition ---------------- */
 function body(t){
