@@ -66,7 +66,7 @@ function wordmark(x,y,sz,a='left',dark=false){
   return total;
 }
 function brandBar(t){
-  if(V){wordmark(W/2,118,58,'center');if(P.topic)pill(W/2,212,P.topic.toUpperCase(),26,{bg:B.navy,a:'center'});}
+  if(V){wordmark(W/2,118,58,'center');if(P.topic&&!INTEASER)pill(W/2,212,P.topic.toUpperCase(),26,{bg:B.navy,a:'center'});}
   else{wordmark(70,64,40);if(P.topic)pill(W-70,64,P.topic.toUpperCase(),22,{bg:B.navy,a:'right'});}
 }
 function progress(t,dur){X.fillStyle='rgba(9,29,57,0.08)';X.fillRect(0,H-8,W,8);X.fillStyle=B.gold;X.fillRect(0,H-8,W*clamp(t/dur),8);}
@@ -279,7 +279,7 @@ function cta(t){
     if(V){ // second row hint for shorts
       txt('Share with a friend who needs this',W/2,py+ph-48,30,{w:600,c:B.goldL,a:'center'});}
     btns.forEach(([lab,ic,bg,fg],i)=>{const bx=bx0+i*(bw+gap);popAt(bx+bw/2,by+bh/2,lt,0.5+i*0.3,()=>{X.fillStyle=bg;rr(bx,by,bw,bh,bh/2);X.fill();
-      ic(bx+S(52,56),by+bh/2,S(38,46),i===2?B.white:B.navy,i===2?clamp((lt-3.55)/1.2):0);const fsz=lab.length>9?S(24,26):S(30,34);txt(lab,bx+S(86,92)+(bw-S(86,92))/2-8,by+bh/2+1,fsz,{w:900,c:i===2?B.white:B.navy,a:'center'});});});
+      ic(bx+S(52,56),by+bh/2,S(38,46),i===2?B.white:B.navy,i===2?clamp((lt-3.55)/1.2):0);const fsz=lab.length>9?S(24,24):lab.length>=9?S(28,28):S(30,34);txt(lab,bx+S(86,92)+(bw-S(86,92))/2-8,by+bh/2+1,fsz,{w:900,c:i===2?B.white:B.navy,a:'center'});});});
     if(likeOn){const fl=clamp((lt-2.45)/0.8);txt('+1',bx0+bw/2,by-20-fl*50,S(34,40),{w:900,c:B.goldL,a:'center',al:1-fl});}
     // cursor path: enter → like → subscribe
     const lk=[bx0+bw*0.45,by+bh*0.55],sb=[bx0+2*(bw+gap)+bw*0.45,by+bh*0.55],st=[W*0.75,H*0.98];
@@ -305,7 +305,7 @@ function teaserOverlay(lt,i,clipLt,clipDur){
   // flash between clips
   if(clipLt<0.14){X.fillStyle=`rgba(255,255,255,${1-clipLt/0.14})`;X.fillRect(0,0,W,H);}
   const lab=P.teaser.label||(V?'WATCH TILL THE END':'COMING UP IN THIS VIDEO');
-  const y=V?290:64;const pw=tw(lab,S(30,34),900)+110;
+  const y=V?212:64;const pw=tw(lab,S(30,34),900)+110;
   X.fillStyle=B.red;rr(W/2-pw/2,y-S(30,36),pw,S(60,72),S(30,36));X.fill();
   X.fillStyle=B.white;X.globalAlpha=0.5+0.5*Math.sin(lt*8);X.beginPath();X.arc(W/2-pw/2+36,y,10,0,7);X.fill();X.globalAlpha=1;
   txt(lab,W/2+18,y+1,S(30,34),{w:900,c:B.white,a:'center'});
