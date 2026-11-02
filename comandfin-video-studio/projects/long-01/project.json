@@ -1,0 +1,38 @@
+{
+  "format": "long",
+  "title": "Will AI Take Your Job? Musk, Gates & Huang Predictions + 5 Skills for the Next 20 Years",
+  "topic": "AI & the Future of Jobs",
+  "audio": "voiceover.mp3",
+  "intro_mode": "full",
+  "teaser": { "clips": [[39.49, 42.98], [112.41, 119.14], [438.01, 443.92]], "label": "COMING UP IN THIS VIDEO" },
+  "cta": [
+    { "at": 43.4, "dur": 5.6, "text": "Enjoying this? Like & Share with a friend" },
+    { "at": 184.9, "dur": 5.0 },
+    { "at": 316.5, "dur": 5.0, "text": "Share this with someone worried about AI" },
+    { "at": 496.6, "dur": 3.4, "text": "Like • Share • Subscribe to COMandFIN" }
+  ],
+  "scenes": [
+    { "start": 0, "end": 14.0, "type": "cards", "heading": "Imagine a world where…", "cols": 4,
+      "items": [ {"icon":"robot","text":"Robots manufacture products","at":3.8}, {"icon":"chip","text":"AI manages businesses","at":5.5},
+                 {"icon":"car","text":"Autonomous cars drive you around","at":7.3}, {"icon":"people","text":"Machines do the work of millions","at":10.2} ] },
+    { "start": 14.0, "end": 20.3, "type": "title", "kicker": "Sounds impossible?", "heading": "3 tech leaders. 3 predictions.", "hl": ["3"], "sub": "What they are saying about AI, jobs and money" },
+    { "start": 20.3, "end": 43.0, "type": "profile", "chapter": "Elon Musk: a world of abundance", "name": "Elon Musk", "role": "CEO, Tesla & SpaceX", "source": "Interview with The Economist, July 2026 (as cited)", "label": "Prediction",
+      "points": [ {"icon":"chip","text":"AI could surpass the combined intelligence of humanity in ~5 years","at":26.3},
+                  {"icon":"robot","text":"Within 10 years, AI & robots could create an abundance of goods and services","at":35.5},
+                  {"icon":"money","text":"Money itself could become almost meaningless","at":40.0,"hl":true} ] },
+    { "start": 43.0, "end": 49.9, "type": "statement", "text": "A world where robots do most of the work", "hl": ["robots"], "sub": "and humans no longer need to work simply to survive" },
+    { "start": 49.9, "end": 62.5, "type": "profile", "chapter": "Bill Gates: employment disruption", "name": "Bill Gates", "role": "Co-founder, Microsoft", "source": "Essay on AI, August 2026 (as cited)", "label": "Warning", "accent": "#10B07F",
+      "points": [ {"icon":"warn","text":"AI could disrupt employment much faster than previous technological revolutions","at":55.8,"hl":true} ] },
+    { "start": 62.5, "end": 72.4, "type": "cards", "heading": "Areas flagged for significant disruption", "cols": 3,
+      "items": [ {"icon":"chart","text":"Accounting","at":64.0}, {"icon":"headset","text":"Customer Service","at":64.6}, {"icon":"code","text":"Software Development","at":65.6},
+                 {"icon":"scale","text":"Law","at":67.5}, {"icon":"heart","text":"Medicine","at":67.7}, {"icon":"factory","text":"Manufacturing","at":68.4} ] },
+    { "start": 72.4, "end": 86.2, "type": "statement", "text": "“Human Reserve Jobs”", "hl": ["Human", "Reserve", "Jobs”"], "accent": "#10B07F", "sub": "Certain responsibilities should remain with humans, even when AI becomes technically capable of performing them" },
+    { "start": 86.2, "end": 98.9, "type": "question", "label": "Think about it", "q": "Would you want a robot to deliver the news of a life-threatening illness to your family?",
+      "a": "Some human responsibilities are too important to hand over completely to machines.", "a_at": 91.9, "hl": ["too", "important"] },
+    { "start": 98.9, "end": 112.2, "type": "profile", "chapter": "Jensen Huang: AI users win", "name": "Jensen Huang", "role": "CEO, NVIDIA", "source": "Milken Institute Global Conference, 2025", "label": "Context",
+      "points": [ {"icon":"chip","text":"NVIDIA powers much of the world's AI revolution","at":101.9},
+                  {"icon":"people","text":"A message for every student and working professional","at":109.5,"hl":true} ] },
+    { "start": 112.2, "end": 120.2, "type": "statement", "text": "You won't lose your job to AI. You'll lose it to somebody who uses AI.", "hl": ["somebody", "uses"], "accent": "#10B07F", "sub": "Jensen Huang, CEO, NVIDIA" }
+  ],
+  "thumbnail": { "line1": "WILL AI TAKE", "line2": "YOUR JOB?", "badge": "MUSK • GATES • HUANG", "stat": "20 YEARS", "stat_label": "skills to survive" }
+}

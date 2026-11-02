@@ -13,6 +13,7 @@ const ROOT = path.resolve(__dirname, '..');
 function loadProject(dir) {
   const p = JSON.parse(fs.readFileSync(path.join(dir, 'project.json'), 'utf8'));
   p.transcript = JSON.parse(fs.readFileSync(path.join(dir, 'transcript.json'), 'utf8'));
+  if (process.env.BODY_END) p.bodyEnd = +process.env.BODY_END;
   p.avatarUrl = 'file://' + path.join(ROOT, 'assets', 'presenter_avatar.png');
   p.cutoutUrl = 'file://' + path.join(ROOT, 'assets', 'presenter_cutout.png');
   return p;

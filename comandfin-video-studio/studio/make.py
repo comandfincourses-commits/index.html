@@ -100,12 +100,14 @@ def chapters(project, offset):
 
 def main():
     pdir = os.path.abspath(sys.argv[1]); preview = '--preview' in sys.argv
+    until = float(sys.argv[sys.argv.index('--until') + 1]) if '--until' in sys.argv else None
+    if until: os.environ['BODY_END'] = str(until)   # sample build: lesson cut at this second, no end screen
     project = json.load(open(os.path.join(pdir, 'project.json')))
     fmt = project.get('format', 'long')
     voice_path = os.path.join(pdir, project.get('audio') or next(f for f in os.listdir(pdir) if f.startswith('voiceover')))
     out_dir = os.path.join(pdir, 'output'); work = os.path.join(pdir, '.work'); os.makedirs(out_dir, exist_ok=True); os.makedirs(work, exist_ok=True)
     slug = re.sub(r'[^A-Za-z0-9]+', '_', project.get('title', os.path.basename(pdir))).strip('_')[:60]
-    slug = f"COMandFIN_{'Short' if fmt == 'short' else 'Long'}_{slug}"
+    slug = f"COMandFIN_{'Short' if fmt == 'short' else 'Long'}_{slug}" + (f'_SAMPLE_{int(until)}s' if until else '')
 
     if not os.path.exists(os.path.join(pdir, 'transcript.json')):
         print('1/6 transcribing voice-over …'); sh('python3', os.path.join(STUDIO, 'transcribe.py'), voice_path, '--lang', project.get('language', 'en'))
@@ -116,7 +118,8 @@ def main():
     body_v = os.path.join(work, 'body.mp4'); node(pdir, 'video', 'body', body_v, 4)
     if preview:
         mux(body_v, voice_path, os.path.join(out_dir, 'preview.mp4')); print('preview ready'); return
-    end_v = os.path.join(work, 'end.mp4'); node(pdir, 'video', 'end', end_v, 2)
+    end_v = os.path.join(work, 'end.mp4')
+    if not until: node(pdir, 'video', 'end', end_v, 2)
     clips = (project.get('teaser') or {}).get('clips') or []
     teaser_v = os.path.join(work, 'teaser.mp4') if clips else None
     if clips: node(pdir, 'video', 'teaser', teaser_v, 2)
@@ -145,7 +148,7 @@ def main():
 
     print('4/6 muxing segments …')
     mux(body_v, os.path.join(work, 'body.wav'), os.path.join(work, 'body_av.mp4'))
-    mux(end_v, os.path.join(work, 'end.wav'), os.path.join(work, 'end_av.mp4'))
+    if not until: mux(end_v, os.path.join(work, 'end.wav'), os.path.join(work, 'end_av.mp4'))
     if clips: mux(teaser_v, os.path.join(work, 'teaser.wav'), os.path.join(work, 'teaser_av.mp4'))
     mode = project.get('intro_mode', 'full' if fmt == 'long' else 'tail')
     intro = intro_part(fmt, mode, work)
@@ -153,7 +156,7 @@ def main():
     seq = []
     if clips: seq.append(os.path.join(work, 'teaser_av.mp4'))
     if intro and mode == 'full': seq.append(intro)
-    seq += [os.path.join(work, 'body_av.mp4'), os.path.join(work, 'end_av.mp4')]
+    seq += [os.path.join(work, 'body_av.mp4')] + ([] if until else [os.path.join(work, 'end_av.mp4')])
     if intro and mode == 'tail': seq.append(intro)
 
     print('5/6 final assembly + loudness normalisation (-14 LUFS) …')
