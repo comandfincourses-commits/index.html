@@ -397,6 +397,33 @@ function endScreen(t){
   }
 }
 
+
+/* ---------------- promo end card: "watch the complete video" ---------------- */
+function promoCard(t){
+  const pm=P.promo||{};const g=X.createLinearGradient(0,0,W,H);g.addColorStop(0,B.navy);g.addColorStop(1,'#0E2A52');X.fillStyle=g;X.fillRect(0,0,W,H);
+  for(let i=0;i<7;i++){const y=(i*157)%H+40,x=((i*311+t*60)%(W+400))-200;X.strokeStyle=i%2?B.gold:B.green;X.globalAlpha=0.55;X.lineWidth=6;X.lineCap='round';X.beginPath();X.moveTo(x,y);X.lineTo(x+160,y);X.stroke();X.globalAlpha=1;}
+  wordmark(W/2,V?150:90,V?80:60,'center',true);
+  const im=pm.image&&IMG[pm.image];
+  const tw_=V?900:820,th_=tw_*9/16,tx=V?(W-tw_)/2:120,ty=V?330:(H-th_)/2+30;
+  popAt(tx+tw_/2,ty+th_/2,t,0.15,()=>{X.save();X.shadowColor='rgba(0,0,0,0.5)';X.shadowBlur=40;X.shadowOffsetY=16;X.fillStyle='#000';rr(tx,ty,tw_,th_,18);X.fill();X.restore();
+    X.save();rr(tx,ty,tw_,th_,18);X.clip();if(im&&im.naturalWidth)X.drawImage(im,tx,ty,tw_,th_);X.fillStyle='rgba(0,0,0,0.18)';X.fillRect(tx,ty,tw_,th_);X.restore();
+    X.strokeStyle=B.gold;X.lineWidth=6;rr(tx,ty,tw_,th_,18);X.stroke();
+    const pcx=tx+tw_/2,pcy=ty+th_/2,ps=1+0.06*Math.sin(t*5);X.save();X.translate(pcx,pcy);X.scale(ps,ps);X.fillStyle='#FF0033';rr(-80,-56,160,112,30);X.fill();
+    X.fillStyle=B.white;X.beginPath();X.moveTo(-22,-30);X.lineTo(36,0);X.lineTo(-22,30);X.closePath();X.fill();X.restore();
+    pill(tx+tw_-20,ty+34,(pm.duration?'FULL VIDEO • '+pm.duration:'FULL VIDEO'),24,{bg:'rgba(0,0,0,0.8)',a:'right'});});
+  const rx=V?W/2:tx+tw_+90,rw=V?W-120:W-rx-90,al=V?'center':'left';let y=V?ty+th_+110:ty+40;
+  const lines=wrap(pm.title||'Watch the complete video on YouTube',rw,V?70:64,900);
+  lines.forEach((l,i)=>inAt(t,0.5+i*0.12,()=>richLine(l,rx,y+i*(V?84:76),V?70:64,{w:900,c:B.white,hl:['complete','YouTube'],hc:B.goldL,a:al})));
+  y+=lines.length*(V?84:76)+(V?50:40);
+  const sub=pm.sub||'Link in the post & in the comments';
+  inAt(t,1.1,()=>{const sz=V?40:36;const w=tw(sub,sz,800)+130,h=sz*2.1,bx=al==='center'?rx-w/2:rx;X.fillStyle=B.green;rr(bx,y,w,h,h/2);X.fill();
+    // chain-link icon
+    X.save();X.translate(bx+50,y+h/2);X.rotate(-0.7);X.strokeStyle=B.white;X.lineWidth=5;rr(-26,-10,30,20,10);X.stroke();rr(-4,-10,30,20,10);X.stroke();X.restore();
+    txt(sub,bx+88,y+h/2+1,sz,{w:800,c:B.white});});
+  y+=(V?40:36)*2.1+(V?70:50);
+  const bob=Math.sin(t*6)*10;inAt(t,1.6,()=>{const ax=al==='center'?rx:rx+40;X.fillStyle=B.goldL;X.beginPath();X.moveTo(ax-26,y+bob);X.lineTo(ax+26,y+bob);X.lineTo(ax,y+34+bob);X.closePath();X.fill();
+    txt(pm.cta||'Tap the link to watch now',al==='center'?rx:rx+80,y+16,V?34:30,{w:700,c:B.goldL,a:al==='center'?'center':'left'});});
+}
 /* ---------------- frame composition ---------------- */
 function body(t){
   background(t);brandBar(t);
@@ -409,6 +436,7 @@ function body(t){
 const SEG={
   body:{dur:()=>P.bodyEnd??(P.transcript.duration+0.3),draw:t=>body(t)},
   end:{dur:()=>P.endDur||(V?3.5:12),draw:t=>endScreen(t)},
+  promo:{dur:()=>(P.promo&&P.promo.dur)||6,draw:t=>promoCard(t)},
   teaser:{dur:()=>(P.teaser?.clips||[]).reduce((a,c)=>a+(c[1]-c[0]),0),draw:t=>{
     let acc=0;for(const [i,c] of (P.teaser.clips||[]).entries()){const d=c[1]-c[0];if(t<acc+d||i===P.teaser.clips.length-1){const bt=c[0]+Math.min(t-acc,d-0.001);INTEASER=true;body(bt);INTEASER=false;teaserOverlay(t,i,t-acc,d);return;}acc+=d;}}},
 };
@@ -417,7 +445,7 @@ function setup(project){
   L=V?{stage:{x:60,y:300,w:960,h:1000},cap:{y:1440,size:76,maxW:940},avatar:{x:150,y:1640,r:84,nameX:250,nameY:1640,nameAlign:'left'}}
      :{stage:{x:110,y:150,w:1700,h:730},cap:{y:985,size:38,maxW:1420},avatar:{x:1810,y:975,r:66,nameX:null}};
   AV.src=P.avatarUrl;buildCaptions();
-  const srcs=new Set();(P.scenes||[]).forEach(sc=>{if(sc.photo)srcs.add(sc.photo);(sc.items||[]).forEach(i=>{if(i&&i.photo)srcs.add(i.photo);});});
+  const srcs=new Set();if(P.promo&&P.promo.image)srcs.add(P.promo.image);(P.scenes||[]).forEach(sc=>{if(sc.photo)srcs.add(sc.photo);(sc.items||[]).forEach(i=>{if(i&&i.photo)srcs.add(i.photo);});});
   const loads=[...srcs].map(u=>new Promise(r=>{const im=new Image();im.onload=r;im.onerror=r;im.src=u;IMG[u]=im;}));
   loads.push(new Promise(r=>{if(AV.complete)r();else{AV.onload=r;AV.onerror=r;}}));return Promise.all(loads);
 }

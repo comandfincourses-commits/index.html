@@ -1078,5 +1078,13 @@
     "z": 0.62
    }
   ]
+ },
+ "promo": {
+  "title": "Watch the complete video on YouTube",
+  "sub": "Link in the post & in the comments",
+  "cta": "Musk • Gates • Huang + 5 future skills",
+  "image": "output/thumbnail.png",
+  "duration": "8:58",
+  "dur": 6
  }
 }
