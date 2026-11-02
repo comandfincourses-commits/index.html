@@ -106,7 +106,7 @@ def main():
     fmt = project.get('format', 'long')
     voice_path = os.path.join(pdir, project.get('audio') or next(f for f in os.listdir(pdir) if f.startswith('voiceover')))
     out_dir = os.path.join(pdir, 'output'); work = os.path.join(pdir, '.work'); os.makedirs(out_dir, exist_ok=True); os.makedirs(work, exist_ok=True)
-    slug = re.sub(r'[^A-Za-z0-9]+', '_', project.get('title', os.path.basename(pdir))).strip('_')[:60]
+    slug = re.sub(r'[^A-Za-z0-9]+', '_', project.get('title', os.path.basename(pdir)))[:60].strip('_')
     slug = f"COMandFIN_{'Short' if fmt == 'short' else 'Long'}_{slug}" + (f'_SAMPLE_{int(until)}s' if until else '')
 
     if not os.path.exists(os.path.join(pdir, 'transcript.json')):
