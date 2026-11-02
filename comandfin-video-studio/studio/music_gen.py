@@ -55,6 +55,6 @@ x = np.stack([L, R], 1)
 fade = int(2.5 * SR); x[:fade] *= np.linspace(0, 1, fade)[:, None]; x[-fade:] *= np.linspace(1, 0, fade)[:, None]
 x = x / (np.abs(x).max() + 1e-9) * 0.6
 subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'f32le', '-ar', str(SR), '-ac', '2', '-i', '-',
-                '-af', 'lowpass=f=7000,aecho=0.8:0.7:60|110:0.25|0.15,loudnorm=I=-20:TP=-3', out],
+                '-af', 'lowpass=f=7000,aecho=0.8:0.7:60|110:0.25|0.15,loudnorm=I=-20:TP=-3', '-ar', '48000', out],
                input=x.astype(np.float32).tobytes(), check=True)
 print('music bed ->', out)
