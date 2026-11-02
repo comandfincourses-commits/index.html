@@ -1,0 +1,26 @@
+{
+  "format": "short",
+  "title": "EBITDA in 45 seconds",
+  "topic": "Interview Prep",
+  "audio": "voiceover.wav",
+  "intro_mode": "tail",
+  "hook": { "text": "90% get EBITDA WRONG in interviews", "dur": 3.4 },
+  "teaser": { "clips": [[30.3, 31.95]], "label": "WATCH TILL THE END" },
+  "cta": [ { "at": 10.6, "dur": 5.0, "text": "Like it? Hit Like & Share" }, { "at": 43.5, "dur": 5.8, "text": "Save this for your interview" } ],
+  "endLine": "Follow COMandFIN for daily finance lessons",
+  "scenes": [
+    { "start": 0, "end": 4.7, "type": "title", "kicker": "Finance Interview", "heading": "EBITDA in under a minute", "hl": ["EBITDA"] },
+    { "start": 4.7, "end": 9.8, "type": "bullets", "heading": "What does EBITDA stand for?", "style": "num", "size": 46,
+      "items": [ {"text":"Earnings","at":5.7}, {"text":"Before","at":6.1}, {"text":"Interest","at":6.5}, {"text":"Taxes","at":6.9}, {"text":"Depreciation","at":7.7}, {"text":"Amortisation","at":8.7} ] },
+    { "start": 9.8, "end": 17.7, "type": "statement", "text": "Profit from core operations", "hl": ["core", "operations"], "sub": "before financing decisions, tax and non-cash charges" },
+    { "start": 17.7, "end": 23.9, "type": "formula", "heading": "The quick formula",
+      "parts": [ {"text":"Net Profit","at":20.2}, {"op":true,"text":"+","at":21.1}, {"text":"Interest","at":21.4}, {"op":true,"text":"+","at":21.6}, {"text":"Tax","at":21.7}, {"op":true,"text":"+","at":21.85}, {"text":"Depreciation & Amortisation","at":22.0}, {"op":true,"text":"=","at":22.8}, {"text":"EBITDA","result":true,"at":23.0} ] },
+    { "start": 23.9, "end": 32.2, "type": "waterfall", "heading": "Example (₹ crore)", "prefix": "₹",
+      "items": [ {"label":"Net Profit","value":40,"type":"total","at":25.6}, {"label":"Interest","value":10,"at":27.8}, {"label":"Tax","value":15,"at":28.6}, {"label":"Depreciation","value":25,"at":29.2}, {"label":"EBITDA","value":90,"type":"total","color":"#C89A2D","at":30.5} ] },
+    { "start": 32.2, "end": 37.8, "type": "bullets", "heading": "Why analysts love it", "hl": ["debt", "tax"],
+      "items": [ {"text":"Compares companies with different debt levels","at":34.6}, {"text":"…and different tax rates","at":37.0} ] },
+    { "start": 37.8, "end": 43.4, "type": "statement", "text": "EBITDA is NOT cash flow", "hl": ["NOT"], "accent": "#D93A2F", "sub": "It ignores working capital and capital expenditure" },
+    { "start": 43.4, "end": 49.8, "type": "title", "kicker": "Save for later", "heading": "Your next interview starts here", "hl": ["interview"] }
+  ],
+  "thumbnail": { "line1": "EBITDA", "line2": "IN 45 SEC", "badge": "INTERVIEW PREP", "stat": "₹90 Cr", "stat_label": "worked example" }
+}

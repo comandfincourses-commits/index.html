@@ -1,0 +1,8 @@
+[   0.09 –    4.45] 90% of students get EBITDA wrong in interviews. Let's fix that in under a minute.
+[   4.82 –    9.51] EBITDA stands for earnings before interest, taxes, depreciation, and amortisation.
+[   9.94 –   17.47] In simple words, it is the profit a business makes from its core operations before financing decisions, tax, and non-cash charges.
+[  17.85 –   23.68] Here is the quick formula. Take net profit, add back interest, tax, depreciation, and amortisation.
+[  24.09 –   31.97] For example, net profit is ₹40 crore, interest is 10, tax is 15, and depreciation is 25. So, EBITDA is ₹90 crore.
+[  32.38 –   37.51] Why do analysts love it? Because it lets you compare companies with different debt levels and tax rates.
+[  37.94 –   43.14] But remember, EBITDA is not cash flow. It ignores working capital and capital expenditure.
+[  43.58 –   49.09] Save this video for your next interview and follow COMandFIN for daily finance lessons.

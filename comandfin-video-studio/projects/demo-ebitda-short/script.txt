@@ -1,0 +1,8 @@
+Ninety percent of students get EBITDA wrong in interviews. Let's fix that in under a minute.
+EBITDA stands for Earnings Before Interest, Taxes, Depreciation and Amortisation.
+In simple words, it is the profit a business makes from its core operations, before financing decisions, tax and non cash charges.
+Here is the quick formula. Take net profit, add back interest, tax, depreciation and amortisation.
+Example. Net profit is forty crore. Interest is ten, tax is fifteen, and depreciation is twenty five. So EBITDA is ninety crore.
+Why do analysts love it? Because it lets you compare companies with different debt levels and tax rates.
+But remember, EBITDA is not cash flow. It ignores working capital and capital expenditure.
+Save this video for your next interview, and follow COMandFIN for daily finance lessons.

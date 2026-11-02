@@ -1,0 +1,22 @@
+{
+  "_comment": "Regex (case-insensitive) -> replacement. Applied to every transcript before captions are built. Add any term Whisper mishears.",
+  "\\beva distans\\b": "EBITDA stands",
+  "\\b(co-?man ?fin|common fin|comand fin|command fin|com and fin|comm and fin)\\b": "COMandFIN",
+  "\\bfine and lessons\\b": "finance lessons",
+  "\\bamortization\\b": "amortisation",
+  "\\bev to ebitda\\b": "EV/EBITDA",
+  "\\b(i ?n ?d ?as|ind as)\\b": "Ind AS",
+  "\\bifrs\\b": "IFRS",
+  "\\bcapex\\b": "capex",
+  "\\bdcf\\b": "DCF",
+  "\\bwacc\\b": "WACC",
+  "\\b(cfa|frm|acca)\\b": "\\U\\1",
+  "\\bus cma\\b": "US CMA",
+  "\\bfp ?& ?a\\b|\\bfp and a\\b": "FP&A",
+  "\\b(\\d+) crore\\b": "₹\\1 crore",
+  "\\b(ebba ?da|eva ?da|edita|evida|ebida|ebitda|ebit da|e-bitda|e\\.?b\\.?i\\.?t\\.?d\\.?a\\.?)\\b": "EBITDA",
+  "\\bimmortization\\b": "amortisation",
+  "\\bfine and (interview|interviews)\\b": "finance \\1",
+  "\\bfine and slessons\\b": "finance lessons",
+  "\\bc ?o ?m ?a ?n ?d? ?f ?i ?n\\b": "COMandFIN"
+}
