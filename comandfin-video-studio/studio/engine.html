@@ -21,6 +21,10 @@ const B = { navy:'#091D39', navy2:'#13305A', gold:'#C89A2D', goldL:'#F2D58C', gr
             red:'#D93A2F', paper:'#F7F8FB', ink:'#0F1B2D', muted:'#5B6B82', line:'#E3E8EF', white:'#FFFFFF' };
 const F = 'Inter, "DejaVu Sans", Arial, sans-serif';
 const AV = new Image();
+const IMG = {};
+function photoCircle(src,cx,cy,r,{zoom=1,fy=0.08,ring=B.gold,rw=8,pz=1}={}){const im=IMG[src];X.save();X.beginPath();X.arc(cx,cy,r,0,7);X.closePath();X.fillStyle='#C9D3DC';X.fill();X.clip();
+  if(im&&im.naturalWidth){const side=Math.min(im.naturalWidth,im.naturalHeight)*pz;const sx=(im.naturalWidth-side)/2,sy=Math.min(im.naturalHeight-side,im.naturalHeight*fy);const d=2*r*zoom;X.drawImage(im,sx,sy,side,side,cx-d/2,cy-d/2,d,d);}
+  X.restore();if(ring){X.strokeStyle=ring;X.lineWidth=rw;X.beginPath();X.arc(cx,cy,r,0,7);X.stroke();}}
 
 /* ---------------- helpers ---------------- */
 const clamp=(v,a=0,b=1)=>Math.max(a,Math.min(b,v)), lerp=(a,b,p)=>a+(b-a)*p;
@@ -257,9 +261,10 @@ const SCENE={
  profile(s,b,t){ // a person / source card + key points timed to speech
   const t0=s.start;const lw=V?b.w:b.w*0.38;const lh=V?S(0,420):b.h;
   inAt(t,t0,()=>{card(b.x,b.y,lw,lh,{r:24});X.fillStyle=B.navy;rr(b.x,b.y,lw,V?150:200,[24,24,0,0]);X.fill();
-    const cx=b.x+lw/2,cy=b.y+(V?150:200),r=V?95:120;
-    const g=X.createLinearGradient(cx-r,cy-r,cx+r,cy+r);g.addColorStop(0,s.accent||B.gold);g.addColorStop(1,B.goldL);X.fillStyle=g;X.beginPath();X.arc(cx,cy,r,0,7);X.fill();
-    X.strokeStyle=B.white;X.lineWidth=8;X.stroke();txt(s.initials||s.name.split(' ').map(w=>w[0]).join(''),cx,cy+4,V?72:92,{w:900,c:B.navy,a:'center'});
+    const cx=b.x+lw/2,cy=b.y+(V?150:(s.photo?215:200)),r=V?(s.photo?120:95):(s.photo?165:120);
+    if(s.photo){photoCircle(s.photo,cx,cy,r,{zoom:1+0.06*clamp((t-t0)/(s.end-t0)),fy:s.photo_y??0.06,pz:s.photo_zoom||1,ring:s.accent||B.gold,rw:10});}
+    else{const g=X.createLinearGradient(cx-r,cy-r,cx+r,cy+r);g.addColorStop(0,s.accent||B.gold);g.addColorStop(1,B.goldL);X.fillStyle=g;X.beginPath();X.arc(cx,cy,r,0,7);X.fill();
+    X.strokeStyle=B.white;X.lineWidth=8;X.stroke();txt(s.initials||s.name.split(' ').map(w=>w[0]).join(''),cx,cy+4,V?72:92,{w:900,c:B.navy,a:'center'});}
     txt(s.name,cx,cy+r+(V?60:75),V?54:58,{w:900,c:B.navy,a:'center'});
     if(s.role)wrap(s.role,lw-60,V?30:32,600).forEach((l,i)=>txt(l,cx,cy+r+(V?110:130)+i*40,V?30:32,{w:600,c:B.muted,a:'center'}));
     if(s.source&&!V){const sl=wrap(s.source,lw-100,24,800);sl.forEach((l,i)=>{const yy=b.y+b.h-60-(sl.length-1-i)*34;txt(l,cx,yy,24,{w:800,c:B.greenD,a:'center'});});
@@ -281,7 +286,7 @@ const SCENE={
   it.forEach((c,i)=>{const r=Math.floor(i/cols),k=i%cols;const rowN=Math.min(cols,n-r*cols);const off=(cols-rowN)*(cw+gap)/2;
     const x=b.x+off+k*(cw+gap),y=top+r*(ch+gap);const col=c.color||[B.navy,B.green,B.gold,'#2F5D9B'][i%4];
     popAt(x+cw/2,y+ch/2,t,at[i],()=>{card(x,y,cw,ch,{r:22});X.fillStyle=col;rr(x,y,cw,12,[22,22,0,0]);X.fill();
-      const ir=Math.min(ch*0.2,S(62,58));X.fillStyle=col;X.beginPath();X.arc(x+cw/2,y+ch*0.36,ir,0,7);X.fill();glyph(c.icon||'arrow',x+cw/2,y+ch*0.36,ir,B.white);
+      const ir=Math.min(ch*0.2,S(62,58));if(c.photo)photoCircle(c.photo,x+cw/2,y+ch*0.34,ir*1.35,{fy:c.photo_y??0.06,pz:c.photo_zoom||1,ring:col,rw:6});else{X.fillStyle=col;X.beginPath();X.arc(x+cw/2,y+ch*0.36,ir,0,7);X.fill();glyph(c.icon||'arrow',x+cw/2,y+ch*0.36,ir,B.white);}
       const lines=wrap(c.text,cw-40,S(32,34),800);lines.forEach((l,q)=>txt(l,x+cw/2,y+ch*0.72+(q-(lines.length-1)/2)*S(40,42),S(32,34),{w:800,c:B.navy,a:'center'}));});});
  },
 };
@@ -411,7 +416,10 @@ function setup(project){
   P=project;V=P.format==='short';W=V?1080:1920;H=V?1920:1080;C.width=W;C.height=H;
   L=V?{stage:{x:60,y:300,w:960,h:1000},cap:{y:1440,size:76,maxW:940},avatar:{x:150,y:1640,r:84,nameX:250,nameY:1640,nameAlign:'left'}}
      :{stage:{x:110,y:150,w:1700,h:730},cap:{y:985,size:38,maxW:1420},avatar:{x:1810,y:975,r:66,nameX:null}};
-  AV.src=P.avatarUrl;buildCaptions();return new Promise(r=>{if(AV.complete)r();else{AV.onload=r;AV.onerror=r;}});
+  AV.src=P.avatarUrl;buildCaptions();
+  const srcs=new Set();(P.scenes||[]).forEach(sc=>{if(sc.photo)srcs.add(sc.photo);(sc.items||[]).forEach(i=>{if(i&&i.photo)srcs.add(i.photo);});});
+  const loads=[...srcs].map(u=>new Promise(r=>{const im=new Image();im.onload=r;im.onerror=r;im.src=u;IMG[u]=im;}));
+  loads.push(new Promise(r=>{if(AV.complete)r();else{AV.onload=r;AV.onerror=r;}}));return Promise.all(loads);
 }
 // sound-effect cue list for the audio mixer
 function events(){

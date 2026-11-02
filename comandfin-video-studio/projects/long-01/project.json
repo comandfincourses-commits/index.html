@@ -1,38 +1,1082 @@
 {
-  "format": "long",
-  "title": "Will AI Take Your Job? Musk, Gates & Huang Predictions + 5 Skills for the Next 20 Years",
-  "topic": "AI & the Future of Jobs",
-  "audio": "voiceover.mp3",
-  "intro_mode": "full",
-  "teaser": { "clips": [[39.49, 42.98], [112.41, 119.14], [438.01, 443.92]], "label": "COMING UP IN THIS VIDEO" },
-  "cta": [
-    { "at": 43.4, "dur": 5.6, "text": "Enjoying this? Like & Share with a friend" },
-    { "at": 184.9, "dur": 5.0 },
-    { "at": 316.5, "dur": 5.0, "text": "Share this with someone worried about AI" },
-    { "at": 496.6, "dur": 3.4, "text": "Like • Share • Subscribe to COMandFIN" }
+ "format": "long",
+ "title": "Will AI Take Your Job? Musk, Gates & Huang Predictions + 5 Skills for the Next 20 Years",
+ "topic": "AI & the Future of Jobs",
+ "audio": "voiceover.mp3",
+ "intro_mode": "full",
+ "teaser": {
+  "clips": [
+   [
+    39.49,
+    42.98
+   ],
+   [
+    112.41,
+    119.14
+   ],
+   [
+    438.01,
+    443.92
+   ]
   ],
-  "scenes": [
-    { "start": 0, "end": 14.0, "type": "cards", "heading": "Imagine a world where…", "cols": 4,
-      "items": [ {"icon":"robot","text":"Robots manufacture products","at":3.8}, {"icon":"chip","text":"AI manages businesses","at":5.5},
-                 {"icon":"car","text":"Autonomous cars drive you around","at":7.3}, {"icon":"people","text":"Machines do the work of millions","at":10.2} ] },
-    { "start": 14.0, "end": 20.3, "type": "title", "kicker": "Sounds impossible?", "heading": "3 tech leaders. 3 predictions.", "hl": ["3"], "sub": "What they are saying about AI, jobs and money" },
-    { "start": 20.3, "end": 43.0, "type": "profile", "chapter": "Elon Musk: a world of abundance", "name": "Elon Musk", "role": "CEO, Tesla & SpaceX", "source": "Interview with The Economist, July 2026 (as cited)", "label": "Prediction",
-      "points": [ {"icon":"chip","text":"AI could surpass the combined intelligence of humanity in ~5 years","at":26.3},
-                  {"icon":"robot","text":"Within 10 years, AI & robots could create an abundance of goods and services","at":35.5},
-                  {"icon":"money","text":"Money itself could become almost meaningless","at":40.0,"hl":true} ] },
-    { "start": 43.0, "end": 49.9, "type": "statement", "text": "A world where robots do most of the work", "hl": ["robots"], "sub": "and humans no longer need to work simply to survive" },
-    { "start": 49.9, "end": 62.5, "type": "profile", "chapter": "Bill Gates: employment disruption", "name": "Bill Gates", "role": "Co-founder, Microsoft", "source": "Essay on AI, August 2026 (as cited)", "label": "Warning", "accent": "#10B07F",
-      "points": [ {"icon":"warn","text":"AI could disrupt employment much faster than previous technological revolutions","at":55.8,"hl":true} ] },
-    { "start": 62.5, "end": 72.4, "type": "cards", "heading": "Areas flagged for significant disruption", "cols": 3,
-      "items": [ {"icon":"chart","text":"Accounting","at":64.0}, {"icon":"headset","text":"Customer Service","at":64.6}, {"icon":"code","text":"Software Development","at":65.6},
-                 {"icon":"scale","text":"Law","at":67.5}, {"icon":"heart","text":"Medicine","at":67.7}, {"icon":"factory","text":"Manufacturing","at":68.4} ] },
-    { "start": 72.4, "end": 86.2, "type": "statement", "text": "“Human Reserve Jobs”", "hl": ["Human", "Reserve", "Jobs”"], "accent": "#10B07F", "sub": "Certain responsibilities should remain with humans, even when AI becomes technically capable of performing them" },
-    { "start": 86.2, "end": 98.9, "type": "question", "label": "Think about it", "q": "Would you want a robot to deliver the news of a life-threatening illness to your family?",
-      "a": "Some human responsibilities are too important to hand over completely to machines.", "a_at": 91.9, "hl": ["too", "important"] },
-    { "start": 98.9, "end": 112.2, "type": "profile", "chapter": "Jensen Huang: AI users win", "name": "Jensen Huang", "role": "CEO, NVIDIA", "source": "Milken Institute Global Conference, 2025", "label": "Context",
-      "points": [ {"icon":"chip","text":"NVIDIA powers much of the world's AI revolution","at":101.9},
-                  {"icon":"people","text":"A message for every student and working professional","at":109.5,"hl":true} ] },
-    { "start": 112.2, "end": 120.2, "type": "statement", "text": "You won't lose your job to AI. You'll lose it to somebody who uses AI.", "hl": ["somebody", "uses"], "accent": "#10B07F", "sub": "Jensen Huang, CEO, NVIDIA" }
-  ],
-  "thumbnail": { "line1": "WILL AI TAKE", "line2": "YOUR JOB?", "badge": "MUSK • GATES • HUANG", "stat": "20 YEARS", "stat_label": "skills to survive" }
+  "label": "COMING UP IN THIS VIDEO"
+ },
+ "cta": [
+  {
+   "at": 43.4,
+   "dur": 5.6,
+   "text": "Enjoying this? Like & Share with a friend"
+  },
+  {
+   "at": 184.9,
+   "dur": 5.0
+  },
+  {
+   "at": 307.3,
+   "dur": 5.6,
+   "text": "Share this with someone worried about AI"
+  },
+  {
+   "at": 496.5,
+   "dur": 3.8,
+   "text": "Like • Share • Subscribe to COMandFIN"
+  }
+ ],
+ "scenes": [
+  {
+   "start": 0,
+   "end": 14.0,
+   "type": "cards",
+   "heading": "Imagine a world where…",
+   "cols": 4,
+   "items": [
+    {
+     "icon": "robot",
+     "text": "Robots manufacture products",
+     "at": 3.8
+    },
+    {
+     "icon": "chip",
+     "text": "AI manages businesses",
+     "at": 5.5
+    },
+    {
+     "icon": "car",
+     "text": "Autonomous cars drive you around",
+     "at": 7.3
+    },
+    {
+     "icon": "people",
+     "text": "Machines do the work of millions",
+     "at": 10.2
+    }
+   ]
+  },
+  {
+   "start": 14.0,
+   "end": 20.3,
+   "type": "title",
+   "kicker": "Sounds impossible?",
+   "heading": "3 tech leaders. 3 predictions.",
+   "hl": [
+    "3"
+   ],
+   "sub": "What they are saying about AI, jobs and money"
+  },
+  {
+   "start": 20.3,
+   "end": 43.0,
+   "type": "profile",
+   "chapter": "Elon Musk: a world of abundance",
+   "name": "Elon Musk",
+   "role": "CEO, Tesla & SpaceX",
+   "source": "Interview with The Economist, July 2026 (as cited)",
+   "label": "Prediction",
+   "points": [
+    {
+     "icon": "chip",
+     "text": "AI could surpass the combined intelligence of humanity in ~5 years",
+     "at": 26.3
+    },
+    {
+     "icon": "robot",
+     "text": "Within 10 years, AI & robots could create an abundance of goods and services",
+     "at": 35.5
+    },
+    {
+     "icon": "money",
+     "text": "Money itself could become almost meaningless",
+     "at": 40.0,
+     "hl": true
+    }
+   ],
+   "photo": "media/elon_musk.jpg",
+   "photo_y": 0.04
+  },
+  {
+   "start": 43.0,
+   "end": 49.9,
+   "type": "statement",
+   "text": "A world where robots do most of the work",
+   "hl": [
+    "robots"
+   ],
+   "sub": "and humans no longer need to work simply to survive"
+  },
+  {
+   "start": 49.9,
+   "end": 62.5,
+   "type": "profile",
+   "chapter": "Bill Gates: employment disruption",
+   "name": "Bill Gates",
+   "role": "Co-founder, Microsoft",
+   "source": "Essay on AI, August 2026 (as cited)",
+   "label": "Warning",
+   "accent": "#10B07F",
+   "points": [
+    {
+     "icon": "warn",
+     "text": "AI could disrupt employment much faster than previous technological revolutions",
+     "at": 55.8,
+     "hl": true
+    }
+   ],
+   "photo": "media/bill_gates.jpg",
+   "photo_y": 0.04
+  },
+  {
+   "start": 62.5,
+   "end": 72.4,
+   "type": "cards",
+   "heading": "Areas flagged for significant disruption",
+   "cols": 3,
+   "items": [
+    {
+     "icon": "chart",
+     "text": "Accounting",
+     "at": 64.0
+    },
+    {
+     "icon": "headset",
+     "text": "Customer Service",
+     "at": 64.6
+    },
+    {
+     "icon": "code",
+     "text": "Software Development",
+     "at": 65.6
+    },
+    {
+     "icon": "scale",
+     "text": "Law",
+     "at": 67.5
+    },
+    {
+     "icon": "heart",
+     "text": "Medicine",
+     "at": 67.7
+    },
+    {
+     "icon": "factory",
+     "text": "Manufacturing",
+     "at": 68.4
+    }
+   ]
+  },
+  {
+   "start": 72.4,
+   "end": 86.2,
+   "type": "statement",
+   "text": "“Human Reserve Jobs”",
+   "hl": [
+    "Human",
+    "Reserve",
+    "Jobs”"
+   ],
+   "accent": "#10B07F",
+   "sub": "Certain responsibilities should remain with humans, even when AI becomes technically capable of performing them"
+  },
+  {
+   "start": 86.2,
+   "end": 98.9,
+   "type": "question",
+   "label": "Think about it",
+   "q": "Would you want a robot to deliver the news of a life-threatening illness to your family?",
+   "a": "Some human responsibilities are too important to hand over completely to machines.",
+   "a_at": 91.9,
+   "hl": [
+    "too",
+    "important"
+   ]
+  },
+  {
+   "start": 98.9,
+   "end": 112.2,
+   "type": "profile",
+   "chapter": "Jensen Huang: AI users win",
+   "name": "Jensen Huang",
+   "role": "CEO, NVIDIA",
+   "source": "Milken Institute Global Conference, 2025",
+   "label": "Context",
+   "points": [
+    {
+     "icon": "chip",
+     "text": "NVIDIA powers much of the world's AI revolution",
+     "at": 101.9
+    },
+    {
+     "icon": "people",
+     "text": "A message for every student and working professional",
+     "at": 109.5,
+     "hl": true
+    }
+   ],
+   "photo": "media/jensen_huang.jpg",
+   "photo_y": 0.02,
+   "photo_zoom": 0.62
+  },
+  {
+   "start": 112.2,
+   "end": 120.2,
+   "type": "statement",
+   "text": "You won't lose your job to AI. You'll lose it to somebody who uses AI.",
+   "hl": [
+    "somebody",
+    "uses"
+   ],
+   "accent": "#10B07F",
+   "sub": "Jensen Huang, CEO, NVIDIA"
+  },
+  {
+   "start": 120.2,
+   "end": 134.0,
+   "type": "cards",
+   "heading": "Three different perspectives",
+   "cols": 3,
+   "items": [
+    {
+     "photo": "media/elon_musk.jpg",
+     "photo_y": 0.04,
+     "text": "Musk: a world of abundance",
+     "at": 121.8
+    },
+    {
+     "photo": "media/bill_gates.jpg",
+     "photo_y": 0.04,
+     "text": "Gates: massive employment disruption",
+     "at": 124.8,
+     "color": "#10B07F"
+    },
+    {
+     "photo": "media/jensen_huang.jpg",
+     "text": "Huang: AI adopters win",
+     "at": 128.4,
+     "color": "#C89A2D",
+     "photo_zoom": 0.62,
+     "photo_y": 0.02
+    }
+   ]
+  },
+  {
+   "start": 134.0,
+   "end": 151.2,
+   "type": "bullets",
+   "heading": "So, what does this mean for you?",
+   "style": "num",
+   "items": [
+    {
+     "text": "Will your finance job disappear?",
+     "at": 136.1
+    },
+    {
+     "text": "Will AI replace accountants, analysts, marketers and HR professionals?",
+     "at": 137.9
+    },
+    {
+     "text": "What skills will protect your career over the next 20 years?",
+     "at": 142.9,
+     "hl": [
+      "skills"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 151.2,
+   "end": 171.2,
+   "type": "bars",
+   "chapter": "The numbers",
+   "heading": "By 2030: WEF Future of Jobs Report 2025",
+   "suffix": "M",
+   "bars": [
+    {
+     "label": "New jobs created",
+     "value": 170,
+     "at": 160.7,
+     "color": "#10B07F"
+    },
+    {
+     "label": "Jobs displaced",
+     "value": 92,
+     "at": 164.7,
+     "color": "#D93A2F"
+    },
+    {
+     "label": "Net increase",
+     "value": 78,
+     "at": 169.8,
+     "color": "#C89A2D"
+    }
+   ]
+  },
+  {
+   "start": 171.2,
+   "end": 179.0,
+   "type": "stat",
+   "heading": "But here's the interesting part",
+   "value": 39,
+   "suffix": "%",
+   "at": 173.6,
+   "label": "of existing skills could change or become outdated by 2030",
+   "sub": "WEF Future of Jobs Report 2025"
+  },
+  {
+   "start": 179.0,
+   "end": 184.8,
+   "type": "stat",
+   "value": 40,
+   "suffix": "%",
+   "prefix": "~",
+   "at": 181.5,
+   "color": "#10B07F",
+   "label": "of global employment is exposed to AI",
+   "sub": "IMF estimate"
+  },
+  {
+   "start": 184.8,
+   "end": 190.9,
+   "type": "statement",
+   "text": "Exposure does not mean disappearance",
+   "hl": [
+    "not"
+   ],
+   "sub": "Many jobs will simply change"
+  },
+  {
+   "start": 190.9,
+   "end": 216.6,
+   "type": "compare",
+   "chapter": "Impact on finance",
+   "heading": "Imagine you are a financial analyst",
+   "left": {
+    "title": "Today: you spend hours…",
+    "items": [
+     {
+      "text": "Downloading financial statements",
+      "at": 199.0
+     },
+     {
+      "text": "Preparing Excel reports",
+      "at": 200.8
+     },
+     {
+      "text": "Calculating ratios",
+      "at": 202.3
+     },
+     {
+      "text": "Building financial models",
+      "at": 203.8
+     }
+    ]
+   },
+   "right": {
+    "title": "Tomorrow: AI agents could…",
+    "items": [
+     {
+      "text": "Analyse financial statements",
+      "at": 209.4
+     },
+     {
+      "text": "Prepare initial valuation models",
+      "at": 211.0
+     },
+     {
+      "text": "Identify financial risks",
+      "at": 213.0
+     },
+     {
+      "text": "Generate investment research",
+      "at": 215.0
+     }
+    ]
+   }
+  },
+  {
+   "start": 216.6,
+   "end": 224.3,
+   "type": "cards",
+   "heading": "Accounting tasks becoming automated",
+   "cols": 3,
+   "items": [
+    {
+     "icon": "brief",
+     "text": "Invoice processing",
+     "at": 218.8
+    },
+    {
+     "icon": "chart",
+     "text": "Reconciliations",
+     "at": 220.0
+    },
+    {
+     "icon": "gear",
+     "text": "Routine reporting",
+     "at": 221.2
+    }
+   ]
+  },
+  {
+   "start": 224.3,
+   "end": 240.4,
+   "type": "question",
+   "label": "Will they disappear?",
+   "q": "Will financial analysts and accountants disappear?",
+   "a": "Not necessarily, but their roles will change: interpreting results, analysing performance, evaluating risks and making strategic decisions.",
+   "a_at": 227.8,
+   "hl": [
+    "Not",
+    "necessarily,"
+   ]
+  },
+  {
+   "start": 240.4,
+   "end": 246.4,
+   "type": "formula",
+   "heading": "The future finance professional",
+   "parts": [
+    {
+     "text": "Financial Knowledge",
+     "at": 242.7
+    },
+    {
+     "op": true,
+     "text": "+",
+     "at": 243.5
+    },
+    {
+     "text": "Analytical Thinking",
+     "at": 243.7
+    },
+    {
+     "op": true,
+     "text": "+",
+     "at": 245.3
+    },
+    {
+     "text": "AI Skills",
+     "at": 245.6
+    },
+    {
+     "op": true,
+     "text": "=",
+     "at": 245.9
+    },
+    {
+     "text": "Future-ready",
+     "result": true,
+     "at": 246.0
+    }
+   ]
+  },
+  {
+   "start": 246.4,
+   "end": 255.2,
+   "type": "cards",
+   "chapter": "Impact on marketing",
+   "heading": "AI in marketing can already…",
+   "cols": 4,
+   "items": [
+    {
+     "icon": "mic",
+     "text": "Write social media posts",
+     "at": 249.3
+    },
+    {
+     "icon": "bulb",
+     "text": "Create advertisements",
+     "at": 251.0
+    },
+    {
+     "icon": "code",
+     "text": "Generate videos",
+     "at": 252.3
+    },
+    {
+     "icon": "chart",
+     "text": "Analyse customer behaviour",
+     "at": 253.6
+    }
+   ]
+  },
+  {
+   "start": 255.2,
+   "end": 266.6,
+   "type": "compare",
+   "heading": "The marketing team of tomorrow",
+   "left": {
+    "title": "Before AI",
+    "items": [
+     {
+      "text": "A team of 10 people",
+      "at": 258.8
+     },
+     {
+      "text": "To execute multiple campaigns",
+      "at": 260.0
+     }
+    ]
+   },
+   "right": {
+    "title": "With AI",
+    "items": [
+     {
+      "text": "A much smaller team",
+      "at": 262.1
+     },
+     {
+      "text": "Similar or even better results",
+      "at": 264.2
+     }
+    ]
+   }
+  },
+  {
+   "start": 266.6,
+   "end": 275.5,
+   "type": "steps",
+   "heading": "Where the value shifts",
+   "steps": [
+    {
+     "text": "Understanding customers",
+     "at": 269.7
+    },
+    {
+     "text": "Building brands",
+     "at": 271.1
+    },
+    {
+     "text": "Developing strategies",
+     "at": 272.3
+    },
+    {
+     "text": "Meaningful connections",
+     "at": 273.7
+    }
+   ]
+  },
+  {
+   "start": 275.5,
+   "end": 281.8,
+   "type": "statement",
+   "text": "Creating content is easy. Creating content that connects will remain valuable.",
+   "hl": [
+    "connects"
+   ]
+  },
+  {
+   "start": 281.8,
+   "end": 291.7,
+   "type": "cards",
+   "chapter": "Impact on HR",
+   "heading": "AI in HR can…",
+   "cols": 4,
+   "items": [
+    {
+     "icon": "people",
+     "text": "Screen thousands of resumes",
+     "at": 284.8
+    },
+    {
+     "icon": "brief",
+     "text": "Shortlist candidates",
+     "at": 286.6
+    },
+    {
+     "icon": "gear",
+     "text": "Schedule interviews",
+     "at": 288.0
+    },
+    {
+     "icon": "robot",
+     "text": "Automate onboarding",
+     "at": 289.7
+    }
+   ]
+  },
+  {
+   "start": 291.7,
+   "end": 299.8,
+   "type": "question",
+   "label": "Can it replace humans?",
+   "q": "Can AI completely replace human judgment, empathy, leadership and conflict resolution?",
+   "a": "Probably not.",
+   "a_at": 298.7
+  },
+  {
+   "start": 299.8,
+   "end": 307.2,
+   "type": "bullets",
+   "heading": "The HR professional of tomorrow focuses on",
+   "items": [
+    {
+     "text": "Talent strategy",
+     "at": 302.9
+    },
+    {
+     "text": "Employee experience",
+     "at": 304.0
+    },
+    {
+     "text": "Organisational development",
+     "at": 305.5
+    }
+   ]
+  },
+  {
+   "start": 307.2,
+   "end": 313.8,
+   "type": "statement",
+   "text": "Your job title may stay the same. The skills it needs could change completely.",
+   "hl": [
+    "skills"
+   ]
+  },
+  {
+   "start": 313.8,
+   "end": 325.6,
+   "type": "cards",
+   "chapter": "Most vulnerable jobs",
+   "heading": "Which jobs are most vulnerable?",
+   "cols": 3,
+   "items": [
+    {
+     "icon": "code",
+     "text": "Data entry",
+     "at": 316.7,
+     "color": "#D93A2F"
+    },
+    {
+     "icon": "brief",
+     "text": "Basic bookkeeping",
+     "at": 317.6,
+     "color": "#D93A2F"
+    },
+    {
+     "icon": "chart",
+     "text": "Repetitive accounting",
+     "at": 318.9,
+     "color": "#D93A2F"
+    },
+    {
+     "icon": "headset",
+     "text": "Routine customer support",
+     "at": 320.3,
+     "color": "#D93A2F"
+    },
+    {
+     "icon": "gear",
+     "text": "Administrative processing",
+     "at": 321.8,
+     "color": "#D93A2F"
+    },
+    {
+     "icon": "mic",
+     "text": "Repetitive content creation",
+     "at": 323.6,
+     "color": "#D93A2F"
+    }
+   ]
+  },
+  {
+   "start": 325.6,
+   "end": 338.8,
+   "type": "bullets",
+   "heading": "No one is completely protected",
+   "style": "x",
+   "items": [
+    {
+     "text": "Predictable, repetitive tasks face the greatest automation pressure",
+     "at": 325.6
+    },
+    {
+     "text": "Even highly educated professionals are not fully protected",
+     "at": 331.2
+    },
+    {
+     "text": "Your degree alone will not guarantee career security",
+     "at": 335.2,
+     "hl": [
+      "degree"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 338.8,
+   "end": 345.5,
+   "type": "title",
+   "kicker": "The most important question",
+   "heading": "How should you prepare?",
+   "hl": [
+    "prepare?"
+   ],
+   "sub": "5 things to start today"
+  },
+  {
+   "start": 345.5,
+   "end": 356.6,
+   "type": "bullets",
+   "chapter": "5 skills for the next 20 years",
+   "heading": "1. Become AI literate",
+   "items": [
+    {
+     "text": "Go beyond using ChatGPT to write emails",
+     "at": 347.7
+    },
+    {
+     "text": "Learn AI tools and AI agents",
+     "at": 350.2
+    },
+    {
+     "text": "Learn automation",
+     "at": 352.7
+    },
+    {
+     "text": "Integrate AI into your daily work",
+     "at": 353.6,
+     "hl": [
+      "daily"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 356.6,
+   "end": 375.6,
+   "type": "table",
+   "heading": "2. Build strong domain knowledge",
+   "cols": [
+    "If you are in…",
+    "Understand"
+   ],
+   "widths": [
+    1,
+    3
+   ],
+   "size": 34,
+   "rows": [
+    {
+     "cells": [
+      "Finance",
+      "Accounting, financial modelling, valuation, financial markets"
+     ],
+     "at": 359.1
+    },
+    {
+     "cells": [
+      "Marketing",
+      "Consumer behaviour, branding, digital marketing"
+     ],
+     "at": 365.3
+    },
+    {
+     "cells": [
+      "HR",
+      "Talent management, labour laws, organisational behaviour"
+     ],
+     "at": 370.2
+    }
+   ]
+  },
+  {
+   "start": 375.6,
+   "end": 382.3,
+   "type": "statement",
+   "text": "AI without domain knowledge gives you answers, but you may not know if they are correct.",
+   "hl": [
+    "domain",
+    "knowledge"
+   ],
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 382.3,
+   "end": 396.4,
+   "type": "cards",
+   "heading": "3. Learn data analytics",
+   "cols": 4,
+   "items": [
+    {
+     "icon": "chart",
+     "text": "Excel",
+     "at": 384.4
+    },
+    {
+     "icon": "chart",
+     "text": "Power BI",
+     "at": 384.7,
+     "color": "#C89A2D"
+    },
+    {
+     "icon": "code",
+     "text": "SQL",
+     "at": 385.0,
+     "color": "#10B07F"
+    },
+    {
+     "icon": "code",
+     "text": "Python",
+     "at": 385.6,
+     "color": "#2F5D9B"
+    }
+   ]
+  },
+  {
+   "start": 396.4,
+   "end": 405.0,
+   "type": "cards",
+   "heading": "4. Develop human skills",
+   "cols": 5,
+   "items": [
+    {
+     "icon": "mic",
+     "text": "Communication",
+     "at": 398.0
+    },
+    {
+     "icon": "people",
+     "text": "Leadership",
+     "at": 399.8
+    },
+    {
+     "icon": "scale",
+     "text": "Negotiation",
+     "at": 400.4
+    },
+    {
+     "icon": "bulb",
+     "text": "Creativity",
+     "at": 400.9
+    },
+    {
+     "icon": "chip",
+     "text": "Critical thinking",
+     "at": 401.8
+    }
+   ]
+  },
+  {
+   "start": 405.0,
+   "end": 412.0,
+   "type": "statement",
+   "text": "Machines process information. Humans take responsibility for important decisions.",
+   "hl": [
+    "responsibility"
+   ]
+  },
+  {
+   "start": 412.0,
+   "end": 428.4,
+   "type": "bullets",
+   "heading": "5. Build practical projects",
+   "style": "num",
+   "items": [
+    {
+     "text": "Don't just list AI, Python or Power BI on your resume",
+     "at": 413.9
+    },
+    {
+     "text": "Build an AI-powered financial model",
+     "at": 417.8
+    },
+    {
+     "text": "Automate a reporting process",
+     "at": 419.9
+    },
+    {
+     "text": "Create a dashboard or an AI-based market research project",
+     "at": 421.7
+    },
+    {
+     "text": "Show employers what you can actually do",
+     "at": 425.9,
+     "hl": [
+      "actually",
+      "do"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 428.4,
+   "end": 434.6,
+   "type": "stat",
+   "heading": "Never stop learning",
+   "value": 30,
+   "suffix": " min",
+   "at": 431.6,
+   "label": "every day upgrading your skills"
+  },
+  {
+   "start": 434.6,
+   "end": 443.8,
+   "type": "statement",
+   "text": "The biggest risk: working with 2026 skills in a 2046 world",
+   "hl": [
+    "2026",
+    "2046"
+   ],
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 443.8,
+   "end": 459.3,
+   "type": "steps",
+   "chapter": "Final thought",
+   "heading": "20 years ago, these were nowhere near our lives today",
+   "steps": [
+    {
+     "text": "Smartphones",
+     "at": 447.5
+    },
+    {
+     "text": "Digital payments",
+     "at": 447.9
+    },
+    {
+     "text": "Social media",
+     "at": 449.3
+    },
+    {
+     "text": "Many of today's jobs",
+     "sub": "did not exist in their current form",
+     "at": 456.1
+    }
+   ]
+  },
+  {
+   "start": 459.3,
+   "end": 470.8,
+   "type": "compare",
+   "heading": "Imagine the next 20 years",
+   "left": {
+    "title": "Opportunities",
+    "items": [
+     {
+      "text": "AI and robots could create enormous opportunities",
+      "at": 462.1
+     }
+    ]
+   },
+   "right": {
+    "title": "Challenges",
+    "icon": "x",
+    "items": [
+     {
+      "text": "Serious challenges for people who refuse to adapt",
+      "at": 465.7
+     }
+    ]
+   }
+  },
+  {
+   "start": 470.8,
+   "end": 480.2,
+   "type": "cards",
+   "heading": "Don't compete with AI on speed. Compete through…",
+   "cols": 5,
+   "items": [
+    {
+     "icon": "bulb",
+     "text": "Knowledge",
+     "at": 473.9
+    },
+    {
+     "icon": "scale",
+     "text": "Judgment",
+     "at": 474.5
+    },
+    {
+     "icon": "heart",
+     "text": "Creativity",
+     "at": 475.3
+    },
+    {
+     "icon": "people",
+     "text": "Relationships",
+     "at": 476.3
+    },
+    {
+     "icon": "chip",
+     "text": "Using AI effectively",
+     "at": 478.1,
+     "color": "#C89A2D"
+    }
+   ]
+  },
+  {
+   "start": 480.2,
+   "end": 487.8,
+   "type": "statement",
+   "text": "The future belongs to the person who learns, adapts and evolves the fastest.",
+   "hl": [
+    "learns,",
+    "adapts",
+    "evolves",
+    "fastest."
+   ]
+  },
+  {
+   "start": 487.8,
+   "end": 496.5,
+   "type": "question",
+   "label": "Tell me in the comments",
+   "q": "Will AI make our lives better, or create a massive unemployment crisis?",
+   "a": "Comment your opinion below. I read every one.",
+   "a_at": 494.8
+  },
+  {
+   "start": 496.5,
+   "end": 500.4,
+   "type": "title",
+   "kicker": "See you in the next video",
+   "heading": "Like • Share • Subscribe",
+   "hl": [
+    "Subscribe"
+   ]
+  }
+ ],
+ "thumbnail": {
+  "line1": "WILL AI TAKE",
+  "line2": "YOUR JOB?",
+  "badge": "NEXT 20 YEARS",
+  "faces": [
+   {
+    "src": "media/elon_musk.jpg",
+    "label": "MUSK",
+    "y": 0.04
+   },
+   {
+    "src": "media/bill_gates.jpg",
+    "label": "GATES",
+    "y": 0.04
+   },
+   {
+    "src": "media/jensen_huang.jpg",
+    "label": "HUANG",
+    "y": 0.02,
+    "z": 0.62
+   }
+  ]
+ }
 }
