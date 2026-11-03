@@ -24,7 +24,16 @@ In this video, CA Ankit Bajaj takes you through 8 simple steps to build your own
 8. Review, rebalance & be patient
 
 ⏱️ CHAPTERS
-{{CHAPTERS}}
+0:00 Introduction
+1:28 Step 1: Know yourself
+2:20 Step 2: Start small
+3:13 Step 3: Asset allocation
+4:02 Step 4: Understand the economy
+5:15 Step 5: Choose the sector
+6:41 Step 6: Choose the stocks
+8:53 Step 7: Diversify
+9:30 Step 8: Review & patience
+10:08 Recap
 
 💬 Tell me in the comments: which step are you on right now, Step 1 or Step 8?
 
