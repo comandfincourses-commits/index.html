@@ -13,10 +13,10 @@
   "\\b(cfa|frm|acca)\\b": "\\U\\1",
   "\\bus cma\\b": "US CMA",
   "\\bfp ?& ?a\\b|\\bfp and a\\b": "FP&A",
-  "\\b(\\d+) crore\\b": "₹\\1 crore",
   "\\b(ebba ?da|eva ?da|edita|evida|ebida|ebitda|ebit da|e-bitda|e\\.?b\\.?i\\.?t\\.?d\\.?a\\.?)\\b": "EBITDA",
   "\\bimmortization\\b": "amortisation",
   "\\bfine and (interview|interviews)\\b": "finance \\1",
   "\\bfine and slessons\\b": "finance lessons",
-  "\\bc ?o ?m ?a ?n ?d? ?f ?i ?n\\b": "COMandFIN"
+  "\\bc ?o ?m ?a ?n ?d? ?f ?i ?n\\b": "COMandFIN",
+  "\\b(\\d[\\d,]*(?:\\.\\d+)?) crore(?: rupees)?\\b": "₹\\1 crore"
 }

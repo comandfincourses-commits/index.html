@@ -1,0 +1,1301 @@
+{
+ "format": "long",
+ "theme": "varsity",
+ "title": "How to Build Your Portfolio in 8 Steps",
+ "topic": "Build Your Portfolio",
+ "audio": "voiceover.mp3",
+ "intro_mode": "full",
+ "music": "../../assets/music_library/comandfin_bed_calm.m4a",
+ "teaser": {
+  "clips": [
+   [
+    148.0,
+    150.1
+   ],
+   [
+    342.45,
+    349.75
+   ],
+   [
+    539.4,
+    543.6
+   ],
+   [
+    578.75,
+    581.85
+   ]
+  ],
+  "label": "COMING UP IN THIS VIDEO"
+ },
+ "cta": [
+  {
+   "at": 159.2,
+   "dur": 5.5,
+   "text": "Enjoying this? Like & Share with a friend"
+  },
+  {
+   "at": 451.6,
+   "dur": 5.4
+  },
+  {
+   "at": 543.7,
+   "dur": 5.2,
+   "text": "Share with a friend who wants to start investing"
+  },
+  {
+   "at": 606.0,
+   "dur": 6.0,
+   "text": "Comment your step • Like • Subscribe"
+  }
+ ],
+ "scenes": [
+  {
+   "start": 0,
+   "end": 5.6,
+   "type": "stat",
+   "heading": "Bombay, 1985",
+   "value": 5000,
+   "prefix": "₹",
+   "at": 3.0,
+   "label": "A young man walks into Dalal Street"
+  },
+  {
+   "start": 5.6,
+   "end": 13.0,
+   "type": "bullets",
+   "heading": "What he had",
+   "style": "num",
+   "items": [
+    {
+     "text": "No famous surname",
+     "at": 5.8
+    },
+    {
+     "text": "No big bank balance",
+     "at": 7.1
+    },
+    {
+     "text": "Just ₹5,000 and a strong belief in India",
+     "at": 9.3,
+     "hl": [
+      "belief",
+      "India"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 13.0,
+   "end": 22.2,
+   "type": "profile",
+   "name": "Rakesh Jhunjhunwala",
+   "role": "The Big Bull of Dalal Street",
+   "source": "Forbes estimate, 2022",
+   "label": "The journey",
+   "photo": "media/img14.png",
+   "photoTag": "AI illustration",
+   "photo_y": 0.02,
+   "points": [
+    {
+     "icon": "money",
+     "text": "1985: started with ₹5,000",
+     "at": 13.1
+    },
+    {
+     "icon": "chart",
+     "text": "2022: wealth of about $5.8 billion",
+     "at": 15.2,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 22.2,
+   "end": 29.2,
+   "type": "stat",
+   "heading": "The same market is open to you today",
+   "value": 250,
+   "prefix": "₹",
+   "at": 27.0,
+   "label": "is all you need to start"
+  },
+  {
+   "start": 29.2,
+   "end": 37.4,
+   "type": "bullets",
+   "heading": "₹5,000 beginner → billionaire. What's the difference?",
+   "style": "x",
+   "items": [
+    {
+     "text": "It is not luck",
+     "at": 34.2
+    },
+    {
+     "text": "It is not tips",
+     "at": 35.4
+    }
+   ]
+  },
+  {
+   "start": 37.4,
+   "end": 40.8,
+   "type": "title",
+   "kicker": "It is a process",
+   "heading": "And it has a name: a Portfolio",
+   "hl": [
+    "Portfolio"
+   ]
+  },
+  {
+   "start": 40.8,
+   "end": 46.6,
+   "type": "title",
+   "kicker": "In the next few minutes",
+   "heading": "8 simple steps to build your own portfolio",
+   "hl": [
+    "8"
+   ]
+  },
+  {
+   "start": 46.6,
+   "end": 55.8,
+   "type": "cards",
+   "heading": "Learning from real decisions of legends",
+   "cols": 4,
+   "items": [
+    {
+     "photo": "media/img14.png",
+     "photo_y": 0.02,
+     "text": "Rakesh Jhunjhunwala",
+     "at": 51.0
+    },
+    {
+     "photo": "media/img13.png",
+     "photo_y": 0.05,
+     "text": "Warren Buffett",
+     "at": 52.2,
+     "color": "#10B07F"
+    },
+    {
+     "icon": "people",
+     "text": "Radhakishan Damani",
+     "at": 53.1,
+     "color": "#F2A23A"
+    },
+    {
+     "photo": "media/img15.png",
+     "photo_y": 0.02,
+     "text": "Vijay Kedia",
+     "at": 54.6,
+     "color": "#2F5D9B"
+    }
+   ]
+  },
+  {
+   "start": 55.8,
+   "end": 60.9,
+   "type": "presenter",
+   "photo": "media/mentor3d_cutout.png",
+   "kicker": "CA Ankit Bajaj · COMandFIN",
+   "heading": "Let us begin",
+   "hl": [
+    "begin"
+   ],
+   "hideAvatar": true
+  },
+  {
+   "start": 60.9,
+   "end": 65.1,
+   "type": "title",
+   "chapter": "Step 1: Know yourself",
+   "kicker": "Step 1",
+   "heading": "Before you buy a single share, understand yourself",
+   "hl": [
+    "yourself"
+   ]
+  },
+  {
+   "start": 65.1,
+   "end": 71.2,
+   "type": "statement",
+   "text": "Nobody starts with the paint colour. You start with the foundation.",
+   "hl": [
+    "foundation."
+   ]
+  },
+  {
+   "start": 71.2,
+   "end": 94.0,
+   "type": "bullets",
+   "heading": "Ask yourself 3 questions",
+   "style": "num",
+   "items": [
+    {
+     "text": "What is my goal? A house in 10 years · retirement in 30 · a child's education",
+     "at": 74.1,
+     "hl": [
+      "goal?"
+     ]
+    },
+    {
+     "text": "When will I need this money? Needed in 2–3 years → not in shares",
+     "at": 79.6,
+     "hl": [
+      "When"
+     ]
+    },
+    {
+     "text": "How much fall can I handle? Portfolio −20%: calm or panic?",
+     "at": 86.4,
+     "hl": [
+      "fall"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 94.0,
+   "end": 104.9,
+   "type": "cards",
+   "heading": "Two non-negotiables before investing",
+   "cols": 3,
+   "items": [
+    {
+     "icon": "money",
+     "text": "Emergency fund: 6 months of expenses",
+     "at": 97.4
+    },
+    {
+     "icon": "people",
+     "text": "Term insurance",
+     "at": 102.2,
+     "color": "#10B07F"
+    },
+    {
+     "icon": "heart",
+     "text": "Health insurance",
+     "at": 103.5,
+     "color": "#D93A2F"
+    }
+   ]
+  },
+  {
+   "start": 104.9,
+   "end": 113.1,
+   "type": "media",
+   "photo": "media/hospital.png",
+   "fx": 0.55,
+   "fy": 0.5,
+   "label": "Why it matters",
+   "accent": "#D93A2F",
+   "text": "One hospital bill can force you to sell in a falling market",
+   "hl": [
+    "hospital",
+    "bill"
+   ],
+   "sub": "Then your portfolio was never really yours."
+  },
+  {
+   "start": 113.1,
+   "end": 119.6,
+   "type": "statement",
+   "chapter": "Step 2: Start small",
+   "text": "“I will invest when I have more money.”",
+   "accent": "#D93A2F",
+   "sub": "Step 2 · the most common excuse"
+  },
+  {
+   "start": 119.6,
+   "end": 130.6,
+   "type": "tiles",
+   "heading": "The market does not ask for lakhs",
+   "cols": 2,
+   "items": [
+    {
+     "title": "Mutual fund SIP from",
+     "value": "₹250 / month",
+     "sub": "offered by many funds",
+     "color": "#10B07F",
+     "at": 125.4
+    },
+    {
+     "title": "On the stock exchange",
+     "value": "1 share",
+     "sub": "you can buy even a single share",
+     "color": "#091D39",
+     "at": 129.5
+    }
+   ]
+  },
+  {
+   "start": 130.6,
+   "end": 158.9,
+   "type": "linechart",
+   "heading": "Starting early beats starting big",
+   "window": "SIP: ₹5,000 a month for 20 years",
+   "x": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "xevery": 5,
+   "xlabel": "Years",
+   "ylabel": "₹ lakh",
+   "ymax": 55,
+   "yticks": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50
+   ],
+   "series": [
+    {
+     "data": [
+      0.0,
+      0.6,
+      1.2,
+      1.8,
+      2.4,
+      3.0,
+      3.6,
+      4.2,
+      4.8,
+      5.4,
+      6.0,
+      6.6,
+      7.2,
+      7.8,
+      8.4,
+      9.0,
+      9.6,
+      10.2,
+      10.8,
+      11.4,
+      12.0
+     ],
+     "color": "#10B07F",
+     "at": 136.7,
+     "end": 140.8,
+     "label": "Invested ₹12 lakh",
+     "labelDy": 40,
+     "dash": true
+    },
+    {
+     "data": [
+      0.0,
+      0.64,
+      1.36,
+      2.18,
+      3.09,
+      4.12,
+      5.29,
+      6.6,
+      8.08,
+      9.74,
+      11.62,
+      13.73,
+      16.11,
+      18.8,
+      21.82,
+      25.23,
+      29.07,
+      33.4,
+      38.27,
+      43.77,
+      49.96
+     ],
+     "color": "#F2A23A",
+     "at": 141.7,
+     "end": 147.4,
+     "label": "Value ≈ ₹50 lakh",
+     "fill": "rgba(242,162,58,0.15)"
+    }
+   ],
+   "marks": [
+    {
+     "i": 20,
+     "v": 50,
+     "text": "₹38 lakh = compounding at work",
+     "at": 150.4,
+     "dy": 150
+    }
+   ],
+   "callouts": [
+    {
+     "at": 153.6,
+     "text": "12% a year is an assumption, not a guarantee",
+     "bg": "#D93A2F"
+    }
+   ]
+  },
+  {
+   "start": 158.9,
+   "end": 165.8,
+   "type": "statement",
+   "text": "“The power of compounding makes investment more powerful over time.”",
+   "hl": [
+    "compounding"
+   ],
+   "accent": "#10B07F",
+   "sub": "Rakesh Jhunjhunwala"
+  },
+  {
+   "start": 165.8,
+   "end": 174.8,
+   "type": "cards",
+   "chapter": "Step 3: Asset allocation",
+   "heading": "Step 3 · Decide your asset allocation",
+   "cols": 3,
+   "items": [
+    {
+     "icon": "chart",
+     "text": "Equity",
+     "at": 170.3,
+     "color": "#F2A23A"
+    },
+    {
+     "icon": "brief",
+     "text": "Debt: FDs & bonds",
+     "at": 171.7
+    },
+    {
+     "icon": "money",
+     "text": "Gold",
+     "at": 174.2,
+     "color": "#C89A2D"
+    }
+   ]
+  },
+  {
+   "start": 174.8,
+   "end": 184.0,
+   "type": "donut",
+   "heading": "Think of it like an Indian thali",
+   "center": "Balance keeps you healthy",
+   "hidePct": true,
+   "segments": [
+    {
+     "label": "Dal",
+     "value": 25,
+     "color": "#F2A23A",
+     "at": 177.3
+    },
+    {
+     "label": "Rice",
+     "value": 25,
+     "color": "#E9D8B4",
+     "at": 178.0
+    },
+    {
+     "label": "Sabzi",
+     "value": 25,
+     "color": "#10B07F",
+     "at": 178.2
+    },
+    {
+     "label": "Roti",
+     "value": 25,
+     "color": "#C89A2D",
+     "sub": "…not only pickle!",
+     "at": 179.2
+    }
+   ]
+  },
+  {
+   "start": 184.0,
+   "end": 194.7,
+   "type": "donut",
+   "heading": "Thumb rule: 100 − your age in equity",
+   "center": "Age 30 → 70% equity",
+   "segments": [
+    {
+     "label": "Equity",
+     "value": 70,
+     "color": "#F2A23A",
+     "sub": "100 − 30 = 70",
+     "at": 190.9
+    },
+    {
+     "label": "Debt & gold",
+     "value": 30,
+     "color": "#091D39",
+     "sub": "A starting point, not a law",
+     "at": 192.3
+    }
+   ]
+  },
+  {
+   "start": 194.7,
+   "end": 215.5,
+   "type": "donut",
+   "heading": "Within equity: core & satellite",
+   "center": "Your equity",
+   "segments": [
+    {
+     "label": "Core: 70–80%",
+     "value": 75,
+     "color": "#091D39",
+     "sub": "Diversified MFs / index funds: steady engine",
+     "at": 199.9
+    },
+    {
+     "label": "Satellite: the rest",
+     "value": 25,
+     "color": "#F2A23A",
+     "sub": "Stocks you research: learn & try to beat the market",
+     "at": 206.9
+    }
+   ]
+  },
+  {
+   "start": 215.5,
+   "end": 222.6,
+   "type": "title",
+   "chapter": "Step 4: Understand the economy",
+   "kicker": "Step 4",
+   "heading": "Understand the economy",
+   "hl": [
+    "economy"
+   ],
+   "sub": "No economics degree needed. Just watch 5 numbers."
+  },
+  {
+   "start": 222.6,
+   "end": 247.8,
+   "type": "tiles",
+   "heading": "The 5 numbers to watch",
+   "items": [
+    {
+     "title": "GDP growth",
+     "value": "Expanding?",
+     "arrow": "up",
+     "sub": "sales & profits grow with it",
+     "color": "#10B07F",
+     "at": 223.7
+    },
+    {
+     "title": "Inflation",
+     "value": "Prices",
+     "arrow": "up",
+     "sub": "how fast prices rise",
+     "color": "#D93A2F",
+     "at": 230.9
+    },
+    {
+     "title": "Interest rates",
+     "value": "Repo",
+     "arrow": "flat",
+     "sub": "watch the RBI's repo rate",
+     "at": 233.6
+    },
+    {
+     "title": "Crude oil",
+     "value": "Imported",
+     "arrow": "flat",
+     "sub": "hits India directly",
+     "color": "#2F5D9B",
+     "at": 237.2
+    },
+    {
+     "title": "Rupee",
+     "value": "₹ vs $",
+     "arrow": "down",
+     "sub": "weak ₹ helps exporters",
+     "color": "#F2A23A",
+     "at": 243.5
+    }
+   ]
+  },
+  {
+   "start": 247.8,
+   "end": 265.4,
+   "type": "tiles",
+   "heading": "A real example",
+   "cols": 3,
+   "items": [
+    {
+     "title": "GDP growth",
+     "value": "7.8%",
+     "arrow": "up",
+     "sub": "April–June quarter",
+     "color": "#10B07F",
+     "at": 250.0
+    },
+    {
+     "title": "Inflation",
+     "value": "Rising",
+     "arrow": "up",
+     "sub": "prices started rising",
+     "color": "#D93A2F",
+     "at": 255.4
+    },
+    {
+     "title": "RBI repo rate",
+     "value": "5.25% → 5.50%",
+     "arrow": "up",
+     "sub": "7 Oct 2026 · first hike since Feb 2023",
+     "color": "#D93A2F",
+     "at": 260.1
+    }
+   ]
+  },
+  {
+   "start": 265.4,
+   "end": 287.9,
+   "type": "compare",
+   "heading": "What it means for your portfolio",
+   "left": {
+    "title": "Headwind",
+    "icon": "x",
+    "items": [
+     {
+      "text": "Loans become costlier",
+      "at": 268.2
+     },
+     {
+      "text": "Real estate",
+      "at": 272.6
+     },
+     {
+      "text": "Automobiles",
+      "at": 273.8
+     }
+    ]
+   },
+   "right": {
+    "title": "Usually steadier",
+    "items": [
+     {
+      "text": "Everyday essentials",
+      "at": 278.4
+     },
+     {
+      "text": "Less affected by rate hikes",
+      "at": 280.0
+     }
+    ]
+   }
+  },
+  {
+   "start": 287.9,
+   "end": 308.3,
+   "type": "compare",
+   "chapter": "Step 5: Choose the sector",
+   "heading": "Step 5 · Choose the right sector",
+   "left": {
+    "title": "Structural (grow for decades)",
+    "items": [
+     {
+      "text": "Consumption",
+      "at": 295.2
+     },
+     {
+      "text": "Financial services",
+      "at": 296.0
+     },
+     {
+      "text": "Healthcare",
+      "at": 297.4
+     },
+     {
+      "text": "Infrastructure",
+      "at": 298.0
+     }
+    ]
+   },
+   "right": {
+    "title": "Cyclical (boom & bust)",
+    "icon": "x",
+    "items": [
+     {
+      "text": "Metals",
+      "at": 300.6
+     },
+     {
+      "text": "Cement",
+      "at": 301.5
+     },
+     {
+      "text": "Commodities",
+      "at": 301.7
+     },
+     {
+      "text": "Great for timing, dangerous for beginners",
+      "at": 305.6
+     }
+    ]
+   }
+  },
+  {
+   "start": 308.3,
+   "end": 321.8,
+   "type": "profile",
+   "name": "Rakesh Jhunjhunwala",
+   "role": "His biggest winner: Titan",
+   "photo": "media/img14.png",
+   "photoTag": "AI illustration",
+   "photo_y": 0.02,
+   "label": "Early 2000s",
+   "source": "Titan: a tough phase",
+   "points": [
+    {
+     "icon": "warn",
+     "text": "Weak demand",
+     "at": 316.2
+    },
+    {
+     "icon": "money",
+     "text": "Rising gold prices",
+     "at": 317.3
+    },
+    {
+     "icon": "people",
+     "text": "Labour issues → very few investors wanted it",
+     "at": 318.8,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 321.8,
+   "end": 335.6,
+   "type": "statement",
+   "text": "He wasn't looking at one bad year. He was looking at the Indian middle class.",
+   "hl": [
+    "middle",
+    "class."
+   ],
+   "sub": "Branded watches & jewellery from trusted stores, not the local jeweller"
+  },
+  {
+   "start": 335.6,
+   "end": 349.8,
+   "type": "calc",
+   "heading": "The Titan bet",
+   "window": "Rakesh Jhunjhunwala · Titan",
+   "rows": [
+    {
+     "label": "Started buying",
+     "value": "2002–03",
+     "at": 336.6
+    },
+    {
+     "label": "Entry price",
+     "value": "roughly ₹30–35 a share",
+     "at": 340.2
+    },
+    {
+     "label": "Family stake (Mar 2026)",
+     "value": "nearly 5% of Titan",
+     "at": 346.5
+    },
+    {
+     "label": "Worth",
+     "value": "about ₹20,000 crore",
+     "at": 348.9,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 349.8,
+   "end": 359.5,
+   "type": "formula",
+   "heading": "He didn't just buy a company",
+   "parts": [
+    {
+     "text": "Sector story: Indian consumption",
+     "at": 353.7
+    },
+    {
+     "op": true,
+     "text": "+",
+     "at": 356.8
+    },
+    {
+     "text": "Best company in it",
+     "at": 357.4
+    },
+    {
+     "op": true,
+     "text": "=",
+     "at": 358.6
+    },
+    {
+     "text": "Biggest winner",
+     "result": true,
+     "at": 358.9
+    }
+   ]
+  },
+  {
+   "start": 359.5,
+   "end": 374.4,
+   "type": "bullets",
+   "heading": "4 questions before choosing a sector",
+   "style": "num",
+   "items": [
+    {
+     "text": "Will demand grow for the next 10 years?",
+     "at": 362.4
+    },
+    {
+     "text": "Is the industry healthy, with a few strong players?",
+     "at": 365.5
+    },
+    {
+     "text": "Is regulation supportive?",
+     "at": 369.1
+    },
+    {
+     "text": "Is it a cycle or a long-term trend?",
+     "at": 370.8
+    }
+   ]
+  },
+  {
+   "start": 374.4,
+   "end": 383.1,
+   "type": "title",
+   "chapter": "Step 6: Choose the stocks",
+   "kicker": "Step 6 · Choose the right stocks",
+   "heading": "1987: the US stock market crashes",
+   "hl": [
+    "1987:"
+   ],
+   "sub": "Fear everywhere"
+  },
+  {
+   "start": 383.1,
+   "end": 400.2,
+   "type": "profile",
+   "name": "Warren Buffett",
+   "role": "Berkshire Hathaway",
+   "photo": "media/img13.png",
+   "photoTag": "AI illustration",
+   "photo_y": 0.05,
+   "label": "From 1988: buys Coca-Cola",
+   "source": "Berkshire Hathaway",
+   "points": [
+    {
+     "icon": "bulb",
+     "text": "Understood the business completely",
+     "at": 390.8
+    },
+    {
+     "icon": "heart",
+     "text": "Simple product, a brand loved worldwide",
+     "at": 394.0
+    },
+    {
+     "icon": "chart",
+     "text": "Pricing power & strong cash flows",
+     "at": 397.0,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 400.2,
+   "end": 419.4,
+   "type": "bars",
+   "heading": "Coca-Cola: buy right, then hold",
+   "prefix": "$",
+   "suffix": " bn",
+   "decimals": 2,
+   "bars": [
+    {
+     "label": "Invested by 1994 (~400 mn shares)",
+     "value": 1.3,
+     "at": 403.5,
+     "color": "#091D39"
+    },
+    {
+     "label": "Dividends in 2025 alone (~$816 mn)",
+     "value": 0.816,
+     "at": 410.4,
+     "color": "#10B07F"
+    }
+   ]
+  },
+  {
+   "start": 419.4,
+   "end": 440.1,
+   "type": "profile",
+   "name": "Radhakishan Damani",
+   "initials": "RD",
+   "role": "Founder, DMart (Avenue Supermarts)",
+   "label": "Invest in what you know",
+   "source": "First DMart store: Mumbai, 2002",
+   "points": [
+    {
+     "icon": "bulb",
+     "text": "Studied retail very deeply",
+     "at": 427.1
+    },
+    {
+     "icon": "factory",
+     "text": "2002: first DMart store in Mumbai",
+     "at": 428.9
+    },
+    {
+     "icon": "money",
+     "text": "Own the stores, keep costs low, everyday low prices",
+     "at": 434.2,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 440.1,
+   "end": 451.4,
+   "type": "bars",
+   "heading": "Avenue Supermarts IPO · March 2017",
+   "prefix": "₹",
+   "bars": [
+    {
+     "label": "Issue price",
+     "value": 299,
+     "at": 446.9,
+     "color": "#091D39"
+    },
+    {
+     "label": "Listing-day open: more than double",
+     "value": 604,
+     "at": 449.9,
+     "color": "#10B07F"
+    }
+   ]
+  },
+  {
+   "start": 451.4,
+   "end": 457.6,
+   "type": "statement",
+   "text": "“Invest in what you know.”",
+   "hl": [
+    "know.”"
+   ],
+   "accent": "#10B07F",
+   "sub": "Peter Lynch, legendary fund manager"
+  },
+  {
+   "start": 457.6,
+   "end": 496.3,
+   "type": "bullets",
+   "heading": "Before you buy any stock, check 5 things",
+   "style": "num",
+   "size": 40,
+   "items": [
+    {
+     "text": "Do I understand how it makes money? (explain it to a 10-year-old)",
+     "at": 460.4
+    },
+    {
+     "text": "Does it have a moat? Brand, cost advantage, hard to copy",
+     "at": 467.2
+    },
+    {
+     "text": "Is management honest & capable? Promised vs delivered",
+     "at": 473.5
+    },
+    {
+     "text": "Are the numbers strong? Sales growth, ROE, low debt, real cash flow",
+     "at": 482.0
+    },
+    {
+     "text": "Is the price right? Don't overpay",
+     "at": 490.1,
+     "hl": [
+      "price"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 496.3,
+   "end": 506.1,
+   "type": "profile",
+   "name": "Vijay Kedia",
+   "role": "Ace investor",
+   "photo": "media/img15.png",
+   "photoTag": "AI illustration",
+   "photo_y": 0.02,
+   "label": "S.M.I.L.E.",
+   "source": "Vijay Kedia's framework",
+   "points": [
+    {
+     "text": "S: Small in size",
+     "at": 499.4
+    },
+    {
+     "text": "M: Medium in experience",
+     "at": 500.6
+    },
+    {
+     "text": "L: Large in aspiration",
+     "at": 502.0
+    },
+    {
+     "text": "E: Extra-large in market potential",
+     "at": 503.7,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 506.1,
+   "end": 520.0,
+   "type": "statement",
+   "chapter": "Step 7: Diversify",
+   "text": "Even Vijay Kedia had a painful start",
+   "accent": "#D93A2F",
+   "sub": "Began trading at 19. Heavy losses: his family had to sell jewellery to cover them. He survived and learned."
+  },
+  {
+   "start": 520.0,
+   "end": 536.7,
+   "type": "tiles",
+   "heading": "Protect yourself from one big mistake",
+   "cols": 3,
+   "items": [
+    {
+     "title": "Number of stocks",
+     "value": "10–15",
+     "sub": "usually enough for a beginner",
+     "color": "#10B07F",
+     "at": 525.5
+    },
+    {
+     "title": "In a single stock",
+     "value": "≤ 10%",
+     "sub": "of your money",
+     "color": "#F2A23A",
+     "at": 529.8
+    },
+    {
+     "title": "One sector",
+     "value": "No takeover",
+     "sub": "don't let it dominate",
+     "color": "#D93A2F",
+     "at": 533.0
+    }
+   ]
+  },
+  {
+   "start": 536.7,
+   "end": 543.5,
+   "type": "statement",
+   "text": "50 stocks? That's not a portfolio. That's a museum.",
+   "hl": [
+    "museum."
+   ],
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 543.5,
+   "end": 549.9,
+   "type": "title",
+   "chapter": "Step 8: Review & patience",
+   "kicker": "Step 8",
+   "heading": "Review, rebalance and be patient",
+   "hl": [
+    "patient"
+   ],
+   "sub": "Check once or twice a year, not every hour"
+  },
+  {
+   "start": 549.9,
+   "end": 560.6,
+   "type": "bars",
+   "heading": "Rebalancing: sell a little high, buy a little low",
+   "suffix": "%",
+   "bars": [
+    {
+     "label": "Plan: equity",
+     "value": 70,
+     "at": 551.4,
+     "color": "#091D39"
+    },
+    {
+     "label": "After a rally",
+     "value": 85,
+     "at": 553.6,
+     "color": "#D93A2F"
+    },
+    {
+     "label": "Rebalanced",
+     "value": 70,
+     "at": 555.6,
+     "color": "#10B07F"
+    }
+   ]
+  },
+  {
+   "start": 560.6,
+   "end": 571.0,
+   "type": "statement",
+   "text": "“Our favourite holding period is forever.”",
+   "hl": [
+    "forever.”"
+   ],
+   "accent": "#10B07F",
+   "sub": "Warren Buffett, still holding Coca-Cola since 1988"
+  },
+  {
+   "start": 571.0,
+   "end": 581.8,
+   "type": "statement",
+   "text": "Wealth is made by buying right… and sitting tight.",
+   "hl": [
+    "buying",
+    "right…",
+    "sitting",
+    "tight."
+   ],
+   "sub": "Jhunjhunwala held Titan for about two decades, through every crash"
+  },
+  {
+   "start": 581.8,
+   "end": 597.0,
+   "type": "cards",
+   "chapter": "Recap",
+   "heading": "The 8 steps",
+   "cols": 4,
+   "items": [
+    {
+     "icon": "people",
+     "text": "1. Know yourself",
+     "at": 585.2
+    },
+    {
+     "icon": "money",
+     "text": "2. Start small",
+     "at": 586.3
+    },
+    {
+     "icon": "chart",
+     "text": "3. Asset allocation",
+     "at": 586.5
+    },
+    {
+     "icon": "globe",
+     "text": "4. Understand the economy",
+     "at": 588.0
+    },
+    {
+     "icon": "factory",
+     "text": "5. Pick strong sectors",
+     "at": 589.5
+    },
+    {
+     "icon": "scale",
+     "text": "6. Quality stocks, right price",
+     "at": 591.0
+    },
+    {
+     "icon": "gear",
+     "text": "7. Diversify sensibly",
+     "at": 593.7
+    },
+    {
+     "icon": "bulb",
+     "text": "8. Review with patience",
+     "at": 595.4
+    }
+   ]
+  },
+  {
+   "start": 597.0,
+   "end": 602.3,
+   "type": "compare",
+   "heading": "The amount is not the difference",
+   "left": {
+    "title": "Jhunjhunwala started with",
+    "items": [
+     {
+      "text": "₹5,000",
+      "at": 599.4
+     }
+    ]
+   },
+   "right": {
+    "title": "You can start with",
+    "items": [
+     {
+      "text": "₹250",
+      "at": 601.8
+     }
+    ]
+   }
+  },
+  {
+   "start": 602.3,
+   "end": 605.4,
+   "type": "title",
+   "kicker": "The process is",
+   "heading": "Process > amount",
+   "hl": [
+    "Process"
+   ]
+  },
+  {
+   "start": 605.4,
+   "end": 613.8,
+   "type": "question",
+   "label": "Tell me in the comments",
+   "q": "Which step are you on right now: Step 1… or Step 8?"
+  },
+  {
+   "start": 613.8,
+   "end": 621.3,
+   "type": "title",
+   "kicker": "Education only · not investment advice",
+   "heading": "Start today. Start small. But please… start.",
+   "hl": [
+    "start."
+   ]
+  }
+ ],
+ "thumbnail": {
+  "line1": "₹5,000 →",
+  "line2": "BILLIONAIRE",
+  "badge": "8-STEP PORTFOLIO",
+  "faces": [
+   {
+    "src": "media/img14.png",
+    "label": "JHUNJHUNWALA",
+    "y": 0.02
+   },
+   {
+    "src": "media/img13.png",
+    "label": "BUFFETT",
+    "y": 0.05
+   },
+   {
+    "src": "media/img15.png",
+    "label": "KEDIA",
+    "y": 0.02
+   }
+  ]
+ }
+}
