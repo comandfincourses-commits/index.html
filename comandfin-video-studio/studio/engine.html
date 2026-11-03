@@ -259,6 +259,26 @@ const SCENE={
       al.forEach((l,i)=>richLine(l,cx,ay+S(70,74)+i*S(50,52),S(38,40),{w:700,c:B.ink,hl:s.hl||[],hc:B.greenD,a:'center'}));});}
  },
 
+
+ doodle(s,b,t){ // illustrated scene with a keyframed camera (pan/zoom between panels) + optional headline lines
+  const im=IMG[s.photo];const bx=b.x,by=b.y-10,bw=b.w,bh=s.boxH||S(b.h,1020);const ar=bw/bh;
+  const cams=(s.cam&&s.cam.length)?s.cam:[{at:s.start,cx:0.5,cy:0.5,z:1}];
+  let c=cams[0];for(let i=1;i<cams.length;i++){const k=cams[i];if(t<k.at)break;const p=eio(clamp((t-k.at)/(k.d||0.7)));const a=c;c={cx:lerp(a.cx,k.cx,p),cy:lerp(a.cy,k.cy,p),z:lerp(a.z,k.z,p)};}
+  const drift=1-0.035*clamp((t-s.start)/Math.max(1,s.end-s.start));
+  popAt(bx+bw/2,by+bh/2,t,s.start,()=>{X.save();X.shadowColor='rgba(9,29,57,0.25)';X.shadowBlur=40;X.shadowOffsetY=14;X.fillStyle='#fff';rr(bx,by,bw,bh,28);X.fill();X.restore();
+    X.save();rr(bx,by,bw,bh,28);X.clip();
+    if(im&&im.naturalWidth){const IW=im.naturalWidth,IH=im.naturalHeight;let cw=IW*c.z*drift,ch=cw/ar;if(ch>IH){ch=IH;cw=ch*ar;}
+      const sx=clamp(c.cx*IW-cw/2,0,IW-cw),sy=clamp(c.cy*IH-ch/2,0,IH-ch);X.drawImage(im,sx,sy,cw,ch,bx,by,bw,bh);}
+    X.restore();X.strokeStyle=s.accent||B.gold;X.lineWidth=6;rr(bx,by,bw,bh,28);X.stroke();
+    if(s.label)pill(bx+24,by+40,s.label.toUpperCase(),S(24,26),{bg:s.accent||B.navy});});
+  // twinkles over the illustration
+  for(let i=0;i<6;i++){const ph=(t*0.9+i*0.37)%1;const x=bx+((i*0.61+0.13)%1)*bw,y=by+((i*0.37+0.21)%1)*bh;X.save();X.globalAlpha=Math.sin(ph*Math.PI)*0.9;X.translate(x,y);X.rotate(t+i);
+    X.fillStyle=i%2?B.goldL:'#FFFFFF';X.beginPath();for(let k=0;k<8;k++){const r=k%2?5:16;const a=k*Math.PI/4;X.lineTo(Math.cos(a)*r,Math.sin(a)*r);}X.closePath();X.fill();X.restore();}
+  // headline lines below the box, swapped on cue
+  const tl=(s.texts||[]).filter(x=>t>=x.at).pop();
+  if(tl){const ty=by+bh+S(60,70),sz=tl.size||S(52,54);const lines=wrap(tl.text,bw-20,sz,900);
+    lines.forEach((l,i)=>inAt(t,tl.at,()=>richLine(l,V?W/2:bx+bw/2,ty+i*sz*1.18,sz,{w:900,hl:tl.hl||[],a:'center'})));}
+ },
  media(s,b,t){ // B-roll photo with slow Ken Burns move + headline
   const im=IMG[s.photo];const lt=t-s.start,dur=s.end-s.start;const k=clamp(lt/dur);
   const iw=V?b.w:b.w*0.56,ih=V?Math.min(680,b.h*0.66):b.h,ix=b.x,iy=V?b.y+10:b.y;
