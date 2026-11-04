@@ -130,7 +130,7 @@
   },
   {
    "start": 28.45,
-   "end": 35.35,
+   "end": 35.4,
    "type": "statement",
    "text": "“The power of compounding makes investment more powerful over time.”",
    "hl": [
@@ -140,34 +140,34 @@
    "sub": "Rakesh Jhunjhunwala"
   },
   {
-   "start": 35.35,
-   "end": 44.35,
+   "start": 35.4,
+   "end": 43.7,
    "type": "cards",
-   "heading": "Step 3 · Decide your asset allocation",
+   "heading": "Decide your asset allocation",
    "cols": 2,
    "items": [
     {
      "icon": "chart",
      "text": "Equity",
-     "at": 39.85,
+     "at": 39.2,
      "color": "#F2A23A"
     },
     {
      "icon": "brief",
      "text": "Debt: FDs & bonds",
-     "at": 41.25
+     "at": 40.6
     },
     {
      "icon": "money",
      "text": "Gold",
-     "at": 43.75,
+     "at": 43.1,
      "color": "#C89A2D"
     }
    ]
   },
   {
-   "start": 44.35,
-   "end": 53.55,
+   "start": 43.7,
+   "end": 52.9,
    "type": "donut",
    "heading": "Think of it like an Indian thali",
    "center": "Balance keeps you healthy",
@@ -177,32 +177,32 @@
      "label": "Dal",
      "value": 25,
      "color": "#F2A23A",
-     "at": 46.85
+     "at": 46.2
     },
     {
      "label": "Rice",
      "value": 25,
      "color": "#E9D8B4",
-     "at": 47.55
+     "at": 46.9
     },
     {
      "label": "Sabzi",
      "value": 25,
      "color": "#10B07F",
-     "at": 47.75
+     "at": 47.1
     },
     {
      "label": "Roti",
      "value": 25,
      "color": "#C89A2D",
      "sub": "…not only pickle!",
-     "at": 48.75
+     "at": 48.1
     }
    ]
   },
   {
-   "start": 53.55,
-   "end": 64.25,
+   "start": 52.9,
+   "end": 63.6,
    "type": "donut",
    "heading": "Thumb rule: 100 − your age in equity",
    "center": "Age 30 → 70% equity",
@@ -212,20 +212,20 @@
      "value": 70,
      "color": "#F2A23A",
      "sub": "100 − 30 = 70",
-     "at": 60.45
+     "at": 59.8
     },
     {
      "label": "Debt & gold",
      "value": 30,
      "color": "#091D39",
      "sub": "A starting point, not a law",
-     "at": 61.85
+     "at": 61.2
     }
    ]
   },
   {
-   "start": 64.25,
-   "end": 85.05,
+   "start": 63.6,
+   "end": 84.55,
    "type": "donut",
    "heading": "Within equity: core & satellite",
    "center": "Your equity",
@@ -235,22 +235,21 @@
      "value": 75,
      "color": "#091D39",
      "sub": "Diversified MFs / index funds: steady engine",
-     "at": 69.45
+     "at": 68.8
     },
     {
      "label": "Satellite: the rest",
      "value": 25,
      "color": "#F2A23A",
      "sub": "Stocks you research: learn & try to beat the market",
-     "at": 76.45
+     "at": 75.8
     }
    ]
   },
   {
-   "start": 85.05,
-   "end": 92.15,
+   "start": 84.55,
+   "end": 90.91,
    "type": "title",
-   "kicker": "Step 4",
    "heading": "Understand the economy",
    "hl": [
     "economy"
@@ -258,8 +257,8 @@
    "sub": "No economics degree needed. Just watch 5 numbers."
   },
   {
-   "start": 92.15,
-   "end": 117.35,
+   "start": 90.91,
+   "end": 116.11,
    "type": "tiles",
    "heading": "The 5 numbers to watch",
    "items": [
@@ -269,7 +268,7 @@
      "arrow": "up",
      "sub": "sales & profits grow with it",
      "color": "#10B07F",
-     "at": 93.25
+     "at": 92.01
     },
     {
      "title": "Inflation",
@@ -277,14 +276,14 @@
      "arrow": "up",
      "sub": "how fast prices rise",
      "color": "#D93A2F",
-     "at": 100.45
+     "at": 99.21
     },
     {
      "title": "Interest rates",
      "value": "Repo",
      "arrow": "flat",
      "sub": "watch the RBI's repo rate",
-     "at": 103.15
+     "at": 101.91
     },
     {
      "title": "Crude oil",
@@ -292,7 +291,7 @@
      "arrow": "flat",
      "sub": "hits India directly",
      "color": "#2F5D9B",
-     "at": 106.75
+     "at": 105.51
     },
     {
      "title": "Rupee",
@@ -300,7 +299,7 @@
      "arrow": "down",
      "sub": "weak ₹ helps exporters",
      "color": "#F2A23A",
-     "at": 113.05
+     "at": 111.81
     }
    ]
   }
@@ -312,7 +311,7 @@
    "text": "Like & Share with a friend"
   },
   {
-   "at": 86.0,
+   "at": 85.8,
    "dur": 5.0,
    "text": "Follow COMandFIN for more"
   }
@@ -323,6 +322,14 @@
   "ranges": [
    [
     130.45,
+    165.6
+   ],
+   [
+    166.5,
+    215.4
+   ],
+   [
+    216.24,
     247.55
    ]
   ]
