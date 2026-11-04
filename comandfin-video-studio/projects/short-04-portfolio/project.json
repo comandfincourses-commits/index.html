@@ -1,0 +1,401 @@
+{
+ "theme": "varsity",
+ "topic": "Portfolio Secrets",
+ "music": "../../assets/music_library/comandfin_bed_calm.m4a",
+ "title": "From ₹5,000 to Billionaire",
+ "format": "short",
+ "audio": "voiceover.wav",
+ "intro_mode": "none",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 5.6,
+   "type": "media",
+   "photo": "../long-02-portfolio/media/young_man_dalal_street.png",
+   "fx": 0.5,
+   "fy": 1.0,
+   "label": "Bombay, 1985",
+   "texts": [
+    {
+     "at": 0.0,
+     "text": "1985: a young man walks into Dalal Street with just ₹5,000",
+     "hl": [
+      "₹5,000"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 5.6,
+   "end": 13.0,
+   "type": "doodle",
+   "photo": "../long-02-portfolio/media/what_he_had.png",
+   "label": "What he had",
+   "cam": [
+    {
+     "at": 5.6,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1
+    },
+    {
+     "at": 5.8,
+     "cx": 0.67,
+     "cy": 0.16,
+     "z": 0.62,
+     "d": 0.6
+    },
+    {
+     "at": 7.1,
+     "cx": 0.67,
+     "cy": 0.45,
+     "z": 0.62,
+     "d": 0.6
+    },
+    {
+     "at": 9.3,
+     "cx": 0.67,
+     "cy": 0.78,
+     "z": 0.62,
+     "d": 0.6
+    },
+    {
+     "at": 11.6,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1,
+     "d": 1.0
+    }
+   ]
+  },
+  {
+   "start": 13.0,
+   "end": 22.2,
+   "type": "profile",
+   "name": "Rakesh Jhunjhunwala",
+   "role": "The Big Bull of Dalal Street",
+   "source": "Forbes estimate, 2022",
+   "label": "The journey",
+   "photo": "../long-02-portfolio/media/img14.png",
+   "photoTag": "AI illustration",
+   "photo_y": 0.02,
+   "points": [
+    {
+     "icon": "money",
+     "text": "1985: started with ₹5,000",
+     "at": 13.1
+    },
+    {
+     "icon": "chart",
+     "text": "2022: wealth of about $5.8 billion",
+     "at": 15.2,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 22.2,
+   "end": 29.2,
+   "type": "media",
+   "photo": "../long-02-portfolio/media/stock_market_today.png",
+   "fx": 0.55,
+   "fy": 0.45,
+   "label": "Today",
+   "accent": "#10B07F",
+   "text": "The same stock market is open to you today",
+   "hl": [
+    "you"
+   ],
+   "sub": "And you can start with just ₹250"
+  },
+  {
+   "start": 29.2,
+   "end": 37.4,
+   "type": "bullets",
+   "heading": "₹5,000 beginner → billionaire. What's the difference?",
+   "style": "x",
+   "items": [
+    {
+     "text": "It is not luck",
+     "at": 34.2
+    },
+    {
+     "text": "It is not tips",
+     "at": 35.4
+    }
+   ]
+  },
+  {
+   "start": 37.4,
+   "end": 41.1,
+   "type": "title",
+   "kicker": "It is a process",
+   "heading": "And it has a name: a Portfolio",
+   "hl": [
+    "Portfolio"
+   ]
+  },
+  {
+   "start": 41.1,
+   "end": 69.4,
+   "type": "linechart",
+   "heading": "Starting early beats starting big",
+   "window": "SIP: ₹5,000 a month for 20 years",
+   "x": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "xevery": 5,
+   "xlabel": "Years",
+   "ylabel": "₹ lakh",
+   "ymax": 55,
+   "yticks": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50
+   ],
+   "series": [
+    {
+     "data": [
+      0.0,
+      0.6,
+      1.2,
+      1.8,
+      2.4,
+      3.0,
+      3.6,
+      4.2,
+      4.8,
+      5.4,
+      6.0,
+      6.6,
+      7.2,
+      7.8,
+      8.4,
+      9.0,
+      9.6,
+      10.2,
+      10.8,
+      11.4,
+      12.0
+     ],
+     "color": "#10B07F",
+     "at": 47.2,
+     "end": 51.3,
+     "label": "Invested ₹12 lakh",
+     "labelDy": 40,
+     "dash": true
+    },
+    {
+     "data": [
+      0.0,
+      0.64,
+      1.36,
+      2.18,
+      3.09,
+      4.12,
+      5.29,
+      6.6,
+      8.08,
+      9.74,
+      11.62,
+      13.73,
+      16.11,
+      18.8,
+      21.82,
+      25.23,
+      29.07,
+      33.4,
+      38.27,
+      43.77,
+      49.96
+     ],
+     "color": "#F2A23A",
+     "at": 52.2,
+     "end": 57.9,
+     "label": "Value ≈ ₹50 lakh",
+     "fill": "rgba(242,162,58,0.15)"
+    }
+   ],
+   "marks": [
+    {
+     "i": 20,
+     "v": 50,
+     "text": "₹38 lakh = compounding at work",
+     "at": 60.9,
+     "dy": 150
+    }
+   ],
+   "callouts": [
+    {
+     "at": 64.1,
+     "text": "12% a year is an assumption, not a guarantee",
+     "bg": "#D93A2F"
+    }
+   ]
+  },
+  {
+   "start": 69.4,
+   "end": 76.6,
+   "type": "statement",
+   "text": "“The power of compounding makes investment more powerful over time.”",
+   "hl": [
+    "compounding"
+   ],
+   "accent": "#10B07F",
+   "sub": "Rakesh Jhunjhunwala"
+  },
+  {
+   "start": 76.6,
+   "end": 90.1,
+   "type": "profile",
+   "name": "Rakesh Jhunjhunwala",
+   "role": "His biggest winner: Titan",
+   "photo": "../long-02-portfolio/media/img14.png",
+   "photoTag": "AI illustration",
+   "photo_y": 0.02,
+   "label": "Early 2000s",
+   "source": "Titan: a tough phase",
+   "points": [
+    {
+     "icon": "warn",
+     "text": "Weak demand",
+     "at": 84.5
+    },
+    {
+     "icon": "money",
+     "text": "Rising gold prices",
+     "at": 85.6
+    },
+    {
+     "icon": "people",
+     "text": "Labour issues → very few investors wanted it",
+     "at": 87.1,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 90.1,
+   "end": 103.9,
+   "type": "media",
+   "photo": "../long-02-portfolio/media/titan_store.png",
+   "fx": 0.5,
+   "fy": 0.45,
+   "label": "Titan",
+   "texts": [
+    {
+     "at": 90.1,
+     "text": "He wasn't looking at one bad year. He was looking at the Indian middle class.",
+     "hl": [
+      "middle",
+      "class."
+     ]
+    },
+    {
+     "at": 95.9,
+     "text": "Branded watches & jewellery from trusted stores",
+     "hl": [
+      "trusted"
+     ],
+     "sub": "instead of the local jeweller"
+    }
+   ]
+  },
+  {
+   "start": 103.9,
+   "end": 118.27,
+   "type": "calc",
+   "heading": "The Titan bet",
+   "window": "Rakesh Jhunjhunwala · Titan",
+   "rows": [
+    {
+     "label": "Started buying",
+     "value": "2002–03",
+     "at": 104.9
+    },
+    {
+     "label": "Entry price",
+     "value": "roughly ₹30–35 a share",
+     "at": 108.5
+    },
+    {
+     "label": "Family stake (Mar 2026)",
+     "value": "nearly 5% of Titan",
+     "at": 114.8
+    },
+    {
+     "label": "Worth",
+     "value": "about ₹20,000 crore",
+     "at": 117.2,
+     "hl": true
+    }
+   ]
+  }
+ ],
+ "cta": [
+  {
+   "at": 23.0,
+   "dur": 5.0,
+   "text": "Follow COMandFIN for more"
+  },
+  {
+   "at": 69.7,
+   "dur": 5.6,
+   "text": "Like & Share with a friend"
+  }
+ ],
+ "end_segment": "promo",
+ "source": {
+  "project": "long-02-portfolio",
+  "ranges": [
+   [
+    0.0,
+    40.7
+   ],
+   [
+    130.45,
+    165.65
+   ],
+   [
+    308.1,
+    349.72
+   ]
+  ]
+ },
+ "promo": {
+  "title": "Watch the complete video on YouTube",
+  "sub": "Link in the post & comments",
+  "cta": "All 8 steps + Buffett, Damani & Kedia",
+  "image": "../long-02-portfolio/output/thumbnail.png",
+  "duration": "11:13",
+  "dur": 5
+ },
+ "thumbnail": {
+  "line1": "₹5,000 →",
+  "line2": "BILLIONAIRE",
+  "badge": "PORTFOLIO SECRETS"
+ }
+}
