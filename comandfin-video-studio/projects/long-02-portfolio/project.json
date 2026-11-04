@@ -1390,9 +1390,9 @@
   }
  ],
  "thumbnail": {
-  "line1": "₹5,000 →",
-  "line2": "BILLIONAIRE",
-  "badge": "8-STEP PORTFOLIO",
+  "line1": "₹5,000 → BILLIONAIRE",
+  "line2": "8 STEPS TO BUILD YOUR PORTFOLIO",
+  "badge": "Lessons from 4 legends",
   "faces": [
    {
     "src": "media/img14.png",
@@ -1403,6 +1403,12 @@
     "src": "media/img13.png",
     "label": "BUFFETT",
     "y": 0.05
+   },
+   {
+    "src": "media/damani_dmart.png",
+    "label": "DAMANI",
+    "y": 0.15,
+    "z": 0.5
    },
    {
     "src": "media/img15.png",
