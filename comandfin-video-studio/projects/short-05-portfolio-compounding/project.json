@@ -1,0 +1,343 @@
+{
+ "theme": "varsity",
+ "topic": "Build Your Portfolio",
+ "music": "../../assets/music_library/comandfin_bed_calm.m4a",
+ "title": "₹5,000 a Month to ₹50 Lakh",
+ "format": "short",
+ "audio": "voiceover.wav",
+ "intro_mode": "none",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 28.45,
+   "type": "linechart",
+   "heading": "Starting early beats starting big",
+   "window": "SIP: ₹5,000 a month for 20 years",
+   "x": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20
+   ],
+   "xevery": 5,
+   "xlabel": "Years",
+   "ylabel": "₹ lakh",
+   "ymax": 55,
+   "yticks": [
+    0,
+    10,
+    20,
+    30,
+    40,
+    50
+   ],
+   "series": [
+    {
+     "data": [
+      0.0,
+      0.6,
+      1.2,
+      1.8,
+      2.4,
+      3.0,
+      3.6,
+      4.2,
+      4.8,
+      5.4,
+      6.0,
+      6.6,
+      7.2,
+      7.8,
+      8.4,
+      9.0,
+      9.6,
+      10.2,
+      10.8,
+      11.4,
+      12.0
+     ],
+     "color": "#10B07F",
+     "at": 6.25,
+     "end": 10.35,
+     "label": "Invested ₹12 lakh",
+     "labelDy": 40,
+     "dash": true
+    },
+    {
+     "data": [
+      0.0,
+      0.64,
+      1.36,
+      2.18,
+      3.09,
+      4.12,
+      5.29,
+      6.6,
+      8.08,
+      9.74,
+      11.62,
+      13.73,
+      16.11,
+      18.8,
+      21.82,
+      25.23,
+      29.07,
+      33.4,
+      38.27,
+      43.77,
+      49.96
+     ],
+     "color": "#F2A23A",
+     "at": 11.25,
+     "end": 16.95,
+     "label": "Value ≈ ₹50 lakh",
+     "fill": "rgba(242,162,58,0.15)"
+    }
+   ],
+   "marks": [
+    {
+     "i": 20,
+     "v": 50,
+     "text": "₹38 lakh = compounding at work",
+     "at": 19.95,
+     "dy": 150
+    }
+   ],
+   "callouts": [
+    {
+     "at": 23.15,
+     "text": "12% a year is an assumption, not a guarantee",
+     "bg": "#D93A2F"
+    }
+   ]
+  },
+  {
+   "start": 28.45,
+   "end": 35.35,
+   "type": "statement",
+   "text": "“The power of compounding makes investment more powerful over time.”",
+   "hl": [
+    "compounding"
+   ],
+   "accent": "#10B07F",
+   "sub": "Rakesh Jhunjhunwala"
+  },
+  {
+   "start": 35.35,
+   "end": 44.35,
+   "type": "cards",
+   "heading": "Step 3 · Decide your asset allocation",
+   "cols": 2,
+   "items": [
+    {
+     "icon": "chart",
+     "text": "Equity",
+     "at": 39.85,
+     "color": "#F2A23A"
+    },
+    {
+     "icon": "brief",
+     "text": "Debt: FDs & bonds",
+     "at": 41.25
+    },
+    {
+     "icon": "money",
+     "text": "Gold",
+     "at": 43.75,
+     "color": "#C89A2D"
+    }
+   ]
+  },
+  {
+   "start": 44.35,
+   "end": 53.55,
+   "type": "donut",
+   "heading": "Think of it like an Indian thali",
+   "center": "Balance keeps you healthy",
+   "hidePct": true,
+   "segments": [
+    {
+     "label": "Dal",
+     "value": 25,
+     "color": "#F2A23A",
+     "at": 46.85
+    },
+    {
+     "label": "Rice",
+     "value": 25,
+     "color": "#E9D8B4",
+     "at": 47.55
+    },
+    {
+     "label": "Sabzi",
+     "value": 25,
+     "color": "#10B07F",
+     "at": 47.75
+    },
+    {
+     "label": "Roti",
+     "value": 25,
+     "color": "#C89A2D",
+     "sub": "…not only pickle!",
+     "at": 48.75
+    }
+   ]
+  },
+  {
+   "start": 53.55,
+   "end": 64.25,
+   "type": "donut",
+   "heading": "Thumb rule: 100 − your age in equity",
+   "center": "Age 30 → 70% equity",
+   "segments": [
+    {
+     "label": "Equity",
+     "value": 70,
+     "color": "#F2A23A",
+     "sub": "100 − 30 = 70",
+     "at": 60.45
+    },
+    {
+     "label": "Debt & gold",
+     "value": 30,
+     "color": "#091D39",
+     "sub": "A starting point, not a law",
+     "at": 61.85
+    }
+   ]
+  },
+  {
+   "start": 64.25,
+   "end": 85.05,
+   "type": "donut",
+   "heading": "Within equity: core & satellite",
+   "center": "Your equity",
+   "segments": [
+    {
+     "label": "Core: 70–80%",
+     "value": 75,
+     "color": "#091D39",
+     "sub": "Diversified MFs / index funds: steady engine",
+     "at": 69.45
+    },
+    {
+     "label": "Satellite: the rest",
+     "value": 25,
+     "color": "#F2A23A",
+     "sub": "Stocks you research: learn & try to beat the market",
+     "at": 76.45
+    }
+   ]
+  },
+  {
+   "start": 85.05,
+   "end": 92.15,
+   "type": "title",
+   "kicker": "Step 4",
+   "heading": "Understand the economy",
+   "hl": [
+    "economy"
+   ],
+   "sub": "No economics degree needed. Just watch 5 numbers."
+  },
+  {
+   "start": 92.15,
+   "end": 117.35,
+   "type": "tiles",
+   "heading": "The 5 numbers to watch",
+   "items": [
+    {
+     "title": "GDP growth",
+     "value": "Expanding?",
+     "arrow": "up",
+     "sub": "sales & profits grow with it",
+     "color": "#10B07F",
+     "at": 93.25
+    },
+    {
+     "title": "Inflation",
+     "value": "Prices",
+     "arrow": "up",
+     "sub": "how fast prices rise",
+     "color": "#D93A2F",
+     "at": 100.45
+    },
+    {
+     "title": "Interest rates",
+     "value": "Repo",
+     "arrow": "flat",
+     "sub": "watch the RBI's repo rate",
+     "at": 103.15
+    },
+    {
+     "title": "Crude oil",
+     "value": "Imported",
+     "arrow": "flat",
+     "sub": "hits India directly",
+     "color": "#2F5D9B",
+     "at": 106.75
+    },
+    {
+     "title": "Rupee",
+     "value": "₹ vs $",
+     "arrow": "down",
+     "sub": "weak ₹ helps exporters",
+     "color": "#F2A23A",
+     "at": 113.05
+    }
+   ]
+  }
+ ],
+ "cta": [
+  {
+   "at": 28.6,
+   "dur": 5.6,
+   "text": "Like & Share with a friend"
+  },
+  {
+   "at": 86.0,
+   "dur": 5.0,
+   "text": "Follow COMandFIN for more"
+  }
+ ],
+ "end_segment": "promo",
+ "source": {
+  "project": "long-02-portfolio",
+  "ranges": [
+   [
+    130.45,
+    247.55
+   ]
+  ]
+ },
+ "promo": {
+  "title": "Watch the complete video on YouTube",
+  "sub": "Link in the post & comments",
+  "cta": "All 8 steps to build your portfolio",
+  "image": "../long-02-portfolio/output/thumbnail.png",
+  "duration": "11:13",
+  "dur": 5
+ },
+ "thumbnail": {
+  "line1": "₹12 LAKH →",
+  "line2": "₹50 LAKH",
+  "badge": "POWER OF COMPOUNDING"
+ }
+}

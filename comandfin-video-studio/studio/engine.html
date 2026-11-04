@@ -286,14 +286,14 @@ const SCENE={
  },
  donut(s,b,t){ // allocation / thali
   const hh=heading(s,b,t,s.start);const segs=s.segments;const at=times(s,segs);const tot=segs.reduce((a,x)=>a+x.value,0);
-  const cx=V?b.x+b.w/2:b.x+b.w*0.3,cy=V?b.y+hh+330:b.y+hh+(b.h-hh)/2,R=V?300:Math.min(270,(b.h-hh)/2-10),r=R*0.56;let a0=-Math.PI/2;
+  const cx=V?b.x+b.w/2:b.x+b.w*0.3,cy=V?b.y+hh+260:b.y+hh+(b.h-hh)/2,R=V?250:Math.min(270,(b.h-hh)/2-10),r=R*0.56;let a0=-Math.PI/2;
   X.fillStyle='#EEF1F5';X.beginPath();X.arc(cx,cy,R,0,7);X.arc(cx,cy,r,0,7,true);X.fill();
   segs.forEach((g,i)=>{const p=pr(t,at[i],0.8,eio);const a1=a0+g.value/tot*Math.PI*2*p;if(p>0){X.fillStyle=g.color;X.beginPath();X.arc(cx,cy,R,a0,a1);X.arc(cx,cy,r,a1,a0,true);X.closePath();X.fill();X.strokeStyle=B.white;X.lineWidth=5;X.stroke();
       if(p>0.9&&!s.hidePct){const am=(a0+a1)/2;txt(g.value+'%',cx+Math.cos(am)*(R+r)/2,cy+Math.sin(am)*(R+r)/2,S(34,34),{w:900,c:B.white,a:'center'});}}
     a0+=g.value/tot*Math.PI*2;});
   if(s.center)inAt(t,s.start+0.4,()=>{wrap(s.center,r*1.6,S(34,34),900).forEach((l,i,a)=>txt(l,cx,cy+(i-(a.length-1)/2)*40,S(34,34),{w:900,c:B.navy,a:'center'}));});
-  const lx=V?b.x+60:b.x+b.w*0.58,ly0=V?cy+R+70:b.y+hh+60;
-  segs.forEach((g,i)=>inAt(t,at[i],()=>{const y=ly0+i*S(110,96);X.fillStyle=g.color;rr(lx,y,44,44,10);X.fill();txt(g.label,lx+70,y+14,S(38,36),{w:900,c:B.navy});if(g.sub)txt(g.sub,lx+70,y+56,S(26,26),{w:600,c:B.muted});}));
+  const lx=V?b.x+60:b.x+b.w*0.58,ly0=V?cy+R+50:b.y+hh+60;
+  segs.forEach((g,i)=>inAt(t,at[i],()=>{const y=ly0+i*S(110,segs.length>2?80:110);X.fillStyle=g.color;rr(lx,y,44,44,10);X.fill();txt(g.label,lx+70,y+14,S(38,36),{w:900,c:B.navy});if(g.sub)txt(g.sub,lx+70,y+56,S(26,26),{w:600,c:B.muted});}));
  },
  tiles(s,b,t){ // dashboard of indicators
   const hh=heading(s,b,t,s.start);const it=s.items;const at=times(s,it);const cols=s.cols||(V?2:it.length),rows=Math.ceil(it.length/cols),gap=S(26,24);
