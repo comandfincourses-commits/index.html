@@ -9,20 +9,12 @@
  "teaser": {
   "clips": [
    [
-    148.0,
-    150.1
+    135.1,
+    150.13
    ],
    [
-    342.45,
-    349.75
-   ],
-   [
-    539.4,
-    543.6
-   ],
-   [
-    578.75,
-    581.85
+    0.0,
+    5.7
    ]
   ],
   "label": "COMING UP IN THIS VIDEO"
@@ -51,36 +43,24 @@
  "scenes": [
   {
    "start": 0,
-   "end": 5.6,
-   "type": "stat",
-   "heading": "Bombay, 1985",
-   "value": 5000,
-   "prefix": "₹",
-   "at": 3.0,
-   "label": "A young man walks into Dalal Street"
-  },
-  {
-   "start": 5.6,
    "end": 13.0,
-   "type": "bullets",
-   "heading": "What he had",
-   "style": "num",
-   "items": [
+   "type": "media",
+   "photo": "media/young_man_dalal_street.png",
+   "fx": 0.5,
+   "fy": 1.0,
+   "label": "Bombay, 1985",
+   "texts": [
     {
-     "text": "No famous surname",
-     "at": 5.8
-    },
-    {
-     "text": "No big bank balance",
-     "at": 7.1
-    },
-    {
-     "text": "Just ₹5,000 and a strong belief in India",
-     "at": 9.3,
+     "at": 0,
+     "text": "A young man walks into Dalal Street with just ₹5,000",
      "hl": [
-      "belief",
-      "India"
+      "₹5,000"
      ]
+    },
+    {
+     "at": 5.8,
+     "text": "No famous surname. No big bank balance.",
+     "sub": "Just ₹5,000 and a strong belief in India"
     }
    ]
   },
@@ -112,12 +92,17 @@
   {
    "start": 22.2,
    "end": 29.2,
-   "type": "stat",
-   "heading": "The same market is open to you today",
-   "value": 250,
-   "prefix": "₹",
-   "at": 27.0,
-   "label": "is all you need to start"
+   "type": "media",
+   "photo": "media/stock_market_today.png",
+   "fx": 0.55,
+   "fy": 0.45,
+   "label": "Today",
+   "accent": "#10B07F",
+   "text": "The same stock market is open to you today",
+   "hl": [
+    "you"
+   ],
+   "sub": "And you can start with just ₹250"
   },
   {
    "start": 29.2,
@@ -177,10 +162,12 @@
      "color": "#10B07F"
     },
     {
-     "icon": "people",
      "text": "Radhakishan Damani",
      "at": 53.1,
-     "color": "#F2A23A"
+     "color": "#F2A23A",
+     "photo": "media/damani_dmart.png",
+     "photo_y": 0.15,
+     "photo_zoom": 0.5
     },
     {
      "photo": "media/img15.png",
@@ -195,7 +182,6 @@
    "start": 55.8,
    "end": 60.9,
    "type": "presenter",
-   "photo": "media/mentor3d_cutout.png",
    "kicker": "CA Ankit Bajaj · COMandFIN",
    "heading": "Let us begin",
    "hl": [
@@ -226,30 +212,43 @@
   {
    "start": 71.2,
    "end": 94.0,
-   "type": "bullets",
-   "heading": "Ask yourself 3 questions",
-   "style": "num",
-   "items": [
+   "type": "doodle",
+   "photo": "media/three_questions.png",
+   "label": "Ask yourself",
+   "cam": [
     {
-     "text": "What is my goal? A house in 10 years · retirement in 30 · a child's education",
+     "at": 71.2,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1
+    },
+    {
      "at": 74.1,
-     "hl": [
-      "goal?"
-     ]
+     "cx": 0.66,
+     "cy": 0.33,
+     "z": 0.62,
+     "d": 0.8
     },
     {
-     "text": "When will I need this money? Needed in 2–3 years → not in shares",
      "at": 79.6,
-     "hl": [
-      "When"
-     ]
+     "cx": 0.66,
+     "cy": 0.5,
+     "z": 0.62,
+     "d": 0.7
     },
     {
-     "text": "How much fall can I handle? Portfolio −20%: calm or panic?",
      "at": 86.4,
-     "hl": [
-      "fall"
-     ]
+     "cx": 0.66,
+     "cy": 0.66,
+     "z": 0.62,
+     "d": 0.7
+    },
+    {
+     "at": 91.5,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1,
+     "d": 1.2
     }
    ]
   },
@@ -779,13 +778,29 @@
   {
    "start": 321.8,
    "end": 335.6,
-   "type": "statement",
-   "text": "He wasn't looking at one bad year. He was looking at the Indian middle class.",
-   "hl": [
-    "middle",
-    "class."
-   ],
-   "sub": "Branded watches & jewellery from trusted stores, not the local jeweller"
+   "type": "media",
+   "photo": "media/titan_store.png",
+   "fx": 0.5,
+   "fy": 0.45,
+   "label": "Titan",
+   "texts": [
+    {
+     "at": 321.8,
+     "text": "He wasn't looking at one bad year. He was looking at the Indian middle class.",
+     "hl": [
+      "middle",
+      "class."
+     ]
+    },
+    {
+     "at": 327.6,
+     "text": "Branded watches & jewellery from trusted stores",
+     "hl": [
+      "trusted"
+     ],
+     "sub": "instead of the local jeweller"
+    }
+   ]
   },
   {
    "start": 335.6,
@@ -887,7 +902,7 @@
   },
   {
    "start": 383.1,
-   "end": 400.2,
+   "end": 388.9,
    "type": "profile",
    "name": "Warren Buffett",
    "role": "Berkshire Hathaway",
@@ -899,19 +914,36 @@
    "points": [
     {
      "icon": "bulb",
-     "text": "Understood the business completely",
-     "at": 390.8
-    },
-    {
-     "icon": "heart",
-     "text": "Simple product, a brand loved worldwide",
-     "at": 394.0
-    },
-    {
-     "icon": "chart",
-     "text": "Pricing power & strong cash flows",
-     "at": 397.0,
+     "text": "From 1988: starts buying Coca-Cola",
+     "at": 385.6,
      "hl": true
+    }
+   ]
+  },
+  {
+   "start": 388.9,
+   "end": 400.2,
+   "type": "media",
+   "photo": "media/coca_cola.png",
+   "fx": 0.5,
+   "fy": 0.45,
+   "label": "Coca-Cola",
+   "accent": "#D93A2F",
+   "texts": [
+    {
+     "at": 388.9,
+     "text": "Why Coca-Cola? He understood the business completely.",
+     "hl": [
+      "understood"
+     ]
+    },
+    {
+     "at": 393.7,
+     "text": "Simple product. A brand loved worldwide.",
+     "hl": [
+      "brand"
+     ],
+     "sub": "Pricing power and strong cash flows"
     }
    ]
   },
@@ -940,10 +972,9 @@
   },
   {
    "start": 419.4,
-   "end": 440.1,
+   "end": 432.9,
    "type": "profile",
    "name": "Radhakishan Damani",
-   "initials": "RD",
    "role": "Founder, DMart (Avenue Supermarts)",
    "label": "Invest in what you know",
    "source": "First DMart store: Mumbai, 2002",
@@ -957,14 +988,28 @@
      "icon": "factory",
      "text": "2002: first DMart store in Mumbai",
      "at": 428.9
-    },
-    {
-     "icon": "money",
-     "text": "Own the stores, keep costs low, everyday low prices",
-     "at": 434.2,
-     "hl": true
     }
-   ]
+   ],
+   "photo": "media/damani_dmart.png",
+   "photo_y": 0.15,
+   "photo_zoom": 0.5,
+   "photoTag": "AI illustration"
+  },
+  {
+   "start": 432.9,
+   "end": 440.1,
+   "type": "media",
+   "photo": "media/dmart_store.png",
+   "fx": 0.55,
+   "fy": 0.5,
+   "label": "DMart",
+   "accent": "#10B07F",
+   "text": "Own the stores. Keep costs low. Everyday low prices.",
+   "hl": [
+    "Own",
+    "low"
+   ],
+   "sub": "Radhakishan Damani's simple idea"
   },
   {
    "start": 440.1,
@@ -990,12 +1035,16 @@
   {
    "start": 451.4,
    "end": 457.6,
-   "type": "statement",
+   "type": "media",
+   "photo": "media/dmart_store.png",
+   "fx": 0.35,
+   "fy": 0.5,
+   "label": "Invest in what you know",
+   "accent": "#10B07F",
    "text": "“Invest in what you know.”",
    "hl": [
     "know.”"
    ],
-   "accent": "#10B07F",
    "sub": "Peter Lynch, legendary fund manager"
   },
   {
@@ -1153,18 +1202,28 @@
   {
    "start": 560.6,
    "end": 571.0,
-   "type": "statement",
+   "type": "media",
+   "photo": "media/coca_cola.png",
+   "fx": 0.4,
+   "fy": 0.5,
+   "label": "Holding since 1988",
+   "accent": "#D93A2F",
+   "zoomOut": true,
    "text": "“Our favourite holding period is forever.”",
    "hl": [
     "forever.”"
    ],
-   "accent": "#10B07F",
-   "sub": "Warren Buffett, still holding Coca-Cola since 1988"
+   "sub": "Warren Buffett, still holding Coca-Cola"
   },
   {
    "start": 571.0,
    "end": 581.8,
-   "type": "statement",
+   "type": "media",
+   "photo": "media/titan_store.png",
+   "fx": 0.45,
+   "fy": 0.5,
+   "label": "Titan · ~two decades",
+   "zoomOut": true,
    "text": "Wealth is made by buying right… and sitting tight.",
    "hl": [
     "buying",

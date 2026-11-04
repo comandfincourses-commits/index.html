@@ -334,10 +334,11 @@ const SCENE={
     X.strokeStyle=s.accent||B.gold;X.lineWidth=6;rr(ix,iy,iw,ih,26);X.stroke();
     if(s.label)pill(ix+24,iy+ih-48,s.label.toUpperCase(),S(24,26),{bg:s.accent||B.gold,c:B.navy});});
   const tx=V?b.x+b.w/2:ix+iw+60,tw_=V?b.w-20:b.w-iw-60,al=V?'center':'left';let y=V?iy+ih+S(0,90):b.y+b.h*0.32;
-  const sz=s.size||S(56,58);const lines=wrap(s.text||'',tw_,sz,900);
-  lines.forEach((l,i)=>inAt(t,s.start+0.35+i*0.12,()=>richLine(l,tx,y+i*sz*1.18,sz,{w:900,hl:s.hl||[],a:al})));
+  const cur=(s.texts||[]).filter(x=>t>=x.at).pop();const T0=cur?cur.at:s.start;const TX=cur?cur.text:(s.text||''),HL=cur?(cur.hl||[]):(s.hl||[]),SUB=cur?cur.sub:s.sub;
+  const sz=s.size||S(56,58);const lines=wrap(TX,tw_,sz,900);
+  lines.forEach((l,i)=>inAt(t,T0+0.35+i*0.12,()=>richLine(l,tx,y+i*sz*1.18,sz,{w:900,hl:HL,a:al})));
   y+=lines.length*sz*1.18+S(30,20);
-  if(s.sub)inAt(t,s.start+0.8,()=>wrap(s.sub,tw_,S(34,36),600).forEach((l,i)=>txt(l,tx,y+i*S(44,46),S(34,36),{w:600,c:B.muted,a:al})));
+  if(SUB)inAt(t,T0+0.8,()=>wrap(SUB,tw_,S(34,36),600).forEach((l,i)=>txt(l,tx,y+i*S(44,46),S(34,36),{w:600,c:B.muted,a:al})));
  },
  presenter(s,b,t){ // the presenter on screen (cut-out) with a big question
   const im=IMG[s.photo||P.cutoutUrl];const lt=t-s.start;
