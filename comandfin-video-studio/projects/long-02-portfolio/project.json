@@ -9,12 +9,12 @@
  "teaser": {
   "clips": [
    [
-    135.1,
-    150.13
+    40.67,
+    55.74
    ],
    [
-    0.0,
-    5.7
+    135.1,
+    150.13
    ]
   ],
   "label": "COMING UP IN THIS VIDEO"
@@ -43,7 +43,7 @@
  "scenes": [
   {
    "start": 0,
-   "end": 13.0,
+   "end": 5.6,
    "type": "media",
    "photo": "media/young_man_dalal_street.png",
    "fx": 0.5,
@@ -56,11 +56,49 @@
      "hl": [
       "₹5,000"
      ]
+    }
+   ]
+  },
+  {
+   "start": 5.6,
+   "end": 13.0,
+   "type": "doodle",
+   "photo": "media/what_he_had.png",
+   "label": "What he had",
+   "cam": [
+    {
+     "at": 5.6,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1
     },
     {
      "at": 5.8,
-     "text": "No famous surname. No big bank balance.",
-     "sub": "Just ₹5,000 and a strong belief in India"
+     "cx": 0.67,
+     "cy": 0.16,
+     "z": 0.62,
+     "d": 0.6
+    },
+    {
+     "at": 7.1,
+     "cx": 0.67,
+     "cy": 0.45,
+     "z": 0.62,
+     "d": 0.6
+    },
+    {
+     "at": 9.3,
+     "cx": 0.67,
+     "cy": 0.78,
+     "z": 0.62,
+     "d": 0.6
+    },
+    {
+     "at": 11.6,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1,
+     "d": 1.0
     }
    ]
   },
@@ -1047,33 +1085,57 @@
   {
    "start": 457.6,
    "end": 496.3,
-   "type": "bullets",
-   "heading": "Before you buy any stock, check 5 things",
-   "style": "num",
-   "size": 40,
-   "items": [
+   "type": "doodle",
+   "photo": "media/five_checks.png",
+   "label": "Check 5 things",
+   "cam": [
     {
-     "text": "Do I understand how it makes money? (explain it to a 10-year-old)",
-     "at": 460.4
+     "at": 457.6,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1
     },
     {
-     "text": "Does it have a moat? Brand, cost advantage, hard to copy",
-     "at": 467.2
+     "at": 460.4,
+     "cx": 0.35,
+     "cy": 0.24,
+     "z": 0.55,
+     "d": 0.7
     },
     {
-     "text": "Is management honest & capable? Promised vs delivered",
-     "at": 473.5
+     "at": 467.2,
+     "cx": 0.61,
+     "cy": 0.24,
+     "z": 0.55,
+     "d": 0.7
     },
     {
-     "text": "Are the numbers strong? Sales growth, ROE, low debt, real cash flow",
-     "at": 482.0
+     "at": 473.5,
+     "cx": 0.85,
+     "cy": 0.24,
+     "z": 0.55,
+     "d": 0.7
     },
     {
-     "text": "Is the price right? Don't overpay",
+     "at": 482.0,
+     "cx": 0.39,
+     "cy": 0.71,
+     "z": 0.62,
+     "d": 0.7
+    },
+    {
      "at": 490.1,
-     "hl": [
-      "price"
-     ]
+     "cx": 0.77,
+     "cy": 0.71,
+     "z": 0.62,
+     "d": 0.7
+    },
+    {
+     "at": 494.6,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1,
+     "d": 1.0
     }
    ]
   },
