@@ -923,27 +923,24 @@
   {
    "start": 388.9,
    "end": 400.2,
-   "type": "media",
-   "photo": "media/coca_cola.png",
-   "fx": 0.5,
-   "fy": 0.45,
-   "label": "Coca-Cola",
-   "accent": "#D93A2F",
-   "texts": [
+   "type": "bullets",
+   "heading": "Why Coca-Cola?",
+   "items": [
     {
-     "at": 388.9,
-     "text": "Why Coca-Cola? He understood the business completely.",
-     "hl": [
-      "understood"
-     ]
+     "text": "He understood the business completely",
+     "at": 389.9
     },
     {
-     "at": 393.7,
-     "text": "Simple product. A brand loved worldwide.",
+     "text": "A simple product, a brand loved across the world",
+     "at": 393.7
+    },
+    {
+     "text": "Pricing power and strong cash flows",
+     "at": 397.0,
      "hl": [
-      "brand"
-     ],
-     "sub": "Pricing power and strong cash flows"
+      "Pricing",
+      "power"
+     ]
     }
    ]
   },
@@ -999,7 +996,7 @@
    "start": 432.9,
    "end": 440.1,
    "type": "media",
-   "photo": "media/dmart_store.png",
+   "photo": "media/damani_dmart.png",
    "fx": 0.55,
    "fy": 0.5,
    "label": "DMart",
@@ -1036,7 +1033,7 @@
    "start": 451.4,
    "end": 457.6,
    "type": "media",
-   "photo": "media/dmart_store.png",
+   "photo": "media/damani_dmart.png",
    "fx": 0.35,
    "fy": 0.5,
    "label": "Invest in what you know",
@@ -1202,18 +1199,13 @@
   {
    "start": 560.6,
    "end": 571.0,
-   "type": "media",
-   "photo": "media/coca_cola.png",
-   "fx": 0.4,
-   "fy": 0.5,
-   "label": "Holding since 1988",
-   "accent": "#D93A2F",
-   "zoomOut": true,
+   "type": "statement",
    "text": "“Our favourite holding period is forever.”",
    "hl": [
     "forever.”"
    ],
-   "sub": "Warren Buffett, still holding Coca-Cola"
+   "accent": "#10B07F",
+   "sub": "Warren Buffett, still holding Coca-Cola since 1988"
   },
   {
    "start": 571.0,
