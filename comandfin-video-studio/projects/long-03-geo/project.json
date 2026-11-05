@@ -110,21 +110,21 @@
    "fy": 0.5,
    "gif": {
     "frames": [
-     "media/gif/animated_global_market_celebration/00.png",
-     "media/gif/animated_global_market_celebration/01.png",
-     "media/gif/animated_global_market_celebration/02.png",
-     "media/gif/animated_global_market_celebration/03.png",
-     "media/gif/animated_global_market_celebration/04.png",
-     "media/gif/animated_global_market_celebration/05.png",
-     "media/gif/animated_global_market_celebration/06.png",
-     "media/gif/animated_global_market_celebration/07.png",
-     "media/gif/animated_global_market_celebration/08.png"
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/00.png",
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/01.png",
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/02.png",
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/03.png",
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/04.png",
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/05.png",
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/06.png",
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/07.png",
+     "media/gif/trump_like_figure_sinks_amid_angry_crowd/08.png"
     ],
     "dur": 3.15
    },
-   "photo": "media/gif/animated_global_market_celebration/00.png",
+   "photo": "media/gif/trump_like_figure_sinks_amid_angry_crowd/00.png",
    "text": "Trump's party lost. Dow Jones jumped 1,200 points.",
-   "label": "Wall Street",
+   "label": "AI illustration",
    "hl": [
     "1,200"
    ]
@@ -518,7 +518,7 @@
    "start": 149.45,
    "end": 153.01,
    "type": "media",
-   "photo": "media/leaders_markets_2.png",
+   "photo": "media/gif/animated_global_market_celebration/00.png",
    "fx": 0.5,
    "fy": 0.45,
    "label": "AI illustration",
@@ -526,7 +526,21 @@
    "text": "Why is the market so happy when one party loses?",
    "hl": [
     "happy"
-   ]
+   ],
+   "gif": {
+    "frames": [
+     "media/gif/animated_global_market_celebration/00.png",
+     "media/gif/animated_global_market_celebration/01.png",
+     "media/gif/animated_global_market_celebration/02.png",
+     "media/gif/animated_global_market_celebration/03.png",
+     "media/gif/animated_global_market_celebration/04.png",
+     "media/gif/animated_global_market_celebration/05.png",
+     "media/gif/animated_global_market_celebration/06.png",
+     "media/gif/animated_global_market_celebration/07.png",
+     "media/gif/animated_global_market_celebration/08.png"
+    ],
+    "dur": 3.15
+   }
   },
   {
    "start": 153.01,

@@ -72,21 +72,21 @@
    "fy": 0.5,
    "gif": {
     "frames": [
-     "../long-03-geo/media/gif/animated_global_market_celebration/00.png",
-     "../long-03-geo/media/gif/animated_global_market_celebration/01.png",
-     "../long-03-geo/media/gif/animated_global_market_celebration/02.png",
-     "../long-03-geo/media/gif/animated_global_market_celebration/03.png",
-     "../long-03-geo/media/gif/animated_global_market_celebration/04.png",
-     "../long-03-geo/media/gif/animated_global_market_celebration/05.png",
-     "../long-03-geo/media/gif/animated_global_market_celebration/06.png",
-     "../long-03-geo/media/gif/animated_global_market_celebration/07.png",
-     "../long-03-geo/media/gif/animated_global_market_celebration/08.png"
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/00.png",
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/01.png",
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/02.png",
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/03.png",
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/04.png",
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/05.png",
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/06.png",
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/07.png",
+     "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/08.png"
     ],
     "dur": 3.15
    },
-   "photo": "../long-03-geo/media/gif/animated_global_market_celebration/00.png",
+   "photo": "../long-03-geo/media/gif/trump_like_figure_sinks_amid_angry_crowd/00.png",
    "text": "Trump's party lost. Dow Jones jumped 1,200 points.",
-   "label": "Wall Street",
+   "label": "AI illustration",
    "hl": [
     "1,200"
    ]
@@ -94,14 +94,30 @@
   {
    "start": 14.5,
    "end": 20.43,
-   "type": "stat",
-   "heading": "Foreign investors, in just one day",
-   "value": 7300,
-   "prefix": "₹",
-   "suffix": " cr",
-   "at": 15.3,
-   "label": "poured into India",
-   "color": "#10B07F"
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "text": "FIIs poured ₹7,300 crore into India in one day",
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/00.png",
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/01.png",
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/02.png",
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/03.png",
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/04.png",
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/05.png",
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/06.png",
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/07.png",
+     "../long-03-geo/media/gif/diplomatic_handshake_animation/08.png"
+    ],
+    "dur": 3.15
+   },
+   "photo": "../long-03-geo/media/gif/diplomatic_handshake_animation/00.png",
+   "label": "AI illustration",
+   "hl": [
+    "₹7,300"
+   ],
+   "accent": "#10B07F"
   },
   {
    "start": 20.43,
@@ -160,6 +176,34 @@
   },
   {
    "start": 34.84,
+   "end": 38.28999999999999,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "text": "Why is the market so happy when one party loses?",
+   "photo": "../long-03-geo/media/gif/animated_global_market_celebration/00.png",
+   "label": "AI illustration",
+   "hl": [
+    "happy"
+   ],
+   "accent": "#10B07F",
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/animated_global_market_celebration/00.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/01.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/02.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/03.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/04.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/05.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/06.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/07.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/08.png"
+    ],
+    "dur": 3.15
+   }
+  },
+  {
+   "start": 38.28999999999999,
    "end": 53.75,
    "type": "media",
    "fx": 0.5,
@@ -180,10 +224,6 @@
    },
    "photo": "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/00.png",
    "texts": [
-    {
-     "at": 34.84,
-     "text": "Why is the market so happy?"
-    },
     {
      "at": 38.29,
      "text": "One word: GRIDLOCK. A traffic jam.",
@@ -297,8 +337,26 @@
   {
    "start": 82.65,
    "end": 88.87,
-   "type": "statement",
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
    "text": "If tension eases and crude falls, India could gain the most",
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/00.png",
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/01.png",
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/02.png",
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/03.png",
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/04.png",
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/05.png",
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/06.png",
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/07.png",
+     "../long-03-geo/media/gif/animated_china_india_shipping_routes/08.png"
+    ],
+    "dur": 4.05
+   },
+   "photo": "../long-03-geo/media/gif/animated_china_india_shipping_routes/00.png",
+   "label": "India's chance",
    "hl": [
     "India"
    ],
@@ -307,19 +365,10 @@
   {
    "start": 88.87,
    "end": 92.57,
-   "type": "title",
-   "kicker": "So what should you do now?",
-   "heading": "5 simple steps",
-   "hl": [
-    "5"
-   ]
-  },
-  {
-   "start": 92.57,
-   "end": 96.37,
    "type": "media",
    "fx": 0.5,
    "fy": 0.5,
+   "text": "So what should you do? 5 simple steps",
    "gif": {
     "frames": [
      "../long-03-geo/media/gif/aarav_s_smart_investing_journey/00.png",
@@ -335,47 +384,150 @@
     "dur": 4.05
    },
    "photo": "../long-03-geo/media/gif/aarav_s_smart_investing_journey/00.png",
-   "text": "Don't chase the rally",
-   "label": "Step 1",
-   "sub": "Putting everything on one news isn't investing",
+   "label": "Your plan",
    "hl": [
-    "Don't"
+    "5"
    ]
   },
   {
-   "start": 96.37,
-   "end": 120.4,
-   "type": "bullets",
-   "heading": "5 simple steps",
-   "style": "num",
-   "items": [
-    {
-     "text": "Don't chase the rally",
-     "at": 96.57
-    },
-    {
-     "text": "Keep your SIP running: discipline is the real hero",
-     "at": 96.97,
-     "hl": [
-      "discipline"
-     ]
-    },
-    {
-     "text": "Lump sum? Invest it in parts over 3–6 months",
-     "at": 102.02
-    },
-    {
-     "text": "Track 3 numbers: crude oil, rupee, FPI flows",
-     "at": 107.03,
-     "hl": [
-      "crude"
-     ]
-    },
-    {
-     "text": "Choose quality: low debt, strong cash flow, good management",
-     "at": 113.34
-    }
+   "start": 92.57,
+   "end": 96.44,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "text": "1. Don't chase the rally",
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/00.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/01.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/02.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/03.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/04.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/05.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/06.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/07.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/08.png"
+    ],
+    "dur": 2.25
+   },
+   "photo": "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/00.png",
+   "label": "Step 1",
+   "hl": [
+    "Don't"
+   ],
+   "sub": "Putting everything on one news isn't investing",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 96.44,
+   "end": 102.02,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "text": "2. Keep your SIP running",
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/00.png",
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/01.png",
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/02.png",
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/03.png",
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/04.png",
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/05.png",
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/06.png",
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/07.png",
+     "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/08.png"
+    ],
+    "dur": 3.15
+   },
+   "photo": "../long-03-geo/media/gif/aarav_s_animated_trend_thoughts/00.png",
+   "label": "Step 2",
+   "hl": [
+    "SIP"
+   ],
+   "sub": "Market up or down: discipline is the real hero"
+  },
+  {
+   "start": 102.02,
+   "end": 107.03,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "text": "3. Lump sum? Invest in parts over 3–6 months",
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/00.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/01.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/02.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/03.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/04.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/05.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/06.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/07.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/08.png"
+    ],
+    "dur": 4.05
+   },
+   "photo": "../long-03-geo/media/gif/aarav_s_smart_investing_journey/00.png",
+   "label": "Step 3",
+   "hl": [
+    "parts"
    ]
+  },
+  {
+   "start": 107.03,
+   "end": 113.34,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "text": "4. Track 3 numbers: crude oil, rupee, FPI flows",
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/00.png",
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/01.png",
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/02.png",
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/03.png",
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/04.png",
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/05.png",
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/06.png",
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/07.png",
+     "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/08.png"
+    ],
+    "dur": 2.7
+   },
+   "photo": "../long-03-geo/media/gif/oil_prices_surge_toward_indian_port/00.png",
+   "label": "Step 4",
+   "hl": [
+    "crude"
+   ],
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 113.34,
+   "end": 120.4,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "text": "5. Choose quality: low debt, strong cash flow, good management",
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/00.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/01.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/02.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/03.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/04.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/05.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/06.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/07.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/08.png"
+    ],
+    "dur": 4.05
+   },
+   "photo": "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/00.png",
+   "label": "Step 5",
+   "hl": [
+    "quality:"
+   ],
+   "accent": "#10B07F"
   }
  ],
  "cta": [
