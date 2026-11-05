@@ -1,0 +1,428 @@
+{
+ "theme": "varsity",
+ "topic": "US Election & Your Money",
+ "music": "../../assets/music_library/comandfin_bed_calm.m4a",
+ "title": "US Election → Indian Market: The Hidden Number",
+ "format": "short",
+ "audio": "voiceover.wav",
+ "intro_mode": "none",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 3.25,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/animated_election_night_fireworks/00.png",
+     "../long-03-geo/media/gif/animated_election_night_fireworks/01.png",
+     "../long-03-geo/media/gif/animated_election_night_fireworks/02.png",
+     "../long-03-geo/media/gif/animated_election_night_fireworks/03.png",
+     "../long-03-geo/media/gif/animated_election_night_fireworks/04.png",
+     "../long-03-geo/media/gif/animated_election_night_fireworks/05.png",
+     "../long-03-geo/media/gif/animated_election_night_fireworks/06.png",
+     "../long-03-geo/media/gif/animated_election_night_fireworks/07.png",
+     "../long-03-geo/media/gif/animated_election_night_fireworks/08.png"
+    ],
+    "dur": 4.05
+   },
+   "photo": "../long-03-geo/media/gif/animated_election_night_fireworks/00.png",
+   "text": "One night. One election, across the seven seas.",
+   "label": "Ek raat",
+   "hl": [
+    "election"
+   ]
+  },
+  {
+   "start": 3.25,
+   "end": 9.3,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/00.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/01.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/02.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/03.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/04.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/05.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/06.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/07.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/08.png"
+    ],
+    "dur": 4.05
+   },
+   "photo": "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/00.png",
+   "text": "Indian investors' wealth: +₹6.5 lakh crore",
+   "label": "Next morning",
+   "hl": [
+    "+₹6.5",
+    "lakh",
+    "crore"
+   ],
+   "accent": "#10B07F"
+  },
+  {
+   "start": 9.3,
+   "end": 14.5,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/animated_global_market_celebration/00.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/01.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/02.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/03.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/04.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/05.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/06.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/07.png",
+     "../long-03-geo/media/gif/animated_global_market_celebration/08.png"
+    ],
+    "dur": 3.15
+   },
+   "photo": "../long-03-geo/media/gif/animated_global_market_celebration/00.png",
+   "text": "Trump's party lost. Dow Jones jumped 1,200 points.",
+   "label": "Wall Street",
+   "hl": [
+    "1,200"
+   ]
+  },
+  {
+   "start": 14.5,
+   "end": 20.43,
+   "type": "stat",
+   "heading": "Foreign investors, in just one day",
+   "value": 7300,
+   "prefix": "₹",
+   "suffix": " cr",
+   "at": 15.3,
+   "label": "poured into India",
+   "color": "#10B07F"
+  },
+  {
+   "start": 20.43,
+   "end": 24.17,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/00.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/01.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/02.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/03.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/04.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/05.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/06.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/07.png",
+     "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/08.png"
+    ],
+    "dur": 2.25
+   },
+   "photo": "../long-03-geo/media/gif/delighted_rocket_launch_from_a_smartphon/00.png",
+   "text": "Everyone's saying: “Boom aa raha hai!”",
+   "label": "Social media",
+   "hl": [
+    "Boom"
+   ]
+  },
+  {
+   "start": 24.17,
+   "end": 34.84,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "photo": "../long-03-geo/media/vault_question.png",
+   "texts": [
+    {
+     "at": 24.17,
+     "text": "But there's one number no one is looking at",
+     "hl": [
+      "one",
+      "number"
+     ]
+    },
+    {
+     "at": 29.36,
+     "text": "It decides: will this rally make you money… or trap you?",
+     "hl": [
+      "money…",
+      "trap"
+     ]
+    }
+   ],
+   "label": "The hidden number",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 34.84,
+   "end": 53.75,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/00.png",
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/01.png",
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/02.png",
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/03.png",
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/04.png",
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/05.png",
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/06.png",
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/07.png",
+     "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/08.png"
+    ],
+    "dur": 3.15
+   },
+   "photo": "../long-03-geo/media/gif/capitol_traffic_jam_loop_animation/00.png",
+   "texts": [
+    {
+     "at": 34.84,
+     "text": "Why is the market so happy?"
+    },
+    {
+     "at": 38.29,
+     "text": "One word: GRIDLOCK. A traffic jam.",
+     "hl": [
+      "GRIDLOCK."
+     ]
+    },
+    {
+     "at": 40.96,
+     "text": "Split government = no sudden policy shocks",
+     "hl": [
+      "no",
+      "sudden"
+     ],
+     "sub": "Markets don't like surprises. They love predictability."
+    }
+   ],
+   "label": "Gridlock"
+  },
+  {
+   "start": 53.75,
+   "end": 69.6,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/00.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/01.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/02.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/03.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/04.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/05.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/06.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/07.png",
+     "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/08.png"
+    ],
+    "dur": 4.05
+   },
+   "photo": "../long-03-geo/media/gif/golden_bull_at_bse_sunrise/00.png",
+   "texts": [
+    {
+     "at": 54.07,
+     "text": "The real rally: Nifty ~6% up in the last 5 days",
+     "hl": [
+      "6%"
+     ]
+    },
+    {
+     "at": 59.11,
+     "text": "FIIs bought ~₹7,300 crore of shares in one day",
+     "hl": [
+      "₹7,300"
+     ],
+     "sub": "The biggest day since October 2025"
+    }
+   ],
+   "label": "The real rally",
+   "accent": "#10B07F"
+  },
+  {
+   "start": 69.6,
+   "end": 82.65,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/00.png",
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/01.png",
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/02.png",
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/03.png",
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/04.png",
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/05.png",
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/06.png",
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/07.png",
+     "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/08.png"
+    ],
+    "dur": 3.15,
+    "once": true,
+    "delay": 4.3
+   },
+   "photo": "../long-03-geo/media/gif/vault_door_unveils_golden_oil_barrel/00.png",
+   "texts": [
+    {
+     "at": 69.95,
+     "text": "Remember the number no one is watching?"
+    },
+    {
+     "at": 74.27,
+     "text": "It's the CRUDE OIL PRICE",
+     "hl": [
+      "CRUDE",
+      "OIL",
+      "PRICE"
+     ]
+    },
+    {
+     "at": 77.97,
+     "text": "The real trigger: oil and the Iran war",
+     "hl": [
+      "oil",
+      "Iran"
+     ],
+     "sub": "Not the US election"
+    }
+   ],
+   "label": "The hidden number",
+   "accent": "#F2A23A"
+  },
+  {
+   "start": 82.65,
+   "end": 88.87,
+   "type": "statement",
+   "text": "If tension eases and crude falls, India could gain the most",
+   "hl": [
+    "India"
+   ],
+   "accent": "#10B07F"
+  },
+  {
+   "start": 88.87,
+   "end": 92.57,
+   "type": "title",
+   "kicker": "So what should you do now?",
+   "heading": "5 simple steps",
+   "hl": [
+    "5"
+   ]
+  },
+  {
+   "start": 92.57,
+   "end": 96.37,
+   "type": "media",
+   "fx": 0.5,
+   "fy": 0.5,
+   "gif": {
+    "frames": [
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/00.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/01.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/02.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/03.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/04.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/05.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/06.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/07.png",
+     "../long-03-geo/media/gif/aarav_s_smart_investing_journey/08.png"
+    ],
+    "dur": 4.05
+   },
+   "photo": "../long-03-geo/media/gif/aarav_s_smart_investing_journey/00.png",
+   "text": "Don't chase the rally",
+   "label": "Step 1",
+   "sub": "Putting everything on one news isn't investing",
+   "hl": [
+    "Don't"
+   ]
+  },
+  {
+   "start": 96.37,
+   "end": 120.4,
+   "type": "bullets",
+   "heading": "5 simple steps",
+   "style": "num",
+   "items": [
+    {
+     "text": "Don't chase the rally",
+     "at": 96.57
+    },
+    {
+     "text": "Keep your SIP running: discipline is the real hero",
+     "at": 96.97,
+     "hl": [
+      "discipline"
+     ]
+    },
+    {
+     "text": "Lump sum? Invest it in parts over 3–6 months",
+     "at": 102.02
+    },
+    {
+     "text": "Track 3 numbers: crude oil, rupee, FPI flows",
+     "at": 107.03,
+     "hl": [
+      "crude"
+     ]
+    },
+    {
+     "text": "Choose quality: low debt, strong cash flow, good management",
+     "at": 113.34
+    }
+   ]
+  }
+ ],
+ "cta": [
+  {
+   "at": 35.2,
+   "dur": 5.0,
+   "text": "Follow COMandFIN for more"
+  },
+  {
+   "at": 82.9,
+   "dur": 5.0,
+   "text": "Like & Share with a friend"
+  }
+ ],
+ "end_segment": "promo",
+ "source": {
+  "project": "long-03-geo",
+  "ranges": [
+   [
+    0.0,
+    34.59
+   ],
+   [
+    149.56,
+    168.54
+   ],
+   [
+    194.37,
+    210.0
+   ],
+   [
+    381.28,
+    431.48
+   ]
+  ]
+ },
+ "promo": {
+  "title": "Watch the complete video on YouTube",
+  "sub": "Link in the post & comments",
+  "cta": "Full story: tariffs, Asia markets & India's risks",
+  "image": "../long-03-geo/output/thumbnail.png",
+  "duration": "7:37",
+  "dur": 5
+ },
+ "thumbnail": {
+  "line1": "US ELECTION →",
+  "line2": "NIFTY BOOM?",
+  "badge": "THE HIDDEN NUMBER"
+ }
+}

@@ -63,6 +63,7 @@ for (s, e), off in zip(ranges, offs):
         shift(body, s, e, off)
         c = {'start': round(st + off, 2), 'end': round(en + off + (0.25 if en == e else 0), 2), **body}
         if c.get('photo'): c['photo'] = rel(c['photo'])
+        if c.get('gif'): c['gif']['frames'] = [rel(f) for f in c['gif']['frames']]
         for it in c.get('items', []) if isinstance(c.get('items'), list) else []:
             if isinstance(it, dict) and it.get('photo'): it['photo'] = rel(it['photo'])
         if c['type'] in ('cards',) and fmt == 'short': c['cols'] = min(c.get('cols', 2), 2)
