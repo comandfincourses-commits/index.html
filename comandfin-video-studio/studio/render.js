@@ -15,7 +15,7 @@ function loadProject(dir) {
   p.transcript = JSON.parse(fs.readFileSync(path.join(dir, 'transcript.json'), 'utf8'));
   if (process.env.BODY_END) p.bodyEnd = +process.env.BODY_END;
   const abs = f => (f && !/^(file|https?|data):/.test(f)) ? 'file://' + path.resolve(dir, f) : f;
-  (p.scenes || []).forEach(s => { s.photo = abs(s.photo); (s.items || []).forEach(i => { if (i && typeof i === 'object') i.photo = abs(i.photo); }); });
+  (p.scenes || []).forEach(s => { s.photo = abs(s.photo); if (s.gif) s.gif.frames = s.gif.frames.map(abs); (s.items || []).forEach(i => { if (i && typeof i === 'object') i.photo = abs(i.photo); }); });
   if (p.promo) p.promo.image = abs(p.promo.image);
   if (p.thumbnail && p.thumbnail.faces) p.thumbnail.faces = p.thumbnail.faces.map(f => ({ ...f, src: abs(f.src) }));
   p.avatarUrl = 'file://' + path.join(ROOT, 'assets', 'presenter_avatar.png');

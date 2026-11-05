@@ -305,14 +305,14 @@ const SCENE={
       if(c.sub)wrap(c.sub,cw-30,S(26,22),600).forEach((l,q)=>txt(l,x+cw/2,y+ch-S(60,40)+q*30,S(26,22),{w:600,c:B.muted,a:'center'}));});});
  },
  doodle(s,b,t){ // illustrated scene with a keyframed camera (pan/zoom between panels) + optional headline lines
-  const im=IMG[s.photo];const bx=b.x,by=b.y-10,bw=b.w,bh=s.boxH||S(b.h,1020);const ar=bw/bh;
+  const gp0=gifPick(s,t);const im=gp0?gp0[0]:IMG[s.photo];const bx=b.x,by=b.y-10,bw=b.w,bh=s.boxH||S(b.h,1020);const ar=bw/bh;
   const cams=(s.cam&&s.cam.length)?s.cam:[{at:s.start,cx:0.5,cy:0.5,z:1}];
   let c=cams[0];for(let i=1;i<cams.length;i++){const k=cams[i];if(t<k.at)break;const p=eio(clamp((t-k.at)/(k.d||0.7)));const a=c;c={cx:lerp(a.cx,k.cx,p),cy:lerp(a.cy,k.cy,p),z:lerp(a.z,k.z,p)};}
   const drift=1-0.035*clamp((t-s.start)/Math.max(1,s.end-s.start));
   popAt(bx+bw/2,by+bh/2,t,s.start,()=>{X.save();X.shadowColor='rgba(9,29,57,0.25)';X.shadowBlur=40;X.shadowOffsetY=14;X.fillStyle='#fff';rr(bx,by,bw,bh,28);X.fill();X.restore();
     X.save();rr(bx,by,bw,bh,28);X.clip();
     if(im&&im.naturalWidth){const IW=im.naturalWidth,IH=im.naturalHeight;let cw=IW*c.z*drift,ch=cw/ar;if(ch>IH){ch=IH;cw=ch*ar;}
-      const sx=clamp(c.cx*IW-cw/2,0,IW-cw),sy=clamp(c.cy*IH-ch/2,0,IH-ch);X.drawImage(im,sx,sy,cw,ch,bx,by,bw,bh);}
+      const sx=clamp(c.cx*IW-cw/2,0,IW-cw),sy=clamp(c.cy*IH-ch/2,0,IH-ch);drawGifOr(s,t,im,I=>X.drawImage(I,sx,sy,cw,ch,bx,by,bw,bh));}
     X.restore();X.strokeStyle=s.accent||B.gold;X.lineWidth=6;rr(bx,by,bw,bh,28);X.stroke();
     if(s.label)pill(bx+24,by+40,s.label.toUpperCase(),S(24,26),{bg:s.accent||B.navy});});
   // twinkles over the illustration
@@ -324,12 +324,12 @@ const SCENE={
     lines.forEach((l,i)=>inAt(t,tl.at,()=>richLine(l,V?W/2:bx+bw/2,ty+i*sz*1.18,sz,{w:900,hl:tl.hl||[],a:'center'})));}
  },
  media(s,b,t){ // B-roll photo with slow Ken Burns move + headline
-  const im=IMG[s.photo];const lt=t-s.start,dur=s.end-s.start;const k=clamp(lt/dur);
+  const gp0=gifPick(s,t);const im=gp0?gp0[0]:IMG[s.photo];const lt=t-s.start,dur=s.end-s.start;const k=clamp(lt/dur);
   const iw=V?b.w:b.w*0.56,ih=V?Math.min(680,b.h*0.66):b.h,ix=b.x,iy=V?b.y+10:b.y;
   popAt(ix+iw/2,iy+ih/2,t,s.start,()=>{X.save();X.shadowColor='rgba(9,29,57,0.28)';X.shadowBlur=40;X.shadowOffsetY=14;X.fillStyle='#000';rr(ix,iy,iw,ih,26);X.fill();X.restore();
     X.save();rr(ix,iy,iw,ih,26);X.clip();
     if(im&&im.naturalWidth){const z=1.04+0.10*(s.zoomOut?1-k:k);const sc=Math.max(iw/im.naturalWidth,ih/im.naturalHeight)*z;const dw=im.naturalWidth*sc,dh=im.naturalHeight*sc;
-      const fx=s.fx??0.5,fy=s.fy??0.35;const px=ix+iw/2-dw*fx+(s.pan||0)*iw*0.06*(k-0.5),py=iy+ih/2-dh*fy;X.drawImage(im,clamp(px,ix+iw-dw,ix),clamp(py,iy+ih-dh,iy),dw,dh);}
+      const fx=s.fx??0.5,fy=s.fy??0.35;const px=ix+iw/2-dw*fx+(s.pan||0)*iw*0.06*(k-0.5),py=iy+ih/2-dh*fy;drawGifOr(s,t,im,I=>X.drawImage(I,clamp(px,ix+iw-dw,ix),clamp(py,iy+ih-dh,iy),dw,dh));}
     const gr=X.createLinearGradient(0,iy+ih*0.55,0,iy+ih);gr.addColorStop(0,'rgba(9,29,57,0)');gr.addColorStop(1,'rgba(9,29,57,0.55)');X.fillStyle=gr;X.fillRect(ix,iy,iw,ih);X.restore();
     X.strokeStyle=s.accent||B.gold;X.lineWidth=6;rr(ix,iy,iw,ih,26);X.stroke();
     if(s.label)pill(ix+24,iy+ih-48,s.label.toUpperCase(),S(24,26),{bg:s.accent||B.gold,c:B.navy});});
@@ -384,6 +384,13 @@ const SCENE={
  },
 };
 
+
+function gifPick(s,t){ // animated GIF frames with cross-fade: returns [imgA, imgB, blend]
+  const g=s.gif;if(!g||!g.frames||!g.frames.length)return null;const n=g.frames.length;const pos=Math.max(0,(t-s.start-(g.delay||0))/(g.dur||3))*n;
+  if(g.once){const i=Math.min(n-1,Math.floor(pos)),f=i>=n-1?0:pos-Math.floor(pos);return [IMG[g.frames[i]],IMG[g.frames[Math.min(n-1,i+1)]],f];}
+  const i=Math.floor(pos)%n,f=pos-Math.floor(pos);return [IMG[g.frames[i]],IMG[g.frames[(i+1)%n]],f];
+}
+function drawGifOr(s,t,im,fn){const gp=gifPick(s,t);if(!gp){fn(im);return;}fn(gp[0]);X.save();X.globalAlpha*=gp[2];fn(gp[1]);X.restore();}
 /* ---------------- simple vector glyphs ---------------- */
 function glyph(kind,x,y,r,col){
   const s=r*0.55;X.save();X.translate(x,y);X.strokeStyle=col;X.fillStyle=col;X.lineWidth=Math.max(2.5,r*0.1);X.lineCap='round';X.lineJoin='round';X.beginPath();
@@ -556,7 +563,7 @@ function setup(project){
   L=V?{stage:{x:60,y:300,w:960,h:1000},cap:{y:1440,size:76,maxW:940},avatar:{x:150,y:1640,r:84,nameX:250,nameY:1640,nameAlign:'left'}}
      :{stage:{x:110,y:150,w:1700,h:730},cap:{y:985,size:38,maxW:1420},avatar:{x:1810,y:975,r:66,nameX:null}};
   AV.src=P.avatarUrl;buildCaptions();
-  const srcs=new Set();if((P.scenes||[]).some(x=>x.type==='presenter'))srcs.add(P.cutoutUrl);if(P.promo&&P.promo.image)srcs.add(P.promo.image);(P.scenes||[]).forEach(sc=>{if(sc.photo)srcs.add(sc.photo);(sc.items||[]).forEach(i=>{if(i&&i.photo)srcs.add(i.photo);});});
+  const srcs=new Set();if((P.scenes||[]).some(x=>x.type==='presenter'))srcs.add(P.cutoutUrl);if(P.promo&&P.promo.image)srcs.add(P.promo.image);(P.scenes||[]).forEach(sc=>{if(sc.photo)srcs.add(sc.photo);if(sc.gif)(sc.gif.frames||[]).forEach(f=>srcs.add(f));(sc.items||[]).forEach(i=>{if(i&&i.photo)srcs.add(i.photo);});});
   const loads=[...srcs].map(u=>new Promise(r=>{const im=new Image();im.onload=r;im.onerror=r;im.src=u;IMG[u]=im;}));
   loads.push(new Promise(r=>{if(AV.complete)r();else{AV.onload=r;AV.onerror=r;}}));return Promise.all(loads);
 }
