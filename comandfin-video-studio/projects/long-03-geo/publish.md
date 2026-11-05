@@ -27,7 +27,16 @@ In this video, CA Ankit Bajaj explains:
 • 5 simple steps for investors right now
 
 ⏱️ CHAPTERS
-{{CHAPTERS}}
+0:00 Introduction
+1:16 What happened
+1:54 Why voters turned away
+2:52 Market reaction
+3:37 India
+4:27 What changes
+5:15 Winners & losers
+6:14 Will India boom?
+7:13 What should you do
+7:45 Summary
 
 💬 Comment: will Nifty end the year up or down?
 
