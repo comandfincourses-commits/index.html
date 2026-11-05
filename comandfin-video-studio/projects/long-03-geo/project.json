@@ -516,6 +516,20 @@
   },
   {
    "start": 149.45,
+   "end": 153.01,
+   "type": "media",
+   "photo": "media/leaders_markets_2.png",
+   "fx": 0.5,
+   "fy": 0.45,
+   "label": "AI illustration",
+   "accent": "#10B07F",
+   "text": "Why is the market so happy when one party loses?",
+   "hl": [
+    "happy"
+   ]
+  },
+  {
+   "start": 153.01,
    "end": 168.47,
    "type": "media",
    "fx": 0.5,
@@ -536,10 +550,6 @@
    },
    "photo": "media/gif/capitol_traffic_jam_loop_animation/00.png",
    "texts": [
-    {
-     "at": 149.45,
-     "text": "Why is the market so happy?"
-    },
     {
      "at": 153.01,
      "text": "One word: GRIDLOCK. A traffic jam.",
