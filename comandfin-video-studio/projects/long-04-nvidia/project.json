@@ -1,0 +1,885 @@
+{
+ "format": "long",
+ "theme": "varsity",
+ "title": "One Email Wiped $192 Billion Off Nvidia",
+ "topic": "Nvidia: The Huang Email",
+ "audio": "voiceover.mp3",
+ "intro_mode": "full",
+ "music": "../../assets/music_library/comandfin_bed_calm.m4a",
+ "teaser": {
+  "clips": [
+   [
+    297.62,
+    302.6
+   ],
+   [
+    22.7,
+    25.0
+   ],
+   [
+    186.1,
+    190.5
+   ],
+   [
+    329.5,
+    336.9
+   ]
+  ],
+  "label": "COMING UP IN THIS VIDEO"
+ },
+ "badges": [
+  {
+   "from": 25.27,
+   "to": 34.42,
+   "text": "ALLEGATIONS · NOT PROVEN"
+  },
+  {
+   "from": 84.31,
+   "to": 100.96,
+   "text": "ALLEGATIONS · NOT PROVEN"
+  },
+  {
+   "from": 160.34,
+   "to": 197.59,
+   "text": "ALLEGATIONS · NOT PROVEN"
+  },
+  {
+   "from": 212.74,
+   "to": 289.85,
+   "text": "ALLEGATIONS · NOT PROVEN"
+  }
+ ],
+ "cta": [
+  {
+   "at": 50.5,
+   "dur": 5.4,
+   "text": "Like & Share if you follow the markets"
+  },
+  {
+   "at": 256.9,
+   "dur": 5.0
+  },
+  {
+   "at": 318.2,
+   "dur": 4.6,
+   "text": "Subscribe for more market stories"
+  },
+  {
+   "at": 369.8,
+   "dur": 6.0,
+   "text": "Like • Share • Subscribe to COMandFIN"
+  }
+ ],
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 4.0,
+   "type": "doodle",
+   "photo": "media/n43.jpg",
+   "cam": [
+    {
+     "at": 0.0,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1
+    },
+    {
+     "at": 0.1,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 0.85,
+     "d": 4.0
+    }
+   ],
+   "label": "One email"
+  },
+  {
+   "start": 4.0,
+   "end": 10.4,
+   "type": "stat",
+   "heading": "Sent on a Sunday. By Monday evening…",
+   "value": 200,
+   "prefix": "−$",
+   "suffix": " bn",
+   "at": 5.0,
+   "label": "wiped off the world's most valuable chip company",
+   "color": "#D93A2F"
+  },
+  {
+   "start": 10.4,
+   "end": 17.21,
+   "type": "media",
+   "photo": "media/n5.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 10.4,
+     "text": "The email was written by Jensen Huang",
+     "hl": [
+      "Jensen",
+      "Huang"
+     ]
+    },
+    {
+     "at": 13.24,
+     "text": "The man in the leather jacket: CEO of Nvidia",
+     "hl": [
+      "CEO"
+     ]
+    }
+   ],
+   "label": "Nvidia CEO",
+   "accent": "#10B07F"
+  },
+  {
+   "start": 17.21,
+   "end": 25.27,
+   "type": "media",
+   "photo": "media/n46.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 17.21,
+     "text": "He admitted something no CEO wants to say in public"
+    },
+    {
+     "at": 22.81,
+     "text": "“I was unfaithful to my wife.”",
+     "hl": [
+      "unfaithful"
+     ],
+     "sub": "From his email to employees (as reported)"
+    }
+   ],
+   "label": "The confession"
+  },
+  {
+   "start": 25.27,
+   "end": 34.42,
+   "type": "media",
+   "photo": "media/n20.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 25.27,
+     "text": "But this is not just a personal story"
+    },
+    {
+     "at": 28.34,
+     "text": "The woman at the centre is suspected by US intelligence of working for China",
+     "hl": [
+      "China"
+     ]
+    }
+   ],
+   "label": "The twist",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 34.42,
+   "end": 41.88,
+   "type": "presenter",
+   "kicker": "CA Ankit Bajaj · COMandFIN",
+   "heading": "Let's understand this story, step by step",
+   "hl": [
+    "step"
+   ],
+   "hideAvatar": true
+  },
+  {
+   "start": 41.88,
+   "end": 57.85,
+   "type": "bullets",
+   "heading": "Today's story",
+   "style": "num",
+   "items": [
+    {
+     "text": "How it started",
+     "at": 42.2
+    },
+    {
+     "text": "Why America is worried",
+     "at": 43.6
+    },
+    {
+     "text": "How a Singapore company came into the picture",
+     "at": 45.0
+    },
+    {
+     "text": "What it did to Nvidia's share price",
+     "at": 47.4
+    },
+    {
+     "text": "Most of this is still allegation. Nothing proven in court.",
+     "at": 49.8,
+     "hl": [
+      "allegation."
+     ]
+    }
+   ]
+  },
+  {
+   "start": 57.85,
+   "end": 65.27,
+   "type": "profile",
+   "chapter": "How it started",
+   "name": "Alice Huang",
+   "initials": "AH",
+   "role": "Businesswoman",
+   "label": "Who is she?",
+   "source": "Media reports",
+   "accent": "#D93A2F",
+   "points": [
+    {
+     "text": "Also known as Huang Lei",
+     "at": 60.2
+    },
+    {
+     "text": "Not related to Jensen Huang",
+     "at": 62.0,
+     "hl": true
+    }
+   ]
+  },
+  {
+   "start": 65.27,
+   "end": 74.69,
+   "type": "media",
+   "photo": "media/n15.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "text": "Former senior executive at Megaspeed",
+   "label": "Megaspeed",
+   "sub": "Remember this name. We'll come back to it.",
+   "hl": [
+    "Megaspeed"
+   ]
+  },
+  {
+   "start": 74.69,
+   "end": 84.31,
+   "type": "media",
+   "photo": "media/n9.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 74.69,
+     "text": "Reportedly photographed together at a bar in Taipei, June 2024",
+     "hl": [
+      "Taipei,"
+     ]
+    },
+    {
+     "at": 79.56,
+     "text": "Another report: the relationship goes back to 2023"
+    }
+   ],
+   "label": "Taipei",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 84.31,
+   "end": 100.96,
+   "type": "media",
+   "photo": "media/n16.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 84.31,
+     "text": "NYT & others: US intelligence watched this relationship for over a year",
+     "hl": [
+      "US",
+      "intelligence"
+     ]
+    },
+    {
+     "at": 92.56,
+     "text": "A classified memo reportedly said she may have worked for China's Ministry of State Security",
+     "hl": [
+      "Ministry",
+      "of",
+      "State",
+      "Security"
+     ],
+     "sub": "China's intelligence agency"
+    }
+   ],
+   "label": "Allegation",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 100.96,
+   "end": 113.24,
+   "type": "media",
+   "photo": "media/n1.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 100.96,
+     "text": "Sunday, 8 November: Huang emails his employees",
+     "hl": [
+      "8",
+      "November:"
+     ]
+    },
+    {
+     "at": 106.66,
+     "text": "“My actions hurt her and our children. There is no excuse for what I did. I am deeply sorry.”",
+     "sub": "Jensen Huang (as reported)"
+    }
+   ],
+   "label": "The email"
+  },
+  {
+   "start": 113.24,
+   "end": 122.01,
+   "type": "compare",
+   "heading": "Notice the difference",
+   "left": {
+    "title": "Admitted",
+    "items": [
+     {
+      "text": "The affair",
+      "at": 114.5
+     }
+    ]
+   },
+   "right": {
+    "title": "Not admitted",
+    "icon": "x",
+    "items": [
+     {
+      "text": "Any spying",
+      "at": 117.0
+     },
+     {
+      "text": "Any secrets shared",
+      "at": 118.5
+     }
+    ]
+   }
+  },
+  {
+   "start": 122.01,
+   "end": 139.64,
+   "type": "compare",
+   "heading": "The responses",
+   "left": {
+    "title": "Nvidia's board",
+    "items": [
+     {
+      "text": "Started an independent investigation",
+      "at": 123.0
+     },
+     {
+      "text": "No reason to believe national security or secrets were compromised",
+      "at": 126.0
+     }
+    ]
+   },
+   "right": {
+    "title": "China",
+    "icon": "x",
+    "items": [
+     {
+      "text": "Calls the spy allegation “smears”",
+      "at": 132.0
+     }
+    ]
+   }
+  },
+  {
+   "start": 139.64,
+   "end": 141.52,
+   "type": "doodle",
+   "photo": "media/n3.jpg",
+   "cam": [
+    {
+     "at": 139.64,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1
+    },
+    {
+     "at": 139.73999999999998,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 0.85,
+     "d": 1.8800000000000239
+    }
+   ],
+   "chapter": "Why America is worried"
+  },
+  {
+   "start": 141.52,
+   "end": 152.24,
+   "type": "media",
+   "photo": "media/n13.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "text": "Nvidia's chips power AI",
+   "label": "Why it matters",
+   "sub": "ChatGPT, data centres, self-driving cars, even defence systems",
+   "hl": [
+    "AI"
+   ],
+   "accent": "#10B07F"
+  },
+  {
+   "start": 152.24,
+   "end": 160.34,
+   "type": "media",
+   "photo": "media/n22.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "text": "Since 2022: US restricts sales of Nvidia's most advanced AI chips to China",
+   "label": "Export curbs",
+   "hl": [
+    "2022:"
+   ],
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 160.34,
+   "end": 176.95,
+   "type": "media",
+   "photo": "media/n25.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 160.34,
+     "text": "The fear: China builds stronger AI, maybe stronger military tech",
+     "hl": [
+      "military"
+     ]
+    },
+    {
+     "at": 167.73,
+     "text": "A CEO close to a suspected Chinese intelligence asset → alarm bells",
+     "hl": [
+      "alarm",
+      "bells"
+     ]
+    }
+   ],
+   "label": "National security",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 176.95,
+   "end": 190.6,
+   "type": "bullets",
+   "heading": "3 questions",
+   "style": "num",
+   "items": [
+    {
+     "text": "Did any sensitive information reach China?",
+     "at": 179.19
+    },
+    {
+     "text": "Did China try to influence US chip-export policy through her?",
+     "at": 182.03
+    },
+    {
+     "text": "Did Nvidia chips quietly reach China through the back door?",
+     "at": 186.21,
+     "hl": [
+      "back",
+      "door?"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 190.6,
+   "end": 197.59,
+   "type": "media",
+   "photo": "media/n27.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "text": "Chairs of 3 House committees: closed-door briefing with Huang on 18 November",
+   "label": "Washington",
+   "hl": [
+    "18",
+    "November"
+   ]
+  },
+  {
+   "start": 197.59,
+   "end": 203.97,
+   "type": "media",
+   "photo": "media/n24.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "text": "President Trump: the FBI is looking into it",
+   "label": "White House",
+   "sub": "Even though he called Huang “an honorable guy”",
+   "hl": [
+    "FBI"
+   ]
+  },
+  {
+   "start": 203.97,
+   "end": 212.74,
+   "type": "media",
+   "photo": "media/n11.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 203.97,
+     "text": "The back door: Megaspeed",
+     "hl": [
+      "Megaspeed"
+     ]
+    },
+    {
+     "at": 207.47,
+     "text": "A Singapore-based company that builds data centres in Southeast Asia"
+    }
+   ],
+   "label": "Singapore",
+   "accent": "#10B07F",
+   "chapter": "The back door"
+  },
+  {
+   "start": 212.74,
+   "end": 231.17,
+   "type": "steps",
+   "heading": "The alleged route",
+   "steps": [
+    {
+     "text": "China can't buy the chips directly",
+     "at": 214.5
+    },
+    {
+     "text": "Chips sold to a 3rd country",
+     "sub": "Singapore, Malaysia",
+     "at": 217.94
+    },
+    {
+     "text": "On paper, they stay there",
+     "at": 222.8
+    },
+    {
+     "text": "Suspicion: chips or their compute serve China",
+     "at": 224.98
+    }
+   ]
+  },
+  {
+   "start": 231.17,
+   "end": 239.67,
+   "type": "media",
+   "photo": "media/n31.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "text": "From 2024: Megaspeed reportedly brought billions of dollars of advanced Nvidia equipment into Malaysia",
+   "label": "Malaysia",
+   "hl": [
+    "Malaysia"
+   ]
+  },
+  {
+   "start": 239.67,
+   "end": 245.97,
+   "type": "media",
+   "photo": "media/n34.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "text": "Its data centres rented computing power to Chinese customers, including Alibaba",
+   "label": "Customers",
+   "hl": [
+    "Alibaba"
+   ]
+  },
+  {
+   "start": 245.97,
+   "end": 256.72,
+   "type": "stat",
+   "heading": "Report by The Information",
+   "value": 7.5,
+   "decimals": 1,
+   "prefix": "$",
+   "suffix": " bn",
+   "at": 249.0,
+   "label": "of Nvidia chips allegedly reached Chinese companies",
+   "sub": "roughly 240,000 chips",
+   "color": "#D93A2F"
+  },
+  {
+   "start": 256.72,
+   "end": 262.41,
+   "type": "statement",
+   "text": "Megaspeed denies any smuggling",
+   "hl": [
+    "denies"
+   ],
+   "accent": "#10B07F",
+   "sub": "It says US and Malaysian reviews found no violations"
+  },
+  {
+   "start": 262.41,
+   "end": 277.82,
+   "type": "media",
+   "photo": "media/n19.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 262.41,
+     "text": "One more uncomfortable detail"
+    },
+    {
+     "at": 266.0,
+     "text": "NYT: Aug 2025, Nvidia's top lawyer contacted Commerce officials during the probe",
+     "hl": [
+      "Commerce"
+     ]
+    },
+    {
+     "at": 274.94,
+     "text": "After that, the Commerce probe was paused",
+     "hl": [
+      "paused"
+     ]
+    }
+   ],
+   "label": "Allegation",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 277.82,
+   "end": 289.85,
+   "type": "media",
+   "photo": "media/n17.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 277.82,
+     "text": "The case moved to the Justice Department: reportedly a criminal inquiry",
+     "hl": [
+      "criminal",
+      "inquiry"
+     ]
+    },
+    {
+     "at": 282.77,
+     "text": "Nvidia: it only answered officials' questions and asked for guidance"
+    }
+   ],
+   "label": "Justice Department"
+  },
+  {
+   "start": 289.85,
+   "end": 297.62,
+   "type": "media",
+   "photo": "media/n42.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 289.85,
+     "text": "Monday, 9 Nov: Nvidia fell as much as 8% intraday",
+     "hl": [
+      "8%"
+     ]
+    },
+    {
+     "at": 295.43,
+     "text": "It closed around 4% lower",
+     "hl": [
+      "4%"
+     ]
+    }
+   ],
+   "label": "Market",
+   "accent": "#D93A2F",
+   "chapter": "The money"
+  },
+  {
+   "start": 297.62,
+   "end": 318.06,
+   "type": "tiles",
+   "heading": "One session, two worlds",
+   "cols": 3,
+   "items": [
+    {
+     "title": "Nvidia market value",
+     "value": "−$192 bn",
+     "arrow": "down",
+     "sub": "lost in one session",
+     "color": "#D93A2F",
+     "at": 299.0
+    },
+    {
+     "title": "Chip stocks overall",
+     "value": "+7%",
+     "arrow": "up",
+     "sub": "the sector was celebrating",
+     "color": "#10B07F",
+     "at": 305.5
+    },
+    {
+     "title": "Tuesday",
+     "value": "−6%",
+     "arrow": "down",
+     "sub": "intraday, fell again",
+     "color": "#D93A2F",
+     "at": 313.8
+    }
+   ]
+  },
+  {
+   "start": 318.06,
+   "end": 321.08,
+   "type": "statement",
+   "text": "Why such a big reaction to a personal matter?",
+   "hl": [
+    "personal"
+   ]
+  },
+  {
+   "start": 321.08,
+   "end": 337.1,
+   "type": "media",
+   "photo": "media/n39.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 321.08,
+     "text": "Two words: KEY PERSON RISK",
+     "hl": [
+      "KEY",
+      "PERSON",
+      "RISK"
+     ]
+    },
+    {
+     "at": 323.45,
+     "text": "Huang co-founded Nvidia in 1993. For investors, he IS Nvidia",
+     "hl": [
+      "IS"
+     ]
+    },
+    {
+     "at": 329.63,
+     "text": "Dan Ives: without Huang as CEO, Nvidia could be worth 25–30% less",
+     "hl": [
+      "25–30%"
+     ]
+    }
+   ],
+   "label": "Key person risk",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 337.1,
+   "end": 359.06,
+   "type": "bullets",
+   "chapter": "Lessons",
+   "heading": "3 lessons",
+   "style": "num",
+   "items": [
+    {
+     "text": "Depend too much on one person → their personal life becomes a financial risk",
+     "at": 339.16
+    },
+    {
+     "text": "In the AI era, chips are not just products. They are national security.",
+     "at": 346.32,
+     "hl": [
+      "national",
+      "security."
+     ]
+    },
+    {
+     "text": "Corporate governance can move hundreds of billions in a day",
+     "at": 352.01,
+     "hl": [
+      "governance"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 359.06,
+   "end": 365.87,
+   "type": "tiles",
+   "heading": "Dates to watch",
+   "cols": 2,
+   "items": [
+    {
+     "title": "Nvidia",
+     "value": "Q results",
+     "sub": "next quarterly results",
+     "at": 360.0,
+     "color": "#10B07F"
+    },
+    {
+     "title": "Washington",
+     "value": "18 Nov",
+     "sub": "closed-door briefing",
+     "at": 362.5,
+     "color": "#D93A2F"
+    }
+   ]
+  },
+  {
+   "start": 365.87,
+   "end": 373.5,
+   "type": "question",
+   "label": "Tell me in the comments",
+   "q": "Should Jensen Huang continue as Nvidia's CEO?"
+  },
+  {
+   "start": 373.5,
+   "end": 380.7,
+   "type": "title",
+   "kicker": "Education only · spying claims are allegations, not proven facts",
+   "heading": "See you in the next video",
+   "hl": [
+    "next"
+   ]
+  }
+ ],
+ "thumbnail": {
+  "line1": "ONE EMAIL → −$192 BN",
+  "line2": "NVIDIA'S BIGGEST CRISIS?",
+  "faces": [
+   {
+    "src": "media/n5.jpg",
+    "label": "JENSEN HUANG",
+    "y": 0.08,
+    "z": 0.7
+   },
+   {
+    "src": "media/n43.jpg",
+    "label": "NVIDIA",
+    "y": 0.1,
+    "z": 0.7
+   },
+   {
+    "src": "media/n22.jpg",
+    "label": "AI CHIPS",
+    "y": 0.1,
+    "z": 0.7
+   },
+   {
+    "src": "media/n42.jpg",
+    "label": "−8% DAY",
+    "y": 0.1,
+    "z": 0.7
+   }
+  ]
+ }
+}
