@@ -242,7 +242,10 @@
      "at": 62.0,
      "hl": true
     }
-   ]
+   ],
+   "photo": "media/alice.jpg",
+   "photo_y": 0.12,
+   "photoTag": "REPRESENTATIVE IMAGE"
   },
   {
    "start": 65.27,

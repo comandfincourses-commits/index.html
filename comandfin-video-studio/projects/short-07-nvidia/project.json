@@ -1,0 +1,386 @@
+{
+ "theme": "varsity",
+ "topic": "Nvidia: The Huang Email",
+ "music": "../../assets/music_library/comandfin_bed_calm.m4a",
+ "title": "One Email Wiped $192 Billion Off Nvidia",
+ "format": "short",
+ "audio": "voiceover.wav",
+ "intro_mode": "none",
+ "scenes": [
+  {
+   "start": 0.0,
+   "end": 4.0,
+   "type": "doodle",
+   "photo": "../long-04-nvidia/media/n43.jpg",
+   "cam": [
+    {
+     "at": 0.0,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 1
+    },
+    {
+     "at": 0.1,
+     "cx": 0.5,
+     "cy": 0.5,
+     "z": 0.85,
+     "d": 4.0
+    }
+   ],
+   "label": "One email"
+  },
+  {
+   "start": 4.0,
+   "end": 10.4,
+   "type": "stat",
+   "heading": "Sent on a Sunday. By Monday evening…",
+   "value": 200,
+   "prefix": "−$",
+   "suffix": " bn",
+   "at": 5.0,
+   "label": "wiped off the world's most valuable chip company",
+   "color": "#D93A2F"
+  },
+  {
+   "start": 10.4,
+   "end": 17.21,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n5.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 10.4,
+     "text": "The email was written by Jensen Huang",
+     "hl": [
+      "Jensen",
+      "Huang"
+     ]
+    },
+    {
+     "at": 13.24,
+     "text": "The man in the leather jacket: CEO of Nvidia",
+     "hl": [
+      "CEO"
+     ]
+    }
+   ],
+   "label": "Nvidia CEO",
+   "accent": "#10B07F"
+  },
+  {
+   "start": 17.21,
+   "end": 25.27,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n46.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 17.21,
+     "text": "He admitted something no CEO wants to say in public"
+    },
+    {
+     "at": 22.81,
+     "text": "“I was unfaithful to my wife.”",
+     "hl": [
+      "unfaithful"
+     ],
+     "sub": "From his email to employees (as reported)"
+    }
+   ],
+   "label": "The confession"
+  },
+  {
+   "start": 25.27,
+   "end": 34.45,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n20.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 25.27,
+     "text": "But this is not just a personal story"
+    },
+    {
+     "at": 28.34,
+     "text": "The woman at the centre is suspected by US intelligence of working for China",
+     "hl": [
+      "China"
+     ]
+    }
+   ],
+   "label": "The twist",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 34.45,
+   "end": 41.8,
+   "type": "profile",
+   "name": "Alice Huang",
+   "initials": "AH",
+   "role": "Businesswoman",
+   "label": "Who is she?",
+   "source": "Media reports",
+   "accent": "#D93A2F",
+   "points": [
+    {
+     "text": "Also known as Huang Lei",
+     "at": 36.8
+    },
+    {
+     "text": "Not related to Jensen Huang",
+     "at": 38.6,
+     "hl": true
+    }
+   ],
+   "photo": "../long-04-nvidia/media/alice.jpg",
+   "photo_y": 0.12,
+   "photoTag": "REPRESENTATIVE IMAGE"
+  },
+  {
+   "start": 41.8,
+   "end": 58.54,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n16.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 41.8,
+     "text": "NYT & others: US intelligence watched this relationship for over a year",
+     "hl": [
+      "US",
+      "intelligence"
+     ]
+    },
+    {
+     "at": 50.05,
+     "text": "A classified memo reportedly said she may have worked for China's Ministry of State Security",
+     "hl": [
+      "Ministry",
+      "of",
+      "State",
+      "Security"
+     ],
+     "sub": "China's intelligence agency"
+    }
+   ],
+   "label": "Allegation",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 58.54,
+   "end": 67.28,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n11.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 58.54,
+     "text": "The back door: Megaspeed",
+     "hl": [
+      "Megaspeed"
+     ]
+    },
+    {
+     "at": 62.01,
+     "text": "A Singapore-based company that builds data centres in Southeast Asia"
+    }
+   ],
+   "label": "Singapore",
+   "accent": "#10B07F"
+  },
+  {
+   "start": 67.28,
+   "end": 85.79,
+   "type": "steps",
+   "heading": "The alleged route",
+   "steps": [
+    {
+     "text": "China can't buy the chips directly",
+     "at": 69.04
+    },
+    {
+     "text": "Chips sold to a 3rd country",
+     "sub": "Singapore, Malaysia",
+     "at": 72.48
+    },
+    {
+     "text": "On paper, they stay there",
+     "at": 77.34
+    },
+    {
+     "text": "Suspicion: chips or their compute serve China",
+     "at": 79.52
+    }
+   ]
+  },
+  {
+   "start": 85.79,
+   "end": 96.61,
+   "type": "stat",
+   "heading": "Report by The Information",
+   "value": 7.5,
+   "decimals": 1,
+   "prefix": "$",
+   "suffix": " bn",
+   "at": 88.89,
+   "label": "of Nvidia chips allegedly reached Chinese companies",
+   "sub": "roughly 240,000 chips",
+   "color": "#D93A2F"
+  },
+  {
+   "start": 96.61,
+   "end": 98.54,
+   "type": "statement",
+   "text": "Megaspeed denies any smuggling",
+   "hl": [
+    "denies"
+   ],
+   "accent": "#10B07F",
+   "sub": "It says US and Malaysian reviews found no violations"
+  },
+  {
+   "start": 98.54,
+   "end": 112.59,
+   "type": "tiles",
+   "heading": "One session, two worlds",
+   "cols": 3,
+   "items": [
+    {
+     "title": "Nvidia market value",
+     "value": "−$192 bn",
+     "arrow": "down",
+     "sub": "lost in one session",
+     "color": "#D93A2F",
+     "at": 99.94
+    },
+    {
+     "title": "Chip stocks overall",
+     "value": "+7%",
+     "arrow": "up",
+     "sub": "the sector was celebrating",
+     "color": "#10B07F",
+     "at": 106.44
+    },
+    {
+     "title": "Tuesday",
+     "value": "−6%",
+     "arrow": "down",
+     "sub": "intraday, fell again",
+     "color": "#D93A2F",
+     "at": 112.34
+    }
+   ]
+  },
+  {
+   "start": 112.59,
+   "end": 128.74,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n39.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 112.67,
+     "text": "Two words: KEY PERSON RISK",
+     "hl": [
+      "KEY",
+      "PERSON",
+      "RISK"
+     ]
+    },
+    {
+     "at": 115.04,
+     "text": "Huang co-founded Nvidia in 1993. For investors, he IS Nvidia",
+     "hl": [
+      "IS"
+     ]
+    },
+    {
+     "at": 121.22,
+     "text": "Dan Ives: without Huang as CEO, Nvidia could be worth 25–30% less",
+     "hl": [
+      "25–30%"
+     ]
+    }
+   ],
+   "label": "Key person risk",
+   "accent": "#D93A2F"
+  }
+ ],
+ "cta": [
+  {
+   "at": 35.5,
+   "dur": 5.0,
+   "text": "Follow COMandFIN for more"
+  },
+  {
+   "at": 88.0,
+   "dur": 5.0,
+   "text": "Like & Share with a friend"
+  }
+ ],
+ "end_segment": "promo",
+ "source": {
+  "project": "long-04-nvidia",
+  "ranges": [
+   [
+    0.0,
+    34.2
+   ],
+   [
+    57.85,
+    64.95
+   ],
+   [
+    84.31,
+    100.8
+   ],
+   [
+    204.0,
+    231.0
+   ],
+   [
+    245.9,
+    258.4
+   ],
+   [
+    297.6,
+    311.4
+   ],
+   [
+    321.0,
+    336.9
+   ]
+  ]
+ },
+ "promo": {
+  "title": "Watch the complete video on YouTube",
+  "sub": "Link in the post & comments",
+  "cta": "Full story: the email, Megaspeed & 3 investor lessons",
+  "image": "../long-04-nvidia/output/thumbnail.png",
+  "duration": "7:02",
+  "dur": 5
+ },
+ "thumbnail": {
+  "line1": "ONE EMAIL →",
+  "line2": "−$192 BN",
+  "badge": "NVIDIA'S BIGGEST CRISIS?"
+ },
+ "badges": [
+  {
+   "from": 25.0,
+   "to": 34.5,
+   "text": "ALLEGATIONS · NOT PROVEN"
+  },
+  {
+   "from": 42.0,
+   "to": 98.5,
+   "text": "ALLEGATIONS · NOT PROVEN"
+  }
+ ]
+}
