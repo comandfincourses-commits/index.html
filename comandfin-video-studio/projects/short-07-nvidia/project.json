@@ -8,103 +8,97 @@
  "intro_mode": "none",
  "scenes": [
   {
-   "start": 0.0,
-   "end": 4.0,
-   "type": "doodle",
-   "photo": "../long-04-nvidia/media/n43.jpg",
-   "cam": [
-    {
-     "at": 0.0,
-     "cx": 0.5,
-     "cy": 0.5,
-     "z": 1
-    },
-    {
-     "at": 0.1,
-     "cx": 0.5,
-     "cy": 0.5,
-     "z": 0.85,
-     "d": 4.0
-    }
-   ],
-   "label": "One email"
-  },
-  {
-   "start": 4.0,
-   "end": 10.4,
-   "type": "stat",
-   "heading": "Sent on a Sunday. By Monday evening…",
-   "value": 200,
-   "prefix": "−$",
-   "suffix": " bn",
-   "at": 5.0,
-   "label": "wiped off the world's most valuable chip company",
-   "color": "#D93A2F"
-  },
-  {
-   "start": 10.4,
-   "end": 17.21,
+   "start": 0,
+   "end": 2.5,
    "type": "media",
-   "photo": "../long-04-nvidia/media/n5.jpg",
+   "photo": "../long-04-nvidia/media/n1.jpg",
    "fx": 0.5,
-   "fy": 0.4,
+   "fy": 0.3,
    "texts": [
     {
-     "at": 10.4,
-     "text": "The email was written by Jensen Huang",
-     "hl": [
-      "Jensen",
-      "Huang"
-     ]
-    },
-    {
-     "at": 13.24,
-     "text": "The man in the leather jacket: CEO of Nvidia",
-     "hl": [
-      "CEO"
-     ]
-    }
-   ],
-   "label": "Nvidia CEO",
-   "accent": "#10B07F"
-  },
-  {
-   "start": 17.21,
-   "end": 25.27,
-   "type": "media",
-   "photo": "../long-04-nvidia/media/n46.jpg",
-   "fx": 0.5,
-   "fy": 0.4,
-   "texts": [
-    {
-     "at": 17.21,
-     "text": "He admitted something no CEO wants to say in public"
-    },
-    {
-     "at": 22.81,
+     "at": 0,
      "text": "“I was unfaithful to my wife.”",
      "hl": [
       "unfaithful"
      ],
-     "sub": "From his email to employees (as reported)"
+     "sub": "Jensen Huang, CEO of Nvidia · email to employees"
     }
    ],
-   "label": "The confession"
+   "label": "The confession",
+   "accent": "#D93A2F"
   },
   {
-   "start": 25.27,
-   "end": 34.45,
+   "start": 2.5,
+   "end": 8.45,
+   "type": "stat",
+   "heading": "Nvidia's market value",
+   "value": 192,
+   "prefix": "−$",
+   "suffix": " bn",
+   "at": 3.3,
+   "label": "wiped out in ONE trading session",
+   "color": "#D93A2F"
+  },
+  {
+   "start": 8.45,
+   "end": 13.25,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n6.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "label": "Same day",
+   "texts": [
+    {
+     "at": 8.45,
+     "text": "And here’s the shocking part…",
+     "hl": [
+      "shocking"
+     ]
+    }
+   ]
+  },
+  {
+   "start": 13.25,
+   "end": 18.5,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n42.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "label": "Market",
+   "accent": "#D93A2F",
+   "texts": [
+    {
+     "at": 13.25,
+     "text": "Chip stocks overall: UP almost 7%",
+     "hl": [
+      "UP",
+      "7%"
+     ]
+    },
+    {
+     "at": 16.75,
+     "text": "Only Nvidia was falling",
+     "hl": [
+      "Nvidia"
+     ],
+     "sub": "−$192 bn in one session"
+    }
+   ]
+  },
+  {
+   "start": 18.5,
+   "end": 27.7,
    "type": "media",
    "photo": "../long-04-nvidia/media/n20.jpg",
    "fx": 0.5,
    "fy": 0.4,
    "texts": [
     {
-     "at": 25.27,
+     "at": 18.57,
      "text": "But this is not just a personal story"
     },
     {
-     "at": 28.34,
+     "at": 21.64,
      "text": "The woman at the centre is suspected by US intelligence of working for China",
      "hl": [
       "China"
@@ -115,8 +109,8 @@
    "accent": "#D93A2F"
   },
   {
-   "start": 34.45,
-   "end": 41.8,
+   "start": 27.7,
+   "end": 35.1,
    "type": "profile",
    "name": "Alice Huang",
    "initials": "AH",
@@ -127,11 +121,11 @@
    "points": [
     {
      "text": "Also known as Huang Lei",
-     "at": 36.8
+     "at": 30.1
     },
     {
      "text": "Not related to Jensen Huang",
-     "at": 38.6,
+     "at": 31.9,
      "hl": true
     }
    ],
@@ -140,15 +134,15 @@
    "photoTag": "REPRESENTATIVE IMAGE"
   },
   {
-   "start": 41.8,
-   "end": 58.54,
+   "start": 35.1,
+   "end": 51.85,
    "type": "media",
    "photo": "../long-04-nvidia/media/n16.jpg",
    "fx": 0.5,
    "fy": 0.4,
    "texts": [
     {
-     "at": 41.8,
+     "at": 35.16,
      "text": "NYT & others: US intelligence watched this relationship for over a year",
      "hl": [
       "US",
@@ -156,7 +150,7 @@
      ]
     },
     {
-     "at": 50.05,
+     "at": 43.41,
      "text": "A classified memo reportedly said she may have worked for China's Ministry of State Security",
      "hl": [
       "Ministry",
@@ -171,70 +165,111 @@
    "accent": "#D93A2F"
   },
   {
-   "start": 58.54,
-   "end": 67.28,
+   "start": 51.85,
+   "end": 54.7,
    "type": "media",
    "photo": "../long-04-nvidia/media/n11.jpg",
    "fx": 0.5,
    "fy": 0.4,
    "texts": [
     {
-     "at": 58.54,
+     "at": 51.85,
      "text": "The back door: Megaspeed",
      "hl": [
       "Megaspeed"
-     ]
-    },
-    {
-     "at": 62.01,
-     "text": "A Singapore-based company that builds data centres in Southeast Asia"
+     ],
+     "sub": "A Singapore-based data-centre company"
     }
    ],
-   "label": "Singapore",
-   "accent": "#10B07F"
+   "label": "Singapore"
   },
   {
-   "start": 67.28,
-   "end": 85.79,
-   "type": "steps",
-   "heading": "The alleged route",
-   "steps": [
+   "start": 54.7,
+   "end": 59.95,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n22.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
     {
-     "text": "China can't buy the chips directly",
-     "at": 69.04
+     "at": 54.7,
+     "text": "Here’s the alleged route"
     },
     {
-     "text": "Chips sold to a 3rd country",
-     "sub": "Singapore, Malaysia",
-     "at": 72.48
-    },
-    {
-     "text": "On paper, they stay there",
-     "at": 77.34
-    },
-    {
-     "text": "Suspicion: chips or their compute serve China",
-     "at": 79.52
+     "at": 57.35,
+     "text": "China can’t buy these chips directly",
+     "hl": [
+      "China"
+     ],
+     "sub": "US export curbs since 2022"
     }
-   ]
+   ],
+   "label": "Export ban",
+   "accent": "#D93A2F"
   },
   {
-   "start": 85.79,
-   "end": 96.61,
+   "start": 59.95,
+   "end": 67.05,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n35.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 59.95,
+     "text": "Chips sold to a company in a 3rd country",
+     "hl": [
+      "3rd",
+      "country"
+     ],
+     "sub": "Singapore · Malaysia"
+    },
+    {
+     "at": 64.85,
+     "text": "On paper, the chips stay there",
+     "hl": [
+      "paper,"
+     ]
+    }
+   ],
+   "label": "Route"
+  },
+  {
+   "start": 67.05,
+   "end": 73.3,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n29.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 67.05,
+     "text": "Suspicion: the chips, or their computing power, quietly serve China",
+     "hl": [
+      "China"
+     ]
+    }
+   ],
+   "label": "The suspicion",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 73.3,
+   "end": 84.17,
    "type": "stat",
    "heading": "Report by The Information",
    "value": 7.5,
    "decimals": 1,
    "prefix": "$",
    "suffix": " bn",
-   "at": 88.89,
+   "at": 76.45,
    "label": "of Nvidia chips allegedly reached Chinese companies",
    "sub": "roughly 240,000 chips",
    "color": "#D93A2F"
   },
   {
-   "start": 96.61,
-   "end": 98.54,
+   "start": 84.17,
+   "end": 86.1,
    "type": "statement",
    "text": "Megaspeed denies any smuggling",
    "hl": [
@@ -244,48 +279,15 @@
    "sub": "It says US and Malaysian reviews found no violations"
   },
   {
-   "start": 98.54,
-   "end": 112.59,
-   "type": "tiles",
-   "heading": "One session, two worlds",
-   "cols": 3,
-   "items": [
-    {
-     "title": "Nvidia market value",
-     "value": "−$192 bn",
-     "arrow": "down",
-     "sub": "lost in one session",
-     "color": "#D93A2F",
-     "at": 99.94
-    },
-    {
-     "title": "Chip stocks overall",
-     "value": "+7%",
-     "arrow": "up",
-     "sub": "the sector was celebrating",
-     "color": "#10B07F",
-     "at": 106.44
-    },
-    {
-     "title": "Tuesday",
-     "value": "−6%",
-     "arrow": "down",
-     "sub": "intraday, fell again",
-     "color": "#D93A2F",
-     "at": 112.34
-    }
-   ]
-  },
-  {
-   "start": 112.59,
-   "end": 128.74,
+   "start": 86.1,
+   "end": 94.7,
    "type": "media",
    "photo": "../long-04-nvidia/media/n39.jpg",
    "fx": 0.5,
    "fy": 0.4,
    "texts": [
     {
-     "at": 112.67,
+     "at": 86.18,
      "text": "Two words: KEY PERSON RISK",
      "hl": [
       "KEY",
@@ -294,33 +296,52 @@
      ]
     },
     {
-     "at": 115.04,
+     "at": 88.5,
      "text": "Huang co-founded Nvidia in 1993. For investors, he IS Nvidia",
      "hl": [
       "IS"
-     ]
-    },
-    {
-     "at": 121.22,
-     "text": "Dan Ives: without Huang as CEO, Nvidia could be worth 25–30% less",
-     "hl": [
-      "25–30%"
      ]
     }
    ],
    "label": "Key person risk",
    "accent": "#D93A2F"
+  },
+  {
+   "start": 94.7,
+   "end": 102.3,
+   "type": "media",
+   "photo": "../long-04-nvidia/media/n41.jpg",
+   "fx": 0.5,
+   "fy": 0.4,
+   "texts": [
+    {
+     "at": 94.7,
+     "text": "Analyst Dan Ives: if Huang is removed as CEO, Nvidia could be worth 25–30% less",
+     "hl": [
+      "25–30%"
+     ]
+    }
+   ],
+   "label": "The risk",
+   "accent": "#D93A2F"
+  },
+  {
+   "start": 102.3,
+   "end": 106.65,
+   "type": "question",
+   "label": "Tell me in the comments",
+   "q": "Should Jensen Huang continue as Nvidia's CEO?"
   }
  ],
  "cta": [
   {
-   "at": 35.5,
-   "dur": 5.0,
+   "at": 44.0,
+   "dur": 4.5,
    "text": "Follow COMandFIN for more"
   },
   {
-   "at": 88.0,
-   "dur": 5.0,
+   "at": 96.5,
+   "dur": 4.5,
    "text": "Like & Share with a friend"
   }
  ],
@@ -329,34 +350,50 @@
   "project": "long-04-nvidia",
   "ranges": [
    [
-    0.0,
-    34.2
+    22.7,
+    24.95
    ],
    [
-    57.85,
+    297.55,
+    313.3
+   ],
+   [
+    25.2,
+    34.15
+   ],
+   [
+    57.8,
     64.95
    ],
    [
-    84.31,
-    100.8
+    84.25,
+    100.75
    ],
    [
     204.0,
+    206.6
+   ],
+   [
+    212.65,
     231.0
    ],
    [
-    245.9,
+    245.85,
     258.4
    ],
    [
-    297.6,
-    311.4
+    321.0,
+    336.95
    ],
    [
-    321.0,
-    336.9
+    365.85,
+    369.95
    ]
   ]
+ },
+ "hook": {
+  "text": "NVIDIA'S CEO SENT THIS EMAIL TO HIS STAFF…",
+  "dur": 2.5
  },
  "promo": {
   "title": "Watch the complete video on YouTube",
@@ -373,13 +410,13 @@
  },
  "badges": [
   {
-   "from": 25.0,
-   "to": 34.5,
+   "from": 18.5,
+   "to": 27.7,
    "text": "ALLEGATIONS · NOT PROVEN"
   },
   {
-   "from": 42.0,
-   "to": 98.5,
+   "from": 35.1,
+   "to": 86.1,
    "text": "ALLEGATIONS · NOT PROVEN"
   }
  ]

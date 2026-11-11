@@ -2,12 +2,12 @@
 
 **YouTube Shorts title**
 ```
-One Email Wiped $192 Billion Off Nvidia 😱 #shorts
+Nvidia's CEO Sent ONE Email… and Lost $192 Billion 😱 #shorts
 ```
 
 **YouTube description**
 ```
-One email from Jensen Huang, and Nvidia lost $192 billion in a single day while other chip stocks rose ~7%. Who is Alice Huang, what is Megaspeed, and why does KEY PERSON RISK matter to every investor?
+"I was unfaithful to my wife." One email from Jensen Huang, and Nvidia lost $192 billion in a single day while other chip stocks rose ~7%. Who is Alice Huang, what is Megaspeed, and why does KEY PERSON RISK matter to every investor?
 🎥 Full video: [YouTube link]
 👍 Like · 🔁 Share · 🔔 Subscribe to COMandFIN
 ⚠️ The spying and chip-smuggling claims are allegations reported by the media, not proven. Nvidia, Megaspeed and China deny wrongdoing. Education only, not investment advice.
