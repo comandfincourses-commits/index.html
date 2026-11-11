@@ -22,7 +22,12 @@ In this video, CA Ankit Bajaj explains the Nvidia story step by step: Jensen Hua
 • 3 lessons on corporate governance for every investor
 
 ⏱️ CHAPTERS
-{{CHAPTERS}}
+0:00 Introduction
+1:27 How it started
+2:49 Why America is worried
+3:53 The back door
+5:19 The money
+6:06 Lessons
 
 💬 Tell me in the comments: should Jensen Huang continue as Nvidia's CEO?
 
