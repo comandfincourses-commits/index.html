@@ -41,11 +41,12 @@ def cursor(d, x, y, s):
     pts = [(x + px*s, y + py*s) for px, py in pts]
     d.polygon(pts, fill="white", outline=INK); d.line(pts + [pts[0]], fill=INK, width=max(2, int(2.5*s)))
 
-def frame(f, n, big, channel):
+def frame(f, n, big, channel, W=W, H=H, y_top=None):
     s = 1.55 if big else 1.0
     cw, ch = 640*s, 200*s
     cx0 = (W - cw) / 2 if big else W - cw - 50
-    y_rest = H - ch - (70 if big else 50)
+    y_rest = H - ch - (70 if big else 50) if y_top is None else y_top
+    if y_top is not None: cx0 = (W - cw) / 2
     t_in = clamp(f / 14)
     y = lerp(H + 20, y_rest, ease_out_back(t_in)) if f < 14 else y_rest
     if not big and f > n - 15:
@@ -97,7 +98,9 @@ def frame(f, n, big, channel):
 if __name__ == "__main__":
     ap = argparse.ArgumentParser(); ap.add_argument("out"); ap.add_argument("--big", action="store_true")
     ap.add_argument("--channel", default="COMandFIN"); ap.add_argument("--seconds", type=float, default=5.0)
+    ap.add_argument("--vertical", action="store_true", help="1080x1920 canvas, card centred")
+    ap.add_argument("--y", type=float, help="card top y in vertical mode")
     a = ap.parse_args(); os.makedirs(a.out, exist_ok=True)
     n = int(a.seconds * FPS)
     for f in range(n):
-        frame(f, n, a.big, a.channel).save(os.path.join(a.out, f"c_{f:04d}.png"), compress_level=1)
+        (frame(f, n, a.big, a.channel, 1080, 1920, a.y if a.y is not None else 1300) if a.vertical else frame(f, n, a.big, a.channel)).save(os.path.join(a.out, f"c_{f:04d}.png"), compress_level=1)
