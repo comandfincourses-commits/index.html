@@ -45,13 +45,13 @@ def scenes_for_short(rows, segs, src_total, min_len=0.7):
         for i, r in enumerate(rows):
             s, e = max(starts[i], a), min(starts[i+1], b)
             if e - s > 0.05:
-                out.append([r["image"], off + (s - a), off + (e - a) + (GAP if e >= b - 1e-6 else 0)])
+                out.append([r["image"], off + (s - a), off + (e - a) + (GAP if e >= b - 1e-6 else 0), r.get("crop") or ""])
         off += (b - a) + GAP
     merged = []
-    for img, s, e in out:  # drop slivers, merge consecutive duplicates
+    for img, s, e, c in out:  # drop slivers, merge consecutive duplicates
         if merged and (merged[-1][0] == img or e - s < min_len):
             merged[-1][2] = e; continue
-        merged.append([img, s, e])
+        merged.append([img, s, e, c])
     return merged
 
 def headline(path, kicker, line1, line2):
@@ -66,11 +66,19 @@ def headline(path, kicker, line1, line2):
     im.save(path)
 
 def clip(job):
-    i, img, d, out = job
+    i, img, d, out, crop = job
     n = round(d * FPS)
+    iw, ih = Image.open(img).size
+    x0, x1 = (int(v) for v in crop.split("-")) if crop else (0, iw)
+    cw = x1 - x0
+    k = max(PANEL_W / cw, PANEL_H / ih)            # cover the panel
+    sw, sh_ = int(round(cw * k / 2) * 2), int(round(ih * k / 2) * 2)
     a0, a1 = (PAN_FROM, PAN_TO) if i % 2 == 0 else (PAN_TO, PAN_FROM)
-    vf = (f"split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=28:2,eq=brightness=-0.22:saturation=0.9[bg];"
-          f"[b]scale=-2:{PANEL_H}:flags=lanczos,crop={PANEL_W}:{PANEL_H}:x='(iw-{PANEL_W})*({a0}+({a1}-{a0})*t/{d:.3f})':y=0[fg];"
+    prog = f"({a0}+({a1}-{a0})*t/{d:.3f})"
+    if sw - PANEL_W >= sh_ - PANEL_H: px, py = f"(iw-{PANEL_W})*{prog}", "(ih-oh)/2"   # wide art: pan sideways
+    else: px, py = "(iw-ow)/2", f"(ih-{PANEL_H})*{prog}"                              # tall art: pan down/up
+    vf = (f"crop={cw}:{ih}:{x0}:0,split[a][b];[a]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},boxblur=28:2,eq=brightness=-0.22:saturation=0.9[bg];"
+          f"[b]scale={sw}:{sh_}:flags=lanczos,crop={PANEL_W}:{PANEL_H}:x='{px}':y='{py}'[fg];"
           f"[bg][fg]overlay=0:{PANEL_Y},drawbox=x=0:y={PANEL_Y}:w={W}:h=6:color=0x231F20:t=fill,"
           f"drawbox=x=0:y={PANEL_Y+PANEL_H-6}:w={W}:h=6:color=0x231F20:t=fill,format=yuv420p")
     sh(["ffmpeg","-v","error","-y","-loop","1","-framerate",str(FPS),"-t",f"{d:.3f}","-i",img,"-vf",vf,
@@ -86,7 +94,8 @@ def captions(words, segs, path, y=1390, per=3):
         s, e = remap(w["s"], segs), remap(min(w["e"], w["s"] + 1.2), segs)
         if s is None: continue
         t = w["w"].strip(); t = FIX.get(t, t)
-        if t == ",000": ws[-1][0] += ",000"; ws[-1][2] = e or ws[-1][2]; continue
+        if ws and len(t) > 1 and t[0] in ",.-" and (t[1].isdigit() or t[0] == "-"):  # "5" ",000" / "5" ".8" / "5,000" "-rupee"
+            ws[-1][0] += t; ws[-1][2] = e or ws[-1][2]; continue
         if t: ws.append([t, s, e if e is not None else s + 0.3])
     lines = ["[Script Info]","ScriptType: v4.00+",f"PlayResX: {W}",f"PlayResY: {H}","",
              "[V4+ Styles]","Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding",
@@ -123,6 +132,7 @@ def main():
     ap.add_argument("--kicker", default="THE DHIRUBHAI AMBANI STORY")
     ap.add_argument("--line1", default="From a 350 sq ft room"); ap.add_argument("--line2", default="to ₹96,000 Cr profit")
     ap.add_argument("--tail", type=float, default=1.6)
+    ap.add_argument("--style", help="JSON with optional 'fix' (word->replacement) and 'hilite' (word prefixes)")
     a = ap.parse_args(); os.makedirs(a.work, exist_ok=True)
     segs = [(float(r["start"]), float(r["end"])) for r in csv.DictReader(open(a.segs))]
     vo = os.path.join(a.work, "vo_short.wav"); build_audio(a.audio, segs, a.tail, vo, a.work)
@@ -130,11 +140,14 @@ def main():
     rows = list(csv.DictReader(open(a.scenes)))
     sc = scenes_for_short(rows, segs, dur(a.audio)); sc[-1][2] = total
     with open(os.path.join(a.work, "short_scenes.csv"), "w") as f:
-        f.write("image,start,end\n"); [f.write(f"{i},{s:.2f},{e:.2f}\n") for i, s, e in sc]
-    jobs = [(i, os.path.join(a.imgdir, img), (e - s) + (XF if i < len(sc) - 1 else 0), os.path.join(a.work, f"v{i:03d}.mp4"))
-            for i, (img, s, e) in enumerate(sc)]
+        f.write("image,start,end,crop\n"); [f.write(f"{i},{s:.2f},{e:.2f},{c}\n") for i, s, e, c in sc]
+    jobs = [(i, os.path.join(a.imgdir, img), (e - s) + (XF if i < len(sc) - 1 else 0), os.path.join(a.work, f"v{i:03d}.mp4"), c)
+            for i, (img, s, e, c) in enumerate(sc)]
     with ThreadPoolExecutor(4) as ex: list(ex.map(clip, jobs))
     head = os.path.join(a.work, "headline.png"); headline(head, a.kicker, a.line1, a.line2)
+    if a.style:
+        st = json.load(open(a.style)); FIX.clear(); FIX.update(st.get("fix", {}))
+        global HILITE; HILITE = tuple(st.get("hilite", HILITE))
     ass = os.path.join(a.work, "captions.ass"); captions(json.load(open(a.words)), segs, ass)
     cmd, filt = ["ffmpeg","-v","error","-stats","-y"], []
     for j in jobs: cmd += ["-i", j[3]]
